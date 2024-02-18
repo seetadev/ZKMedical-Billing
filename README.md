@@ -1,6 +1,25 @@
 # ZK Medical Billing
 zk Medical Billing and Diagnostics on Scroll, Polygon ZKevm blockchain using Avail and zksbts with Bandada, Sindri and Aztec
 
+Track, trace and record work orders, invoices and receipts for medical diagnostic labs using zero knowledge proofs built using circom and noir deployed on Polygon zkEVM and Scroll, analytics tools on Sindri and Bandada, verification and account abstraction on ZK email based wallet, and Web3 ecosystem tools on Avail and Aztech.
+
+We are also developing tools to enable tracing, monitoring and recording of medical invoices in a scalable manner across an entire supply chain for efficiency and sustainability and benefit the entire medical eco-system using Avail for data accessibility layer and Sindri for verification using circom, devops and user security. 
+
+Avail: We are developing custom rollapps  using Dymension with Avail DA and and tools to enable no code, low code analytics tooling using an open source analytics and visualization tool, namely Avail XLS, which enables tabulation, organization, collaboration, visualization, graphing and charting. 
+
+We are also integrating Avail’s Light Client features with zk Medical wallet that seamlessly works across key Ethereum L2 Blockchains and leverages Zero Knowledge Proofs for Crypto-transactions and Identity proofs.
+
+ZK Email wallet supports operations like sending DAI and USDC payment amounts, zk signing of the transaction and other cryptographic operations across multiple platforms and blockchains that improve the overall usability and interoperability on Scroll.
+
+We are using Bandada with Semaphore to  signal anonymously inside a Semaphore-compatible off-chain groups. We are also developing zksbt tokens to communicate with Bandada SDK.
+
+We are extending Aztec’s Stealthdrop implementation in Noir to reward users with cashbacks and gift vouchers in invoices raised in case they exceed an expected range or during yearly festivals.
+
+AIops using Sindri: We are also trying to extend the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices. Proof generation using Sindri’s ZKML tooling in Noir.
+
+
+# Scroll
+
 ZK Usage for Scalability on Scroll: We are developing tools to enable tracing, monitoring and recording of medical invoices in a scalable manner across an entire supply chain for efficiency and sustainability and benefit the entire medical eco-system on Scroll using Avail for data accessibility layer and Sindri for verification using circom, devops and user security. 
 
 AIops using Avail and Sindri on Scroll: We are building Avail XLS, an on-chain analytics, visualization tool and also trying to extend the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices. Proof generation using Sindri’s ZKML tooling in Noir.
@@ -14,6 +33,7 @@ ZK Usage for Privacy on Scroll: ZK Email wallet on Scroll supports operations li
 Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker
 Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk)
 
+# Avail
 
 Avail: We are developing custom rollapps  using Dymension with Avail DA and and tools to enable no code, low code analytics tooling using an open source analytics and visualization tool, namely Avail XLS, which enables tabulation, organization, collaboration, visualization, graphing and charting. 
 
@@ -30,9 +50,9 @@ We are developing tools to enable tracing, monitoring and recording of medical i
 
 Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk_validate_verify and demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
 
+# Sindri
+
 AIops using Avail and Sindri on Scroll: We are building Avail XLS, an on-chain analytics, visualization tool and also trying to extend the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices. Proof generation using Sindri’s ZKML tooling in Noir.
-
-
 
 
 AIops using Sindri on Scroll: We are extending the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices depending upon the status (pending, draft and paid). Proof generation using Sindri’s ZKML tooling in Noir.
