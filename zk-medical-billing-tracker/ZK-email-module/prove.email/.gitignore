@@ -1,0 +1,33 @@
+node_modules
+.next
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+yarn-error.log
+.env
+
+# Next.js
+/.env*
+/next.config.js
+/vercel.json
+/vercel.json
+/out
+/serverless
+
+# misc
+.DS_Store
+*.pem
+*.log
+
+# Testing
+/coverage
+
+# Production
+/build
+
+# # Dependencies
+# /package-lock.json
+# /yarn.lock
+
+.contentlayer

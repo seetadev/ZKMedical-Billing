@@ -1,0 +1,337 @@
+---
+title: "Nozee: JWT verification with ZK-SNARKs"
+date: 2023-06-18T22:12:03.284Z
+draft: false
+type: Post
+slug: "jwt"
+category: "30 min read"
+tags: ["jwt"]
+description: "Verifying sign-ins inside a ZK-SNARK."
+---
+
+by [Emma Guo](https://twitter.com/emguoz) and [Sehyun Chung](https://twitter.com/sehyunchung)
+
+[Circuits](https://github.com/emmaguo13/zk-blind), [Application code](https://github.com/sehyunc/nozee)
+
+## Motivation
+
+Modern digital identity primitives strive to simultaneously maintain user privacy and user expressiveness through a clear notion of “identity.” Recent explorations of private, verifiable, and unique digital identities include: private message boards that validate user credentials upon registration and governance systems (e.g. DAOs) that facilitate collaboration between on-chain identities.
+
+Anonymous “proof of organization” allows users to prove group membership of existing, real-life organizations, without having to reveal any other aspect of their identity. Blind, an app that allows tech company employees to anonymously post about their salaries and work experiences, does proof of organization semi-anonymously. The site checks for organization membership by sending you a verification code to an email address that includes your organization’s domain. However, Blind’s server will see your email address, which may include your name, thus revealing additional information about your identity to the app. 
+
+We present Nozee, the product of an exploration of browser-based ZK-proof generation and JWTs (JSON Web Tokens, a common token standard used in authentication). In hopes of a more trustless and verifiable internet, Nozee combines existing JWT authentication infrastructure with zkSNARKs, unlocking a new method for users to make private, yet verifiable claims about their identity. Nozee, compared with similar apps like Blind, keeps “proof of organization” _completely_ private, allowing a valid user to post anonymously without ever having to send any revealing information (such as their work email) to the Nozee server. The JWT proof generated using Nozee can be used to power other anonymous message boards or anonymous group chats that also use proof of organization.
+
+**To skip the technical details of Nozee and JWT proofs, read the _“The user’s perspective”_ section on how to use our app.**
+
+JSON Web Tokens can encode information about a user that has authenticated into a server, constituting as a “stamp” of authentication from some trusted server. Generating a zero-knowledge proof of the information represented by a JWT allows a first-time user to privately and efficiently authenticate to a new application, while checking for any required user credentials. Subsequent user authentications to this application then simply require re-verifying the JWT of a trusted server in ZK, similar to using “Sign in with Google” but without having to go through Google’s authentication middleware every time a user logs in. In our proof of concept, we check for membership within an organization through email domains in JWTs generated from logging into OpenAI via Gmail. Nozee guarantees that the app server can authenticate users without revealing their email, or any other information, but is not completely trustless, as generating the initial JWT requires trusting the JWT signer and its server. Users only need to reveal information to a server they already trust, and do not have to reveal anything to Nozee. 
+
+## JWT-based authentication
+
+JSON Web Token (JWT) is a standard for transmitting information in a JSON object, and is popularly used for authentication. The information contained in the header and payload is signed, meaning the recipient of the token can verify integrity using RSA, ECDSA, or HMAC.
+
+JWTs consist of a header, payload, and signature, all of which are encoded with URLBase64 encoding and separated by dots. 
+
+header.payload.signature
+
+The JWT payload can include information about the user, such as their name, access status, and email address, as well as information about the token, such as the token issuance time and token expiration time.
+
+For JWTs to work with Nozee, we need to be able to extract the JWT, verify the JWT with the RS256 algorithm using the trusted server’s public key, and extract the domain from the JWT, meaning the JWT must contain the user’s email. 
+
+**Retrieving the trusted server’s public key**
+
+For the Auth0 standard, servers that sign their JWTs with the RS256 algorithm have certificates containing the JWT-signing public key available at [https://auth0.[domain].com/pem](https://[domain].com/pem) or [https://[domain].auth0.com/pem](https://[domain].com/pem). For OpenAI/ChatGPT, these are at [auth0.openai.com/pem](https://auth0.openai.com/pem). The public key must be extracted from the certificate using OpenSSL. This is the method Nozee used to obtain the OpenAI public key. Servers that want to easily verify the JWTs should obtain keys from [https://auth0.[your_domain].com/.well-known/jwks.json](https://auth0.[your_domain].com/.well-known/jwks.json) or [https://[your_domain].auth0.com/.well-known/jwks.json](https://auth0.[your_domain].com/.well-known/jwks.json), as libraries support this endpoint. The first “x5c” value is the certificate containing the public key used to sign JWTs. 
+
+**Extracting the JWT**
+
+While there are different ways of extracting a JWT, such as from cookies or local storage, Nozee extracts the JWT from the request headers where Authorization bearer &lt;jwt> is set through our extension.
+
+Many sites use Auth0 JWTs. For future reference, we’ve compiled a list of sites, as well as their compatibility with what Nozee aims to achieve.
+
+
+<table>
+<tbody>
+  <tr>
+   <td>
+    <em>Site</em>
+   </td>
+   <td>
+    <em>JWT access</em>
+   </td>
+   <td>
+    <em>Contains email or email domain in JWT</em>
+   </td>
+   <td>
+    <em>Signature algorithm</em>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    OpenAI
+   </td>
+   <td>
+    Through network request headers, Authorization bearer &lt;jwt> is set.
+   </td>
+   <td>
+    Yes, contained in JWT payload
+   </td>
+   <td>
+    RS256
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Headspace
+   </td>
+   <td>
+    Through network request headers, Authorization bearer &lt;jwt> is set.
+   </td>
+   <td>
+    No
+   </td>
+   <td>
+    RS256
+   </td>
+  </tr>
+  <tr>
+   <td>
+    FreeCodeCamp
+   </td>
+   <td>
+    Cookies
+   </td>
+   <td>
+    No
+   </td>
+   <td>
+    RS256
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Linktree
+   </td>
+   <td>
+    Cookies
+   </td>
+   <td>
+    No
+   </td>
+   <td>
+    RS256
+   </td>
+  </tr>
+  <tr>
+   <td>
+    StockX
+   </td>
+   <td>
+    Cookies
+   </td>
+   <td>
+    No
+   </td>
+   <td>
+    HS256
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Gymshark
+   </td>
+   <td>
+    Cookies
+   </td>
+   <td>
+    No
+   </td>
+   <td>
+    RS256 or HS256 (unclear)
+   </td>
+  </tr>
+  </tbody>
+</table>
+
+
+The statelessness property of JWTs makes them less popular for session management compared to session cookies, since backends are unable to revoke the JWT until the token expires. Thus, JWTs are recommended for short-lived tokens, or as one-time tokens to confirm authentication. Oftentimes, JWTs are encrypted by the JWE standard for encryption, which is why many sites did not have available and easily accessible JWTs to use. For instance, most Auth0 applications who use JWTs for authentication encrypt their tokens. Google uses JWTs not as sessions in the browser, but to transport sessions on one server to another (SSO).
+
+While OpenAI was the only site we found that works for “proof of organization”, as the client sends the JWT through network requests, making it compatible with our extension and the JWT contains the email the user authenticated with. However, the other sites in the chart may work for use cases that solely want to verify authentication and can support accessing JWTs through cookies. 
+
+## Application Design
+
+The main algorithm involved in verifying a JWT is the RS256 algorithm, at least in our case. For our proof of concept, OpenAI’s JWTs worked best when it came to extracting the JWT and information stored in the JWT. We also made a dummy application ([https://get-jwt.vercel.app/](https://get-jwt.vercel.app/)) to generate JWTs and expose them through network requests to demonstrate that the Nozee circuit can be generalized to support other RS256 JWTs that have a header and payload less than 1024 characters, and includes an email domain in the payload. This is the redacted exact structure of a base64-decoded key we use from them:
+
+#### Header
+```
+{
+  "alg": "RS256",
+  "typ": "JWT",
+  "kid": "M****************************************************g"
+}
+```
+#### Payload
+```
+{
+  "https://api.openai.com/profile": {
+    "email": "****@******.com",
+    "email_verified": true
+  },
+  "https://api.openai.com/auth": {
+    "poid": "org-d**********************e",
+    "user_id": "user-J**********************X"
+  },
+  "iss": "https://auth0.openai.com/",
+  "sub": "google-oauth2|1*******************6",
+  "aud": [
+    "https://api.openai.com/v1",
+    "https://openai.openai.auth0app.com/userinfo"
+  ],
+  "iat": 1********9,
+  "exp": 1********9,
+  "azp": "T******************************G",
+  "scope": "openid email profile model.read model.request organization.read organization.write offline_access"
+}
+```
+
+Everytime you login to OpenAI with your email, their server will construct a JWT containing your email, and sign it with their private key.
+
+![](https://hackmd.io/_uploads/rJQ3LWEAh.png)
+
+
+_OpenAI’s server:_
+
+rsa_sign(sha256(header_encoded + “.” + payload_encoded), @OpenAI Auth0 priv key)
+
+Our circuit only needs knowledge of OpenAI’s public key to verify the signature attached to the JWT, proving the validity of the JWT according to OpenAI.
+
+_Nozee circuit:_
+
+rsa_verify(signature, @OpenAI Auth0 pub key, sha256(header_encoded + “.” + payload_encoded))
+
+**ZK circuit construction**
+
+_ZK-proof public inputs:_
+
+
+
+* User’s email domain
+* RSA modulus (public key)
+* The timestamp at which the user generated the proof
+
+_ZK-proof private inputs:_
+
+
+
+* Message (encoded message and payload of JWT, concatenated with a period)
+* Signature
+* Index of the period in our message
+* Index of the domain
+* Index of the timestamp
+
+_Circuit steps_
+
+
+
+1. Hash message
+2. Verify the RSA signature
+3. Decode the message
+4. Ensure the JWT’s header includes that its type is JWT
+5. Extract the email domain, check that it is the same as the public input domain
+6. Check that the expiration date is found
+7. Ensure that the time the proof was generated is no more than a day after the JWT expiration date.
+
+_Server checks_
+
+
+
+1. The public input modulus is the correct modulus (checks that it is the OpenAI public key)
+2. Checks that the public input timestamp is generated no more than 20 minutes before the server verification happens
+
+**Web app construction**
+
+The Nozee web app user flow involves the extension, the client for generating proofs and creating posts on the feed, as well as the server that does proof verification. 
+
+_Extension_
+
+The extension retrieves JWTs from external websites and redirects users back to Nozee for login. First, users must log into ChatGPT, which allows our extension to examine network requests directed towards the authentication servers of the respective website. The extension watches for the request containing the Authorization header with bearer &lt;jwt>, as it contains the JWT. While there are alternative methods to extract JWTs from servers, we opted for this approach. 
+
+_Client_
+
+Before generating a proof for the user, our client fetches the proving key from the .zkey file in our s3 bucket, since the .zkey file is ~600MB and cannot be stored client-side for the best possible UX. Groth16 requires a circuit-specific trusted setup (Phase 2) to generate the proving and verification keys, meaning the .zkey file contains all of the Phase 2 contributions. If we were to use a PLONK-based system such as Halo2, we would only need the powers of tau and the circuit WASM file to generate proofs, which would not require us to download a large .zkey file. After the proving key is fetched, the client generates proof inputs from the JWT that is loaded in a URL parameter, and then generates the proof using Snarkjs. We chose to do client-side proof generation as it preserves user privacy by preventing the user from having to reveal their JWT to our server, although server-side proof generation would have given us less troubles with a larger zkey file size. We had to be wary of circuit size, as proving keys that are too large must be chunked to actually generate proofs. The proof generation process typically takes between 30 seconds to 1 minute. Subsequently, the proof is stored in local storage to prevent the user from having to generate a new proof upon every login or every post.
+
+Upon verifying their proof in our server, users are able to post on Nozee as a member of the organization associated with the domain of their email in the JWT. The process of post creation involves two key components: writing to our Firebase Database and web3.storage. This dual approach ensures post persistence, and within our open-source code, our server will publish all posts with valid proofs to our database and web3.storage. In cases where extreme moderation is needed (e.g. harmful/malicious posts), we are able to remove such posts from the database to prevent them from being displayed in the client. Since our code is open-source, users are able to use our verification key to verify their own proofs, and detect whether or not the server failed to verify their proof. Users are also able to fork the website and retrieve posts from IPFS if they would like to display posts that were removed from our database. This promotes censorship-resistance from the data-level while protecting users from harmful messages on the app-level. 
+
+**Trust and privacy assumptions**
+
+Although verification of a JWT can be done in a trustless manner, there are a few trusted third parties involved in the creation of a JWT. In addition, since Nozee uses a centralized server, verifying JWTs for logins and posts rely on the Nozee server as a trusted third party to not censor certain posts/logins with correct proofs. It is possible to move proof verification on-chain, which would make proof verification trustless, but that would require the use of relayers to prevent associating a user’s on-chain address with their proof, as well as gas fees incurred on each login and post. We chose server verification to prevent the complexity of having to use a relayer network to preserve privacy, and open-sourced our verification key to allow users to check that the server is non-malicious.
+
+In order to obtain a JWT, we must trust a centralized third party, such as Auth0, the JWT signer for OpenAI, to properly authenticate a user, and generate a JWT for only authenticated users. Our circuit verifies the signature on a message signed by the trusted third party, but if OpenAI were to use Auth0 to sign a JWT for an unauthorized user who does not own the email in their JWT, Nozee would not be able to detect it.
+
+As Nozee is a proof of concept, we have not actually done a trusted setup, meaning that our initial random parameters used in generating the Groth16 proving key and verification key depend on the one sole contribution done by the Nozee team. To have true 1-of-N trust, meaning that the only 1/N contributors need to be non-malicious, we would need to conduct a full MPC ceremony with N contributors, where N is greater than 1.
+
+In terms of privacy, the anonymity set for posters within the same organization is smaller than the set of all posters from said organization. The true anonymity set is all users from the same organization who use the same server to retrieve their JWT.
+
+## Benchmarks
+
+**jwt.circom circuit size**
+
+Non-linear constraints: 1159565
+
+Wires: 1114900
+
+Labels: 4444507
+
+We benchmarked proof generation and verification time using code from [Mo Dong’s research](https://ethresear.ch/t/benchmarking-zkp-development-frameworks-the-pantheon-of-zkp/14943) on benchmarking different ZKP development frameworks. Our benchmarking code came from this [repo](https://github.com/celer-network/zk-benchmark/blob/main/circom/groth16/test_sha256_groth16_macos.sh). 
+
+The benchmarking was conducted on a Macbook M1 Air with 8 cores, 16GB memory. Scripts were run on our zsh Mac Terminal, and not on the browser. 
+
+**Proof generation**
+
+_All values are obtained from the average value from generating a proof 10 times_
+
+Time: 47.096000s
+
+Memory usage: 4.81 GB
+
+CPU utilization: 411.2%
+
+Average per-core CPU utilization: 51.4%
+
+Proof size: 805B
+
+**Proof verification**
+
+_All values are obtained from the average value from verifying a proof 10 times_
+
+Time: 0.28s
+
+Memory usage: 0.12 GB
+
+CPU utilization: 207.6%
+
+Average per-core CPU utilization: 25.95%
+
+## Further applications
+
+What excites us the most about JWT verification in zkSNARKs is using it as a “stamp” of validity to signal the fact that you’ve previously authenticated to a trusted server, and have certain credentials.
+
+For off-chain use cases, we are excited to see apps that take advantage of the verifiability that proofs of JWT validity can bring to the security of the internet. Using JWTs from trusted sites as ways to authenticate on non-trusted sites can help prevent users from having to give an email and a password to a site they may not want to trust. We would like to see more exploration of sites that allow users to interact/express themselves privately while proving or revealing some group membership. Apps like [Blind](https://www.teamblind.com/), [The Unsent Project](https://theunsentproject.com/about), and [AAI Confessions](https://www.aaiconfessions.com/) are a few existing examples of using privacy to shed light on engaging topics or promote discussion. By incorporating anonymous “proof of organization” within similar apps as the ones previously mentioned, this can potentially, this can help disincentivize malicious posters while continuing to maintain privacy, knowing that they are representing an organization or a group they are a part of. 
+
+For on-chain use cases, we’re excited to see JWTs be used in conjunction with EIP-4337. For instance, a JWT proof can be included in the signature field of a UserOperation, and passed into the validateUserOp function. As we also mentioned, JWT proofs can also verify off-chain identities on-chain, which can help dapps to enable richer, more expressive, and sybil resistant on-chain identities. 
+
+## The user’s perspective
+
+As a user, you will first add our extension to Chrome by first accessing your extensions, turning on Developer Mode, and then clicking “Load unpacked”, which will allow you to open our extension folder.
+
+Now that the extension is ready to use, login to OpenAI with Google, and your organization email. Click on the extension, and you will be able to view your JWT and login to Nozee through the extension.
+
+In Nozee, you’ll see your JWT as a parameter in the URL. If it’s your first time using Nozee, the proof key file will be downloaded. Then, you’ll be able to generate a proof (~40s) with the JWT in the URL parameter, which will subsequently be verified by our server. Now, we’ve proved that you’re a member of the organization that gave you your email domain, but we know _nothing_ else about you! Your proof will then be stored in your browser for easy access when you want to make posts, or login again. 
+
+It’s super straightforward to make a post, as the proof will be fetched from your browser, and then verified in the server again to allow your post to be added to our database. You will only be able to reuse your JWT until it expires, which is after 9 days (this is determined by OpenAI’s server). 
+
+## Acknowledgements
+
+Nozee was built during ETH University’s Winter 2023 Hack Lodge alongside Kaylee George (thank you Kaylee!), who worked on the app with us, along with the circuits. In addition, we would like to thank Brian Gu, the founder of Hack Lodge and all of the mentors who were there during the week to support us with shipping Nozee, especially Vivek Bhupatiraju and Aayush Gupta, our main mentors throughout this project.
+
+Huge thanks to Aayush Gupta and Sampriti Panda, the original creators of ZK-email and ZK-regex. Our work was built off of the amazing foundation of ZK-email. We were largely inspired by the ZK-email circuit construction, and used ZK-regex to do regex checks in the Nozee circuit. The idea to build Nozee during Hack Lodge was also prompted by this [post](https://zkresear.ch/t/zk-email-zk-jwts/83) by Aayush on zk.research.
+
+Final thanks to Darya Kaviani, Kaylee, Vivek and Aayush for reviews and comments on this article.

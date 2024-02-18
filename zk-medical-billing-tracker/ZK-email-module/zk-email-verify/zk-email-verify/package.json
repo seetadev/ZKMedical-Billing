@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "workspaces": [
+    "packages/*",
+    "scripts"
+  ],
+  "packageManager": "yarn@3.2.3"
+}
