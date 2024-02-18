@@ -1,8 +1,10 @@
-# Noir Stealthdrop
+We are extending Aztec’s Stealthdrop implementation in Noir to reward users with cashbacks and gift vouchers in invoices raised in case they exceed an expected range or during yearly festivals.
+Demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
 
-A few months ago, we were challenged to copy the amazing [Stealthdrop project](https://github.com/stealthdrop/stealthdrop). Challenge accepted.
+Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk) 
 
-This is a much faster version of Stealthdrop, built with Noir.
+Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/aztech-stealthdrop
+
 
 ## Getting Started
 
