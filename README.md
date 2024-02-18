@@ -1,11 +1,11 @@
 # ZK Medical Billing
 zk Medical Billing and Diagnostics on Scroll, Polygon ZKevm blockchain using Avail and zksbts with Bandada, Sindri and Aztec
 
-zk Verification: https://mumbai.polygonscan.com/tx/0x88f4b0c54cb35dd5f834a1603c0b2555bdc480afb9f5c8aa52a27d6e0d64739b
-
 Track, trace and record work orders, invoices and receipts for medical diagnostic labs using zero knowledge proofs built using circom and noir deployed on Polygon zkEVM and Scroll, analytics tools on Sindri and Bandada, verification and account abstraction on ZK email based wallet, and Web3 ecosystem tools on Avail and Aztech.
 
 We are also developing tools to enable tracing, monitoring and recording of medical invoices in a scalable manner across an entire supply chain for efficiency and sustainability and benefit the entire medical eco-system using Avail for data accessibility layer and Sindri for verification using circom, devops and user security. 
+
+zk Verification contract: https://mumbai.polygonscan.com/tx/0x88f4b0c54cb35dd5f834a1603c0b2555bdc480afb9f5c8aa52a27d6e0d64739b
 
 We are integrating Avail’s Light Client features with zk Medical wallet that seamlessly works across key Ethereum L2 Blockchains and leverages Zero Knowledge Proofs for Crypto-transactions and Identity proofs.
 Avail: We are developing custom rollapps  using Dymension with Avail DA and and tools to enable no code, low code analytics tooling using an open source analytics and visualization tool, namely Avail XLS, which enables tabulation, organization, collaboration, visualization, graphing and charting. 
