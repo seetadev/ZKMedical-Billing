@@ -1,6 +1,8 @@
 # ZK Medical Billing
 zk Medical Billing and Diagnostics on Scroll, Polygon ZKevm blockchain using Avail and zksbts with Bandada, Sindri and Aztec
 
+zk Verification: https://mumbai.polygonscan.com/tx/0x88f4b0c54cb35dd5f834a1603c0b2555bdc480afb9f5c8aa52a27d6e0d64739b
+
 Track, trace and record work orders, invoices and receipts for medical diagnostic labs using zero knowledge proofs built using circom and noir deployed on Polygon zkEVM and Scroll, analytics tools on Sindri and Bandada, verification and account abstraction on ZK email based wallet, and Web3 ecosystem tools on Avail and Aztech.
 
 We are also developing tools to enable tracing, monitoring and recording of medical invoices in a scalable manner across an entire supply chain for efficiency and sustainability and benefit the entire medical eco-system using Avail for data accessibility layer and Sindri for verification using circom, devops and user security. 
@@ -15,7 +17,6 @@ We are using Bandada with Semaphore to  signal anonymously inside a Semaphore-co
 We are extending Aztec’s Stealthdrop implementation in Noir to reward users with cashbacks and gift vouchers in invoices raised in case they exceed an expected range or during yearly festivals.
 
 AIops using Sindri: We are also trying to extend the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices. Proof generation using Sindri’s ZKML tooling in Noir.
-
 
 
 # Scroll
