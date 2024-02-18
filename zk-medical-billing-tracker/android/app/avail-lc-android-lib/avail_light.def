@@ -1,0 +1,6 @@
+headers = libavail_light.h
+headerFilter = libavail_light.h
+package = avail_light
+libraryPaths = /Users/abhimanyushekhawat/projects/avail/avail_android_app/availlibrary
+compilerOpts = -I/Users/abhimanyushekhawat/projects/avail/avail_android_app/availlibrary
+

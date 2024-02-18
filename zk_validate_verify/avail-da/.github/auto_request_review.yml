@@ -1,0 +1,22 @@
+reviewers:
+  defaults:
+    - rollkit
+  groups:
+    rollkit:
+      - Manav-Aggarwal
+      - tzdybal
+      - gupadhyaya
+      - tuxcanfly
+      - MSevey
+    celestia:
+      - team:celestia
+files:
+  "**":
+    - rollkit
+  ".github/**":
+    - rollkit
+options:
+  ignore_draft: true
+  ignored_keywords:
+    - WIP
+  number_of_reviewers: 3
