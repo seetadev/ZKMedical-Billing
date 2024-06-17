@@ -1,0 +1,3 @@
+[submodule "Medi_Token/lib/forge-std"]
+	path = Medi_Token/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
