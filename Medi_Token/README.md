@@ -1,66 +1,112 @@
-## Foundry
+## MediToken
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project implements a MediToken (ERC20) smart contract.
 
-Foundry consists of:
+## Prerequisites
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Before you begin, ensure you have the following installed:
 
-## Documentation
+* **Foundry:** Installation instructions can be found in the [Foundry documentation](https://book.getfoundry.sh/getting-started/installation).
 
-https://book.getfoundry.sh/
+If you are using Windows, it is recommended to use Windows Subsystem for Linux (WSL) for the Foundry setup.
 
-## Usage
+## Getting Started
 
-### Build
+### Cloning the Repository
 
-```shell
-$ forge build
+1. Clone your fork of ZKMedical-Billing repository:
+
+```bash
+git clone https://github.com/[USER_NAME]/ZKMedical-Billing/
 ```
 
-### Test
+2. Navigate to the Medi_Token directory:
 
-```shell
-$ forge test
+```bash
+cd ZKMedical-Billing/Medi_Token
 ```
 
-### Format
+### Setting Up Environment Variables
 
-```shell
-$ forge fmt
+1. Create a file named `.env` in the Medi_Token directory.
+
+2. Configure the `.env` file according to the provided `.env.example` file.
+
+### Installing Dependencies
+
+Install the necessary dependencies:
+
+```bash
+forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts --no-commit
 ```
 
-### Gas Snapshots
+### Building the Project
 
-```shell
-$ forge snapshot
+Build the project with the following command:
+
+```bash
+make build
 ```
 
-### Anvil
+### Running Tests
 
-```shell
-$ anvil
+#### Running All Tests
+
+To run all tests, use the command:
+
+```bash
+make test
 ```
 
-### Deploy
+#### Running a Single Test
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+To run a specific test function, use the following command structure:
+
+```bash
+forge test --mt testFunction -vvv
 ```
 
-### Cast
+Replace `testFunction` with the actual test function name you want to run.
 
-```shell
-$ cast <subcommand>
+For example, to run the `testTransfer` function, use:
+
+```bash
+forge test --mt testTransfer -vvv
 ```
 
-### Help
+### Deployment
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, and OP Sepolia
+
+#### Deployment Commands
+
+##### Deploy on Sepolia
+
+```bash
+make deploy ARGS="--network sepolia"
 ```
+
+##### Deploy on Polygon Amoy
+
+```bash
+make deploy ARGS="--network amoy"
+```
+
+##### Deploy on Arbitrum Sepolia
+
+```bash
+make deploy ARGS="--network arbitrum"
+```
+
+##### Deploy on OP Sepolia
+
+```bash
+make deploy ARGS="--network optimism"
+```
+
+#### Deployed Contract Addresses
+
+* Arbitrum Sepolia: [0x89E4F30AFB281689632535e1657D15243a83b802](https://sepolia.arbiscan.io/token/0x89E4F30AFB281689632535e1657D15243a83b802)
+* Sepolia: [0x3B550adA770897B0b215e414e45354861357788c](https://sepolia.etherscan.io/token/0x3B550adA770897B0b215e414e45354861357788c)
+* Polygon Amoy: [0x7aD0A9dB054101be9428fa89bB1194506586D1aD](https://amoy.polygonscan.com/token/0x7aD0A9dB054101be9428fa89bB1194506586D1aD)
+* OP Sepolia: [0xc898870DF59123F346a0e3787966023e0ED78B93](https://sepolia-optimism.etherscan.io/token/0xc898870DF59123F346a0e3787966023e0ED78B93)
