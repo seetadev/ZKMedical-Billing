@@ -10,7 +10,7 @@ import {
   getDefaultConfig,
 } from "connectkit";
 
-// import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar";
 
 const chains = [optimismSepolia];
 
@@ -53,7 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <WagmiConfig config={connectkitConfig}>
         <ConnectKitProvider>
-          {/* <Navbar /> */}
+          <Navbar />
           <Component {...pageProps} />
         </ConnectKitProvider>
       </WagmiConfig>{" "}
