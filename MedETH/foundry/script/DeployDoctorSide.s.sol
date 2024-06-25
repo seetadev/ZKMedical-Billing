@@ -9,8 +9,8 @@ contract DeployDoctorSide is Script {
     function run() external returns (DoctorSide) {
         vm.startBroadcast();
         DoctorSide doctorSide = new DoctorSide(
-            0x3B550adA770897B0b215e414e45354861357788c
-        ); // Token Address on sepolia testnet
+            0xc898870DF59123F346a0e3787966023e0ED78B93
+        ); // Token Address on OP Sepolia testnet
         vm.stopBroadcast();
         return doctorSide;
     }
