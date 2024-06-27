@@ -1,0 +1,1123 @@
+[
+    {
+        "type": "constructor",
+        "inputs": [
+            {
+                "name": "_mediToken",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "ReportIdtoPatintReport",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "reportId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "reportName",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "patientWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "doctorWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "ipfsHash",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "appointmentIdtoAppointment",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "appId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "appDate",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "startTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "endTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "appSubject",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "appFeedback",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "patientWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "doctorWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "isApproved",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "slotId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "appType",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "appointmentSlotIdtoAppointmentSlot",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "slotId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "slotDate",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "startTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "endTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "isBooked",
+                "type": "bool",
+                "internalType": "bool"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "approveAppointment",
+        "inputs": [
+            {
+                "name": "_appId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "approveUser",
+        "inputs": [
+            {
+                "name": "_userId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "bookAppointment",
+        "inputs": [
+            {
+                "name": "_appDate",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_startTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_endTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_appSubject",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_appFeedback",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_doctorWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_slotId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "bookAppointmentEmergency",
+        "inputs": [
+            {
+                "name": "_appDate",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_startTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_endTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_appSubject",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_appFeedback",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_doctorWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_slotId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "payable"
+    },
+    {
+        "type": "function",
+        "name": "createUser",
+        "inputs": [
+            {
+                "name": "_userName",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_userAadhar",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_userLicenseNo",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_userAge",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "_userEmail",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_userSpeciality",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_userProfileImg",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_userMedicalDegree",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_userRole",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "disApproveUser",
+        "inputs": [
+            {
+                "name": "_userId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "docIdtoAppointmentId",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "doctorIdtoDatetoTimeSlot",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "slotId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "slotDate",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "startTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "endTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "isBooked",
+                "type": "bool",
+                "internalType": "bool"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "doctortIdtoReport",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "reportId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "reportName",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "patientWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "doctorWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "ipfsHash",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "getMapping1length",
+        "inputs": [
+            {
+                "name": "_doctorId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "getMapping2length",
+        "inputs": [
+            {
+                "name": "_patientId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "getMapping3length",
+        "inputs": [
+            {
+                "name": "_doctorId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "_date",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "getMapping4length",
+        "inputs": [
+            {
+                "name": "_patientId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "getMapping5length",
+        "inputs": [
+            {
+                "name": "_doctorId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "getMapping6length",
+        "inputs": [
+            {
+                "name": "_userId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "getUserTokens",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "i_mediToken",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "contract IERC20"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "openTimeslots",
+        "inputs": [
+            {
+                "name": "_slotDate",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_startTime",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_endTime",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "owner",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "patIdtoAppointmentId",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "patientIdtoReport",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "reportId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "reportName",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "patientWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "doctorWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "ipfsHash",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "renounceOwnership",
+        "inputs": [],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "reportUser",
+        "inputs": [
+            {
+                "name": "_userId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "slotIdtoBookingStatus",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool",
+                "internalType": "bool"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "takeUserHistory",
+        "inputs": [
+            {
+                "name": "_userId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "_isHandicap",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "_isBp",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "_isDiabetes",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "_userExp",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "totalAppointments",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "totalDocuments",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "totalSlots",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "totalUsers",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "transferOwnership",
+        "inputs": [
+            {
+                "name": "newOwner",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "uploadMedicalReprt",
+        "inputs": [
+            {
+                "name": "_reportName",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "_patientWalletAdress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_doctorWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_ipfsHash",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "userEmailtoUserId",
+        "inputs": [
+            {
+                "name": "",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "userIdtoBlacklist",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool",
+                "internalType": "bool"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "userIdtoPatientHistory",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "userId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "isHandicap",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "isBp",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "isDiabetes",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "userExp",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "userIdtoPrevMedicalHistory",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "userIdtoReportUser",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "userIdtoUser",
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "userId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "userName",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "userAadhar",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "userLicenseNo",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "userAge",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "userEmail",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "userSpeciality",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "userProfileImg",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "userMedicalDegree",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "userRole",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "userWalletAddress",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "isVerified",
+                "type": "bool",
+                "internalType": "bool"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "userWalletAddresstoUserId",
+        "inputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "event",
+        "name": "OwnershipTransferred",
+        "inputs": [
+            {
+                "name": "previousOwner",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "newOwner",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "type": "error",
+        "name": "OwnableInvalidOwner",
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "address",
+                "internalType": "address"
+            }
+        ]
+    },
+    {
+        "type": "error",
+        "name": "OwnableUnauthorizedAccount",
+        "inputs": [
+            {
+                "name": "account",
+                "type": "address",
+                "internalType": "address"
+            }
+        ]
+    }
+]
