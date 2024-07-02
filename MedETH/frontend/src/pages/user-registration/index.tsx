@@ -30,10 +30,14 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Center,
 } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 import lighthouse from "@lighthouse-web3/sdk";
+import * as LitJsSdk from "@lit-protocol/lit-node-client";
+import { LitNetwork } from "@lit-protocol/constants";
+import Spinner from "@/components/Spinner/Spinner";
 
 const UserRegistration = () => {
   const toast = useToast();
@@ -44,7 +48,16 @@ const UserRegistration = () => {
   const inputRef = useRef(null);
   //   const [aadharImage, setAadharImage] = useState();
   const [ipfsUrl, setIpfsUrl] = useState("");
+  const [loader, setLoader] = useState(false);
 
+  if (loader) {
+    return (
+      <>
+        <Spinner />
+        <Center>Encrypting the data using Lit Protocol...</Center>
+      </>
+    );
+  }
   const progressCallback = (progressData) => {
     let percentageDone =
       100 - (progressData?.total / progressData?.uploaded)?.toFixed(2);
@@ -77,9 +90,62 @@ const UserRegistration = () => {
     );
   };
 
+  const handleEncrypt = async (message) => {
+    try {
+      const accessControlConditions = [
+        {
+          contractAddress: "",
+          standardContractType: "",
+          chain: "sepolia",
+          method: "eth_getBalance",
+          parameters: [":userAddress", "latest"],
+          returnValueTest: {
+            comparator: ">=",
+            value: "1000000000000", // 0.000001 ETH
+          },
+        },
+      ];
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const ethAccounts = await provider.send("eth_requestAccounts", []);
+      const ethersSigner = provider.getSigner();
+      const litNodeClient = new LitJsSdk.LitNodeClient({
+        litNetwork: LitNetwork.Cayenne,
+      });
+      await litNodeClient.connect();
+
+      console.log("encrypting data...");
+      const { ciphertext, dataToEncryptHash } = await LitJsSdk.encryptString(
+        {
+          accessControlConditions,
+          dataToEncrypt: message,
+        },
+        litNodeClient
+      );
+
+      let retString = "";
+      retString += ciphertext;
+      retString += " ";
+      retString += dataToEncryptHash;
+      retString = retString.toString();
+
+      return retString;
+    } catch (e) {
+      console.log(e);
+      toast({
+        title: "Cannot decrypt the data.",
+        description: "Please try again.",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top-right",
+      });
+    }
+  };
+
   const handleSubmit = async () => {
     if (window.ethereum._state.accounts?.length !== 0) {
       try {
+        setLoader(true);
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(
@@ -88,9 +154,12 @@ const UserRegistration = () => {
           signer
         );
 
+        const encryptedAdhar = await handleEncrypt(ipfsUrl);
+        console.log(encryptedAdhar);
+
         const tx = await contract.createUser(
           name,
-          ipfsUrl,
+          encryptedAdhar,
           "",
           age,
           email,
@@ -99,7 +168,7 @@ const UserRegistration = () => {
           "",
           3
         );
-
+        setLoader(false);
         toast({
           title: "Registration request sent",
           description: "Please wait for the transaction to be confirmed",
@@ -110,6 +179,7 @@ const UserRegistration = () => {
         });
       } catch (e) {
         console.log(e);
+        setLoader(false);
         toast({
           title: "Get MediToken to register",
           description: "Atleast 1 MediToken is required to register",

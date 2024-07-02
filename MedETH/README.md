@@ -18,6 +18,7 @@ MedETH demonstrates token-gated access control for performing specific functions
 * Alchemy
 * Wagmi
 * Lighthouse Storage (IPFS gateway)
+* Lit Protocol
 
 ## Foundry Setup
 
