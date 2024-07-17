@@ -1,0 +1,28 @@
+#container {
+  height: min-content;
+  overflow: hidden;
+}
+
+.custom-connect-button {
+  padding: 2px 4px; /* Adjust the padding to make the button smaller */
+  font-size: 12px; /* Adjust the font size */
+  display: flex;
+  align-items: center; /* Center the icon vertically */
+}
+
+.custom-popover {
+  --background: transparent; /* Make background transparent */
+  width: auto; /* Fit the content */
+  height: auto; /* Fit the content */
+  border: none;
+  box-shadow: none; /* Remove shadow */
+  padding: 0;
+}
+
+.custom-popover-button {
+  --background: var(--ion-color-danger);
+  --color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
