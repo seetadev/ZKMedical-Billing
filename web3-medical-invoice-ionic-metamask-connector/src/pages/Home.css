@@ -4,18 +4,18 @@
 }
 
 .custom-connect-button {
-  padding: 2px 4px; /* Adjust the padding to make the button smaller */
-  font-size: 12px; /* Adjust the font size */
+  padding: 2px 4px;
+  font-size: 12px;
   display: flex;
-  align-items: center; /* Center the icon vertically */
+  align-items: center;
 }
 
 .custom-popover {
-  --background: transparent; /* Make background transparent */
-  width: auto; /* Fit the content */
-  height: auto; /* Fit the content */
+  --background: transparent;
+  width: auto;
+  height: auto;
   border: none;
-  box-shadow: none; /* Remove shadow */
+  box-shadow: none;
   padding: 0;
 }
 
