@@ -1,66 +1,86 @@
-## Foundry
+## web3-tools-contracts
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A token-gated utility smart contract for platform-independent medical invoice projects.
 
-Foundry consists of:
+## Prerequisites
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Before you begin, ensure you have the following installed:
 
-## Documentation
+* **Foundry:** Installation instructions can be found in the [Foundry documentation](https://book.getfoundry.sh/getting-started/installation).
 
-https://book.getfoundry.sh/
+If you are using Windows, it is recommended to use Windows Subsystem for Linux (WSL) for the Foundry setup.
 
-## Usage
+## Getting Started
 
-### Build
+### Cloning the Repository
 
-```shell
-$ forge build
+1. Clone your fork of the `ZKMedical-Billing` repository:
+
+```bash
+git clone https://github.com/[USER_NAME]/ZKMedical-Billing/
 ```
 
-### Test
+2. Navigate to the `web3-tools-contracts/` directory:
 
-```shell
-$ forge test
+```bash
+cd ZKMedical-Billing/web3-tools-contracts/
 ```
 
-### Format
+### Setting Up Environment Variables
 
-```shell
-$ forge fmt
+1. Create a file named `.env` in the `web3-tools-contracts/` directory.
+
+2. Configure the `.env` file according to the provided `.env.example` file.
+
+### Installing Dependencies
+
+Install the necessary dependencies:
+
+```bash
+forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts --no-commit
 ```
 
-### Gas Snapshots
+### Building the Project
 
-```shell
-$ forge snapshot
+Build the project with the following command:
+
+```bash
+make build
 ```
 
-### Anvil
+### Deployment
 
-```shell
-$ anvil
+The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, and OP Sepolia.
+
+#### Deployment Commands
+
+##### Deploy on Sepolia
+
+```bash
+make deploy ARGS="--network sepolia"
 ```
 
-### Deploy
+##### Deploy on Polygon Amoy
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```bash
+make deploy ARGS="--network amoy"
 ```
 
-### Cast
+##### Deploy on Arbitrum Sepolia
 
-```shell
-$ cast <subcommand>
+```bash
+make deploy ARGS="--network arbitrum"
 ```
 
-### Help
+##### Deploy on OP Sepolia
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+make deploy ARGS="--network optimism"
 ```
+
+### Deployed Contract Addresses
+
+* **Arbitrum Sepolia:** [0x28D21e6b655f786969709CAD9e3B8e639256C1D8](https://sepolia.arbiscan.io/address/0x28D21e6b655f786969709CAD9e3B8e639256C1D8)
+* **Sepolia:** [0x19FBC4DacDe7F9d828fF0CB55470104896AaB29b](https://sepolia.etherscan.io/address/0x19FBC4DacDe7F9d828fF0CB55470104896AaB29b)
+* **Polygon Amoy:** [0x89E4F30AFB281689632535e1657D15243a83b802](https://amoy.polygonscan.com/address/0x89E4F30AFB281689632535e1657D15243a83b802)
+* **OP Sepolia:** [0xCa6Fca3c411C9C61Bb2b502F89c48cd5807BE8E8](https://sepolia-optimism.etherscan.io/address/0xCa6Fca3c411C9C61Bb2b502F89c48cd5807BE8E8)
