@@ -10,3 +10,6 @@
 [submodule "MedETH/foundry/lib/openzeppelin-contracts"]
 	path = MedETH/foundry/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "web3-tools-contracts/lib/forge-std"]
+	path = web3-tools-contracts/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
