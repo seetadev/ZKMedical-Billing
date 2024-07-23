@@ -80,7 +80,7 @@ make deploy ARGS="--network optimism"
 
 ### Deployed Contract Addresses
 
-* **Arbitrum Sepolia:** [0x28D21e6b655f786969709CAD9e3B8e639256C1D8](https://sepolia.arbiscan.io/address/0x28D21e6b655f786969709CAD9e3B8e639256C1D8)
-* **Sepolia:** [0x19FBC4DacDe7F9d828fF0CB55470104896AaB29b](https://sepolia.etherscan.io/address/0x19FBC4DacDe7F9d828fF0CB55470104896AaB29b)
-* **Polygon Amoy:** [0x89E4F30AFB281689632535e1657D15243a83b802](https://amoy.polygonscan.com/address/0x89E4F30AFB281689632535e1657D15243a83b802)
-* **OP Sepolia:** [0xCa6Fca3c411C9C61Bb2b502F89c48cd5807BE8E8](https://sepolia-optimism.etherscan.io/address/0xCa6Fca3c411C9C61Bb2b502F89c48cd5807BE8E8)
+* **Arbitrum Sepolia:** [0x3e75F50f610DaA4dc07fDbfd837fcde978f75327](https://sepolia.arbiscan.io/address/0x3e75F50f610DaA4dc07fDbfd837fcde978f75327)
+* **Sepolia:** [0x37bC8D6Fa5FeE7A3fB1D93Fe51eD0Bc53bBdE026](https://sepolia.etherscan.io/address/0x37bC8D6Fa5FeE7A3fB1D93Fe51eD0Bc53bBdE026)
+* **Polygon Amoy:** [0x8D2fe41E336EF8a49AaE0FE26c3D346d7618541e](https://amoy.polygonscan.com/address/0x8D2fe41E336EF8a49AaE0FE26c3D346d7618541e)
+* **OP Sepolia:** [0x88Ef03c80A73740F3f6b312Efc9B46D7316A5456](https://sepolia-optimism.etherscan.io/address/0x88Ef03c80A73740F3f6b312Efc9B46D7316A5456)

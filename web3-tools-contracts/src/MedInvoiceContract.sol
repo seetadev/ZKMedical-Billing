@@ -25,4 +25,8 @@ contract MedInvoiceContract is Ownable {
         require(i_mediToken.balanceOf(msg.sender) >= 1, "You need to hold a MediToken to view saved files.");
         return fileList[msg.sender];
     }
+    
+    function getUserTokens() public view returns (uint256) {
+        return i_mediToken.balanceOf(msg.sender);
+    }
 }
