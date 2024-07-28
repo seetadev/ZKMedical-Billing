@@ -14,7 +14,7 @@ import { APP_NAME, DATA } from "../app-data";
 import * as AppGeneral from "../components/socialcalc/index.js";
 import { useEffect, useState } from "react";
 import { Local } from "../components/Storage/LocalStorage";
-import { menu, settings, wallet } from "ionicons/icons";
+import { menu, settings, wallet, alert } from "ionicons/icons";
 import { useSDK } from "@metamask/sdk-react";
 import "./Home.css";
 import Menu from "../components/Menu/Menu";
@@ -47,6 +47,37 @@ const Home: React.FC = () => {
     AppGeneral.activateFooterButton(footer);
   };
 
+  const setNetwork = async () => {
+    try {
+      await provider.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0xaa37dc" }],
+      });
+    } catch (switchError) {
+      if (switchError.code === 4902) {
+        try {
+          await provider.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainId: "0xaa37dc",
+                chainName: "OP Sepolia",
+                rpcUrls: ["https://sepolia.optimism.io/"],
+                nativeCurrency: {
+                  name: "ETH",
+                  symbol: "ETH",
+                  decimals: 18,
+                },
+              },
+            ],
+          });
+        } catch (addError) {
+          console.error(addError);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     const data = DATA["home"][device]["msc"];
     AppGeneral.initializeApp(JSON.stringify(data));
@@ -71,6 +102,7 @@ const Home: React.FC = () => {
       if (account) {
         localStorage.setItem("connectedAccount", account);
       }
+      setNetwork();
     } catch (err) {
       console.warn("failed to connect..", err);
     }
@@ -137,6 +169,18 @@ const Home: React.FC = () => {
             store={store}
             billType={billType}
           />
+
+          {connected && chainId !== "0xaa37dc" && (
+            <IonButton
+              className="custom-switch-button"
+              slot="end"
+              onClick={setNetwork}
+              color="warning"
+            >
+              <IonIcon icon={alert} size="small" />
+            </IonButton>
+          )}
+
           <IonButton
             className="custom-connect-button"
             slot="end"
