@@ -3,6 +3,13 @@
   overflow: hidden;
 }
 
+.custom-switch-button {
+  font-weight: bold;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+}
+
 .custom-connect-button {
   padding: 2px 4px;
   font-size: 12px;
