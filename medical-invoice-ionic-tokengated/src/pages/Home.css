@@ -1,0 +1,35 @@
+#container {
+  height: min-content;
+  overflow: hidden;
+}
+
+.custom-switch-button {
+  font-weight: bold;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-connect-button {
+  padding: 2px 4px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-popover {
+  --background: transparent;
+  width: auto;
+  height: auto;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.custom-popover-button {
+  --background: var(--ion-color-danger);
+  --color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
