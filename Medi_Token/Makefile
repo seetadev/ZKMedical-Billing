@@ -51,6 +51,14 @@ ifeq ($(findstring --network optimism,$(ARGS)),--network optimism)
 	NETWORK_ARGS := --rpc-url $(OP_SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast -vvvv
 endif
 
+ifeq ($(findstring --network cardona,$(ARGS)),--network cardona)
+	NETWORK_ARGS := --rpc-url $(CARDONA_RPC_URL) --private-key $(PRIVATE_KEY) --legacy --broadcast -vvvv
+endif
+
+ifeq ($(findstring --network scroll,$(ARGS)),--network scroll)
+	NETWORK_ARGS := --rpc-url $(SCROLL_SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast -vvvv
+endif
+
 deploy:
 	@forge script script/DeployToken.s.sol:DeployToken $(NETWORK_ARGS)
 
