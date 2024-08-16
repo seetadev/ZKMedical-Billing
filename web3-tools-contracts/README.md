@@ -50,7 +50,7 @@ make build
 
 ### Deployment
 
-The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, and OP Sepolia.
+The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, OP Sepolia, Polygon Cardona, and Scroll Sepolia.
 
 #### Deployment Commands
 
@@ -78,9 +78,23 @@ make deploy ARGS="--network arbitrum"
 make deploy ARGS="--network optimism"
 ```
 
+##### Deploy on Polygon Cardona
+
+```bash
+make deploy ARGS="--network cardona"
+```
+
+##### Deploy on Scroll Sepolia
+
+```bash
+make deploy ARGS="--network scroll"
+```
+
 ### Deployed Contract Addresses
 
 * **Arbitrum Sepolia:** [0x3e75F50f610DaA4dc07fDbfd837fcde978f75327](https://sepolia.arbiscan.io/address/0x3e75F50f610DaA4dc07fDbfd837fcde978f75327)
 * **Sepolia:** [0x37bC8D6Fa5FeE7A3fB1D93Fe51eD0Bc53bBdE026](https://sepolia.etherscan.io/address/0x37bC8D6Fa5FeE7A3fB1D93Fe51eD0Bc53bBdE026)
 * **Polygon Amoy:** [0x8D2fe41E336EF8a49AaE0FE26c3D346d7618541e](https://amoy.polygonscan.com/address/0x8D2fe41E336EF8a49AaE0FE26c3D346d7618541e)
 * **OP Sepolia:** [0x88Ef03c80A73740F3f6b312Efc9B46D7316A5456](https://sepolia-optimism.etherscan.io/address/0x88Ef03c80A73740F3f6b312Efc9B46D7316A5456)
+* **Polygon Cardona:** [0x5c1dBee87430956762901f4aaa18367aE7631A21](https://cardona-zkevm.polygonscan.com/address/0x5c1dBee87430956762901f4aaa18367aE7631A21)
+* **Scroll Sepolia:** [0x5B78fbCB2d94e3B1c7Da8eFaA85eB5a2839F905E](https://sepolia.scrollscan.com/address/0x5B78fbCB2d94e3B1c7Da8eFaA85eB5a2839F905E)
