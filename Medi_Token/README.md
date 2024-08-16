@@ -76,7 +76,7 @@ forge test --mt testTransfer -vvv
 
 ### Deployment
 
-The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, OP Sepolia, Polygon Cardona, and Scroll Sepolia.
+The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, OP Sepolia, Polygon Cardona, Filecoin Calibration, and Scroll Sepolia.
 
 #### Deployment Commands
 
@@ -124,3 +124,4 @@ make deploy ARGS="--network scroll"
 * OP Sepolia: [0xc898870DF59123F346a0e3787966023e0ED78B93](https://sepolia-optimism.etherscan.io/token/0xc898870DF59123F346a0e3787966023e0ED78B93)
 * Polygon Cardona: [0x4216a9c6EB59FcA323169Ef3194783d3dC9b7F23](https://cardona-zkevm.polygonscan.com/address/0x4216a9c6EB59FcA323169Ef3194783d3dC9b7F23)
 * Scroll Sepolia: [0x6e650a339AbE4D9cf0aa8091fB2099284968beFf](https://sepolia.scrollscan.com/address/0x6e650a339AbE4D9cf0aa8091fB2099284968beFf)
+* Filecoin Calibration: [0x6b53C44053449B4B9cAdAfe271f9E5cb930446Be](https://calibration.filfox.info/en/address/0x6b53C44053449B4B9cAdAfe271f9E5cb930446Be)

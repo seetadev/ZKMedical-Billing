@@ -50,7 +50,7 @@ make build
 
 ### Deployment
 
-The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, OP Sepolia, Polygon Cardona, and Scroll Sepolia.
+The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, OP Sepolia, Polygon Cardona, Filecoin Calibration, and Scroll Sepolia.
 
 #### Deployment Commands
 
@@ -98,3 +98,4 @@ make deploy ARGS="--network scroll"
 * **OP Sepolia:** [0x88Ef03c80A73740F3f6b312Efc9B46D7316A5456](https://sepolia-optimism.etherscan.io/address/0x88Ef03c80A73740F3f6b312Efc9B46D7316A5456)
 * **Polygon Cardona:** [0x5c1dBee87430956762901f4aaa18367aE7631A21](https://cardona-zkevm.polygonscan.com/address/0x5c1dBee87430956762901f4aaa18367aE7631A21)
 * **Scroll Sepolia:** [0x5B78fbCB2d94e3B1c7Da8eFaA85eB5a2839F905E](https://sepolia.scrollscan.com/address/0x5B78fbCB2d94e3B1c7Da8eFaA85eB5a2839F905E)
+* **Filecoin Calibration:** [0xa8162f65f3b7D3573C9B2812b3f8308cE62914F6](https://calibration.filfox.info/en/address/0xa8162f65f3b7D3573C9B2812b3f8308cE62914F6)
