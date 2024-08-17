@@ -72,7 +72,7 @@ make build
 
 **Note:** Before deploying, update the contract address of the MediToken contract for the specific version and chain in both `DeployUserSide.s.sol` and `DeployDoctorSide.s.sol` scripts.
 
-The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, and OP Sepolia.
+The Makefile is set up for deployments on several testnets, including Sepolia, Polygon Amoy, Arbitrum Sepolia, OP Sepolia, Polygon Cardona, Filecoin Calibration, and Scroll Sepolia.
 
 #### Deployment Commands
 
@@ -116,6 +116,25 @@ make deploy-user ARGS="--network optimism"
 make deploy-doctor ARGS="--network optimism"
 ```
 
+##### Deploy on Polygon Cardona
+
+```bash
+make deploy-user ARGS="--network cardona"
+```
+
+```bash
+make deploy-doctor ARGS="--network cardona"
+```
+
+##### Deploy on Scroll Sepolia
+
+```bash
+make deploy-user ARGS="--network scroll"
+```
+
+```bash
+make deploy-doctor ARGS="--network scroll"
+```
 
 #### Deployed Contract Addresses
 
@@ -134,6 +153,19 @@ make deploy-doctor ARGS="--network optimism"
 * Arbitrum Sepolia Testnet
     - UserSide: [0x8D2fe41E336EF8a49AaE0FE26c3D346d7618541e](https://sepolia.arbiscan.io/address/0x8D2fe41E336EF8a49AaE0FE26c3D346d7618541e)
     - DoctorSide: [0xB6c60435840346C5Ef447bf4A2ECFbB075F45b48](https://sepolia.arbiscan.io/address/0xB6c60435840346C5Ef447bf4A2ECFbB075F45b48)
+
+* Polygon Cardona Testnet
+    - UserSide: [0xBBC039C47B3D190d3A8ab4b900145367B4C388Dc](https://cardona-zkevm.polygonscan.com/address/0xBBC039C47B3D190d3A8ab4b900145367B4C388Dc)
+    - DoctorSide: [0x20D207Bc77154082B5F32E65ad076236E362C3AE](https://cardona-zkevm.polygonscan.com/address/0x20D207Bc77154082B5F32E65ad076236E362C3AE)
+
+* Scroll Sepolia Testnet
+    - UserSide: [0xE2E3899AcAD6c4F6F1db0702D49d8dA75AE813bb](https://sepolia.scrollscan.com/address/0xE2E3899AcAD6c4F6F1db0702D49d8dA75AE813bb)
+    - DoctorSide: [0xBdCFBbdcc15d9f451AC9e74585b9EB7485b7c0C2](https://sepolia.scrollscan.com/address/0xBdCFBbdcc15d9f451AC9e74585b9EB7485b7c0C2)
+
+* Filecoin Calibration Testnet
+    - UserSide: [0xB9D4F7F14E5281A214aF74787b01508062CCd2Df](https://calibration.filfox.info/en/address/0xB9D4F7F14E5281A214aF74787b01508062CCd2Df)
+    - DoctorSide: [0xC1aF668bBF21a2170017f07757726BebB063238a](https://calibration.filfox.info/en/address/0xC1aF668bBF21a2170017f07757726BebB063238a)
+
 
 ## Frontend Setup
 
