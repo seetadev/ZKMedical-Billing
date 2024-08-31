@@ -1,14 +1,14 @@
 import { WagmiProvider, createConfig, http } from "wagmi";
-import { optimismSepolia } from "wagmi/chains";
+import { polygonZkEvmCardona } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 
 const config = createConfig(
   getDefaultConfig({
-    chains: [optimismSepolia],
+    chains: [polygonZkEvmCardona],
     transports: {
-      [optimismSepolia.id]: http(
-        `https://opt-sepolia.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_ID}`
+      [polygonZkEvmCardona.id]: http(
+        `https://polygonzkevm-cardona.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_ID}`
       ),
     },
 
