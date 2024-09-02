@@ -51,7 +51,7 @@ const Home: React.FC = () => {
     try {
       await provider.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: "0xaa37dc" }],
+        params: [{ chainId: "0x98a" }],
       });
     } catch (switchError) {
       if (switchError.code === 4902) {
@@ -60,9 +60,9 @@ const Home: React.FC = () => {
             method: "wallet_addEthereumChain",
             params: [
               {
-                chainId: "0xaa37dc",
-                chainName: "OP Sepolia",
-                rpcUrls: ["https://sepolia.optimism.io/"],
+                chainId: "0x98a",
+                chainName: "Polygon zkEVM Cardona Testnet",
+                rpcUrls: ["https://polygon-zkevm-cardona.blockpi.network/v1/rpc/public/"],
                 nativeCurrency: {
                   name: "ETH",
                   symbol: "ETH",
@@ -170,7 +170,7 @@ const Home: React.FC = () => {
             billType={billType}
           />
 
-          {connected && chainId !== "0xaa37dc" && (
+          {connected && chainId !== "0x98a" && (
             <IonButton
               className="custom-switch-button"
               slot="end"
