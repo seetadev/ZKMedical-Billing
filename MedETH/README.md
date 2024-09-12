@@ -165,6 +165,10 @@ make deploy-doctor ARGS="--network scroll"
 * Filecoin Calibration Testnet
     - UserSide: [0xB9D4F7F14E5281A214aF74787b01508062CCd2Df](https://calibration.filfox.info/en/address/0xB9D4F7F14E5281A214aF74787b01508062CCd2Df)
     - DoctorSide: [0xC1aF668bBF21a2170017f07757726BebB063238a](https://calibration.filfox.info/en/address/0xC1aF668bBF21a2170017f07757726BebB063238a)
+  
+* NEAR's Aurora Testnet
+    - UserSide: [0x7F03597Ec06E419b87B0d51138B9Dd809593Fcc8](https://explorer.testnet.aurora.dev/address/0x7F03597Ec06E419b87B0d51138B9Dd809593Fcc8)
+    - DoctorSide: [0x57214C3497Ef0A5af63048fD01023dF2736266f0](https://explorer.testnet.aurora.dev/address/0x57214C3497Ef0A5af63048fD01023dF2736266f0)
 
 
 ## Frontend Setup
