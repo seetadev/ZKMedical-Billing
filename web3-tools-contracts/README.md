@@ -99,3 +99,4 @@ make deploy ARGS="--network scroll"
 * **Polygon Cardona:** [0x5c1dBee87430956762901f4aaa18367aE7631A21](https://cardona-zkevm.polygonscan.com/address/0x5c1dBee87430956762901f4aaa18367aE7631A21)
 * **Scroll Sepolia:** [0x5B78fbCB2d94e3B1c7Da8eFaA85eB5a2839F905E](https://sepolia.scrollscan.com/address/0x5B78fbCB2d94e3B1c7Da8eFaA85eB5a2839F905E)
 * **Filecoin Calibration:** [0xa8162f65f3b7D3573C9B2812b3f8308cE62914F6](https://calibration.filfox.info/en/address/0xa8162f65f3b7D3573C9B2812b3f8308cE62914F6)
+* **NEAR's Aurora Testnet:** [0x9F470730302CB5D8e8f75BF529055f4772FFcb2E](https://explorer.testnet.aurora.dev/address/0x9F470730302CB5D8e8f75BF529055f4772FFcb2E)
