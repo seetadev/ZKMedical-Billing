@@ -62,7 +62,10 @@ const Home: React.FC = () => {
               {
                 chainId: "0x98a",
                 chainName: "Polygon zkEVM Cardona Testnet",
-                rpcUrls: ["https://polygon-zkevm-cardona.blockpi.network/v1/rpc/public/"],
+                rpcUrls: [
+                  "https://polygon-zkevm-cardona.blockpi.network/v1/rpc/public/",
+                ],
+                blockExplorerUrls: ["https://cardona-zkevm.polygonscan.com/"],
                 nativeCurrency: {
                   name: "ETH",
                   symbol: "ETH",
