@@ -1,4 +1,4 @@
-### **MediChain: Decentralized Healthcare & Utility Token on Optimism**  
+### **MediChain: Decentralized Healthcare & Utility ERC-20 Token on Optimism, Filecoin and EVM Chains**  
 
 #### **🚀 Project Overview**  
 MediChain is an **Optimism-native decentralized healthcare system**, powered by the **Medi ERC-20 utility token**. This project leverages **Optimism’s low-cost, high-speed L2 infrastructure** to create **secure, scalable, and token-gated healthcare solutions**.  
@@ -6,8 +6,10 @@ MediChain is an **Optimism-native decentralized healthcare system**, powered by 
 #### **🔗 Key Components**  
 
 1️⃣ **Medi ERC-20 Utility Token**  
-   - Native token on **Optimism**, designed for **healthcare transactions, access control, and incentives**.  
-   - Used for **decentralized identity verification**, **consultation payments**, and **staking-based access** to premium healthcare services.  
+   - Native token on **Optimism**, **Filecoin** designed for **healthcare transactions, access control, and incentives**.  
+   - Used for **decentralized identity verification**, **consultation payments**, and **staking-based access** to premium healthcare services.
+
+     Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/Medi_Token
 
 2️⃣ **Optimism-Powered Decentralized Healthcare System**  
    - A **trustless, smart contract-based network** for **health records, remote consultations, and payments**.  
