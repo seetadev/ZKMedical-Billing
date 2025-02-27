@@ -1,7 +1,4 @@
-### **📂 Repository Name:**  
-**MediChain: Decentralized Healthcare & Utility Token on Optimism**  
-
-### **📝 Repository Description (Detailed for OP Retro Funding)**  
+### **MediChain: Decentralized Healthcare & Utility Token on Optimism**  
 
 #### **🚀 Project Overview**  
 MediChain is an **Optimism-native decentralized healthcare system**, powered by the **Medi ERC-20 utility token**. This project leverages **Optimism’s low-cost, high-speed L2 infrastructure** to create **secure, scalable, and token-gated healthcare solutions**.  
@@ -32,14 +29,10 @@ MediChain is an **Optimism-native decentralized healthcare system**, powered by 
 - **Empowering patients** with **self-sovereign health data**.  
 - **Bridging healthcare & DeFi** with **Medi staking & insurance protocols**.  
 
-🔗 **GitHub Repo (To be added)**  
+
 💬 **Looking for support from the Optimism community to revolutionize decentralized healthcare! 🚀**  
 
----
-
-This description aligns well with **Optimism RetroPGF’s focus on public goods, DeFi, and social impact**. Let me know if you’d like tweaks! 🚀
-
-
+### Modules
 
 # ZK Medical Billing
 zk Medical Billing and Diagnostics on Optimism, Scroll, Polygon ZKevm blockchain using Avail and zksbts with Bandada, Sindri and Aztec
