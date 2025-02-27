@@ -1,5 +1,5 @@
 # ZK Medical Billing
-zk Medical Billing and Diagnostics on Scroll, Polygon ZKevm blockchain using Avail and zksbts with Bandada, Sindri and Aztec
+zk Medical Billing and Diagnostics on Optimism, Scroll, Polygon ZKevm blockchain using Avail and zksbts with Bandada, Sindri and Aztec
 
 Track, trace and record work orders, invoices and receipts for medical diagnostic labs using zero knowledge proofs built using circom and noir deployed on Polygon zkEVM and Scroll, analytics tools on Sindri and Bandada, verification and account abstraction on ZK email based wallet, and Web3 ecosystem tools on Avail and Aztech.
 
