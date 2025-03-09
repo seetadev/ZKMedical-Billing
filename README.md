@@ -3,6 +3,10 @@
 #### **🚀 Project Overview**  
 MediChain is an **Optimism-native decentralized healthcare system**, powered by the **Medi ERC-20 utility token**. This project leverages **Optimism’s low-cost, high-speed L2 infrastructure** to create **secure, scalable, and token-gated healthcare solutions**.  
 
+#### Demo and Community Deck
+
+Please visit Demo and Community Deck at https://drive.google.com/drive/u/5/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG 
+
 #### **🔗 Key Components**  
 
 1️⃣ **Medi ERC-20 Utility Token**  
