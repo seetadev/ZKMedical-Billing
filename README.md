@@ -12,6 +12,8 @@ PPT Token Deployment on OP Mainnet: https://optimistic.etherscan.io/address/0xa9
 
 PPT Token Deployment on Optimism Sepolia: https://sepolia-optimism.etherscan.io/address/0xC00BBC9A2C88712dC1e094866973F036373C7134#code and https://sepolia-optimism.etherscan.io/address/0xFC27e0420faBA3965dBdd7B3bAF202A10c6d258a#code .
 
+Usage in Decentralized Health Care Portal dapp in India: please visit demo and community deck at https://drive.google.com/drive/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG?usp=drive_link 
+
 #### **🔗 Key Components**  
 
 1️⃣ **Medi ERC-20 Utility Token**  
