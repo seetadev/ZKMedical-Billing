@@ -3,26 +3,6 @@
 #### **🚀 Project Overview**  
 MediChain is an **Optimism-native decentralized healthcare system**, powered by the **MEDI and PPT ERC-20 utility tokens**. This project leverages **Optimism’s low-cost, high-speed L2 infrastructure** to create **secure, scalable, and token-gated healthcare solutions**.  
 
-
-#### Deployment, Demo and Community Deck
-
-PPT Token Deployment on OP Mainnet: https://optimistic.etherscan.io/address/0xa9c14d3e8ece4d924a4a4a819088f982b55f6734 
-
-Medi Token Deployment: https://github.com/seetadev/ZKMedical-Billing/tree/main/Medi_Token
-
-PPT Token Deployment on Optimism Sepolia: https://sepolia-optimism.etherscan.io/address/0xC00BBC9A2C88712dC1e094866973F036373C7134#code and https://sepolia-optimism.etherscan.io/address/0xFC27e0420faBA3965dBdd7B3bAF202A10c6d258a#code .
-
-
-Vercel Deployment Link: https://op-medicine-pylibp2p.vercel.app/
-
-Testimonials: https://op-medicine-pylibp2p.vercel.app/testimonials
-
-
-Please visit Demo and Community Deck at https://drive.google.com/drive/u/5/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG 
-
-Usage in Decentralized Health Care Portal dapp in India: please visit demo and community deck at https://drive.google.com/drive/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG?usp=drive_link 
-
-
 #### **🔗 Key Components**  
 
 1️⃣ **Medi ERC-20 Utility Token**  
@@ -53,6 +33,26 @@ Usage in Decentralized Health Care Portal dapp in India: please visit demo and c
 
 
 💬 **Looking for support from the Optimism community to revolutionize decentralized healthcare! 🚀**  
+
+
+#### Deployment, Demo and Community Deck
+
+PPT Token Deployment on OP Mainnet: https://optimistic.etherscan.io/address/0xa9c14d3e8ece4d924a4a4a819088f982b55f6734 
+
+Medi Token Deployment: https://github.com/seetadev/ZKMedical-Billing/tree/main/Medi_Token
+
+PPT Token Deployment on Optimism Sepolia: https://sepolia-optimism.etherscan.io/address/0xC00BBC9A2C88712dC1e094866973F036373C7134#code and https://sepolia-optimism.etherscan.io/address/0xFC27e0420faBA3965dBdd7B3bAF202A10c6d258a#code .
+
+
+Vercel Deployment Link: https://op-medicine-pylibp2p.vercel.app/
+
+Testimonials: https://op-medicine-pylibp2p.vercel.app/testimonials
+
+
+Please visit Demo and Community Deck at https://drive.google.com/drive/u/5/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG 
+
+Usage in Decentralized Health Care Portal dapp in India: please visit demo and community deck at https://drive.google.com/drive/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG?usp=drive_link 
+
 
 
 ### PPT Medical Invoice DApp – Empowering Healthcare on Optimism 
