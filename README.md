@@ -35,7 +35,7 @@ MediChain is an **Optimism-native decentralized healthcare system**, powered by 
 💬 **Looking for support from the Optimism community to revolutionize decentralized healthcare! 🚀**  
 
 
-#### Deployment, Demo and Community Deck
+### Deployment, Demo and Community Deck
 
 PPT Token Deployment on OP Mainnet: https://optimistic.etherscan.io/address/0xa9c14d3e8ece4d924a4a4a819088f982b55f6734 
 
