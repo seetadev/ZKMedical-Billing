@@ -1,6 +1,6 @@
 #[starknet::contract]
 mod MedInvoiceContract {
-    use crate::interfaces::IMedInvoice::IMedInvoiceContract; // <-- Add this line
+    use crate::interfaces::IMedInvoice::{IMedInvoiceContract, FileRecord};
     use starknet::{ContractAddress, get_caller_address, get_block_timestamp, get_contract_address};
     use openzeppelin::token::erc20::interface::{IERC20Dispatcher, IERC20DispatcherTrait};
     use starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess, Map};
@@ -25,7 +25,7 @@ mod MedInvoiceContract {
 
     #[storage]
     struct Storage {
-        file_list: Map<(ContractAddress, u64), ByteArray>, // (user, file_id) -> content
+        file_records: Map<(ContractAddress, u64), FileRecord>, // (user, file_id) -> FileRecord
         file_counter: Map<ContractAddress, u64>, 
         medi_token_address: ContractAddress,
         subscription_end_times: Map<ContractAddress, u64>,
@@ -49,7 +49,9 @@ mod MedInvoiceContract {
     struct FileSaved {
         #[key]
         user: ContractAddress,
-        file: u64,
+        file_id: u64,
+        file_name: ByteArray,
+        ipfs_cid: ByteArray,
         timestamp: u64,
     }
 
@@ -70,56 +72,67 @@ mod MedInvoiceContract {
     impl MedInvoiceContractImpl of IMedInvoiceContract<ContractState> {
        
 
-       fn save_file(ref self: ContractState, file: ByteArray) {
-            assert(file.len()>0, 'File content cannot be empty');
+       fn save_file(ref self: ContractState, file_name: ByteArray, ipfs_cid: ByteArray) {
+            assert(file_name.len() > 0, 'File name cannot be empty');
+            assert(ipfs_cid.len() > 0, 'IPFS CID cannot be empty');
             let caller = get_caller_address();
             let token_dispatcher = IERC20Dispatcher { contract_address: self.medi_token_address.read() };
             let balance = token_dispatcher.balance_of(caller);
             assert(balance >= u256 { low: 1, high: 0 }, 'Not enough Med Tokens');
 
             let file_id = self.file_counter.read(caller) + 1;
-            self.file_list.write((caller, file_id), file);
+            let timestamp = get_block_timestamp();
+            
+            let file_record = FileRecord {
+                file_name: file_name.clone(),
+                ipfs_cid: ipfs_cid.clone(),
+                timestamp: timestamp,
+                owner: caller,
+                exists: true,
+            };
+            
+            self.file_records.write((caller, file_id), file_record);
             self.file_counter.write(caller, file_id);
 
             self.emit(FileSaved { 
                 user: caller, 
-                file: file_id,
-                timestamp: get_block_timestamp() 
+                file_id: file_id,
+                file_name: file_name,
+                ipfs_cid: ipfs_cid,
+                timestamp: timestamp
             });
         }
 
-        fn get_files(self: @ContractState) -> Array<ByteArray> {
-            let caller = get_caller_address();
-            
+        fn get_files(self: @ContractState, user_address: ContractAddress) -> Array<FileRecord> {
             let mut files = ArrayTrait::new();
-            let file_count = self.file_counter.read(caller);
+            let file_count = self.file_counter.read(user_address);
             // Add safety check
             assert(file_count <= 1000, 'Too many files'); // Prevent DoS
     
             let mut i: u64 = 1;
             let max_count = file_count + 1;
             while i != max_count {
-                let file_content = self.file_list.read((caller, i));
-                files.append(file_content);
+                let file_record = self.file_records.read((user_address, i));
+                if file_record.exists {
+                    files.append(file_record);
+                }
                 i += 1;
             };
             
             files
         }
 
-        fn get_user_tokens(self: @ContractState) -> u256 {
-            let caller = get_caller_address();
+        fn get_user_tokens(self: @ContractState, user_address: ContractAddress) -> u256 {
             let token_dispatcher = IERC20Dispatcher { contract_address: self.medi_token_address.read() };
-            token_dispatcher.balance_of(caller)
+            token_dispatcher.balance_of(user_address)
         }
 
         fn is_subscribed(self: @ContractState, user: ContractAddress) -> bool {
             self.subscription_end_times.read(user) > get_block_timestamp()
         }
 
-        fn get_subscription_details(self: @ContractState) -> (bool, u64) {
-            let caller = get_caller_address();
-            let user_end_time = self.subscription_end_times.read(caller);
+        fn get_subscription_details(self: @ContractState, user_address: ContractAddress) -> (bool, u64) {
+            let user_end_time = self.subscription_end_times.read(user_address);
             let exists = user_end_time > 0;
             (exists, user_end_time)
         }
@@ -165,3 +178,5 @@ mod MedInvoiceContract {
             }
     }
 }
+
+

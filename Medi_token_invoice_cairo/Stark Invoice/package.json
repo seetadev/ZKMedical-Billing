@@ -27,6 +27,7 @@
     "@starknet-react/core": "^3.7.4",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
+    "@web3-storage/w3up-client": "^17.2.0",
     "axios": "^1.9.0",
     "capacitor-email-composer": "^5.0.0",
     "ionicons": "^7.0.0",

@@ -1,15 +1,29 @@
 import { useAccount, useContract } from "@starknet-react/core";
-import { type Abi } from "starknet";
+import { type Abi, byteArray, CallData, uint256 } from "starknet";
 import { useState } from "react";
 import { MED_INVOICE_ABI } from "../abis/medInvoiceAbi";
+import { MED_TOKEN_ABI } from "../abis/medToken";
+import {
+  MED_INVOICE_CONTRACT_ADDRESS,
+  MED_TOKEN_CONTRACT_ADDRESS,
+} from "../abis/constants";
 
-const CONTRACT_ADDRESS = import.meta.env
-  .VITE_MED_INVOICE_CONTRACT_ADDRESS as `0x${string}`;
+const CONTRACT_ADDRESS = MED_INVOICE_CONTRACT_ADDRESS as `0x${string}`;
+const TOKEN_CONTRACT_ADDRESS = MED_TOKEN_CONTRACT_ADDRESS as `0x${string}`;
 
 export function useContractInstance() {
   const { contract } = useContract({
     abi: MED_INVOICE_ABI as Abi,
     address: CONTRACT_ADDRESS,
+  });
+
+  return contract;
+}
+
+export function useTokenContractInstance() {
+  const { contract } = useContract({
+    abi: MED_TOKEN_ABI as Abi,
+    address: TOKEN_CONTRACT_ADDRESS,
   });
 
   return contract;
@@ -25,7 +39,7 @@ export function useSaveFile() {
   const [error, setError] = useState<Error | null>(null);
   const [data, setData] = useState<{ transactionHash: string } | null>(null);
 
-  const saveFile = async (ipfsHash: string) => {
+  const saveFile = async (fileName: string, ipfsHash: string) => {
     if (!contract) return;
     if (!account) {
       throw new Error("Wallet account not connected");
@@ -35,13 +49,17 @@ export function useSaveFile() {
     setError(null);
 
     try {
-      console.log("Saving file with IPFS hash:", ipfsHash);
+      console.log("Saving file with name:", fileName, "IPFS hash:", ipfsHash);
+
+      // Convert strings to ByteArray format
+      const fileNameByteArray = byteArray.byteArrayFromString(fileName);
+      const ipfsHashByteArray = byteArray.byteArrayFromString(ipfsHash);
 
       // Send transaction
       const response = await account.execute({
         contractAddress: contract.address,
         entrypoint: "save_file",
-        calldata: [ipfsHash],
+        calldata: CallData.compile([fileNameByteArray, ipfsHashByteArray]),
       });
 
       console.log("Transaction response:", response);
@@ -178,6 +196,66 @@ export function useWithdrawTokens() {
 
   return {
     withdrawTokens,
+    data,
+    isPending,
+    isError: !!error,
+    error,
+  };
+}
+
+/**
+ * Hook to approve tokens for the MedInvoice contract
+ */
+export function useApproveTokens() {
+  const tokenContract = useTokenContractInstance();
+  const { account } = useAccount();
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [data, setData] = useState<{ transactionHash: string } | null>(null);
+
+  const approveTokens = async (amount: bigint) => {
+    if (!tokenContract) return;
+    if (!account) {
+      throw new Error("Wallet account not connected");
+    }
+
+    setIsPending(true);
+    setError(null);
+
+    try {
+      console.log("Approving tokens:", amount.toString());
+
+      // Convert bigint to proper u256 format for Starknet
+      const amountU256 = uint256.bnToUint256(amount);
+
+      // Send approval transaction
+      const response = await account.execute({
+        contractAddress: tokenContract.address,
+        entrypoint: "approve",
+        calldata: CallData.compile([CONTRACT_ADDRESS, amountU256]),
+      });
+
+      console.log("Approval transaction response:", response);
+      setData({ transactionHash: response.transaction_hash });
+      return response;
+    } catch (err: unknown) {
+      console.error("Error approving tokens:", err);
+      if (err instanceof Error) {
+        setError(err);
+        throw err;
+      }
+      const error = new Error(
+        "An unexpected error occurred while approving tokens"
+      );
+      setError(error);
+      throw error;
+    } finally {
+      setIsPending(false);
+    }
+  };
+
+  return {
+    approveTokens,
     data,
     isPending,
     isError: !!error,

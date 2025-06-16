@@ -2,3 +2,135 @@
   height: min-content;
   overflow: hidden;
 }
+
+/* Enhanced Med Token Balance Styling */
+.med-token-balance {
+  margin-right: 8px;
+  font-size: 0.85rem;
+  height: 32px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.med-token-balance:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+.med-token-balance ion-icon {
+  margin-right: 4px;
+}
+
+.med-token-balance ion-label {
+  font-weight: 600;
+}
+
+/* Editing Title Styling */
+.editing-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ion-color-light);
+  margin-left: 16px;
+  letter-spacing: 0.3px;
+}
+
+.editing-title ion-icon {
+  color: var(--ion-color-warning);
+  margin-right: 8px;
+}
+
+.editing-title ion-button {
+  --color: var(--ion-color-warning);
+  --color-hover: var(--ion-color-warning-tint);
+  margin-right: 4px;
+}
+
+/* Enhanced Toolbar Icons */
+ion-toolbar ion-buttons ion-icon {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+ion-toolbar ion-buttons ion-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+/* Info Button Special Styling */
+ion-button[title="Keyboard Shortcuts"] {
+  --color: var(--ion-color-light);
+}
+
+ion-button[title="Keyboard Shortcuts"]:hover {
+  --color: var(--ion-color-warning);
+}
+
+/* Keyboard Shortcuts Popover Styling */
+.keyboard-shortcuts-popover ion-card {
+  min-width: 280px;
+  max-width: 320px;
+}
+
+.keyboard-shortcuts-popover ion-card-content > div {
+  padding: 4px 0;
+}
+
+.keyboard-shortcuts-popover span {
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
+}
+
+.keyboard-shortcuts-popover ion-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Enhanced Fab Button Styling */
+ion-fab-button {
+  --color: white;
+  --background: var(--ion-color-primary);
+  --box-shadow: 0 4px 16px rgba(var(--ion-color-primary-rgb), 0.4);
+  transition: all 0.3s ease;
+}
+
+ion-fab-button:hover {
+  --box-shadow: 0 6px 20px rgba(var(--ion-color-primary-rgb), 0.6);
+  transform: translateY(-2px);
+}
+
+/* Button Hover Effects */
+ion-button {
+  transition: all 0.2s ease;
+}
+
+ion-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Modal Backdrop Enhancement */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+}
+
+/* Segment Button Enhancements */
+ion-segment-button {
+  transition: all 0.2s ease;
+}
+
+ion-segment-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Toast Enhancements */
+ion-toast {
+  --border-radius: 12px;
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}

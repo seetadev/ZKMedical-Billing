@@ -3,7 +3,7 @@ export const MED_INVOICE_ABI = [
     type: "impl",
     name: "MedInvoiceContractImpl",
     interface_name:
-      "sn_medi_token::interfaces::IMedInvoice::IMedInvoiceContract",
+      "sn_medi_invoice::interfaces::IMedInvoice::IMedInvoiceContract",
   },
   {
     type: "struct",
@@ -24,20 +24,6 @@ export const MED_INVOICE_ABI = [
     ],
   },
   {
-    type: "struct",
-    name: "core::integer::u256",
-    members: [
-      {
-        name: "low",
-        type: "core::integer::u128",
-      },
-      {
-        name: "high",
-        type: "core::integer::u128",
-      },
-    ],
-  },
-  {
     type: "enum",
     name: "core::bool",
     variants: [
@@ -52,15 +38,59 @@ export const MED_INVOICE_ABI = [
     ],
   },
   {
+    type: "struct",
+    name: "sn_medi_invoice::interfaces::IMedInvoice::FileRecord",
+    members: [
+      {
+        name: "file_name",
+        type: "core::byte_array::ByteArray",
+      },
+      {
+        name: "ipfs_cid",
+        type: "core::byte_array::ByteArray",
+      },
+      {
+        name: "timestamp",
+        type: "core::integer::u64",
+      },
+      {
+        name: "owner",
+        type: "core::starknet::contract_address::ContractAddress",
+      },
+      {
+        name: "exists",
+        type: "core::bool",
+      },
+    ],
+  },
+  {
+    type: "struct",
+    name: "core::integer::u256",
+    members: [
+      {
+        name: "low",
+        type: "core::integer::u128",
+      },
+      {
+        name: "high",
+        type: "core::integer::u128",
+      },
+    ],
+  },
+  {
     type: "interface",
-    name: "sn_medi_token::interfaces::IMedInvoice::IMedInvoiceContract",
+    name: "sn_medi_invoice::interfaces::IMedInvoice::IMedInvoiceContract",
     items: [
       {
         type: "function",
         name: "save_file",
         inputs: [
           {
-            name: "file",
+            name: "file_name",
+            type: "core::byte_array::ByteArray",
+          },
+          {
+            name: "ipfs_cid",
             type: "core::byte_array::ByteArray",
           },
         ],
@@ -70,10 +100,15 @@ export const MED_INVOICE_ABI = [
       {
         type: "function",
         name: "get_files",
-        inputs: [],
+        inputs: [
+          {
+            name: "user_address",
+            type: "core::starknet::contract_address::ContractAddress",
+          },
+        ],
         outputs: [
           {
-            type: "core::array::Array::<core::byte_array::ByteArray>",
+            type: "core::array::Array::<sn_medi_invoice::interfaces::IMedInvoice::FileRecord>",
           },
         ],
         state_mutability: "view",
@@ -81,7 +116,12 @@ export const MED_INVOICE_ABI = [
       {
         type: "function",
         name: "get_user_tokens",
-        inputs: [],
+        inputs: [
+          {
+            name: "user_address",
+            type: "core::starknet::contract_address::ContractAddress",
+          },
+        ],
         outputs: [
           {
             type: "core::integer::u256",
@@ -108,7 +148,12 @@ export const MED_INVOICE_ABI = [
       {
         type: "function",
         name: "get_subscription_details",
-        inputs: [],
+        inputs: [
+          {
+            name: "user_address",
+            type: "core::starknet::contract_address::ContractAddress",
+          },
+        ],
         outputs: [
           {
             type: "(core::bool, core::integer::u64)",
@@ -210,7 +255,7 @@ export const MED_INVOICE_ABI = [
   },
   {
     type: "event",
-    name: "sn_medi_token::contracts::MedInvoice::MedInvoiceContract::FileSaved",
+    name: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::FileSaved",
     kind: "struct",
     members: [
       {
@@ -219,8 +264,18 @@ export const MED_INVOICE_ABI = [
         kind: "key",
       },
       {
-        name: "file",
+        name: "file_id",
         type: "core::integer::u64",
+        kind: "data",
+      },
+      {
+        name: "file_name",
+        type: "core::byte_array::ByteArray",
+        kind: "data",
+      },
+      {
+        name: "ipfs_cid",
+        type: "core::byte_array::ByteArray",
         kind: "data",
       },
       {
@@ -232,7 +287,7 @@ export const MED_INVOICE_ABI = [
   },
   {
     type: "event",
-    name: "sn_medi_token::contracts::MedInvoice::MedInvoiceContract::NewSubscription",
+    name: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::NewSubscription",
     kind: "struct",
     members: [
       {
@@ -306,17 +361,17 @@ export const MED_INVOICE_ABI = [
   },
   {
     type: "event",
-    name: "sn_medi_token::contracts::MedInvoice::MedInvoiceContract::Event",
+    name: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::Event",
     kind: "enum",
     variants: [
       {
         name: "FileSaved",
-        type: "sn_medi_token::contracts::MedInvoice::MedInvoiceContract::FileSaved",
+        type: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::FileSaved",
         kind: "nested",
       },
       {
         name: "NewSubscription",
-        type: "sn_medi_token::contracts::MedInvoice::MedInvoiceContract::NewSubscription",
+        type: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::NewSubscription",
         kind: "nested",
       },
       {
