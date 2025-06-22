@@ -1,0 +1,23 @@
+# Development Dockerfile - Use Node 18 LTS Alpine for security
+FROM node:18.19-alpine
+
+# Install security updates
+RUN apk update && apk upgrade
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install all dependencies (including dev dependencies)
+RUN npm ci --silent
+
+# Copy source code
+COPY . .
+
+# Expose development port (Vite default)
+EXPOSE 5173
+
+# Start development server with host binding for Docker
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
