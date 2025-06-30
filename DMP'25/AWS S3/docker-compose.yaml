@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:8888" # Map port 80 to container port 8888
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: unless-stopped
+    environment:
+      - DEBUG=False
+
+  db:
+    image: postgres:16
+    container_name: postgres_api
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  # Server Files API
+  server-files:
+    build: ./references
+    container_name: server-files-api
+    ports:
+      - "8888:8888"
+    environment:
+      - DB_HOST=storacha-pg
+      - DB_PORT=5432
+      - DB_NAME=stark_invoice
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME:-stark-invoice-files}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your-super-secret-jwt-key-change-this-in-production}
+      - DEBUG=True
+      - AUTORELOAD=True
+    depends_on:
+      - storacha-pg
+    volumes:
+      - ./references:/app
+    restart: unless-stopped
+    networks:
+      - stark-invoice-network
+
+  # Use existing PostgreSQL container
+  storacha-pg:
+    image: postgres:15
+    container_name: storacha-pg
+    environment:
+      POSTGRES_DB: stark_invoice
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - stark-invoice-network
+
+networks:
+  stark-invoice-network:
+    external: true
+
+volumes:
+  postgres_data:
