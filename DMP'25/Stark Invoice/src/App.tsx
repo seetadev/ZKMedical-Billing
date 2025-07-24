@@ -10,13 +10,17 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route, Redirect } from "react-router-dom";
-import { documentText, folder, menu, settings } from "ionicons/icons";
+import { documentText, folder, menu, settings, home } from "ionicons/icons";
 import Home from "./pages/Home";
 import FilesPage from "./pages/FilesPage";
 import SettingsPage from "./pages/SettingsPage";
-import { StarknetProviders } from "./providers/StarknetProviders";
+import LandingPage from "./pages/LandingPage";
+import WalletTestPage from "./pages/WalletTestPage";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { InvoiceProvider } from "./contexts/InvoiceContext";
+import PWAUpdatePrompt from "./components/PWAUpdatePrompt";
+import OfflineIndicator from "./components/OfflineIndicator";
+import { usePWA } from "./hooks/usePWA";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -37,61 +41,77 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import "./App.css";
+import { StarknetProviders } from "./providers/StarknetProviders";
 
 setupIonicReact();
 
 const AppContent: React.FC = () => {
   const { isDarkMode } = useTheme();
+  const { isOnline } = usePWA();
 
   return (
     <IonApp className={isDarkMode ? "dark-theme" : "light-theme"}>
-      <StarknetProviders>
-        <InvoiceProvider>
-          <IonReactRouter>
-            <IonTabs>
-              <IonRouterOutlet>
-                <Route exact path="/home">
-                  <Home />
-                </Route>
-                <Route exact path="/files">
-                  <FilesPage />
-                </Route>
-                <Route exact path="/settings">
-                  <SettingsPage />
-                </Route>
-                <Route exact path="/">
-                  <Redirect to="/home" />
-                </Route>
-              </IonRouterOutlet>
+      <InvoiceProvider>
+        <IonReactRouter>
+          <IonRouterOutlet>
+            <Route exact path="/">
+              <LandingPage />
+            </Route>
+            <Route exact path="/wallet-test">
+              <WalletTestPage />
+            </Route>
+            <Route path="/app">
+              <IonTabs>
+                <IonRouterOutlet>
+                  <Route exact path="/app/editor">
+                    {!isOnline && <OfflineIndicator />}
+                    <Home />
+                  </Route>
+                  <Route exact path="/app/files">
+                    {!isOnline && <OfflineIndicator />}
+                    <FilesPage />
+                  </Route>
+                  <Route exact path="/app/settings">
+                    {!isOnline && <OfflineIndicator />}
+                    <SettingsPage />
+                  </Route>
+                  <Route exact path="/app">
+                    <Redirect to="/app/editor" />
+                  </Route>
+                </IonRouterOutlet>
 
-              <IonTabBar slot="bottom">
-                <IonTabButton tab="home" href="/home">
-                  <IonIcon icon={documentText} />
-                  <IonLabel>Home</IonLabel>
-                </IonTabButton>
+                <IonTabBar slot="bottom">
+                  <IonTabButton tab="editor" href="/app/editor">
+                    <IonIcon icon={documentText} />
+                    <IonLabel>Editor</IonLabel>
+                  </IonTabButton>
 
-                <IonTabButton tab="files" href="/files">
-                  <IonIcon icon={folder} />
-                  <IonLabel>Files</IonLabel>
-                </IonTabButton>
+                  <IonTabButton tab="files" href="/app/files">
+                    <IonIcon icon={folder} />
+                    <IonLabel>Files</IonLabel>
+                  </IonTabButton>
 
-                <IonTabButton tab="settings" href="/settings">
-                  <IonIcon icon={settings} />
-                  <IonLabel>settings</IonLabel>
-                </IonTabButton>
-              </IonTabBar>
-            </IonTabs>
-          </IonReactRouter>
-        </InvoiceProvider>
-      </StarknetProviders>
+                  <IonTabButton tab="settings" href="/app/settings">
+                    <IonIcon icon={settings} />
+                    <IonLabel>Settings</IonLabel>
+                  </IonTabButton>
+                </IonTabBar>
+              </IonTabs>
+            </Route>
+          </IonRouterOutlet>
+        </IonReactRouter>
+        <PWAUpdatePrompt />
+      </InvoiceProvider>
     </IonApp>
   );
 };
 
 const App: React.FC = () => (
-  <ThemeProvider>
-    <AppContent />
-  </ThemeProvider>
+  <StarknetProviders>
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  </StarknetProviders>
 );
 
 export default App;

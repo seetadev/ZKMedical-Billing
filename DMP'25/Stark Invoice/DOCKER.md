@@ -1,208 +1,152 @@
-# Docker Setup for Stark Invoice
+# Docker Compose Setup for Ionic React Government Billing Solution
 
-This document explains how to containerize and run the Stark Invoice application using Docker and Docker Compose.
+This project includes Docker Compose configuration to run the Ionic React frontend in both development and production environments.
 
 ## Prerequisites
 
-- Docker installed on your system
-- Docker Compose installed on your system
+- Docker
+- Docker Compose
 
-## Quick Start
+## Available Environments
 
-### 1. Setup Environment Variables
+### Development Environment
 
-First, create your environment file:
-
+**Option 1: Alpine-based (smaller image)**
 ```bash
-# Copy the example environment file
-cp .env.example .env
-
-# Edit .env with your actual values
-nano .env  # or use your preferred editor
-```
-
-Required environment variables:
-
-- `VITE_STARKNET_RPC_URL` - Starknet RPC URL
-- `VITE_PINATA_API_KEY` - Pinata IPFS API key
-- `VITE_PINATA_SECRET_KEY` - Pinata IPFS secret key
-- `VITE_PINATA_GATEWAY` - Pinata IPFS gateway URL
-
-### 2. Build and Run
-
-#### Using the Build Script (Recommended)
-
-```bash
-# Run the automated build script
-./docker-build.sh
-```
-
-#### Manual Commands
-
-```bash
-# Production build
-docker-compose up --build
-
-# Development build with hot reload
-docker-compose --profile dev up --build
-```
-
-### 3. Access the Application
-
-- **Production**: http://localhost:3000
-- **Development**: http://localhost:3001
-
-## Detailed Commands
-
-### Building Images
-
-```bash
-# Build production image only
-docker build -t stark-invoice:prod .
-
-# Build development image only
-docker build -f Dockerfile.dev -t stark-invoice:dev .
-```
-
-### Running Containers
-
-```bash
-# Run production container directly
-docker run -p 3000:80 stark-invoice:prod
-
-# Run development container directly
-docker run -p 3001:5173 -v $(pwd):/app -v /app/node_modules stark-invoice:dev
-```
-
-### Docker Compose Commands
-
-```bash
-# Start all services
-docker-compose up
-
-# Start with build
-docker-compose up --build
-
-# Start in background
-docker-compose up -d
-
-# Start development profile
+# Start development environment
 docker-compose --profile dev up
 
-# Stop all services
-docker-compose down
-
-# View logs
-docker-compose logs
-
-# Restart a specific service
-docker-compose restart stark-invoice-app
+# Or run in detached mode
+docker-compose --profile dev up -d
 ```
+
+**Option 2: Full Node.js (more stable for complex builds)**
+```bash
+# Start development environment with full Node.js image
+docker-compose --profile dev-full up
+
+# Or run in detached mode
+docker-compose --profile dev-full up -d
+```
+
+Access the application at http://localhost:5173
+
+### Production Environment
+
+**Option 1: Alpine-based (smaller image)**
+```bash
+# Start production environment
+docker-compose --profile prod up
+
+# Or run in detached mode
+docker-compose --profile prod up -d
+```
+
+**Option 2: Full Node.js (more stable for complex builds)**
+```bash
+# Start production environment with full Node.js image
+docker-compose --profile prod-full up
+
+# Or run in detached mode
+docker-compose --profile prod-full up -d
+```
+
+Access the application at http://localhost:80
+
+### Build Only
+
+Just build the application without running it:
+
+```bash
+# Build the application
+docker-compose --profile build up
+
+# The built files will be available in the ./dist directory
+```
+
+## Services
+
+- **ionic-dev**: Development server with Alpine Node.js image
+- **ionic-dev-full**: Development server with full Node.js image (recommended for complex builds)
+- **ionic-prod**: Production server with Alpine-based build
+- **ionic-prod-full**: Production server with full Node.js build (recommended for complex builds)
+- **ionic-build**: Build-only service for CI/CD pipelines
+
+## Dockerfiles
+
+- **Dockerfile**: Alpine-based multi-stage build (smaller but may have build issues with native dependencies)
+- **Dockerfile.full**: Full Node.js-based build (larger but more compatible with native dependencies)
+
+## Ports
+
+- Development: `5173`
+- Production: `80`
+
+## Docker Configuration
+
+Both setups use multi-stage Dockerfiles:
+
+1. **Development stage**: Node.js with Vite dev server
+2. **Build stage**: Compiles TypeScript and builds the application
+3. **Production stage**: Nginx serving the built static files
 
 ## Environment Variables
 
-You can customize the build by setting environment variables:
+You can customize the build by setting environment variables in a `.env` file:
 
-```bash
-# Create .env file
-NODE_ENV=production
-REACT_APP_API_URL=https://your-api-url.com
-REACT_APP_STARKNET_CHAIN=mainnet
+```env
+NODE_ENV=development
+VITE_API_URL=your_api_url
 ```
 
-## Production Deployment
+## Stopping Services
 
-For production deployment, consider:
+```bash
+# Stop and remove containers
+docker-compose down
 
-1. **Environment Variables**: Set proper environment variables
-2. **SSL/TLS**: Configure HTTPS with reverse proxy
-3. **Domain**: Update nginx.conf with your domain
-4. **Security**: Review and update security headers in nginx.conf
-
-### Example with reverse proxy:
-
-```yaml
-# docker-compose.prod.yml
-version: '3.8'
-
-services:
-  stark-invoice-app:
-    build: .
-    container_name: stark-invoice
-    expose:
-      - "80"
-    environment:
-      - NODE_ENV=production
-    restart: unless-stopped
-
-  nginx-proxy:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx-proxy.conf:/etc/nginx/nginx.conf
-      - ./ssl:/etc/nginx/ssl
-    depends_on:
-      - stark-invoice-app
+# Stop and remove containers, networks, and volumes
+docker-compose down -v
 ```
 
 ## Troubleshooting
 
+### Build Errors with Native Dependencies
+
+If you encounter Python/gyp errors during build:
+
+1. **Use the full Node.js image**: Try the `-full` profiles which use the complete Node.js image instead of Alpine
+2. **Clear Docker cache**: Run `docker system prune -a` to clear build cache
+3. **Check package compatibility**: Some packages may not be compatible with Alpine Linux
+
 ### Common Issues
 
-1. **Port already in use**:
+- **Permission issues**: Ensure your user has Docker permissions
+- **Hot reload not working**: Verify that file watching is enabled in your Docker environment
+- **Port conflicts**: Make sure ports 5173 (dev) and 80 (prod) are not already in use
+- **Memory issues**: Increase Docker memory limits if builds fail due to insufficient resources
 
-   ```bash
-   # Check what's using the port
-   lsof -i :3000
-
-   # Use different port
-   docker-compose up -p 3002:80
-   ```
-
-2. **Build fails**:
-
-   ```bash
-   # Clear Docker cache
-   docker system prune -a
-
-   # Rebuild without cache
-   docker-compose build --no-cache
-   ```
-
-3. **Permission issues (Linux)**:
-   ```bash
-   # Fix ownership
-   sudo chown -R $USER:$USER .
-   ```
-
-### Logs and Debugging
+### Checking Logs
 
 ```bash
-# View container logs
-docker-compose logs stark-invoice-app
+# View logs for a specific service
+docker-compose logs [service-name]
 
-# Access container shell
-docker-compose exec stark-invoice-app sh
+# Follow logs in real-time
+docker-compose logs -f [service-name]
 
-# View running containers
-docker ps
-
-# View images
-docker images
+# View build logs
+docker-compose build [service-name]
 ```
 
-## Performance Optimization
+### Recommended Approach
 
-- The production build uses multi-stage Docker build for smaller image size
-- Nginx is configured with gzip compression
-- Static assets are cached for 1 year
-- Only production dependencies are installed in final image
+For most users, especially those encountering build issues, we recommend using the `-full` profiles:
 
-## Security Considerations
+```bash
+# Development
+docker-compose --profile dev-full up
 
-- Security headers are configured in nginx.conf
-- Non-root user should be used in production
-- Regular security updates for base images
-- Environment variables for sensitive data
+# Production  
+docker-compose --profile prod-full up
+```

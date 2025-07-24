@@ -1,9 +1,9 @@
 export const MED_INVOICE_ABI = [
   {
     type: "impl",
-    name: "MedInvoiceContractImpl",
+    name: "ParkProInvoiceContractImpl",
     interface_name:
-      "sn_medi_invoice::interfaces::IMedInvoice::IMedInvoiceContract",
+      "sn_parkpro_invoice::interfaces::IParkProInvoice::IParkProInvoiceContract",
   },
   {
     type: "struct",
@@ -39,7 +39,7 @@ export const MED_INVOICE_ABI = [
   },
   {
     type: "struct",
-    name: "sn_medi_invoice::interfaces::IMedInvoice::FileRecord",
+    name: "sn_parkpro_invoice::interfaces::IParkProInvoice::FileRecord",
     members: [
       {
         name: "file_name",
@@ -78,8 +78,30 @@ export const MED_INVOICE_ABI = [
     ],
   },
   {
+    type: "struct",
+    name: "sn_parkpro_invoice::interfaces::IParkProInvoice::SubscriptionPlan",
+    members: [
+      {
+        name: "plan_id",
+        type: "core::integer::u8",
+      },
+      {
+        name: "cost",
+        type: "core::integer::u256",
+      },
+      {
+        name: "files_allowed",
+        type: "core::integer::u64",
+      },
+      {
+        name: "plan_name",
+        type: "core::byte_array::ByteArray",
+      },
+    ],
+  },
+  {
     type: "interface",
-    name: "sn_medi_invoice::interfaces::IMedInvoice::IMedInvoiceContract",
+    name: "sn_parkpro_invoice::interfaces::IParkProInvoice::IParkProInvoiceContract",
     items: [
       {
         type: "function",
@@ -108,7 +130,7 @@ export const MED_INVOICE_ABI = [
         ],
         outputs: [
           {
-            type: "core::array::Array::<sn_medi_invoice::interfaces::IMedInvoice::FileRecord>",
+            type: "core::array::Array::<sn_parkpro_invoice::interfaces::IParkProInvoice::FileRecord>",
           },
         ],
         state_mutability: "view",
@@ -196,6 +218,97 @@ export const MED_INVOICE_ABI = [
         outputs: [],
         state_mutability: "external",
       },
+      {
+        type: "function",
+        name: "subscribe_to_plan",
+        inputs: [
+          {
+            name: "plan_id",
+            type: "core::integer::u8",
+          },
+        ],
+        outputs: [],
+        state_mutability: "external",
+      },
+      {
+        type: "function",
+        name: "get_subscription_plan",
+        inputs: [
+          {
+            name: "plan_id",
+            type: "core::integer::u8",
+          },
+        ],
+        outputs: [
+          {
+            type: "sn_parkpro_invoice::interfaces::IParkProInvoice::SubscriptionPlan",
+          },
+        ],
+        state_mutability: "view",
+      },
+      {
+        type: "function",
+        name: "get_user_file_limits",
+        inputs: [
+          {
+            name: "user",
+            type: "core::starknet::contract_address::ContractAddress",
+          },
+        ],
+        outputs: [
+          {
+            type: "(core::integer::u64, core::integer::u64)",
+          },
+        ],
+        state_mutability: "view",
+      },
+      {
+        type: "function",
+        name: "get_all_plans",
+        inputs: [],
+        outputs: [
+          {
+            type: "core::array::Array::<sn_parkpro_invoice::interfaces::IParkProInvoice::SubscriptionPlan>",
+          },
+        ],
+        state_mutability: "view",
+      },
+      {
+        type: "function",
+        name: "get_user_plan_purchases",
+        inputs: [
+          {
+            name: "user",
+            type: "core::starknet::contract_address::ContractAddress",
+          },
+          {
+            name: "plan_id",
+            type: "core::integer::u8",
+          },
+        ],
+        outputs: [
+          {
+            type: "core::integer::u64",
+          },
+        ],
+        state_mutability: "view",
+      },
+      {
+        type: "function",
+        name: "get_user_subscription_summary",
+        inputs: [
+          {
+            name: "user",
+            type: "core::starknet::contract_address::ContractAddress",
+          },
+        ],
+        outputs: [
+          {
+            type: "(core::integer::u64, core::integer::u64, core::integer::u8)",
+          },
+        ],
+        state_mutability: "view",
+      },
     ],
   },
   {
@@ -244,7 +357,7 @@ export const MED_INVOICE_ABI = [
     name: "constructor",
     inputs: [
       {
-        name: "medi_token",
+        name: "ppt_token",
         type: "core::starknet::contract_address::ContractAddress",
       },
       {
@@ -255,7 +368,7 @@ export const MED_INVOICE_ABI = [
   },
   {
     type: "event",
-    name: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::FileSaved",
+    name: "sn_parkpro_invoice::contracts::ParkProInvoice::ParkProInvoiceContract::FileSaved",
     kind: "struct",
     members: [
       {
@@ -287,7 +400,7 @@ export const MED_INVOICE_ABI = [
   },
   {
     type: "event",
-    name: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::NewSubscription",
+    name: "sn_parkpro_invoice::contracts::ParkProInvoice::ParkProInvoiceContract::NewSubscription",
     kind: "struct",
     members: [
       {
@@ -298,6 +411,33 @@ export const MED_INVOICE_ABI = [
       {
         name: "end_time",
         type: "core::integer::u64",
+        kind: "data",
+      },
+    ],
+  },
+  {
+    type: "event",
+    name: "sn_parkpro_invoice::contracts::ParkProInvoice::ParkProInvoiceContract::PlanSubscription",
+    kind: "struct",
+    members: [
+      {
+        name: "subscriber",
+        type: "core::starknet::contract_address::ContractAddress",
+        kind: "key",
+      },
+      {
+        name: "plan_id",
+        type: "core::integer::u8",
+        kind: "data",
+      },
+      {
+        name: "files_allowed",
+        type: "core::integer::u64",
+        kind: "data",
+      },
+      {
+        name: "cost",
+        type: "core::integer::u256",
         kind: "data",
       },
     ],
@@ -361,17 +501,22 @@ export const MED_INVOICE_ABI = [
   },
   {
     type: "event",
-    name: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::Event",
+    name: "sn_parkpro_invoice::contracts::ParkProInvoice::ParkProInvoiceContract::Event",
     kind: "enum",
     variants: [
       {
         name: "FileSaved",
-        type: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::FileSaved",
+        type: "sn_parkpro_invoice::contracts::ParkProInvoice::ParkProInvoiceContract::FileSaved",
         kind: "nested",
       },
       {
         name: "NewSubscription",
-        type: "sn_medi_invoice::contracts::MedInvoice::MedInvoiceContract::NewSubscription",
+        type: "sn_parkpro_invoice::contracts::ParkProInvoice::ParkProInvoiceContract::NewSubscription",
+        kind: "nested",
+      },
+      {
+        name: "PlanSubscription",
+        type: "sn_parkpro_invoice::contracts::ParkProInvoice::ParkProInvoiceContract::PlanSubscription",
         kind: "nested",
       },
       {

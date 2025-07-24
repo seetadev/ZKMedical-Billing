@@ -12251,6 +12251,8 @@ ha.style.visibility = 'hidden';
   var CoordForColorChange;
   var editCoord;
   SocialCalc.InputBoxDisplayCellContents = function (inputbox, coord) {
+    // inputbox.element.disabled = true;
+    // return;
     var scc = SocialCalc.Constants;
     var cell, position;
 
@@ -12289,12 +12291,14 @@ ha.style.visibility = 'hidden';
       );
       var left = "100px";
       var top = "100px";
-      var width = 100;
+      var width = 0;
+      var height = 0;
       if (cell) {
         position = SocialCalc.GetElementPosition(cell.element);
-        left = position.left - 2 + "px";
-        top = position.top - 7 + "px";
+        left = position.left + "px";
+        top = position.top + "px";
         width = cell.element.offsetWidth;
+        height = cell.element.offsetHeight;
       }
       if (!cell || width == 0) {
         //scrolled off screen
@@ -12318,7 +12322,8 @@ ha.style.visibility = 'hidden';
       //changes for prompt
 
       input.style.fontSize = "100%";
-      input.style.backgroundColor = "transparent";
+      input.style.backgroundColor = "white";
+      input.style.color = "black";
 
       input.style.borderBottomColor = "#306eff";
       input.style.borderBottomLeftRadius = "3px";
@@ -12340,7 +12345,8 @@ ha.style.visibility = 'hidden';
       //console.log("cell width ="+width)
       //changes for prompt
 
-      input.size = "" + width / 8;
+      input.style.width = width + "px";
+      input.style.height = height + "px";
       spreadsheet.spreadsheetDiv.appendChild(spreadsheet.formulabarDiv);
 
       inputbox.element.disabled = false;

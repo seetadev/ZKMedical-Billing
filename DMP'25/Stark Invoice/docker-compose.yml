@@ -1,44 +1,88 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  stark-invoice-app:
+  # Development environment (Alpine-based)
+  ionic-dev:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: stark-invoice-container
+      target: development
+    container_name: ionic-govt-billing-dev
     ports:
-      - "3000:80"
-    environment:
-      - NODE_ENV=production
-    env_file:
-      - .env
-    restart: unless-stopped
-    networks:
-      - stark-invoice-network
-
-  # Optional: Add a development service
-  stark-invoice-dev:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    container_name: stark-invoice-dev-container
-    ports:
-      - "3001:5173"
+      - "5173:5173"
     volumes:
       - .:/app
       - /app/node_modules
     environment:
       - NODE_ENV=development
-    command: npm run dev
-    restart: unless-stopped
-    networks:
-      - stark-invoice-network
+      - VITE_DEV_SERVER_HOST=0.0.0.0
     profiles:
       - dev
+    stdin_open: true
+    tty: true
+
+  # Development environment (Full Node.js - more stable)
+  ionic-dev-full:
+    build:
+      context: .
+      dockerfile: Dockerfile.full
+      target: development
+    container_name: ionic-govt-billing-dev-full
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_DEV_SERVER_HOST=0.0.0.0
+    profiles:
+      - dev-full
+    stdin_open: true
+    tty: true
+
+  # Production environment (Alpine-based)
+  ionic-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: ionic-govt-billing-prod
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    profiles:
+      - prod
+    restart: unless-stopped
+
+  # Production environment (Full Node.js - more stable)
+  ionic-prod-full:
+    build:
+      context: .
+      dockerfile: Dockerfile.full
+      target: production
+    container_name: ionic-govt-billing-prod-full
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    profiles:
+      - prod-full
+    restart: unless-stopped
+
+  # Build only service (Alpine-based)
+  ionic-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    container_name: ionic-govt-billing-build
+    volumes:
+      - ./dist:/app/dist
+    profiles:
+      - build
 
 networks:
-  stark-invoice-network:
-    driver: bridge
-
-volumes:
-  node_modules:
+  default:
+    name: ionic-govt-billing-network

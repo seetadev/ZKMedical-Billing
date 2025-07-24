@@ -34,13 +34,24 @@ export function useTokenContractInstance() {
  */
 export function useSaveFile() {
   const contract = useContractInstance();
-  const { account } = useAccount();
+  const { account, status, isConnected } = useAccount();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [data, setData] = useState<{ transactionHash: string } | null>(null);
 
   const saveFile = async (fileName: string, ipfsHash: string) => {
     if (!contract) return;
+    // Check connection status first
+    console.log("Wallet connection status:", {
+      status,
+      isConnected,
+      account,
+    });
+
+    if (status !== "connected" || !isConnected || !account) {
+      throw new Error("Wallet account not connected");
+    }
+
     if (!account) {
       throw new Error("Wallet account not connected");
     }
@@ -89,7 +100,7 @@ export function useSaveFile() {
 }
 
 /**
- * Hook to subscribe to the service
+ * Hook to subscribe to the service (deprecated - keeping for compatibility)
  */
 export function useSubscribe() {
   const contract = useContractInstance();
@@ -214,8 +225,11 @@ export function useApproveTokens() {
   const [data, setData] = useState<{ transactionHash: string } | null>(null);
 
   const approveTokens = async (amount: bigint) => {
-    if (!tokenContract) return;
+    if (!tokenContract) {
+      throw new Error("Token contract not available");
+    }
     if (!account) {
+      console.log("Account not connected, cannot approve tokens", account);
       throw new Error("Wallet account not connected");
     }
 
@@ -224,6 +238,8 @@ export function useApproveTokens() {
 
     try {
       console.log("Approving tokens:", amount.toString());
+      console.log("Account:", account);
+      console.log("Token contract:", tokenContract.address);
 
       // Convert bigint to proper u256 format for Starknet
       const amountU256 = uint256.bnToUint256(amount);
@@ -256,6 +272,69 @@ export function useApproveTokens() {
 
   return {
     approveTokens,
+    data,
+    isPending,
+    isError: !!error,
+    error,
+  };
+}
+
+/**
+ * Hook to subscribe to a specific plan
+ */
+export function useSubscribeToPlan() {
+  const contract = useContractInstance();
+  const { account } = useAccount();
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [data, setData] = useState<{ transactionHash: string } | null>(null);
+
+  const subscribeToPlan = async (planId: number) => {
+    if (!contract) {
+      throw new Error("Invoice contract not available");
+    }
+    if (!account) {
+      throw new Error("Wallet account not connected");
+    }
+
+    setIsPending(true);
+    setError(null);
+
+    try {
+      console.log("Subscribing to plan:", planId);
+      console.log("Account:", account);
+      console.log("Contract:", contract.address);
+
+      // Send transaction
+      const response = await account.execute({
+        contractAddress: contract.address,
+        entrypoint: "subscribe_to_plan",
+        calldata: [Number(planId)],
+      });
+
+      console.log("Subscribe to plan transaction response:", response);
+
+      const result = { transactionHash: response.transaction_hash };
+      setData(result);
+      return result;
+    } catch (err: unknown) {
+      console.error("Error subscribing to plan:", err);
+      if (err instanceof Error) {
+        setError(err);
+        throw err;
+      }
+      const error = new Error(
+        "An unexpected error occurred while subscribing to plan"
+      );
+      setError(error);
+      throw error;
+    } finally {
+      setIsPending(false);
+    }
+  };
+
+  return {
+    subscribeToPlan,
     data,
     isPending,
     isError: !!error,

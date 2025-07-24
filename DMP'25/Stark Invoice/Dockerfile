@@ -1,42 +1,75 @@
-# Use Node.js 18 as base image
-FROM node:18-alpine AS build
+# Multi-stage build for Ionic React application
 
-# Set working directory
+# Development stage
+FROM node:18-alpine AS development
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available)
+# Install build dependencies for native modules
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    vips-dev \
+    libc6-compat
+
+# Copy package files
 COPY package*.json ./
+COPY ionic.config.json ./
 
-# Install all dependencies (including dev dependencies needed for build)
-RUN npm ci --silent
+# Install dependencies
+RUN npm install
 
-# Copy source code and environment file
+# Copy source code
 COPY . .
 
-# Create a default .env file if it doesn't exist
-RUN if [ ! -f .env ]; then cp .env.example .env; fi
+# Expose development port
+EXPOSE 5173
 
-# Build the application for production
+# Start development server
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+# Build stage
+FROM node:18-alpine AS build
+WORKDIR /app
+
+# Install build dependencies for native modules
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    vips-dev \
+    libc6-compat
+
+# Copy package files
+COPY package*.json ./
+COPY ionic.config.json ./
+COPY tsconfig*.json ./
+COPY vite.config.ts ./
+COPY capacitor.config.ts ./
+COPY pwa-assets.config.ts ./
+
+# Install dependencies (including dev dependencies for build)
+RUN npm ci
+
+# Copy source code
+COPY src/ ./src/
+COPY public/ ./public/
+COPY index.html ./
+
+# Build the application
 RUN npm run build
 
-# Production stage with nginx
-FROM nginx:alpine
+# Production stage
+FROM nginx:alpine AS production
 
-# Install curl for health checks
-RUN apk add --no-cache curl
-
-# Copy built app to nginx (Vite builds to /dist by default)
+# Copy built application from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy custom nginx configuration
+# Copy custom nginx configuration if needed
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:80/ || exit 1
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]

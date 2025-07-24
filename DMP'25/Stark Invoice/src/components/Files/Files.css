@@ -80,7 +80,7 @@
 
 /* Modal scrollable files container - updated for mobile */
 .files-scrollable-container {
-  max-height: calc(100vh - 220px);
+ 
   padding: 0 8px;
   margin-bottom: 8px;
 }
@@ -92,7 +92,6 @@
 
 /* Mobile-friendly file list container */
 .files-scrollable-container {
-  max-height: calc(100vh - 220px);
   padding: 0 8px;
   margin-bottom: 8px;
 }
@@ -132,11 +131,23 @@
   --padding-bottom: 6px;
   --min-height: 48px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease, background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+  --background: transparent;
+  background-color: transparent;
+}
+
+.mobile-file-item:hover {
+  --background: rgba(0, 0, 0, 0.08) !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-file-item:active {
-  --background: rgba(var(--ion-color-primary-rgb), 0.1);
+  --background: rgba(var(--ion-color-primary-rgb), 0.1) !important;
+  background-color: rgba(var(--ion-color-primary-rgb), 0.1) !important;
+  transform: translateY(0);
 }
 
 /* Compact label styling for mobile */
@@ -317,18 +328,26 @@
   --color: #f0f6fc !important;
   --border-color: #30363d !important;
   background: #21262d !important;
+  background-color: #21262d !important;
   color: #f0f6fc !important;
   border-bottom: 1px solid #30363d !important;
+  transition: all 0.3s ease, background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease !important;
 }
 
 .dark-theme ion-item:hover,
 .dark-theme .mobile-file-item:hover {
   --background: #30363d !important;
   background: #30363d !important;
+  background-color: #30363d !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .dark-theme .mobile-file-item:active {
   --background: rgba(88, 166, 255, 0.1) !important;
+  background-color: rgba(88, 166, 255, 0.1) !important;
+  transform: translateY(0);
 }
 
 .dark-theme ion-label,
@@ -671,29 +690,166 @@ ion-icon[slot="end"] {
   background: #0d1117;
 }
 
-.light-theme .files-modal-content ion-segment-button ion-label {
-  color: #24292f !important;
+/* Template Creation Section - mobile optimized */
+.template-creation-section {
+  padding: 16px;
+  background-color: var(--ion-color-light, #f8f9fa);
+  border-bottom: 1px solid var(--ion-color-light-shade, #e9ecef);
 }
 
-.light-theme .files-modal-content ion-segment-button[aria-selected="true"] {
-  --background-checked: #0969da !important;
-  --color-checked: white !important;
+.template-creation-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: var(--ion-color-dark);
+  text-align: center;
+  font-weight: 500;
 }
 
-/* Light theme search bar styling */
-.light-theme .files-modal-content ion-searchbar {
-  --background: #f6f8fa !important;
-  --color: #24292f !important;
-  --placeholder-color: #656d76 !important;
-  --icon-color: #656d76 !important;
-  --box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+.template-options-container {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.light-theme .files-modal-content ion-searchbar:focus-within {
-  --background: white !important;
-  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+.template-option-card {
+  background-color: white;
+  border: 1px solid var(--ion-color-medium-tint);
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: center;
+  cursor: pointer;
+  min-width: 100px;
+  flex: 1;
+  max-width: 140px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+.dark-theme .template-option-card {
+  background: #0d1117;
 }
 
-.light-theme .files-modal-content {
-  background: #ffffff;
+.template-option-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-color: var(--ion-color-primary);
+}
+
+.template-option-card:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.template-option-icon {
+  font-size: 24px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.template-option-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ion-color-dark);
+  line-height: 1.2;
+}
+
+/* Custom Tab Styling - mobile friendly */
+.custom-tabs-container {
+  padding: 16px 16px 0 16px;
+  background-color: white;
+}
+.dark-theme .custom-tabs-container {
+  background: #0d1117;
+}
+.custom-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--ion-color-light-shade, #e9ecef);
+  margin-bottom: 16px;
+}
+
+.custom-tab-button {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+
+.custom-tab-button.active {
+  color: var(--ion-color-primary);
+  border-bottom-color: var(--ion-color-primary);
+}
+
+.custom-tab-button:not(.active) {
+  color: var(--ion-color-medium);
+}
+
+.custom-tab-button:hover:not(.active) {
+  color: var(--ion-color-step-600);
+  background-color: var(--ion-color-light, rgba(0, 0, 0, 0.04));
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .template-options-container {
+    gap: 6px;
+  }
+  
+  .template-option-card {
+    min-width: 90px;
+    max-width: 120px;
+    padding: 10px 12px;
+  }
+  
+  .template-option-icon {
+    font-size: 20px;
+  }
+  
+  .template-option-text {
+    font-size: 11px;
+  }
+  
+  .custom-tab-button {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .files-modal-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .template-creation-section {
+    padding: 12px;
+  }
+  
+  .template-option-card {
+    min-width: 80px;
+    max-width: 110px;
+    padding: 8px 10px;
+  }
+  
+  .template-option-icon {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+  
+  .template-option-text {
+    font-size: 10px;
+  }
+  
+  .custom-tabs-container {
+    padding: 12px 12px 0 12px;
+  }
+  
+  .custom-tab-button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
 }

@@ -96,6 +96,7 @@ export class Local {
       let fname = keys[i];
       const data = await this._getFile(fname);
       arr[fname] = {
+        created: (data as any).created,
         modified: (data as any).modified,
         isEncrypted: (data as any).isEncrypted || false,
       };

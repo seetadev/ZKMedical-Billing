@@ -41,3 +41,8 @@ android/app/keystore/
 local.properties
 
 android/keystore.properties
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+docker-compose.local.yml

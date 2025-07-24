@@ -17,6 +17,42 @@ export interface SheetData {
   htmlContent: string;
 }
 
+// Helper function to add header and footer to each page
+const addHeaderAndFooter = (pdf: jsPDF, pageNumber: number, totalPages: number) => {
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  
+  // Get current date and time
+  const now = new Date();
+  const dateTimeString = now.toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  });
+
+  // Set font for header/footer
+  pdf.setFontSize(8);
+  pdf.setTextColor(100, 100, 100); // Gray color
+
+  // Add date/time at top left
+  pdf.text(dateTimeString, 10, 8);
+
+  // Add "Govt Invoice App" at bottom left
+  pdf.text("Govt Invoice App", 10, pageHeight - 5);
+
+  // Add page number at bottom right
+  const pageText = `Page ${pageNumber} of ${totalPages}`;
+  const pageTextWidth = pdf.getTextWidth(pageText);
+  pdf.text(pageText, pageWidth - pageTextWidth - 10, pageHeight - 5);
+
+  // Reset text color to black for content
+  pdf.setTextColor(0, 0, 0);
+};
+
 export const exportAllSheetsAsPDF = async (
   sheetsData: SheetData[],
   options: ExportAllSheetsOptions = {}
@@ -50,6 +86,10 @@ export const exportAllSheetsAsPDF = async (
 
     // Remove the first empty page
     pdf.deletePage(1);
+    
+    // Track total pages for numbering
+    let currentPageNumber = 0;
+    const pagesInfo: Array<{ sheetIndex: number; pageInSheet: number }> = [];
 
     for (let i = 0; i < sheetsData.length; i++) {
       const sheet = sheetsData[i];
@@ -73,18 +113,18 @@ export const exportAllSheetsAsPDF = async (
       tempContainer.style.lineHeight = "1.4";
 
       // Add sheet title
-      const titleElement = document.createElement("h2");
-      titleElement.textContent = `Invoice - ${sheet.name}`;
-      titleElement.style.marginBottom = "20px";
-      titleElement.style.color = "#333";
-      titleElement.style.borderBottom = "2px solid #333";
-      titleElement.style.paddingBottom = "10px";
-      tempContainer.insertBefore(titleElement, tempContainer.firstChild);
+      // const titleElement = document.createElement("h2");
+      // titleElement.textContent = `Invoice - ${sheet.name}`;
+      // titleElement.style.marginBottom = "20px";
+      // titleElement.style.color = "#333";
+      // titleElement.style.borderBottom = "2px solid #333";
+      // titleElement.style.paddingBottom = "10px";
+      // tempContainer.insertBefore(titleElement, tempContainer.firstChild);
 
       document.body.appendChild(tempContainer);
 
       try {
-        onProgress?.(`Rendering sheet ${i + 1} to canvas...`);
+        onProgress?.(`Generating Pdf: File ${i + 1}...`);
 
         // Convert HTML to canvas with higher quality
         const canvas = await html2canvas(tempContainer, {
@@ -102,8 +142,10 @@ export const exportAllSheetsAsPDF = async (
         const imgWidth = pageWidth;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-        // Add new page for each sheet (except for the first one)
+        // Add new page for each sheet
         pdf.addPage();
+        currentPageNumber++;
+        pagesInfo.push({ sheetIndex: i, pageInSheet: 1 });
 
         onProgress?.(`Adding sheet ${i + 1} to PDF...`);
 
@@ -113,16 +155,17 @@ export const exportAllSheetsAsPDF = async (
             canvas.toDataURL("image/png", 0.95),
             "PNG",
             margin,
-            margin,
+            margin + 5, // Leave space for header
             imgWidth,
-            imgHeight,
+            Math.min(imgHeight, pageHeight - 10), // Leave space for header and footer
             undefined,
             "FAST"
           );
         } else {
           // Content spans multiple pages
           let heightLeft = imgHeight;
-          let position = margin;
+          let position = margin + 5; // Start below header
+          let pageInSheet = 1;
 
           // Add first part
           pdf.addImage(
@@ -131,34 +174,48 @@ export const exportAllSheetsAsPDF = async (
             margin,
             position,
             imgWidth,
-            imgHeight,
+            Math.min(imgHeight, pageHeight - 10), // Leave space for header and footer
             undefined,
             "FAST"
           );
 
-          heightLeft -= pageHeight;
+          heightLeft -= (pageHeight - 10); // Account for header/footer space
 
           // Add continuation pages for this sheet if needed
           while (heightLeft >= 0) {
-            position = heightLeft - imgHeight + margin;
+            position = heightLeft - imgHeight + margin + 5; // Account for header
             pdf.addPage();
+            currentPageNumber++;
+            pageInSheet++;
+            pagesInfo.push({ sheetIndex: i, pageInSheet: pageInSheet });
+            
             pdf.addImage(
               canvas.toDataURL("image/png", 0.95),
               "PNG",
               margin,
               position,
               imgWidth,
-              imgHeight,
+              Math.min(imgHeight, pageHeight - 10), // Leave space for header and footer
               undefined,
               "FAST"
             );
-            heightLeft -= pageHeight;
+            heightLeft -= (pageHeight - 10); // Account for header/footer space
           }
         }
+
       } finally {
         // Always remove the temporary container
         document.body.removeChild(tempContainer);
       }
+    }
+
+    // Add headers and footers to all pages
+    onProgress?.("Adding headers and footers...");
+    const totalPages = currentPageNumber;
+    
+    for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+      pdf.setPage(pageNum);
+      addHeaderAndFooter(pdf, pageNum, totalPages);
     }
 
     onProgress?.("Finalizing PDF...");

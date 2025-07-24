@@ -3,7 +3,7 @@ import * as AppGeneral from "../socialcalc/index.js";
 import { File, Local } from "../Storage/LocalStorage";
 import { isPlatform, IonToast, IonLoading } from "@ionic/react";
 import { EmailComposer } from "capacitor-email-composer";
-import { Printer } from "@ionic-native/printer";
+import { Printer } from "@bcyesil/capacitor-plugin-printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
 import {
   saveOutline,
@@ -17,11 +17,7 @@ import {
   key,
   server,
 } from "ionicons/icons";
-import { APP_NAME } from "../../app-data";
-import { useAccount } from "@starknet-react/core";
-import { uploadJSONToIPFS } from "../../utils/ipfs";
-import { useSaveFile } from "../../hooks/useContractWrite";
-import { useIsUserSubscribed } from "../../hooks/useContractRead";
+import { APP_NAME, DATA } from "../../app-data";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useInvoice } from "../../contexts/InvoiceContext";
 import { exportHTMLAsPDF } from "../../services/exportAsPdf.js";
@@ -29,40 +25,38 @@ import { exportAllSheetsAsPDF } from "../../services/exportAllSheetsAsPdf";
 import { exportCSV, parseSocialCalcCSV } from "../../services/exportAsCsv";
 import { Share } from "@capacitor/share";
 import { Filesystem, Directory, Encoding } from "@capacitor/filesystem";
+import MenuDialogs from "./MenuDialogs.js";
+import { cloudService } from "../../services/cloud-service.js";
 
 const Menu: React.FC<{
   showM: boolean;
   setM: Function;
 }> = (props) => {
-  const { address, account } = useAccount();
   const { isDarkMode } = useTheme();
   const { selectedFile, billType, store, updateSelectedFile } = useInvoice();
-  const { saveFile, isPending: isSaving } = useSaveFile();
-  const { isSubscribed } = useIsUserSubscribed({
-    accountAddress: address as `0x${string}` | undefined,
-  });
 
   const [showAlert1, setShowAlert1] = useState(false);
   const [showAlert2, setShowAlert2] = useState(false);
   const [showAlert3, setShowAlert3] = useState(false);
   const [showAlert4, setShowAlert4] = useState(false);
-  const [showAlert5, setShowAlert5] = useState(false); // For blockchain save
   const [showAlert6, setShowAlert6] = useState(false); // For PDF filename
   const [showAlert7, setShowAlert7] = useState(false); // For CSV filename
   const [showAlert8, setShowAlert8] = useState(false); // For export all PDF filename
   const [showAlert9, setShowAlert9] = useState(false); // For password protection
   const [showAlert10, setShowAlert10] = useState(false); // For password input when loading
-  const [showAlert11, setShowAlert11] = useState(false); // For server save filename
+  const [showAlert12, setShowAlert12] = useState(false); // For server PDF filename
   const [showToast1, setShowToast1] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [isGeneratingCSV, setIsGeneratingCSV] = useState(false);
   const [isExportingAllPDF, setIsExportingAllPDF] = useState(false);
+  const [isGeneratingServerPDF, setIsGeneratingServerPDF] = useState(false);
   const [pdfProgress, setPdfProgress] = useState("");
   const [exportAllProgress, setExportAllProgress] = useState("");
+  const [serverPdfProgress, setServerPdfProgress] = useState("");
   const [passwordProtect, setPasswordProtect] = useState(false);
   const [filePassword, setFilePassword] = useState("");
-  const [currentFileForPassword, setCurrentFileForPassword] = useState("");
+  const [device] = useState(AppGeneral.getDeviceType());
 
   /* Utility functions */
   const _validateName = async (filename) => {
@@ -100,16 +94,31 @@ const Menu: React.FC<{
     return filename;
   };
 
-  const doPrint = () => {
+  const doPrint = async () => {
     if (isPlatform("hybrid")) {
-      const printer = Printer;
-      printer.print(AppGeneral.getCurrentHTMLContent());
+      try {
+        const htmlContent = AppGeneral.getCurrentHTMLContent();
+        
+        await Printer.print({
+          content: htmlContent,
+          name: selectedFile || "Invoice",
+          orientation: "portrait"
+        });
+        
+        setToastMessage("Print job sent successfully!");
+        setShowToast1(true);
+      } catch (error) {
+        console.error("Print error:", error);
+        setToastMessage("Failed to print. Please check if a printer is available.");
+        setShowToast1(true);
+      }
     } else {
       const content = AppGeneral.getCurrentHTMLContent();
-      // useReactToPrint({ content: () => content });
       const printWindow = window.open("/printwindow", "Print Invoice");
-      printWindow.document.write(content);
-      printWindow.print();
+      if (printWindow) {
+        printWindow.document.write(content);
+        printWindow.print();
+      }
     }
   };
 
@@ -120,6 +129,7 @@ const Menu: React.FC<{
 
       // Get the current HTML content from the spreadsheet
       const htmlContent = AppGeneral.getCurrentHTMLContent();
+      console.log(htmlContent);
 
       if (!htmlContent || htmlContent.trim() === "") {
         setToastMessage("No content available to export as PDF");
@@ -450,6 +460,251 @@ const Menu: React.FC<{
     }
   };
 
+  /**
+   * Extracts all image URLs from HTML content
+   * @param htmlContent - The HTML string to search for img tags
+   * @returns Array of URLs found in img src attributes, or -1 for non-HTTP/HTTPS URLs
+   */
+  function extractImageUrls(htmlContent: string): (string | number)[] {
+    if (!htmlContent || typeof htmlContent !== "string") {
+      return [];
+    }
+
+    // Regular expression to match img tags and capture src attribute values
+    const imgRegex = /<img[^>]+src\s*=\s*["']([^"']+)["'][^>]*>/gi;
+    const urls: (string | number)[] = [];
+    let match;
+
+    while ((match = imgRegex.exec(htmlContent)) !== null) {
+      const srcValue = match[1];
+
+      // Check if it's a valid HTTP/HTTPS URL
+      if (isValidHttpUrl(srcValue)) {
+        urls.push(srcValue);
+      } else {
+        urls.push(-1);
+      }
+    }
+
+    return urls;
+  }
+
+  /**
+   * Checks if a URL is a valid HTTP or HTTPS URL
+   * @param url - The URL string to validate
+   * @returns true if it's a valid HTTP/HTTPS URL, false otherwise
+   */
+  function isValidHttpUrl(url: string): boolean {
+    if (!url || typeof url !== "string") {
+      return false;
+    }
+
+    try {
+      const urlObj = new URL(url);
+      return urlObj.protocol === "http:" || urlObj.protocol === "https:";
+    } catch (error) {
+      // If URL constructor throws, it's not a valid URL
+      return false;
+    }
+  }
+
+  const urlsToBase64 = async (htmlContent: string): Promise<string> => {
+    const imgArr = extractImageUrls(htmlContent);
+    console.log("HTML content for server PDF:", imgArr);
+
+    const urlReplace: string[] = [];
+    if (imgArr.length > 0 && imgArr[0] !== -1) {
+      // Do something with the image array
+      console.log("Extracting image URLs:", imgArr);
+
+      for (const imgUrl of imgArr) {
+        console.log("trying to convert to base64:", imgUrl);
+        if (typeof imgUrl === "string") {
+          const parts = imgUrl.split("/");
+          const base64Response = await cloudService.convertUrlToBase64(
+            "/logos/" + parts[parts.length - 1]
+          );
+          urlReplace.push(base64Response.data_url);
+        } else {
+          urlReplace.push("0");
+        }
+      }
+    }
+
+    if (urlReplace.length > 0) {
+      // Replace URLs in the HTML content with base64 data
+      let htmlContentWithBase64 = htmlContent;
+
+      // Regular expression to match img tags and capture the entire tag
+      const imgRegex = /<img[^>]+src\s*=\s*["']([^"']+)["'][^>]*>/gi;
+      let match;
+      let imgIndex = 0;
+
+      // Process each img tag in order
+      htmlContentWithBase64 = htmlContentWithBase64.replace(
+  imgRegex,
+  (fullMatch, srcValue) => {
+    if (imgIndex < urlReplace.length) {
+      const base64Url = urlReplace[imgIndex];
+      imgIndex++;
+
+      // Keep the img tag unchanged if base64Url is "0"
+      if (base64Url === "0") {
+        return fullMatch; // Return the original img tag without changes
+      }
+
+      // Replace the src attribute with the base64 data URL
+      return fullMatch.replace(srcValue, base64Url);
+    }
+
+    return fullMatch; // Return unchanged if no replacement available
+  }
+);
+
+      return htmlContentWithBase64;
+    }
+
+    return htmlContent;
+  };
+
+  /**
+   * Generate PDF on server using HTML to PDF API
+   * This function sends the current spreadsheet content as HTML to the server
+   * where it gets converted to PDF and returns it directly for download
+   */
+  const doGenerateServerPDF = async (filename?: string) => {
+    try {
+      setIsGeneratingServerPDF(true);
+      setServerPdfProgress("Preparing content for server PDF generation...");
+      console.log("Generating server PDF with filename:", filename);
+
+      if (!cloudService.isAuthenticated()) {
+        setToastMessage(
+          "You're not logged in. Please login to use this feature."
+        );
+        setShowToast1(true);
+        setIsGeneratingServerPDF(false);
+        return;
+      }
+
+      // Get the current HTML content from the spreadsheet
+      const rawHtmlContent = AppGeneral.getCurrentHTMLContent();
+      const htmlContent = await urlsToBase64(rawHtmlContent);
+      // console.log(htmlContent);
+      // return;
+
+      if (!htmlContent || htmlContent.trim() === "") {
+        setToastMessage("No content available to export as PDF");
+        setShowToast1(true);
+        setIsGeneratingServerPDF(false);
+        return;
+      }
+
+      const pdfFilename = filename || selectedFile || "invoice";
+
+      setServerPdfProgress("Converting HTML to PDF on server...");
+      console.log("PDF Filename:", pdfFilename);
+      // Generate PDF using the new direct conversion API
+      const pdfBlob = await cloudService.convertHTMLToPDF(htmlContent, {
+        filename: `${pdfFilename}.pdf`,
+        pdfOptions: {
+          "page-size": "A4",
+          "margin-top": "0.75in",
+          "margin-right": "0.75in",
+          "margin-bottom": "0.75in",
+          "margin-left": "0.75in",
+          orientation: "portrait",
+        },
+      });
+      console.log("PDF Blob received from server:", pdfBlob);
+
+      setServerPdfProgress("Processing PDF for download...");
+
+      // Check if we're on a mobile device
+      if (isPlatform("hybrid") || isPlatform("mobile")) {
+        try {
+          // Convert blob to base64 for sharing on mobile
+          const reader = new FileReader();
+          reader.onloadend = async () => {
+            const base64Data = reader.result as string;
+            const base64 = base64Data.split(",")[1]; // Remove data:application/pdf;base64, prefix
+
+            try {
+              // Save to temporary file
+              const tempFile = await Filesystem.writeFile({
+                path: `${pdfFilename}.pdf`,
+                data: base64,
+                directory: Directory.Cache,
+              });
+
+              // Share the file
+              await Share.share({
+                title: `${pdfFilename}.pdf`,
+                text: "Server generated PDF ready to share",
+                url: tempFile.uri,
+                dialogTitle: "Share Server PDF",
+              });
+
+              setToastMessage(`Server PDF generated and ready to share!`);
+              setShowToast1(true);
+            } catch (shareError) {
+              console.log("Error sharing server PDF:", shareError);
+              // Fallback to direct download
+              const url = URL.createObjectURL(pdfBlob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = `${pdfFilename}.pdf`;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(url);
+
+              setToastMessage(`Server PDF downloaded: ${pdfFilename}.pdf`);
+              setShowToast1(true);
+            }
+          };
+          reader.readAsDataURL(pdfBlob);
+        } catch (error) {
+          console.error("Error processing server PDF for sharing:", error);
+          // Fallback to direct download
+          const url = URL.createObjectURL(pdfBlob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `${pdfFilename}.pdf`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+
+          setToastMessage(`Server PDF downloaded: ${pdfFilename}.pdf`);
+          setShowToast1(true);
+        }
+      } else {
+        // Desktop behavior - direct download
+        const url = URL.createObjectURL(pdfBlob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${pdfFilename}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        setToastMessage(`Server PDF downloaded: ${pdfFilename}.pdf`);
+        setShowToast1(true);
+      }
+    } catch (error) {
+      console.error("Error generating server PDF:", error);
+      setToastMessage(
+        error.message || "Failed to generate PDF on server. Please try again."
+      );
+      setShowToast1(true);
+    } finally {
+      setIsGeneratingServerPDF(false);
+      setServerPdfProgress("");
+    }
+  };
+
   const showPDFNameDialog = () => {
     setShowAlert6(true);
   };
@@ -462,168 +717,8 @@ const Menu: React.FC<{
     setShowAlert8(true);
   };
 
-  const doSaveToBlockchain = async () => {
-    if (selectedFile === "default") {
-      setShowAlert1(true);
-      return;
-    }
-
-    if (!address) {
-      setToastMessage("Please connect your wallet first");
-      setShowToast1(true);
-      return;
-    }
-
-    // Check if user is subscribed
-    if (!isSubscribed) {
-      setToastMessage(
-        "Premium subscription required to save to blockchain. Please subscribe to access this feature."
-      );
-      setShowToast1(true);
-      return;
-    }
-
-    try {
-      setToastMessage("Uploading to IPFS and blockchain...");
-      setShowToast1(true);
-
-      // Get current spreadsheet content
-      const content = AppGeneral.getSpreadsheetContent();
-
-      // Create file metadata
-      const fileData = {
-        fileName: selectedFile,
-        content: content,
-        timestamp: new Date().toISOString(),
-        billType: billType,
-        creator: address,
-      };
-
-      // Upload to IPFS
-      const ipfsHash = await uploadJSONToIPFS(fileData);
-      console.log("File uploaded to IPFS:", ipfsHash);
-
-      // Save to blockchain
-      await saveFile(selectedFile, ipfsHash);
-
-      // Also save locally
-      const localFile = new File(
-        new Date().toString(),
-        new Date().toString(),
-        encodeURIComponent(content),
-        selectedFile,
-        billType
-      );
-      store._saveFile(localFile);
-      updateSelectedFile(selectedFile);
-
-      setToastMessage(
-        `File saved to blockchain! IPFS: ${ipfsHash.substring(0, 10)}...`
-      );
-      setShowToast1(true);
-    } catch (error) {
-      console.error("Error saving to blockchain:", error);
-      setToastMessage("Failed to save to blockchain. Please try again.");
-      setShowToast1(true);
-    }
-  };
-
-  const doSaveAs = async (filename) => {
-    // event.preventDefault();
-    if (filename) {
-      // console.log(filename, _validateName(filename));
-      if (await _validateName(filename)) {
-        // filename valid . go on save
-        const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-        // console.log(content);
-        const file = new File(
-          new Date().toString(),
-          new Date().toString(),
-          content,
-          filename,
-          billType,
-          passwordProtect,
-          passwordProtect ? filePassword : undefined
-        );
-        console.log(file);
-        // const data = { created: file.created, modified: file.modified, content: file.content, password: file.password };
-        // console.log(JSON.stringify(data));
-        store._saveFile(file);
-        updateSelectedFile(filename);
-
-        // Reset password protection state
-        setPasswordProtect(false);
-        setFilePassword("");
-
-        setShowAlert4(true);
-      } else {
-        setShowToast1(true);
-      }
-    }
-  };
-
-  const doSaveToServer = async (filename) => {
-    if (filename) {
-      if (await _validateName(filename)) {
-        try {
-          setToastMessage("Saving to server...");
-          setShowToast1(true);
-
-          const content = AppGeneral.getSpreadsheetContent();
-
-          // Import the server files service
-          const { serverFilesService } = await import(
-            "../../services/serverFiles"
-          );
-
-          // Check if user is authenticated
-          if (!serverFilesService.isAuthenticated()) {
-            setToastMessage("Please login to server files first");
-            setShowToast1(true);
-            return;
-          }
-
-          // Upload to server
-          const result = await serverFilesService.uploadInvoiceData(
-            filename,
-            content,
-            billType
-          );
-
-          setToastMessage(`File saved to server as server_${filename}`);
-          setShowToast1(true);
-        } catch (error) {
-          console.error("Error saving to server:", error);
-          setToastMessage("Failed to save to server. Please try again.");
-          setShowToast1(true);
-        }
-      } else {
-        setShowToast1(true);
-      }
-    }
-  };
-
-  const doSaveAsWithPassword = async (filename, password) => {
-    if (filename && password) {
-      if (await _validateName(filename)) {
-        const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-        const file = new File(
-          new Date().toString(),
-          new Date().toString(),
-          content,
-          filename,
-          billType,
-          true,
-          password
-        );
-
-        store._saveFile(file);
-        updateSelectedFile(filename);
-        setShowAlert4(true);
-      } else {
-        setShowToast1(true);
-      }
-    }
+  const showServerPDFNameDialog = () => {
+    setShowAlert12(true);
   };
 
   const sendEmail = () => {
@@ -655,7 +750,7 @@ const Menu: React.FC<{
     const minutes = String(now.getMinutes()).padStart(2, "0");
     const seconds = String(now.getSeconds()).padStart(2, "0");
 
-    return `invoice_${year}${month}${day}_${hours}${minutes}${seconds}`;
+    return `invoice-${year}${month}${day}-${hours}${minutes}${seconds}`;
   };
 
   // Function to select text in input field after dialog opens
@@ -671,36 +766,17 @@ const Menu: React.FC<{
 
   // Create buttons array conditionally based on platform
   const getMenuButtons = () => {
-    const baseButtons = [
-      {
-        text: "Save As",
-        icon: save,
-        handler: () => {
-          setShowAlert3(true);
-          console.log("Save As clicked");
-        },
-      },
-      {
-        text: "Save As (Password Protected)",
-        icon: key,
-        handler: () => {
-          setShowAlert9(true);
-          console.log("Save As with Password clicked");
-        },
-      },
-    ];
+    const baseButtons = [];
 
-    // Only add print button for non-mobile devices
-    if (!isPlatform("mobile") && !isPlatform("hybrid")) {
-      baseButtons.push({
-        text: "Print",
-        icon: print,
-        handler: () => {
-          doPrint();
-          console.log("Print clicked");
-        },
-      });
-    }
+    // Add print button for all platforms
+    baseButtons.push({
+      text: "Print",
+      icon: print,
+      handler: () => {
+        doPrint();
+        console.log("Print clicked");
+      },
+    });
 
     // Add remaining buttons
     baseButtons.push(
@@ -728,6 +804,14 @@ const Menu: React.FC<{
           console.log("Export All Sheets as PDF clicked");
         },
       },
+      {
+        text: "Export as PDF via Server",
+        icon: cloudUpload,
+        handler: () => {
+          showServerPDFNameDialog();
+          console.log("Export as PDF via Server clicked");
+        },
+      }
       // {
       //   text: "Email",
       //   icon: mail,
@@ -736,22 +820,6 @@ const Menu: React.FC<{
       //     console.log("Email clicked");
       //   },
       // },
-      {
-        text: "Upload to Blockchain",
-        icon: cloudUpload,
-        handler: () => {
-          doSaveToBlockchain();
-          console.log("Save to Blockchain clicked");
-        },
-      },
-      {
-        text: "Save to Server",
-        icon: server,
-        handler: () => {
-          setShowAlert11(true);
-          console.log("Save to Server clicked");
-        },
-      }
     );
 
     return baseButtons;
@@ -766,342 +834,57 @@ const Menu: React.FC<{
         onDidDismiss={() => props.setM()}
         buttons={getMenuButtons()}
       />
-      <IonAlert
-        animated
-        isOpen={showAlert1}
-        onDidDismiss={() => setShowAlert1(false)}
-        header="Alert Message"
-        message={
-          "Cannot update " +
-          getCurrentFileName() +
-          " file! Use Save As Button to save."
-        }
-        buttons={["Ok"]}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert2}
-        onDidDismiss={() => setShowAlert2(false)}
-        header="Save"
-        message={"File " + getCurrentFileName() + " updated successfully"}
-        buttons={["Ok"]}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert3}
-        onDidDismiss={() => setShowAlert3(false)}
-        header="Save As"
-        inputs={[
-          {
-            name: "filename",
-            type: "text",
-            placeholder: "Enter filename",
-            value: generateInvoiceFilename(),
-          },
-        ]}
-        buttons={[
-          {
-            text: "Ok",
-            handler: (alertData) => {
-              doSaveAs(alertData.filename);
-            },
-          },
-        ]}
-        onDidPresent={(ev) => {
-          // Select the text in the input field when dialog opens
-          const inputElement = ev.target?.querySelector(
-            "ion-input"
-          ) as HTMLIonInputElement;
-          if (inputElement) {
-            setTimeout(() => selectInputText(inputElement), 100);
-          }
-        }}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert4}
-        onDidDismiss={() => setShowAlert4(false)}
-        header="Save As"
-        message={"File " + getCurrentFileName() + " saved successfully"}
-        buttons={["Ok"]}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert6}
-        onDidDismiss={() => setShowAlert6(false)}
-        header="Export as PDF"
-        inputs={[
-          {
-            name: "pdfFilename",
-            type: "text",
-            placeholder: "Enter PDF filename",
-            value: selectedFile || "invoice",
-          },
-        ]}
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-          },
-          {
-            text: "Download",
-            handler: (alertData) => {
-              const filename =
-                alertData.pdfFilename?.trim() || selectedFile || "invoice";
-              doGeneratePDF(filename);
-            },
-          },
-        ]}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert7}
-        onDidDismiss={() => setShowAlert7(false)}
-        header="Export as CSV"
-        inputs={[
-          {
-            name: "csvFilename",
-            type: "text",
-            placeholder: "Enter CSV filename",
-            value: selectedFile || "invoice_data",
-          },
-        ]}
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-          },
-          {
-            text: "Export",
-            handler: (alertData) => {
-              const filename =
-                alertData.csvFilename?.trim() || selectedFile || "invoice_data";
-              doGenerateCSV(filename);
-            },
-          },
-        ]}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert7}
-        onDidDismiss={() => setShowAlert7(false)}
-        header="Download as CSV"
-        inputs={[
-          {
-            name: "csvFilename",
-            type: "text",
-            placeholder: "Enter CSV filename",
-            value: selectedFile || "invoice_data",
-          },
-        ]}
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-          },
-          {
-            text: "Download",
-            handler: (alertData) => {
-              const filename =
-                alertData.csvFilename?.trim() || selectedFile || "invoice_data";
-              doGenerateCSV(filename);
-            },
-          },
-        ]}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert8}
-        onDidDismiss={() => setShowAlert8(false)}
-        header="Download Workbook as PDF"
-        inputs={[
-          {
-            name: "pdfFilename",
-            type: "text",
-            placeholder: "Enter PDF filename",
-            value: selectedFile ? `${selectedFile}_all_sheets` : "all_invoices",
-          },
-        ]}
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-          },
-          {
-            text: "Download",
-            handler: (alertData) => {
-              const filename =
-                alertData.pdfFilename?.trim() ||
-                `${selectedFile}_all_sheets` ||
-                "all_invoices";
-              doExportAllSheetsAsPDF(filename);
-            },
-          },
-        ]}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert9}
-        onDidDismiss={() => setShowAlert9(false)}
-        header="Password Protection"
-        message="Enter password to protect the file"
-        inputs={[
-          {
-            name: "password",
-            type: "password",
-            placeholder: "Enter password",
-          },
-          {
-            name: "filename",
-            type: "text",
-            placeholder: "Enter filename",
-            value:
-              selectedFile === "default"
-                ? generateInvoiceFilename()
-                : selectedFile,
-          },
-        ]}
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-          },
-          {
-            text: "Save",
-            handler: (alertData) => {
-              if (alertData.password && alertData.filename) {
-                doSaveAsWithPassword(alertData.filename, alertData.password);
-              } else {
-                setToastMessage("Please enter both filename and password");
-                setShowToast1(true);
-                return false; // Prevent dialog from closing
-              }
-            },
-          },
-        ]}
-        onDidPresent={(ev) => {
-          // Select the text in the filename input field when dialog opens
-          const inputElements = ev.target?.querySelectorAll(
-            "ion-input"
-          ) as NodeListOf<HTMLIonInputElement>;
-          if (inputElements && inputElements.length > 1) {
-            setTimeout(() => selectInputText(inputElements[1]), 100); // Select the filename input (second input)
-          }
-        }}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert10}
-        onDidDismiss={() => setShowAlert10(false)}
-        header="Password Input"
-        message="Enter the password to access the file"
-        inputs={[
-          {
-            name: "password",
-            type: "password",
-            placeholder: "Enter password",
-          },
-        ]}
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-          },
-          {
-            text: "Access",
-            handler: (alertData) => {
-              if (alertData.password === filePassword) {
-                setPasswordProtect(false);
-                setCurrentFileForPassword("");
-                setToastMessage("File accessed successfully");
-                setShowToast1(true);
-              } else {
-                setToastMessage("Incorrect password");
-                setShowToast1(true);
-              }
-            },
-          },
-        ]}
-      />
-      <IonAlert
-        animated
-        isOpen={showAlert11}
-        onDidDismiss={() => setShowAlert11(false)}
-        header="Save to Server"
-        inputs={[
-          {
-            name: "serverFilename",
-            type: "text",
-            placeholder: "Enter filename",
-            value:
-              selectedFile === "default"
-                ? generateInvoiceFilename()
-                : selectedFile,
-          },
-        ]}
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-          },
-          {
-            text: "Save",
-            handler: (alertData) => {
-              const filename = alertData.serverFilename?.trim();
-              if (filename) {
-                doSaveToServer(filename);
-              } else {
-                setToastMessage("Please enter a filename");
-                setShowToast1(true);
-                return false; // Prevent dialog from closing
-              }
-            },
-          },
-        ]}
-        onDidPresent={(ev) => {
-          // Select the text in the input field when dialog opens
-          const inputElement = ev.target?.querySelector(
-            "ion-input"
-          ) as HTMLIonInputElement;
-          if (inputElement) {
-            setTimeout(() => selectInputText(inputElement), 100);
-          }
-        }}
-      />
-      <IonToast
-        animated
-        isOpen={showToast1}
-        onDidDismiss={() => {
-          setShowToast1(false);
-          // Only show Save As alert if it was not a blockchain save attempt
-          if (
-            toastMessage.includes("Filename") ||
-            toastMessage.includes("Special Characters") ||
-            toastMessage.includes("too long") ||
-            toastMessage.includes("empty") ||
-            toastMessage.includes("exists")
-          ) {
-            setShowAlert3(true);
-          }
-        }}
-        position="top"
-        message={toastMessage}
-        duration={3000}
-      />
-      <IonLoading
-        isOpen={isGeneratingPDF}
-        message={pdfProgress || "Generating PDF..."}
-        onDidDismiss={() => setIsGeneratingPDF(false)}
-      />
-      <IonLoading
-        isOpen={isGeneratingCSV}
-        message="Generating CSV..."
-        onDidDismiss={() => setIsGeneratingCSV(false)}
-      />
-      <IonLoading
-        isOpen={isExportingAllPDF}
-        message={exportAllProgress || "Exporting all sheets as PDF..."}
-        onDidDismiss={() => setIsExportingAllPDF(false)}
+      <MenuDialogs
+        // Alert states
+        showAlert1={showAlert1}
+        showAlert2={showAlert2}
+        showAlert3={showAlert3}
+        showAlert4={showAlert4}
+        showAlert6={showAlert6}
+        showAlert7={showAlert7}
+        showAlert8={showAlert8}
+        showAlert9={showAlert9}
+        showAlert10={showAlert10}
+        showAlert12={showAlert12}
+        // Alert setters
+        setShowAlert1={setShowAlert1}
+        setShowAlert2={setShowAlert2}
+        setShowAlert3={setShowAlert3}
+        setShowAlert4={setShowAlert4}
+        setShowAlert6={setShowAlert6}
+        setShowAlert7={setShowAlert7}
+        setShowAlert8={setShowAlert8}
+        setShowAlert9={setShowAlert9}
+        setShowAlert10={setShowAlert10}
+        setShowAlert12={setShowAlert12}
+        // Toast states
+        showToast1={showToast1}
+        setShowToast1={setShowToast1}
+        toastMessage={toastMessage}
+        setToastMessage={setToastMessage}
+        // Loading states
+        isGeneratingPDF={isGeneratingPDF}
+        setIsGeneratingPDF={setIsGeneratingPDF}
+        isGeneratingCSV={isGeneratingCSV}
+        setIsGeneratingCSV={setIsGeneratingCSV}
+        isExportingAllPDF={isExportingAllPDF}
+        setIsExportingAllPDF={setIsExportingAllPDF}
+        isGeneratingServerPDF={isGeneratingServerPDF}
+        setIsGeneratingServerPDF={setIsGeneratingServerPDF}
+        // Progress messages
+        pdfProgress={pdfProgress}
+        exportAllProgress={exportAllProgress}
+        serverPdfProgress={serverPdfProgress}
+        // Data for dialogs
+        selectedFile={selectedFile}
+        filePassword={filePassword}
+        // Handlers
+        doGeneratePDF={doGeneratePDF}
+        doGenerateCSV={doGenerateCSV}
+        doExportAllSheetsAsPDF={doExportAllSheetsAsPDF}
+        doGenerateServerPDF={doGenerateServerPDF}
+        generateInvoiceFilename={generateInvoiceFilename}
+        selectInputText={selectInputText}
       />
     </React.Fragment>
   );

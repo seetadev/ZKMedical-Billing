@@ -333,7 +333,7 @@ export const MED_TOKEN_ABI = [
   },
   {
     type: "event",
-    name: "meditoken::contracts::meditoken::MedToken::AirdropClaimed",
+    name: "ppttoken::contracts::ppttoken::MedToken::AirdropClaimed",
     kind: "struct",
     members: [
       {
@@ -350,7 +350,7 @@ export const MED_TOKEN_ABI = [
   },
   {
     type: "event",
-    name: "meditoken::contracts::meditoken::MedToken::Event",
+    name: "ppttoken::contracts::ppttoken::MedToken::Event",
     kind: "enum",
     variants: [
       {
@@ -360,7 +360,7 @@ export const MED_TOKEN_ABI = [
       },
       {
         name: "AirdropClaimed",
-        type: "meditoken::contracts::meditoken::MedToken::AirdropClaimed",
+        type: "ppttoken::contracts::ppttoken::MedToken::AirdropClaimed",
         kind: "nested",
       },
     ],

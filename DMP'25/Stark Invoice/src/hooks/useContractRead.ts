@@ -24,6 +24,14 @@ export interface FileRecord {
   exists: boolean;
 }
 
+// Interface for SubscriptionPlan from contract
+export interface SubscriptionPlan {
+  plan_id: number;
+  cost: bigint;
+  files_allowed: bigint;
+  plan_name: string;
+}
+
 /**
  * Hook to get user's files from the contract
  */
@@ -87,7 +95,7 @@ export function useGetUserTokens({ accountAddress }: UseContractReadProps) {
   };
 }
 /**
- * Hook to check if user is subscribed
+ * Hook to check if user is subscribed (deprecated - keeping for compatibility)
  */
 export function useIsUserSubscribed({ accountAddress }: UseContractReadProps) {
   const {
@@ -112,6 +120,154 @@ export function useIsUserSubscribed({ accountAddress }: UseContractReadProps) {
     isError: subscribedIsError,
     isLoading: subscribedIsLoading,
     error: subscribedError,
+  };
+}
+
+/**
+ * Hook to get user's file limits (files used vs files allowed)
+ */
+export function useGetUserFileLimits({ accountAddress }: UseContractReadProps) {
+  const {
+    data: fileLimitsData,
+    refetch: fileLimitsRefetch,
+    isError: fileLimitsIsError,
+    isLoading: fileLimitsIsLoading,
+    error: fileLimitsError,
+  } = useReadContract({
+    functionName: "get_user_file_limits",
+    args: accountAddress ? [accountAddress] : [],
+    abi: MED_INVOICE_ABI as Abi,
+    address: CONTRACT_ADDRESS,
+    watch: true,
+    refetchInterval: 5000,
+    enabled: !!accountAddress,
+  });
+
+  return {
+    fileLimits: fileLimitsData as [bigint, bigint] | undefined, // [files_used, files_allowed]
+    refetchFileLimits: fileLimitsRefetch,
+    isError: fileLimitsIsError,
+    isLoading: fileLimitsIsLoading,
+    error: fileLimitsError,
+  };
+}
+
+/**
+ * Hook to get user's subscription summary
+ */
+export function useGetUserSubscriptionSummary({
+  accountAddress,
+}: UseContractReadProps) {
+  const {
+    data: summaryData,
+    refetch: summaryRefetch,
+    isError: summaryIsError,
+    isLoading: summaryIsLoading,
+    error: summaryError,
+  } = useReadContract({
+    functionName: "get_user_subscription_summary",
+    args: accountAddress ? [accountAddress] : [],
+    abi: MED_INVOICE_ABI as Abi,
+    address: CONTRACT_ADDRESS,
+    watch: true,
+    refetchInterval: 5000,
+    enabled: !!accountAddress,
+  });
+
+  return {
+    subscriptionSummary: summaryData as [bigint, bigint, number] | undefined, // [files_used, files_allowed, current_plan]
+    refetchSummary: summaryRefetch,
+    isError: summaryIsError,
+    isLoading: summaryIsLoading,
+    error: summaryError,
+  };
+}
+
+/**
+ * Hook to get all available subscription plans
+ */
+export function useGetAllPlans() {
+  const {
+    data: plansData,
+    refetch: plansRefetch,
+    isError: plansIsError,
+    isLoading: plansIsLoading,
+    error: plansError,
+  } = useReadContract({
+    functionName: "get_all_plans",
+    args: [],
+    abi: MED_INVOICE_ABI as Abi,
+    address: CONTRACT_ADDRESS,
+    watch: false,
+    enabled: true,
+  });
+
+  return {
+    plans: plansData as SubscriptionPlan[] | undefined,
+    refetchPlans: plansRefetch,
+    isError: plansIsError,
+    isLoading: plansIsLoading,
+    error: plansError,
+  };
+}
+
+/**
+ * Hook to get a specific subscription plan
+ */
+export function useGetSubscriptionPlan(planId: number) {
+  const {
+    data: planData,
+    refetch: planRefetch,
+    isError: planIsError,
+    isLoading: planIsLoading,
+    error: planError,
+  } = useReadContract({
+    functionName: "get_subscription_plan",
+    args: [planId],
+    abi: MED_INVOICE_ABI as Abi,
+    address: CONTRACT_ADDRESS,
+    watch: false,
+    enabled: planId > 0,
+  });
+
+  return {
+    plan: planData as SubscriptionPlan | undefined,
+    refetchPlan: planRefetch,
+    isError: planIsError,
+    isLoading: planIsLoading,
+    error: planError,
+  };
+}
+
+/**
+ * Hook to get user's plan purchases for a specific plan
+ */
+export function useGetUserPlanPurchases({
+  accountAddress,
+  planId,
+}: UseContractReadProps & { planId: number }) {
+  const {
+    data: purchasesData,
+    refetch: purchasesRefetch,
+    isError: purchasesIsError,
+    isLoading: purchasesIsLoading,
+    error: purchasesError,
+  } = useReadContract({
+    functionName: "get_user_plan_purchases",
+    args: accountAddress && planId ? [accountAddress, planId] : [],
+    abi: MED_INVOICE_ABI as Abi,
+    address: CONTRACT_ADDRESS,
+    watch: true,
+    refetchInterval: 10000,
+    enabled: !!(accountAddress && planId),
+  });
+
+  return {
+    purchases: purchasesData as bigint | undefined,
+    refetchPurchases: purchasesRefetch,
+    isError: purchasesIsError,
+    isLoading: purchasesIsLoading,
+    error: purchasesError,
   };
 }
 

@@ -40,7 +40,7 @@ export const exportHTMLAsPDF = async (
 
     document.body.appendChild(tempContainer);
 
-    onProgress?.("Rendering content to canvas...");
+    onProgress?.("Loading File...");
 
     // Convert HTML to canvas
     const canvas = await html2canvas(
