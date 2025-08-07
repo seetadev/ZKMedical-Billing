@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  # Development environment (Alpine-based)
+  ionic-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: ionic-govt-billing-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_DEV_SERVER_HOST=0.0.0.0
+    profiles:
+      - dev
+    stdin_open: true
+    tty: true
+
+  # Development environment (Full Node.js - more stable)
+  ionic-dev-full:
+    build:
+      context: .
+      dockerfile: Dockerfile.full
+      target: development
+    container_name: ionic-govt-billing-dev-full
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_DEV_SERVER_HOST=0.0.0.0
+    profiles:
+      - dev-full
+    stdin_open: true
+    tty: true
+
+  # Production environment (Alpine-based)
+  ionic-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: ionic-govt-billing-prod
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    profiles:
+      - prod
+    restart: unless-stopped
+
+  # Production environment (Full Node.js - more stable)
+  ionic-prod-full:
+    build:
+      context: .
+      dockerfile: Dockerfile.full
+      target: production
+    container_name: ionic-govt-billing-prod-full
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    profiles:
+      - prod-full
+    restart: unless-stopped
+
+  # Build only service (Alpine-based)
+  ionic-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    container_name: ionic-govt-billing-build
+    volumes:
+      - ./dist:/app/dist
+    profiles:
+      - build
+
+networks:
+  default:
+    name: ionic-govt-billing-network
