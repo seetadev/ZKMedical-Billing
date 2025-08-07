@@ -5,8 +5,12 @@ import { isPlatform, IonToast } from "@ionic/react";
 import { EmailComposer } from "capacitor-email-composer";
 import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
-import { saveOutline, save, mail, print } from "ionicons/icons";
+import { saveOutline, save, mail, print, cloudUpload } from "ionicons/icons";
 import { APP_NAME } from "../../app-data.js";
+import { useAccount } from "@starknet-react/core";
+import { uploadJSONToIPFS } from "../../utils/ipfs";
+import { useSaveFile } from "../../hooks/useContractWrite";
+import { useIsUserSubscribed } from "../../hooks/useContractRead";
 
 const Menu: React.FC<{
   showM: boolean;
@@ -16,10 +20,17 @@ const Menu: React.FC<{
   store: Local;
   bT: number;
 }> = (props) => {
+  const { address, account } = useAccount();
+  const { saveFile, isPending: isSaving } = useSaveFile();
+  const { isSubscribed } = useIsUserSubscribed({
+    accountAddress: address as `0x${string}` | undefined,
+  });
+
   const [showAlert1, setShowAlert1] = useState(false);
   const [showAlert2, setShowAlert2] = useState(false);
   const [showAlert3, setShowAlert3] = useState(false);
   const [showAlert4, setShowAlert4] = useState(false);
+  const [showAlert5, setShowAlert5] = useState(false); // For blockchain save
   const [showToast1, setShowToast1] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   /* Utility functions */
@@ -87,6 +98,72 @@ const Menu: React.FC<{
     setShowAlert2(true);
   };
 
+  const doSaveToBlockchain = async () => {
+    if (props.file === "default") {
+      setShowAlert1(true);
+      return;
+    }
+
+    if (!address) {
+      setToastMessage("Please connect your wallet first");
+      setShowToast1(true);
+      return;
+    }
+
+    // Check if user is subscribed
+    if (!isSubscribed) {
+      setToastMessage(
+        "Premium subscription required to save to blockchain. Please subscribe to access this feature."
+      );
+      setShowToast1(true);
+      return;
+    }
+
+    try {
+      setToastMessage("Uploading to IPFS and blockchain...");
+      setShowToast1(true);
+
+      // Get current spreadsheet content
+      const content = AppGeneral.getSpreadsheetContent();
+
+      // Create file metadata
+      const fileData = {
+        fileName: props.file,
+        content: content,
+        timestamp: new Date().toISOString(),
+        billType: props.bT,
+        creator: address,
+      };
+
+      // Upload to IPFS
+      const ipfsHash = await uploadJSONToIPFS(fileData);
+      console.log("File uploaded to IPFS:", ipfsHash);
+
+      // Save to blockchain
+      await saveFile(props.file, ipfsHash);
+
+      // Also save locally
+      const localFile = new File(
+        new Date().toString(),
+        new Date().toString(),
+        encodeURIComponent(content),
+        props.file,
+        props.bT
+      );
+      props.store._saveFile(localFile);
+      props.updateSelectedFile(props.file);
+
+      setToastMessage(
+        `File saved to blockchain! IPFS: ${ipfsHash.substring(0, 10)}...`
+      );
+      setShowToast1(true);
+    } catch (error) {
+      console.error("Error saving to blockchain:", error);
+      setToastMessage("Failed to save to blockchain. Please try again.");
+      setShowToast1(true);
+    }
+  };
+
   const doSaveAs = async (filename) => {
     // event.preventDefault();
     if (filename) {
@@ -141,11 +218,19 @@ const Menu: React.FC<{
         onDidDismiss={() => props.setM()}
         buttons={[
           {
-            text: "Save",
+            text: "Save Locally",
             icon: saveOutline,
             handler: () => {
               doSave();
               console.log("Save clicked");
+            },
+          },
+          {
+            text: "Save to Blockchain",
+            icon: cloudUpload,
+            handler: () => {
+              doSaveToBlockchain();
+              console.log("Save to Blockchain clicked");
             },
           },
           {
@@ -230,11 +315,20 @@ const Menu: React.FC<{
         isOpen={showToast1}
         onDidDismiss={() => {
           setShowToast1(false);
-          setShowAlert3(true);
+          // Only show Save As alert if it was not a blockchain save attempt
+          if (
+            toastMessage.includes("Filename") ||
+            toastMessage.includes("Special Characters") ||
+            toastMessage.includes("too long") ||
+            toastMessage.includes("empty") ||
+            toastMessage.includes("exists")
+          ) {
+            setShowAlert3(true);
+          }
         }}
         position="bottom"
         message={toastMessage}
-        duration={500}
+        duration={3000}
       />
     </React.Fragment>
   );

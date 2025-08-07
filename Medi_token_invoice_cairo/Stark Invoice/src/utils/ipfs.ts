@@ -65,6 +65,10 @@ export async function uploadJSONToIPFS(
   data: any,
   filename?: string
 ): Promise<string> {
+  console.log("Uploading JSON to IPFS:", data);
+  console.log("Filename:", filename);
+  console.log("Pinata API Key:", PINATA_API_KEY);
+  console.log("Pinata Secret Key:", PINATA_SECRET_KEY);
   if (!PINATA_API_KEY || !PINATA_SECRET_KEY) {
     throw new Error("Pinata API credentials not configured");
   }

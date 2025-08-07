@@ -30,8 +30,9 @@ import {
   useIsUserSubscribed,
   useGetSubscriptionDetails,
   useGetUserTokens,
-} from "../hooks/useContractRead";
-import { useSubscribe } from "../hooks/useContractWrite";
+  useGetTokenAllowance,
+} from "../../hooks/useContractRead";
+import { useSubscribe, useApproveTokens } from "../../hooks/useContractWrite";
 
 const Subscription: React.FC = () => {
   const { address, status } = useAccount();
@@ -40,6 +41,12 @@ const Subscription: React.FC = () => {
   const [toastColor, setToastColor] = useState<
     "success" | "danger" | "warning"
   >("success");
+
+  // Add approval state
+  const [needsApproval, setNeedsApproval] = useState(false);
+  const [step, setStep] = useState<"check" | "approve" | "subscribe">("check");
+
+  const requiredTokens = BigInt("10000000000000000000"); // 10 tokens in wei
 
   const {
     isSubscribed,
@@ -64,6 +71,16 @@ const Subscription: React.FC = () => {
 
   const { subscribe, isPending: isSubscribing } = useSubscribe();
 
+  // Add approval hook
+  const { approveTokens, isPending: isApproving } = useApproveTokens();
+
+  // Add allowance check hook
+  const { allowance, refetchAllowance } = useGetTokenAllowance({
+    owner: address as `0x${string}` | undefined,
+    spender:
+      "0x017aad7feed14f14cebb3809a7ceaa0479a57c861fb71c836adc7ce46ec90b27", // MedInvoice contract address
+  });
+
   const [timeRemaining, setTimeRemaining] = useState<string>("");
 
   // Debug logging
@@ -74,10 +91,38 @@ const Subscription: React.FC = () => {
       isSubscribed,
       subscriptionDetails,
       tokens: tokens?.toString(),
+      allowance: allowance?.toString(),
       subscriptionLoading,
       tokensLoading,
     });
-  }, [address, status, isSubscribed, subscriptionDetails, tokens, subscriptionLoading, tokensLoading]);
+  }, [
+    address,
+    status,
+    isSubscribed,
+    subscriptionDetails,
+    tokens,
+    allowance,
+    subscriptionLoading,
+    tokensLoading,
+  ]);
+
+  // Check if approval is needed
+  useEffect(() => {
+    if (allowance !== undefined && tokens !== undefined) {
+      const hasEnoughAllowance = allowance >= requiredTokens;
+      const hasEnoughTokens = tokens >= requiredTokens;
+
+      setNeedsApproval(!hasEnoughAllowance && hasEnoughTokens);
+
+      if (hasEnoughTokens && hasEnoughAllowance) {
+        setStep("subscribe");
+      } else if (hasEnoughTokens && !hasEnoughAllowance) {
+        setStep("approve");
+      } else {
+        setStep("check");
+      }
+    }
+  }, [allowance, tokens, requiredTokens]);
 
   // Calculate time remaining for subscription
   useEffect(() => {
@@ -106,6 +151,35 @@ const Subscription: React.FC = () => {
     }
   }, [subscriptionDetails]);
 
+  const handleApproval = async () => {
+    if (status !== "connected") {
+      setToastMessage("Please connect your wallet first");
+      setToastColor("warning");
+      setShowToast(true);
+      return;
+    }
+
+    try {
+      await approveTokens(requiredTokens);
+
+      setToastMessage("Token approval successful! You can now subscribe.");
+      setToastColor("success");
+      setShowToast(true);
+
+      // Refresh allowance
+      setTimeout(() => {
+        refetchAllowance();
+      }, 2000);
+    } catch (error) {
+      console.error("Approval error:", error);
+      setToastMessage(
+        error instanceof Error ? error.message : "Token approval failed"
+      );
+      setToastColor("danger");
+      setShowToast(true);
+    }
+  };
+
   const handleSubscribe = async () => {
     if (status !== "connected") {
       setToastMessage("Please connect your wallet first");
@@ -115,12 +189,19 @@ const Subscription: React.FC = () => {
     }
 
     // Check if user has enough tokens (10 tokens = 10 * 10^18 wei)
-    const requiredTokens = BigInt("10000000000000000000"); // 10 tokens in wei
     if (tokens && tokens < requiredTokens) {
       setToastMessage(
         "Insufficient Medi tokens. You need at least 10 MEDI tokens to subscribe."
       );
       setToastColor("danger");
+      setShowToast(true);
+      return;
+    }
+
+    // Check if allowance is sufficient
+    if (allowance && allowance < requiredTokens) {
+      setToastMessage("Please approve tokens first before subscribing.");
+      setToastColor("warning");
       setShowToast(true);
       return;
     }
@@ -139,6 +220,7 @@ const Subscription: React.FC = () => {
         refetchSubscription();
         refetchSubscriptionDetails();
         refetchTokens();
+        refetchAllowance();
       }, 2000);
     } catch (error) {
       console.error("Subscription error:", error);
@@ -301,17 +383,62 @@ const Subscription: React.FC = () => {
                       </p>
                     </IonText>
 
+                    {/* Step indicator */}
+                    <div style={{ textAlign: "center", marginBottom: "16px" }}>
+                      <IonText
+                        color={step === "approve" ? "primary" : "medium"}
+                      >
+                        <small>Step 1: Approve Tokens</small>
+                      </IonText>
+                      <span
+                        style={{
+                          margin: "0 8px",
+                          color: "var(--ion-color-medium)",
+                        }}
+                      >
+                        →
+                      </span>
+                      <IonText
+                        color={step === "subscribe" ? "primary" : "medium"}
+                      >
+                        <small>Step 2: Subscribe</small>
+                      </IonText>
+                    </div>
+
+                    {/* Approval button */}
+                    {step === "approve" && (
+                      <IonButton
+                        expand="block"
+                        onClick={handleApproval}
+                        disabled={isApproving || status !== "connected"}
+                        color="warning"
+                        style={{ marginBottom: "8px" }}
+                      >
+                        <IonIcon icon={checkmarkCircle} slot="start" />
+                        {isApproving
+                          ? "Approving..."
+                          : "Approve 10 MEDI Tokens"}
+                      </IonButton>
+                    )}
+
+                    {/* Subscribe button */}
                     <IonButton
                       expand="block"
                       onClick={handleSubscribe}
-                      disabled={isSubscribing || status !== "connected"}
+                      disabled={
+                        isSubscribing ||
+                        status !== "connected" ||
+                        step !== "subscribe" ||
+                        (tokens && tokens < requiredTokens)
+                      }
                       color="primary"
                     >
                       <IonIcon icon={star} slot="start" />
                       {isSubscribing ? "Subscribing..." : "Subscribe Now"}
                     </IonButton>
 
-                    {tokens && tokens < BigInt("10000000000000000000") && (
+                    {/* Status messages */}
+                    {tokens && tokens < requiredTokens && (
                       <IonText color="danger">
                         <p
                           style={{
@@ -325,6 +452,37 @@ const Subscription: React.FC = () => {
                         </p>
                       </IonText>
                     )}
+
+                    {step === "approve" && (
+                      <IonText color="warning">
+                        <p
+                          style={{
+                            textAlign: "center",
+                            fontSize: "0.8em",
+                            marginTop: "8px",
+                          }}
+                        >
+                          First approve the contract to spend your tokens, then
+                          subscribe.
+                        </p>
+                      </IonText>
+                    )}
+
+                    {step === "subscribe" &&
+                      allowance &&
+                      allowance >= requiredTokens && (
+                        <IonText color="success">
+                          <p
+                            style={{
+                              textAlign: "center",
+                              fontSize: "0.8em",
+                              marginTop: "8px",
+                            }}
+                          >
+                            ✓ Tokens approved! You can now subscribe.
+                          </p>
+                        </IonText>
+                      )}
                   </div>
                 ) : (
                   <div>
@@ -344,6 +502,7 @@ const Subscription: React.FC = () => {
                         refetchSubscription();
                         refetchSubscriptionDetails();
                         refetchTokens();
+                        refetchAllowance();
                       }}
                     >
                       <IonIcon icon={refresh} slot="start" />
@@ -358,7 +517,12 @@ const Subscription: React.FC = () => {
       </IonCard>
 
       {/* Loading overlay */}
-      <IonLoading isOpen={isSubscribing} message="Processing subscription..." />
+      <IonLoading
+        isOpen={isSubscribing || isApproving}
+        message={
+          isApproving ? "Approving tokens..." : "Processing subscription..."
+        }
+      />
 
       {/* Toast notification */}
       <IonToast

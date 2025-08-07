@@ -1,30 +1,198 @@
-.file ul{
-	list-style: none;
-	overflow-y: scroll; height:400px;
+/* File Manager Header Styling */
+.files-modal-header {
+  background: linear-gradient(
+    135deg,
+    var(--ion-color-primary),
+    var(--ion-color-primary-shade)
+  );
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.file li{
-	font-weight: bold;
-	cursor: pointer;
-	border-bottom: 0.1rem solid #e1e1e1;
-  	padding: 2px 2px;
-  	text-align: left;
+.files-modal-header ion-toolbar {
+  --background: transparent;
+  --border-color: transparent;
 }
 
-.file span{
-	font-size: 12px;
-    color: #9b4dca;
-    margin-right: 20px;
+.files-modal-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/*
-td:first-child,
-th:first-child {
-  padding-left: 0;
+.files-close-button {
+  --background: #dc3545;
+  --background-hover: #c82333;
+  --background-activated: #bd2130;
+  --color: white;
+  --border-radius: 8px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  margin-right: 8px;
 }
 
-td:last-child,
-th:last-child {
-  padding-right: 0;
+.files-close-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-606c76*/
+
+/* Enhanced Segment Styling */
+.files-modal-content ion-segment {
+  --background: #f8f9fa;
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.files-modal-content ion-segment-button {
+  --background-checked: var(--ion-color-primary);
+  --color-checked: white;
+  --border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.files-modal-content ion-segment-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Modal scrollable files container */
+.files-scrollable-container {
+  max-height: calc(100vh - 220px);
+  /* overflow-y: auto; */
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+/* Enhanced modal padding */
+.files-modal-content {
+  padding: 16px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-height: 600px) {
+  .files-scrollable-container {
+    max-height: calc(100vh - 180px);
+  }
+}
+
+@media (max-height: 500px) {
+  .files-scrollable-container {
+    max-height: calc(100vh - 160px);
+  }
+
+  .files-modal-content {
+    padding: 12px;
+  }
+}
+
+/* Custom scrollbar for better UX */
+.files-scrollable-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.files-scrollable-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.files-scrollable-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.files-scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Improve spacing for file items */
+.files-scrollable-container ion-list {
+  padding: 0;
+}
+
+.files-scrollable-container ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  transition: all 0.2s ease;
+}
+
+.files-scrollable-container ion-item:hover {
+  --background: rgba(var(--ion-color-primary-rgb), 0.05);
+  transform: translateX(4px);
+}
+
+/* File Icon Styling */
+.file-icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: var(--ion-color-medium);
+  transition: all 0.2s ease;
+}
+
+.file-icon.document-icon {
+  color: var(--ion-color-primary);
+}
+
+.file-icon.cloud-icon {
+  color: var(--ion-color-secondary);
+  margin-right: 12px;
+  padding-right: 4px;
+}
+
+.file-icon.blockchain-icon {
+  color: var(--ion-color-warning);
+  margin-right: 12px;
+  padding-right: 4px;
+}
+
+/* File Item Enhanced Styling */
+.files-scrollable-container ion-item ion-label {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.files-scrollable-container ion-item:hover ion-label {
+  color: var(--ion-color-primary);
+}
+
+.files-scrollable-container ion-item:hover .file-icon {
+  transform: scale(1.05);
+}
+
+/* Action Icons Styling */
+.files-scrollable-container ion-item ion-icon[slot="end"] {
+  margin-left: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.files-scrollable-container ion-item ion-icon[slot="end"]:hover {
+  transform: scale(1.1);
+}
+
+/* Legacy styles - keeping for compatibility */
+.file ul {
+  list-style: none;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.file li {
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 0.1rem solid #e1e1e1;
+  padding: 2px 2px;
+  text-align: left;
+}
+
+.file span {
+  font-size: 12px;
+  color: #9b4dca;
+  margin-right: 20px;
+}

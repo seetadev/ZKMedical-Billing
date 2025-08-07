@@ -2,12 +2,26 @@ import { useReadContract } from "@starknet-react/core";
 import { useCallback } from "react";
 import { type Abi } from "starknet";
 import { MED_INVOICE_ABI } from "../abis/medInvoiceAbi";
+import { MED_TOKEN_ABI } from "../abis/medToken";
+import {
+  MED_INVOICE_CONTRACT_ADDRESS,
+  MED_TOKEN_CONTRACT_ADDRESS,
+} from "../abis/constants";
 
-const CONTRACT_ADDRESS = import.meta.env
-  .VITE_MED_INVOICE_CONTRACT_ADDRESS as `0x${string}`;
+const CONTRACT_ADDRESS = MED_INVOICE_CONTRACT_ADDRESS as `0x${string}`;
+const TOKEN_CONTRACT_ADDRESS = MED_TOKEN_CONTRACT_ADDRESS as `0x${string}`;
 
 interface UseContractReadProps {
   accountAddress: `0x${string}` | undefined;
+}
+
+// Interface for FileRecord from contract
+export interface FileRecord {
+  file_name: string;
+  ipfs_cid: string;
+  timestamp: bigint;
+  owner: string;
+  exists: boolean;
 }
 
 /**
@@ -36,7 +50,7 @@ export function useGetUserFiles({ accountAddress }: UseContractReadProps) {
   }, [filesRefetch]);
 
   return {
-    files: filesData as string[] | undefined,
+    files: filesData as FileRecord[] | undefined,
     refetchFiles: refreshFiles,
     isError: filesIsError,
     isLoading: filesIsLoading,
@@ -72,7 +86,6 @@ export function useGetUserTokens({ accountAddress }: UseContractReadProps) {
     error: tokensError,
   };
 }
-
 /**
  * Hook to check if user is subscribed
  */
@@ -165,5 +178,40 @@ export function useGetSubscriptionEndDate({
     isError: endDateIsError,
     isLoading: endDateIsLoading,
     error: endDateError,
+  };
+}
+
+/**
+ * Hook to get token allowance for the MedInvoice contract
+ */
+export function useGetTokenAllowance({
+  owner,
+  spender = CONTRACT_ADDRESS,
+}: {
+  owner: `0x${string}` | undefined;
+  spender?: `0x${string}`;
+}) {
+  const {
+    data: allowanceData,
+    refetch: allowanceRefetch,
+    isError: allowanceIsError,
+    isLoading: allowanceIsLoading,
+    error: allowanceError,
+  } = useReadContract({
+    functionName: "allowance",
+    args: owner && spender ? [owner, spender] : [],
+    abi: MED_TOKEN_ABI as Abi,
+    address: TOKEN_CONTRACT_ADDRESS,
+    watch: true,
+    refetchInterval: 10000,
+    enabled: !!(owner && spender),
+  });
+
+  return {
+    allowance: allowanceData as bigint | undefined,
+    refetchAllowance: allowanceRefetch,
+    isError: allowanceIsError,
+    isLoading: allowanceIsLoading,
+    error: allowanceError,
   };
 }
