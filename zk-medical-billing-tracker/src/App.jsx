@@ -37,9 +37,10 @@ import { initializeFirebase } from "./Firebase/index";
 import Settings from "./pages/Settings";
 import Auth from "./pages/Auth";
 import useUser from "./hooks/useUser";
-import NewInvoice from "./pages/NewInvoice";
+import NewInvoice from "./pages/NewInvoiceEnhanced";
 import ViewInvoice from "./pages/ViewInvoice";
 import UpdateInvoice from "./pages/UpdateInvoice";
+import { adMobService } from "./services/AdMobService";
 
 setupIonicReact();
 
@@ -75,6 +76,8 @@ const App = () => {
   const user = useUser();
   useEffect(() => {
     initializeFirebase();
+    // Initialize AdMob when app starts
+    adMobService.initialize();
   }, []);
 
   return (

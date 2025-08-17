@@ -18,6 +18,8 @@ import { deleteInvoice } from "../Firebase/firestore";
 import { Link } from "react-router-dom";
 import { IonIcon } from "@ionic/react";
 import { mailOutline } from "ionicons/icons";
+import { useAdMob } from "../hooks/useAdMob";
+import { BannerAdPosition } from "@capacitor-community/admob";
 import emailjs from "@emailjs/browser";
 
 const columns = [
@@ -83,6 +85,13 @@ function sendEmailToClient(invoice, currencySymbol) {
 export default function Invoices() {
   const [refresh, setRefresh] = React.useState(1);
   const data = useData(refresh);
+
+  // Initialize AdMob for this page
+  useAdMob({
+    showOnEnter: true,
+    position: BannerAdPosition.TOP_CENTER, // Using top for the invoices list page
+    hideOnLeave: true
+  });
 
   const [page, setPage] = React.useState(1);
   const [invoices, setInvoices] = React.useState([]);
