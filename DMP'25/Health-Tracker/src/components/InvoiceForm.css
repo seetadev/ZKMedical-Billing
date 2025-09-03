@@ -1,0 +1,138 @@
+.invoice-form-modal {
+  --height: 90vh;
+  --width: 95vw;
+  --max-width: 800px;
+  --border-radius: 16px;
+}
+
+.invoice-form-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+}
+
+.invoice-item {
+  border: 1px solid var(--ion-color-light-shade);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: var(--ion-color-light);
+}
+
+.add-item-button {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+/* Dynamic form specific styles */
+.item-group {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid var(--ion-color-light-shade);
+  border-radius: 8px;
+  background: var(--ion-color-light-tint);
+}
+
+.item-group:last-child {
+  margin-bottom: 0;
+}
+
+.dynamic-form-section {
+  margin-bottom: 20px;
+}
+
+.footer-selection {
+  margin-bottom: 20px;
+  background: var(--ion-color-primary-tint);
+}
+
+.footer-selection ion-card-header {
+  background: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+}
+
+@media (max-width: 768px) {
+  .invoice-form-modal {
+    --width: 100vw;
+    --height: 100vh;
+    --border-radius: 0;
+  }
+
+  .invoice-form-content {
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+
+/* Dark theme support */
+.dark-theme .invoice-item {
+  border-color: var(--ion-color-dark-shade);
+  background: var(--ion-color-dark);
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 576px) {
+  .invoice-item ion-col[size="7"] {
+    --ion-grid-column-size: 100%;
+  }
+
+  .invoice-item ion-col[size="3"] {
+    --ion-grid-column-size: 70%;
+  }
+
+  .invoice-item ion-col[size="2"] {
+    --ion-grid-column-size: 30%;
+  }
+}
+
+/* Animation for adding/removing items */
+.invoice-item {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Better spacing for form sections */
+ion-card {
+  margin-bottom: 20px;
+}
+
+ion-card-title {
+  color: var(--ion-color-primary);
+  font-weight: 600;
+}
+
+/* Total display styling */
+ion-item-divider h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ion-color-success);
+}
+
+/* Button styling improvements */
+.ion-padding ion-button {
+  margin-top: 8px;
+}
+
+/* Input focus improvements */
+ion-input,
+ion-textarea {
+  --highlight-color-focused: var(--ion-color-primary);
+}
+
+/* Toast positioning for mobile */
+@media (max-width: 768px) {
+  ion-toast {
+    --width: 95%;
+  }
+}

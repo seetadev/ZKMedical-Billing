@@ -1,0 +1,7 @@
+{
+  "name": "Govt Invoice",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

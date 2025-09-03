@@ -1,0 +1,76 @@
+.health-data-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+.health-record-item {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--ion-color-step-150);
+}
+
+.health-record-item:hover {
+  background: var(--ion-color-step-50);
+}
+
+.record-date {
+  font-size: 0.9em;
+  color: var(--ion-color-step-600);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--ion-color-step-600);
+}
+
+.empty-state ion-icon {
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.subscription-info,
+.subscription-limits {
+  padding: 16px;
+  text-align: center;
+  border-radius: 8px;
+  background: var(--ion-color-step-50);
+  border: 1px solid var(--ion-color-step-150);
+}
+
+.subscription-info h3,
+.subscription-limits h3 {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+}
+
+.subscription-info p,
+.subscription-limits p {
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--ion-color-step-600);
+}
+
+/* Dark theme adjustments */
+.dark-theme .health-record-item {
+  border-color: var(--ion-color-step-200);
+}
+
+.dark-theme .health-record-item:hover {
+  background: var(--ion-color-step-100);
+}
+
+.dark-theme .subscription-info,
+.dark-theme .subscription-limits {
+  background: var(--ion-color-step-100);
+  border-color: var(--ion-color-step-200);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .subscription-info,
+  .subscription-limits {
+    margin-bottom: 8px;
+  }
+}

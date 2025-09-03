@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108">
+    
+    <!-- Medical cross - vertical bar -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,30 L60,30 A6,6 0 0,1 66,36 L66,72 A6,6 0 0,1 60,78 L48,78 A6,6 0 0,1 42,72 L42,36 A6,6 0 0,1 48,30 Z" />
+    
+    <!-- Medical cross - horizontal bar -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,48 L78,48 A6,6 0 0,1 84,54 L84,54 A6,6 0 0,1 78,60 L30,60 A6,6 0 0,1 24,54 L24,54 A6,6 0 0,1 30,48 Z" />
+    
+    <!-- Heart shape -->
+    <path
+        android:fillColor="#FF6B6B"
+        android:pathData="M54,66 C48,60 42,54 42,48 C42,45 44,42 47,42 C49,42 51,43 54,46 C57,43 59,42 61,42 C64,42 66,45 66,48 C66,54 60,60 54,66 Z" />
+    
+    <!-- Pulse line -->
+    <path
+        android:fillColor="none"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M18,54 L30,54 L33,48 L36,60 L39,42 L42,66 L45,48 L48,57 L51,51 L54,54 L57,51 L60,57 L63,48 L66,66 L69,42 L72,60 L75,48 L78,54 L90,54" />
+    
+</vector>
+        android:pathData="M66.94,46.02L66.94,46.02C72.44,50.07 76,56.61 76,64L32,64C32,56.61 35.56,50.11 40.98,46.06L36.18,41.19C35.45,40.45 35.45,39.3 36.18,38.56C36.91,37.81 38.05,37.81 38.78,38.56L44.25,44.05C47.18,42.57 50.48,41.71 54,41.71C57.48,41.71 60.78,42.57 63.68,44.05L69.11,38.56C69.84,37.81 70.98,37.81 71.71,38.56C72.44,39.3 72.44,40.45 71.71,41.19L66.94,46.02ZM62.94,56.92C64.08,56.92 65,56.01 65,54.88C65,53.76 64.08,52.85 62.94,52.85C61.8,52.85 60.88,53.76 60.88,54.88C60.88,56.01 61.8,56.92 62.94,56.92ZM45.06,56.92C46.2,56.92 47.13,56.01 47.13,54.88C47.13,53.76 46.2,52.85 45.06,52.85C43.92,52.85 43,53.76 43,54.88C43,56.01 43.92,56.92 45.06,56.92Z"
+        android:strokeColor="#00000000"
+        android:strokeWidth="1" />
+</vector>

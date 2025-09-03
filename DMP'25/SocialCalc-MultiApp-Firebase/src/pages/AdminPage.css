@@ -1,0 +1,133 @@
+.admin-content {
+  --background: var(--ion-color-light);
+}
+
+.admin-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.admin-container ion-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.admin-container ion-card-header {
+  padding-bottom: 0;
+}
+
+.admin-container ion-card-title {
+  color: var(--ion-color-primary);
+  font-weight: 600;
+}
+
+.admin-container ion-item {
+  --border-color: transparent;
+  --background: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.admin-container ion-input,
+.admin-container ion-textarea,
+.admin-container ion-select {
+  --background: #fafafa;
+  --border-radius: 8px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+
+.admin-container ion-textarea {
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+.admin-container ion-button {
+  --border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.admin-container ion-button[expand="block"] {
+  --border-radius: 12px;
+  height: 48px;
+  font-weight: 600;
+}
+
+.admin-container ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.admin-container ul li {
+  margin-bottom: 0.25rem;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .admin-content {
+    --background: var(--ion-color-dark);
+  }
+
+  .admin-container ion-card {
+    --background: var(--ion-color-dark-shade);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  .admin-container ion-input,
+  .admin-container ion-textarea,
+  .admin-container ion-select {
+    --background: #fafafa;
+    --color: var(--ion-color-dark);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 0.5rem;
+  }
+
+  .admin-container ion-card {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Loading state */
+.admin-content ion-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Image preview */
+.image-preview {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid var(--ion-color-light-shade);
+}
+
+/* JSON textarea */
+ion-textarea[style*="monospace"] {
+  font-size: 0.85rem !important;
+  line-height: 1.4;
+}
+
+/* Success/Error states */
+.admin-container .success-message {
+  color: var(--ion-color-success);
+  font-weight: 500;
+  text-align: center;
+  padding: 1rem;
+}
+
+.admin-container .error-message {
+  color: var(--ion-color-danger);
+  font-weight: 500;
+  text-align: center;
+  padding: 1rem;
+}

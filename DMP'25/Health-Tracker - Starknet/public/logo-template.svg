@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background gradient circle -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2196F3;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Main background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)" filter="url(#shadow)"/>
+  
+  <!-- Inner white circle for contrast -->
+  <circle cx="256" cy="256" r="200" fill="#ffffff" fill-opacity="0.1"/>
+  
+  <!-- Medical cross with rounded corners -->
+  <rect x="235" y="160" width="42" height="192" fill="#ffffff" rx="21"/>
+  <rect x="160" y="235" width="192" height="42" fill="#ffffff" rx="21"/>
+  
+  <!-- Heart symbol with gradient -->
+  <defs>
+    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ee5a52;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <path d="M256 310 C 225 285, 190 250, 190 215 C 190 190, 205 175, 225 175 C 235 175, 245 180, 256 190 C 267 180, 277 175, 287 175 C 307 175, 322 190, 322 215 C 322 250, 287 285, 256 310 Z" fill="url(#heartGradient)"/>
+  
+  <!-- Pulse line with multiple segments -->
+  <g stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 256 L 140 256 L 155 230 L 170 280 L 185 200 L 200 300 L 215 220 L 230 270 L 245 240 L 260 256"/>
+    <path d="M260 256 L 275 240 L 290 270 L 305 220 L 320 280 L 335 210 L 350 275 L 365 235 L 380 256 L 442 256"/>
+  </g>
+  
+  <!-- Modern text with better typography -->
+  <text x="256" y="400" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="28" letter-spacing="1px">HEALTH</text>
+  <text x="256" y="430" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="28" letter-spacing="1px">TRACKER</text>
+  
+  <!-- Small decorative elements -->
+  <circle cx="150" cy="150" r="3" fill="#ffffff" fill-opacity="0.6"/>
+  <circle cx="362" cy="150" r="3" fill="#ffffff" fill-opacity="0.6"/>
+  <circle cx="150" cy="362" r="3" fill="#ffffff" fill-opacity="0.6"/>
+  <circle cx="362" cy="362" r="3" fill="#ffffff" fill-opacity="0.6"/>
+</svg>
