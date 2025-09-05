@@ -1,0 +1,740 @@
+#container {
+  height: min-content;
+  overflow: hidden;
+}
+
+#container,
+#workbookControl,
+#tableeditor,
+#msg {
+  max-width: 100vw;
+  max-height: 100vh;
+  /* overflow: hidden; */
+}
+#tableeditor {
+  height: 100vh;
+}
+
+/* Remove bottom padding from Home page content */
+ion-page ion-content {
+  --padding-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/* SocialCalc specific fixes */
+#te_griddiv {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Force SocialCalc container to not have extra bottom space */
+.SocialCalc-spreadsheet {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Ensure the spreadsheet control fills available space properly */
+#tableeditor > div {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+/* Dark mode fixes for Home page */
+.dark-theme ion-page {
+  --ion-background-color: #0d1117 !important;
+  background: #0d1117 !important;
+}
+
+.dark-theme ion-header {
+  background: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+}
+
+.dark-theme ion-header ion-toolbar {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+  background: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+}
+
+/* Force header toolbar colors to dark - override Ionic defaults */
+.dark-theme ion-header ion-toolbar[color="primary"],
+.dark-theme ion-toolbar[color="primary"] {
+  background-color: #161b22 !important;
+  --background-color: #161b22 !important;
+  --ion-toolbar-color: #f0f6fc !important;
+  --ion-toolbar-background: #161b22 !important;
+  --ion-toolbar-background-color: #161b22 !important;
+}
+
+.dark-theme ion-header ion-toolbar[color="secondary"],
+.dark-theme ion-toolbar[color="secondary"] {
+  background-color: #21262d !important;
+  --background-color: #21262d !important;
+  --ion-toolbar-color: #f0f6fc !important;
+  --ion-toolbar-background: #21262d !important;
+  --ion-toolbar-background-color: #21262d !important;
+}
+
+/* Override any remaining blue backgrounds */
+.dark-theme ion-header,
+.dark-theme ion-header * {
+  background-color: #161b22 !important;
+}
+
+.dark-theme ion-toolbar[color="primary"] *,
+.dark-theme ion-toolbar[color="secondary"] * {
+  --background: inherit !important;
+}
+
+.dark-theme ion-toolbar[color="primary"] {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  background: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+  --ion-color-primary: #161b22 !important;
+  --ion-color-primary-shade: #161b22 !important;
+  --ion-color-primary-tint: #161b22 !important;
+}
+
+.dark-theme ion-toolbar[color="secondary"] {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  background: #21262d !important;
+  border-bottom: 1px solid #30363d !important;
+  border-top: 1px solid #30363d !important;
+  --ion-color-secondary: #21262d !important;
+  --ion-color-secondary-shade: #21262d !important;
+  --ion-color-secondary-tint: #21262d !important;
+}
+
+.dark-theme ion-title {
+  color: #f0f6fc !important;
+}
+
+.dark-theme .editing-title {
+  color: #f0f6fc !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .editing-title ion-icon {
+  color: #58a6ff !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Enhance pencil icon in title */
+.dark-theme .editing-title ion-icon[icon="pencil"] {
+  color: #ffd534 !important;
+  filter: drop-shadow(0 1px 3px rgba(255, 213, 52, 0.3));
+}
+
+.dark-theme ion-button[color="light"] {
+  --background: #30363d !important;
+  --color: #f0f6fc !important;
+  --border-color: #f0f6fc !important;
+  background: #30363d !important;
+  color: #f0f6fc !important;
+  border: 1px solid #484f58 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-theme ion-button[color="light"]:hover {
+  --background: #484f58 !important;
+  background: #484f58 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Header button and icon styles */
+.dark-theme ion-buttons ion-icon {
+  color: #f0f6fc !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.dark-theme ion-buttons ion-icon:hover {
+  color: #58a6ff !important;
+  background: rgba(88, 166, 255, 0.1) !important;
+  border-radius: 4px;
+}
+
+/* Active footer button styling for dark mode */
+.dark-theme ion-button[style*="border: 2px solid #3880ff"] {
+  --background: #1f2937 !important;
+  --color: #58a6ff !important;
+  background: #1f2937 !important;
+  color: #58a6ff !important;
+  border: 2px solid #58a6ff !important;
+  box-shadow: 0 0 10px rgba(88, 166, 255, 0.3) !important;
+}
+
+/* Additional dark mode header improvements */
+.dark-theme ion-content {
+  --background: #0d1117 !important;
+  background: #0d1117 !important;
+}
+
+/* Improve content separation in dark mode */
+.dark-theme #container {
+  background: #0d1117 !important;
+  border-top: 1px solid #30363d;
+}
+
+/* Dark mode button active state improvements */
+.dark-theme ion-button[style*="border: 2px solid #3880ff"]:hover {
+  --background: #1e2938 !important;
+  background: #1e2938 !important;
+  box-shadow: 0 0 15px rgba(88, 166, 255, 0.4) !important;
+  transform: translateY(-1px);
+}
+
+/* Enhanced Med Token Balance Styling */
+.med-token-balance {
+  margin-right: 8px;
+  font-size: 0.85rem;
+  height: 32px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.med-token-balance:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+.med-token-balance ion-icon {
+  margin-right: 4px;
+}
+
+.med-token-balance ion-label {
+  font-weight: 600;
+}
+
+/* Editing Title Styling */
+.editing-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ion-color-light);
+  margin-left: 16px;
+  letter-spacing: 0.3px;
+}
+
+.editing-title ion-icon {
+  color: var(--ion-color-warning);
+  margin-right: 8px;
+}
+
+.editing-title ion-button {
+  --color: var(--ion-color-warning);
+  --color-hover: var(--ion-color-warning-tint);
+  margin-right: 4px;
+}
+
+/* Improve save icon styling in dark mode */
+.dark-theme ion-icon[icon="save-sharp"] {
+  color: #58a6ff !important;
+  transition: all 0.2s ease;
+}
+
+.dark-theme ion-icon[icon="save-sharp"]:hover {
+  color: #ffffff !important;
+  background: rgba(88, 166, 255, 0.2) !important;
+  border-radius: 6px;
+  padding: 6px;
+  transform: scale(1.05);
+}
+
+/* Spinning animation for auto-save icon */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Save button styling in header */
+.editing-title {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Enhanced Toolbar Icons */
+ion-toolbar ion-buttons ion-icon {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+ion-toolbar ion-buttons ion-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+/* Dark mode toolbar icon enhancements */
+.dark-theme ion-toolbar ion-buttons ion-icon:hover {
+  background: rgba(88, 166, 255, 0.15) !important;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(88, 166, 255, 0.2);
+}
+
+/* Info Button Special Styling */
+ion-button[title="Keyboard Shortcuts"] {
+  --color: var(--ion-color-light);
+}
+
+ion-button[title="Keyboard Shortcuts"]:hover {
+  --color: var(--ion-color-warning);
+}
+
+/* Keyboard Shortcuts Popover Styling */
+.keyboard-shortcuts-popover ion-card {
+  min-width: 280px;
+  max-width: 320px;
+}
+
+.keyboard-shortcuts-popover ion-card-content > div {
+  padding: 4px 0;
+}
+
+.keyboard-shortcuts-popover span {
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
+}
+
+.keyboard-shortcuts-popover ion-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Enhanced Fab Button Styling */
+ion-fab-button {
+  --color: white;
+  --background: var(--ion-color-primary);
+  --box-shadow: 0 4px 16px rgba(var(--ion-color-primary-rgb), 0.4);
+  transition: all 0.3s ease;
+}
+
+ion-fab-button:hover {
+  --box-shadow: 0 6px 20px rgba(var(--ion-color-primary-rgb), 0.6);
+  transform: translateY(-2px);
+}
+
+/* Button Hover Effects */
+ion-button {
+  transition: all 0.2s ease;
+}
+
+ion-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Modal Backdrop Enhancement */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+}
+
+/* Segment Button Enhancements */
+ion-segment-button {
+  transition: all 0.2s ease;
+}
+
+ion-segment-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Toast Enhancements */
+ion-toast {
+  --border-radius: 12px;
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Comprehensive dark mode background coverage */
+.dark-theme {
+  --ion-background-color: #0d1117 !important;
+  --ion-text-color: #f0f6fc !important;
+  --ion-item-background: #161b22 !important;
+  --ion-card-background: #161b22 !important;
+  --ion-toolbar-background: #161b22 !important;
+  --ion-tab-bar-background: #161b22 !important;
+  --ion-popover-background: #21262d !important;
+  --ion-modal-background: #21262d !important;
+}
+
+/* Ensure all content areas have dark background */
+.dark-theme ion-content,
+.dark-theme ion-page,
+.dark-theme ion-app {
+  --background: #0d1117 !important;
+  background-color: #0d1117 !important;
+  color: #f0f6fc !important;
+}
+
+/* Dark mode for any remaining UI elements */
+.dark-theme ion-item {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+}
+
+.dark-theme ion-card {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  border: 1px solid #30363d !important;
+}
+
+/* Ensure proper text contrast in dark mode */
+.dark-theme {
+  color: #f0f6fc !important;
+}
+
+/* Dark mode for modals and popovers */
+.dark-theme ion-modal,
+.dark-theme ion-popover {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+}
+
+.dark-theme ion-alert {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --button-color: #58a6ff !important;
+}
+
+/* Dark mode for toast notifications */
+.dark-theme ion-toast {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --border: 1px solid #30363d !important;
+}
+
+/* Color Picker Modal Styles */
+.color-picker-modal {
+  --background: var(--ion-background-color);
+  --color: var(--ion-text-color);
+}
+
+/* Color picker modal header styling */
+.color-picker-modal ion-header ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --color: var(--ion-toolbar-color);
+}
+
+/* Segment button styling for better visibility */
+.color-picker-modal ion-segment-button {
+  --background: var(--ion-item-background);
+  --background-checked: #3880ff;
+  --color: var(--ion-text-color);
+  --color-checked: #ffffff;
+  --border-color: var(--ion-border-color, #d0d7de);
+  --border-radius: 8px;
+  --indicator-color: #3880ff;
+  min-height: 60px;
+  margin: 0 4px;
+}
+
+/* Dark mode segment buttons */
+.dark-theme .color-picker-modal ion-segment-button {
+  --background: #21262d;
+  --background-checked: #3880ff;
+  --color: #f0f6fc;
+  --color-checked: #ffffff;
+  --border-color: #30363d;
+}
+
+/* Light mode segment buttons */
+.color-picker-modal ion-segment-button {
+  --background: #f4f5f8;
+  --background-checked: #3880ff;
+  --color: #000000;
+  --color-checked: #ffffff;
+  --border-color: #d0d7de;
+}
+
+/* Close button styling for better visibility */
+.color-picker-modal .close-button {
+  color: var(--ion-text-color) !important;
+  --color: var(--ion-text-color) !important;
+}
+
+/* Dark mode close button */
+.dark-theme .color-picker-modal .close-button {
+  color: #f0f6fc !important;
+  --color: #f0f6fc !important;
+}
+
+/* Light mode close button */
+.color-picker-modal .close-button {
+  color: #000000 !important;
+  --color: #000000 !important;
+}
+
+/* Segment container styling */
+.color-picker-modal ion-segment {
+  background: var(--ion-item-background);
+  border-radius: 12px;
+  padding: 4px;
+  margin: 16px;
+}
+
+/* Dark mode segment container */
+.dark-theme .color-picker-modal ion-segment {
+  background: #161b22;
+  border: 1px solid #30363d;
+}
+
+/* Light mode segment container */
+.color-picker-modal ion-segment {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+/* Item divider styling */
+.color-picker-modal ion-item-divider {
+  --background: var(--ion-item-background);
+  --color: var(--ion-text-color);
+  font-weight: 600;
+}
+
+/* Dark mode item divider */
+.dark-theme .color-picker-modal ion-item-divider {
+  --background: #21262d;
+  --color: #f0f6fc;
+}
+
+/* Light mode item divider */
+.color-picker-modal ion-item-divider {
+  --background: #f4f5f8;
+  --color: #000000;
+}
+
+/* Color swatch hover effects */
+.color-swatch {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom color input styling */
+.color-picker-modal ion-input {
+  --background: var(--ion-item-background);
+  --color: var(--ion-text-color);
+  --border-color: var(--ion-border-color);
+}
+
+/* Dark mode input */
+.dark-theme .color-picker-modal ion-input {
+  --background: #21262d;
+  --color: #f0f6fc;
+  --border-color: #30363d;
+}
+
+/* Light mode input */
+.color-picker-modal ion-input {
+  --background: #ffffff;
+  --color: #000000;
+  --border-color: #d0d7de;
+}
+
+/* Cell formatting buttons styles */
+#cell-formatting-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+  max-width: 300px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.dark-theme #cell-formatting-buttons {
+  background: #1a1a1a;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+#cell-formatting-buttons .format-btn {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.2s ease;
+}
+
+.dark-theme #cell-formatting-buttons .format-btn {
+  background: #2a2a2a;
+  border: 1px solid #555;
+  color: #fff;
+}
+
+#cell-formatting-buttons .format-btn:hover {
+  background: #f0f0f0;
+  border-color: #007bff;
+}
+
+.dark-theme #cell-formatting-buttons .format-btn:hover {
+  background: #3a3a3a;
+  border-color: #007bff;
+}
+
+#cell-formatting-buttons .format-btn:active,
+#cell-formatting-buttons .format-btn.selected {
+  border: 3px solid #007bff !important;
+  background: #e3f2fd;
+}
+
+.dark-theme #cell-formatting-buttons .format-btn:active,
+.dark-theme #cell-formatting-buttons .format-btn.selected {
+  background: #1e3a5f;
+}
+
+#cell-formatting-buttons button[style*="background: black"] {
+  border: 2px solid #333 !important;
+}
+
+#cell-formatting-buttons button[style*="background: white"] {
+  border: 2px solid #ddd !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  #cell-formatting-buttons {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+    max-width: none;
+  }
+
+  #cell-formatting-buttons .format-btn {
+    min-width: 35px;
+    min-height: 35px;
+    padding: 6px;
+  }
+}
+
+/* Invoice Edit FAB Styling */
+ion-fab {
+  z-index: 1000;
+  position: fixed !important;
+  bottom: 16px;
+  right: 16px;
+}
+
+ion-fab ion-fab-button {
+  --box-shadow: 0 4px 16px rgba(var(--ion-color-primary-rgb), 0.3);
+  --border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  margin: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+ion-fab ion-fab-button:hover {
+  --box-shadow: 0 6px 20px rgba(var(--ion-color-primary-rgb), 0.4);
+  transform: translateY(-2px);
+}
+
+ion-fab ion-fab-button:active {
+  transform: translateY(0);
+  --box-shadow: 0 2px 8px rgba(var(--ion-color-primary-rgb), 0.3);
+}
+
+ion-fab ion-fab-button ion-icon {
+  font-size: 24px;
+}
+
+/* Dark theme FAB adjustments */
+.dark-theme ion-fab ion-fab-button {
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --background: var(--ion-color-primary);
+}
+
+.dark-theme ion-fab ion-fab-button:hover {
+  --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Mobile FAB adjustments */
+@media (max-width: 768px) {
+  ion-fab {
+    bottom: 12px;
+    right: 12px;
+  }
+
+  ion-fab ion-fab-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  ion-fab ion-fab-button ion-icon {
+    font-size: 20px;
+  }
+}
+
+/* Ensure FAB appears above other content */
+@media (max-width: 576px) {
+  ion-fab {
+    bottom: 20px;
+    right: 16px;
+  }
+}
+
+/* Animation for FAB appearance */
+@keyframes fabFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+ion-fab {
+  animation: fabFadeIn 0.3s ease-out;
+}
+
+/* Ensure FAB stays visible during scrolling */
+ion-content {
+  --overflow: auto;
+}
+
+ion-fab[vertical="bottom"][horizontal="end"] {
+  position: fixed !important;
+}
+
+/* Spin animation for auto-save indicator */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 1.5s linear infinite;
+}
