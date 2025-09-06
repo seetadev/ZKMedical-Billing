@@ -29,12 +29,12 @@ All environment variables for this Vite project must be prefixed with `VITE_` to
 
 | Variable                            | Description                  | Example                                   |
 | ----------------------------------- | ---------------------------- | ----------------------------------------- |
-| `VITE_FIREBASE_API_KEY`             | Firebase Web API Key         | `AIzaSyCIy73rRkTiE0EemG7PJY2qx6kLLsL9Ii8` |
+| `VITE_FIREBASE_API_KEY`             | Firebase Web API Key         | `<your-project-api-key>` |
 | `VITE_FIREBASE_AUTH_DOMAIN`         | Firebase Auth Domain         | `your-project.firebaseapp.com`            |
 | `VITE_FIREBASE_PROJECT_ID`          | Firebase Project ID          | `your-project-id`                         |
 | `VITE_FIREBASE_STORAGE_BUCKET`      | Firebase Storage Bucket      | `your-project.firebasestorage.app`        |
-| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Firebase Messaging Sender ID | `123456789012`                            |
-| `VITE_FIREBASE_APP_ID`              | Firebase App ID              | `1:123456789012:web:abcdef123456`         |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Firebase Messaging Sender ID | `123456789`                            |
+| `VITE_FIREBASE_APP_ID`              | Firebase App ID              | `<your-firebase-app-id>`         |
 
 ## Security Notes
 
