@@ -1,0 +1,6 @@
+flask
+flask-cors
+psycopg2-binary
+boto3
+PyJWT
+python-dotenv
