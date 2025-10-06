@@ -153,6 +153,4 @@ Our vision: **Decentralized, private, and interoperable healthcare for everyone.
 
 * **Community Deck & Demo** → [Google Drive](https://drive.google.com/drive/u/5/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG)
 * **Testimonials** → [Demo Site](https://op-medicine-pylibp2p.vercel.app/testimonials)
-* **ZK Verification Contract** → [Polygon Mumbai](https://mumbai.polygonscan.com/tx/0x88f4b0c54cb35dd5f834a1603c0b2555bdc480afb9f5c8aa52a27d6e0d64739b)
-
 ---
