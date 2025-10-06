@@ -56,16 +56,6 @@ This project aligns with **Optimism’s RetroPGF mission** by creating **open-so
 
 ---
 
-### 🛠 Supporting Web3 Integrations
-
-* **Bandada + Semaphore** → Anonymous reporting & group signaling for patient/clinic feedback.
-* **Avail DA + Rollapps** → Data accessibility and no-code/low-code analytics tooling (Avail XLS).
-* **Sindri** → ZKML-based proofs, fraud detection, and AI-powered invoice prioritization.
-* **Aztec Noir (Stealthdrop)** → Anonymous invoice rewards, cashback, and festive vouchers.
-* **ZK Email Wallet** → Enables encrypted DAI/USDC payments, zk-signatures, and account abstraction.
-
----
-
 ### 🎯 Why Optimism + Filecoin/IPFS?
 
 * **Optimism** → Low-cost, fast transactions for healthcare micro-payments, scalable ZK rollups, RetroPGF-aligned public goods.
@@ -84,6 +74,74 @@ Together, they ensure **scalability + persistence** for decentralized healthcare
 
 ---
 
+### 🛠 Supporting Web3 Integrations
+
+* **Bandada + Semaphore** → Anonymous reporting & group signaling for patient/clinic feedback.
+* **Avail DA + Rollapps** → Data accessibility and no-code/low-code analytics tooling (Avail XLS).
+* **Sindri** → ZKML-based proofs, fraud detection, and AI-powered invoice prioritization.
+* **Aztec Noir (Stealthdrop)** → Anonymous invoice rewards, cashback, and festive vouchers.
+* **ZK Email Wallet** → Enables encrypted DAI/USDC payments, zk-signatures, and account abstraction.
+
+# Bandada Semaphore implementation for anonymous feedback reports
+
+We are extending on the Bandada Semaphore implementation to receive anonymous feedback reports by clients, citizens  inside a Semaphore-compatible off-chain groups, store feedback details from both users and government officials on the medical billing errors and incident reports so that they could strategize more productively and do early stage prevention of medical billing errors and incidents.
+
+We are using Bandada with Semaphore to  signal anonymously inside a Semaphore-compatible off-chain groups. We are also developing zksbt tokens to communicate with Bandada SDK.
+
+Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk)
+
+Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/ZK-bandada-module/zksbt-bandada-semaphore
+
+demos and screenshots at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
+
+
+# Avail
+
+We are integrating Avail’s Light Client features with zk Medical wallet that seamlessly works across key Ethereum L2 Blockchains and leverages Zero Knowledge Proofs for Crypto-transactions and Identity proofs.
+
+Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk)
+
+Lib integration at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/android/app
+
+demo, screenshots at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
+
+Avail: We are developing custom rollapps with Avail DA and and tools to enable no code, low code analytics tooling using an open source analytics and visualization tool, namely Avail XLS, which enables tabulation, organization, collaboration, visualization, graphing and charting. 
+
+Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker and https://github.com/seetadev/ZKMedical-Billing/tree/main/zk_validate_verify/avail-da
+
+We are developing tools to enable tracing, monitoring and recording of medical invoices in a scalable manner across an entire supply chain for efficiency and sustainability and benefit the entire medical eco-system on Scroll using Avail for data accessibility layer and Sindri for verification using circom, devops and user security. 
+
+Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk_validate_verify and demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
+
+AIops using Avail and Sindri on Scroll: We are building Avail XLS, an on-chain analytics, visualization tool and also trying to extend the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices. Proof generation using Sindri’s ZKML tooling in Noir.
+
+
+# Sindri
+
+AIops using Sindri on Scroll: We are extending the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices depending upon the status (pending, draft and paid). Proof generation using Sindri’s ZKML tooling in Noir.
+Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk) and demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
+
+Page rank Lib integration at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/android/app
+
+We are also developing tools to enable tracing, monitoring and recording of medical invoices in a scalable manner across an entire supply chain for efficiency and sustainability and benefit the entire medical eco-system using Sindri for verification using circom, devops and user security and Avail for data accessibility layer. 
+
+Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk_validate_verify and demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
+
+
+# Aztech's Stealthdrop implementation in Noir to reward users anonymously
+
+We are extending Aztec’s Stealthdrop implementation in Noir to reward users with cashbacks and gift vouchers in invoices raised in case they exceed an expected range or during yearly festivals.
+Demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
+
+Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk) 
+
+Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/aztech-stealthdrop
+
+---
+
+💬 We are applying to **Filecoin RetroPGF + Optimism RetroPGF** to scale this project into a **global public good**.
+Our vision: **Decentralized, private, and interoperable healthcare for everyone.**
+
 ### 📂 Resources
 
 ### 🌐 Open Source Repositories & Community
@@ -98,8 +156,3 @@ Together, they ensure **scalability + persistence** for decentralized healthcare
 * **ZK Verification Contract** → [Polygon Mumbai](https://mumbai.polygonscan.com/tx/0x88f4b0c54cb35dd5f834a1603c0b2555bdc480afb9f5c8aa52a27d6e0d64739b)
 
 ---
-
-💬 We are applying to **Filecoin RetroPGF + Optimism RetroPGF** to scale this project into a **global public good**.
-Our vision: **Decentralized, private, and interoperable healthcare for everyone.**
-
-
