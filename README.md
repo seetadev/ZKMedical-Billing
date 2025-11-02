@@ -1,132 +1,161 @@
-# 🏥 MediChain : ZK Medical Billing & Decentralized Healthcare on Filecoin
+# 🩺 OP Medicine on Filecoin
+
+### Verifiable, Decentralized, and Affordable Healthcare Infrastructure
 
 **Built on Filecoin/IPFS, Optimism & EVM Chains**
+*Empowering developers to build open, verifiable, and privacy-preserving healthcare applications.*
 
 ---
 
-### 🚀 Project Overview
+## 🎯 Mission
 
-**MediChain** is a **Filecoin-powered decentralized healthcare and medical billing protocol** that leverages **Zero-Knowledge Proofs (ZKPs)**, **Optimism L2 scalability**, and **IPFS-based data persistence** to bring transparency, privacy, and efficiency to global healthcare systems.
+**OP Medicine** is building the **Web3 healthcare backbone** — powered by **Filecoin’s verifiable storage** and **Optimism’s scalable execution** — to make **personalized medicine affordable, transparent, and decentralized**.
 
-By anchoring healthcare data, invoices, and analytics on **Filecoin**, MediChain enables **verifiable, censorship-resistant, and patient-owned records**, bridging the gap between Web3 storage and real-world medical infrastructure.
-
-Our vision aligns with **Filecoin’s mission of verifiable storage and compute over data**, and **Optimism’s RetroPGF program** for building open-source public goods that advance financial inclusion and digital trust in healthcare.
+We develop **open-source developer tools** for medical data pipelines, billing systems, and clinical trials, enabling researchers, healthcare providers, and civic bodies to build trustless, patient-centric solutions.
 
 ---
 
-### 🔗 Core Components
+## 🧬 Overview
 
-#### 🪙 1. Medi ERC-20 Utility Token
+Since November 2024, **OP Medicine** has powered **two Code for GovTech healthcare pilots** — deploying **Filecoin-based smart contracts**, **token-gated data systems**, and **decentralized billing modules** across civic and academic ecosystems.
 
-* Native **utility token for healthcare transactions** and data access.
-* Integrated with **Filecoin/IPFS** for decentralized identity, access control, and health record anchoring.
-* Supports **staking, rewards, and governance** mechanisms across clinics and institutions.
-  ➡️ [Medi Token Repository](https://github.com/seetadev/ZKMedical-Billing/tree/main/Medi_Token)
+Our core platform, **EMTTR (Electronic Medicine Trial and Test Records)**, provides verifiable medical data pipelines on Filecoin — connecting hospitals, insurers, and researchers through **transparent and programmable storage**.
 
----
-
-#### 🧾 2. PPT Medical Invoice Token (on Filecoin)
-
-* Filecoin-deployed ERC-20 token representing **verifiable medical invoices**.
-* Stores invoice metadata and encrypted ZK proofs on **IPFS/Filecoin**.
-* Enables **immutable, auditable, and long-term storage** of billing records.
-* Powers Filecoin-native **data verification workflows** for insurance and healthcare audits.
-
-**Deployments:**
-
-* **PPT Token (Filecoin):** [View on Filfox](https://filfox.info/en/address/0xC00BBC9A2C88712dC1e094866973F036373C7134)
-* **Sushiswap Pool (Filecoin):** [Liquidity Pool](https://calibration.filfox.info/en/address/0xb84A2bC5Dd76BcD6548022Ac86e77b84acB94A87)
-* **Medical Invoice Contract:** [View on Filfox](https://filfox.info/en/address/0x08bacb51f405a2D793E4F4BE53Ca2B3C8b8cF0CA)
-* **Storage Subscription Module:** [View on Filfox](https://filfox.info/en/address/0xb0Bda1Ad964a55ACB077587e42BDfeC587D7e520)
-* **Optimism Mirror Token:** [View on Etherscan](https://optimistic.etherscan.io/address/0xa9c14d3e8ece4d924a4a4a819088f982b55f6734)
+🔗 Public mention: [Twitter Thread – Oct 2025](https://twitter.com/OP_medicine_DAO/status/1842251833445912126)
 
 ---
 
-#### 🧩 3. ZK Medical Billing System
+## 💾 Built on Filecoin & Optimism
 
-* Built on **Optimism, Polygon zkEVM, and Scroll**.
-* Uses **Circom/Noir-based ZK circuits** for **confidential medical billing verification**.
-* Integrates **Sindri’s ZKML tooling** for **on-chain AI validation and fraud detection**.
-* Bridges verified proofs to **Filecoin FVM smart contracts** for permanent attestation.
-
----
-
-#### 📦 4. Filecoin/IPFS Data Layer
-
-* Patient data, medical invoices, and diagnostics stored as **IPLD objects** on **IPFS**.
-* **Filecoin** ensures persistence, redundancy, and cryptographic verifiability.
-* Enables **Compute-over-Data (CoD)** scenarios — such as batch analysis, fraud detection, and anonymized medical research.
-* Compatible with **FVM smart contracts** for data lifecycle management.
+| Layer                     | Role                                          | Impact                                                 |
+| ------------------------- | --------------------------------------------- | ------------------------------------------------------ |
+| **Filecoin/IPFS**         | Long-term verifiable data storage             | Persistent medical records, trial data, and invoices   |
+| **FVM**                   | Smart contract execution over verifiable data | Automated claims, subscriptions, and audit trails      |
+| **Optimism**              | Fast and low-cost L2 scalability              | Enables cross-chain healthcare applications            |
+| **Storacha / Lighthouse** | Filecoin storage providers                    | HIPAA-aligned decentralized storage for medical assets |
 
 ---
 
-#### 💻 5. Web3 Healthcare DApp
+## ⚙️ Core Components
 
-* React + Vercel interface for **patients, doctors, insurers, and researchers**.
-* Token-gated access to decentralized health records and billing dashboards.
-* Integrates **Filecoin storage providers**, **NFT-based medical credentials**, and **ZK wallets**.
-  ➡️ [Live Demo](https://op-medicine-pylibp2p.vercel.app/)
+### 🧾 1. EMTTR – Filecoin Trial & Test Records
 
----
+Decentralized service for **electronic medicine trial and test records**.
+Provides developers APIs to build **verifiable health and trial data pipelines** with Filecoin persistence.
 
-### 🧠 Why Filecoin/IPFS + Optimism?
+* Supports **Filecoin FVM storage proofs** for each trial dataset
+* Provides **token-gated access** via PPT and Medi tokens
+* Integrated with **Storacha** for decentralized file verification
 
-| Layer             | Role                                          | Advantage                                                      |
-| ----------------- | --------------------------------------------- | -------------------------------------------------------------- |
-| **Filecoin/IPFS** | Storage, verification, and data integrity     | Long-term, decentralized health record persistence             |
-| **Optimism**      | Fast, low-cost L2 execution                   | Scalable healthcare microtransactions                          |
-| **FVM**           | Smart contract execution over verifiable data | Enables data DAOs, medical claim automation, and CoD analytics |
-
-Together, these systems enable **privacy-preserving, persistent, and globally scalable healthcare infrastructure**.
+➡️ [EMTTR Developer Portal](https://emttr-deploy.vercel.app)
 
 ---
 
-### 📊 Key Outcomes & Impact
+### 🪙 2. PPT Token (Prescription & Payment Token)
 
-✅ **Filecoin-based verifiable medical billing** with ZK proofs
-✅ **Patient-owned data economy** with Filecoin/IPFS persistence
-✅ **ZKML-powered anomaly detection** and billing transparency
-✅ **Optimism + Filecoin cross-chain interoperability**
-✅ **Public-good infrastructure** for digital health ecosystems
+ERC-20 token deployed on Filecoin & Optimism for **medical billing and data access**.
 
----
+| Contract             | Network  | Explorer                                                                                        |
+| -------------------- | -------- | ----------------------------------------------------------------------------------------------- |
+| PPT Token            | Filecoin | [Filfox](https://filfox.info/en/address/0xC00BBC9A2C88712dC1e094866973F036373C7134)             |
+| Medical Invoice      | Filecoin | [Filfox](https://filfox.info/en/address/0x08bacb51f405a2D793E4F4BE53Ca2B3C8b8cF0CA)             |
+| Storage Subscription | Filecoin | [Filfox](https://filfox.info/en/address/0xb0Bda1Ad964a55ACB077587e42BDfeC587D7e520)             |
+| PPT Mirror Token     | Optimism | [Etherscan](https://optimistic.etherscan.io/address/0xa9c14d3e8ece4d924a4a4a819088f982b55f6734) |
 
-### 🔧 Supporting Integrations
-
-* **Bandada + Semaphore** → Anonymous patient feedback loops (stored on Filecoin)
-* **Avail DA + Rollapps** → Open-source analytics (“Avail XLS”) for Filecoin datasets
-* **Sindri ZKML** → AI-powered proof generation for fraud and anomaly detection
-* **Aztec Noir (Stealthdrop)** → Privacy-preserving patient incentives
-* **ZK Email Wallets** → Encrypted EVM-compatible payments and verifiable credentials
+💧 [SushiSwap Liquidity Pool (Filecoin)](https://calibration.filfox.info/en/address/0xb84A2bC5Dd76BcD6548022Ac86e77b84acB94A87)
 
 ---
 
-### 🌍 Filecoin Ecosystem Relevance
+### 🔐 3. Privacy-Preserving Medical Billing (ZK Module)
 
-MediChain contributes to the Filecoin ecosystem by:
+OP Medicine integrates with the
+[**ZKMedical-Billing** repository](https://github.com/seetadev/ZKMedical-Billing)
+for privacy-first and fraud-resistant medical billing:
 
-* **Expanding real-world data onboarding** for healthcare institutions.
-* Demonstrating **Compute-over-Data** with ZK-based validation and AI-powered insights.
-* Utilizing **FVM smart contracts** for claim verification and decentralized access control.
-* Creating an **open-source medical data layer** for Filecoin-powered innovation.
+* **Circom/Noir-based ZK proofs** for invoice validation
+* **Sindri ZKML** for on-chain fraud and anomaly detection
+* Bridges verified proofs to **Filecoin FVM contracts**
+* Anchors all records on **IPFS/Filecoin** for immutable auditability
 
-We aim to collaborate with **Filecoin SPs, FVM developers, and health data DAOs** to scale MediChain globally.
-
----
-
-### 💬 Ecosystem Alignment
-
-MediChain is applying to **Filecoin RetroPGF** and **Optimism RetroPGF** to scale open-source healthcare infrastructure as a **global public good**.
-
-> Our goal: **Verifiable, private, and interoperable healthcare — secured by Filecoin.**
+This dependency provides ZK verification for OP Medicine’s billing and subscription workflows.
 
 ---
 
-### 📂 Resources
+### 💻 4. Developer-Facing Web3 Stack
 
-* **GitHub:** [aspiringsecurity/EMTTR](https://github.com/aspiringsecurity/EMTTR)
-* **Filecoin Deployments & RetroPGF Docs:** [View Details](https://github.com/aspiringsecurity/EMTTR/blob/main/Filecoin-RetroPGF.md#-deployments--adoption)
-* **OSS Portal:** [emttr-deploy.vercel.app](https://emttr-deploy.vercel.app/)
-* **Community Page:** [Google Sites](https://sites.google.com/view/emttrservice/)
-* **Deck & Demo:** [Google Drive](https://drive.google.com/drive/u/5/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG)
+* **React + Ionic DApps** with Filecoin data verification
+* **Token-gated access** for healthcare providers
+* **Lighthouse + Storacha integration** for secure storage
+* **NFT-based credentials** for medical professionals
+
+🔗 Live: [op-medicine-deploy.vercel.app](https://op-medicine-deploy.vercel.app)
+
+---
+
+## 🌍 Deployments & Adoption
+
+* **Code for GovTech (C4GT) 2024–2025:** Open-source Filecoin smart contracts for healthcare transparency
+* **Netaji Subhas University of Technology (NSUT):** Clinical billing & data pipeline pilot
+* **Google Blocktest Prize:** Civic innovation use case for decentralized health data
+* **Gates Foundation Program (Partner Initiative):** Affordable Web3 health infrastructure research
+
+---
+
+## 📊 Community Impact
+
+✅ Filecoin-powered **verifiable medical records**
+✅ Privacy-first **ZK medical billing**
+✅ Tokenized access for **affordable healthcare**
+✅ **Cross-chain interoperability** (Filecoin ↔ Optimism)
+✅ **Open public-good infrastructure** for digital health
+
+📄 [Impact Report (EMTTR × Filecoin)](https://docs.google.com/document/d/1EeDx_V51FxeZzRoFQjIaboOf2HTlVzHRHHEdV1tN0sc/edit?usp=sharing)
+
+---
+
+## 🧠 Why Filecoin Matters for OP Medicine
+
+Filecoin provides the **verifiability layer** needed for healthcare data — ensuring that every record, test result, or invoice stored through OP Medicine is **tamper-proof, auditable, and cryptographically verifiable**.
+
+Through **Compute-over-Data (CoD)** and **FVM smart contracts**, OP Medicine enables:
+
+* AI-assisted medical audits over decentralized data
+* Automated claims verification and reimbursement
+* Transparent medical research pipelines for public health
+
+> 🩺 OP Medicine proves that **Filecoin = the backbone of verifiable healthcare**.
+
+---
+
+## 🧩 Related Repositories
+
+| Repo                                                                                               | Description                                          |
+| -------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [aspiringsecurity/EMTTR](https://github.com/aspiringsecurity/EMTTR)                                | Core Filecoin + Optimism healthcare suite            |
+| [seetadev/ZKMedical-Billing](https://github.com/seetadev/ZKMedical-Billing)                        | ZK verification and billing logic                    |
+| [web3-kyc-lit](https://github.com/seetadev/web3-kyc-lit/tree/dev)                                  | Lit Protocol KYC integration                         |
+| [web3-invoice-token-gated-storacha](https://github.com/seetadev/web3-invoice-token-gated-storacha) | React DApp for Filecoin-based subscription workflows |
+
+---
+
+## 🌐 Links & Resources
+
+* 🧭 **Main Website:** [op-medicine-deploy.vercel.app](https://op-medicine-deploy.vercel.app)
+* 🧩 **Developer Portal:** [emttr-deploy.vercel.app](https://emttr-deploy.vercel.app)
+* 💬 **Community Page:** [Google Sites](https://sites.google.com/view/emttrservice/)
+* 💾 **Filecoin RetroPGF Proposal:** [Filecoin-RetroPGF.md](https://github.com/aspiringsecurity/EMTTR/blob/main/Filecoin-RetroPGF.md)
+* 🧠 **ZK Module:** [ZKMedical-Billing](https://github.com/seetadev/ZKMedical-Billing)
+
+---
+
+### 🫀 Maintainers & Acknowledgments
+
+Built by the **OP Medicine** team with support from:
+
+* 🧩 **Protocol Labs** & **Filecoin Foundation**
+* 🌱 **C4GT grant by Gates Foundation, Omidyar Network & Github** & **Chainlink, Filecoin Impact Rewards, Avail**
+* 🧠 **Code for GovTech (C4GT)** & **NSUT**
+
+> “Making healthcare verifiable, private, and affordable — powered by Filecoin and Optimism.”
+
 
