@@ -1,4 +1,4 @@
-# 🩺 OP Medicine on Filecoin
+# 🩺 ZK Medical Billing Module on Filecoin in OP Medicine 
 
 ### Verifiable, Decentralized, and Affordable Healthcare Infrastructure
 
