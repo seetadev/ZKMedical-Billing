@@ -1,156 +1,132 @@
-# 🏥 MediChain: ZK Medical Billing & Decentralized Healthcare
+# 🏥 MediChain: ZK Medical Billing & Decentralized Healthcare on Filecoin
 
-**On Filecoin/IPFS, Optimism and EVM Chains**
+**Built on Filecoin/IPFS, Optimism & EVM Chains**
+
+---
 
 ### 🚀 Project Overview
 
-MediChain is a **decentralized healthcare and medical billing platform** that uses **Zero-Knowledge Proofs (ZKPs), Optimism’s L2 scalability, and Filecoin/IPFS storage** to bring transparency, privacy, and efficiency to global healthcare systems.
+**MediChain** is a **Filecoin-powered decentralized healthcare and medical billing protocol** that leverages **Zero-Knowledge Proofs (ZKPs)**, **Optimism L2 scalability**, and **IPFS-based data persistence** to bring transparency, privacy, and efficiency to global healthcare systems.
 
-We combine **ERC-20 utility tokens (MEDI + PPT)** with **ZK-based verification, token-gated services, and decentralized storage** to enable a new model of healthcare: secure, patient-owned, interoperable, and globally accessible.
+By anchoring healthcare data, invoices, and analytics on **Filecoin**, MediChain enables **verifiable, censorship-resistant, and patient-owned records**, bridging the gap between Web3 storage and real-world medical infrastructure.
 
-This project aligns with **Optimism’s RetroPGF mission** by creating **open-source public goods** in healthcare and financial inclusion, while leveraging **Filecoin/IPFS** for censorship-resistant data availability.
+Our vision aligns with **Filecoin’s mission of verifiable storage and compute over data**, and **Optimism’s RetroPGF program** for building open-source public goods that advance financial inclusion and digital trust in healthcare.
 
 ---
 
-### 🔗 Key Components
+### 🔗 Core Components
 
-**1️⃣ Medi ERC-20 Utility Token**
+#### 🪙 1. Medi ERC-20 Utility Token
 
-* Deployed on **Filecoin and IPFS**,  **Optimism** and integrated with **Filecoin/IPFS** for persistent, decentralized healthcare storage.
-* Powers **healthcare transactions, access control, incentives, and staking mechanisms**.
-* Used for **identity verification**, **telehealth payments**, and **cross-clinic interoperability**.
+* Native **utility token for healthcare transactions** and data access.
+* Integrated with **Filecoin/IPFS** for decentralized identity, access control, and health record anchoring.
+* Supports **staking, rewards, and governance** mechanisms across clinics and institutions.
   ➡️ [Medi Token Repository](https://github.com/seetadev/ZKMedical-Billing/tree/main/Medi_Token)
 
-**2️⃣ PPT Medical Invoice Token on Filecoin**
+---
 
-* Utility token for **ZK Medical Billing DApp** on Optimism.
-* Enables **invoice saving, versioning, and printing** on-chain.
-* Reduces fraud and preserves **long-term verifiable records** on Filecoin/IPFS.
+#### 🧾 2. PPT Medical Invoice Token (on Filecoin)
+
+* Filecoin-deployed ERC-20 token representing **verifiable medical invoices**.
+* Stores invoice metadata and encrypted ZK proofs on **IPFS/Filecoin**.
+* Enables **immutable, auditable, and long-term storage** of billing records.
+* Powers Filecoin-native **data verification workflows** for insurance and healthcare audits.
+
+**Deployments:**
 
 * **PPT Token (Filecoin):** [View on Filfox](https://filfox.info/en/address/0xC00BBC9A2C88712dC1e094866973F036373C7134)
-* **Sushiswap Listing (Filecoin):** [Liquidity Pool](https://calibration.filfox.info/en/address/0xb84A2bC5Dd76BcD6548022Ac86e77b84acB94A87)
-* **Medical Invoice Contract (Filecoin):** [View on Filfox](https://filfox.info/en/address/0x08bacb51f405a2D793E4F4BE53Ca2B3C8b8cF0CA)
-* **Filecoin Storage Subscription Module:** [View on Filfox](https://filfox.info/en/address/0xb0Bda1Ad964a55ACB077587e42BDfeC587D7e520)
-* **PPT Token (Optimism):** [View on Etherscan](https://optimistic.etherscan.io/address/0xa9c14d3e8ece4d924a4a4a819088f982b55f6734)
-  
-➡️ [PPT Token on Optimism Mainnet](https://optimistic.etherscan.io/address/0xa9c14d3e8ece4d924a4a4a819088f982b55f6734)
+* **Sushiswap Pool (Filecoin):** [Liquidity Pool](https://calibration.filfox.info/en/address/0xb84A2bC5Dd76BcD6548022Ac86e77b84acB94A87)
+* **Medical Invoice Contract:** [View on Filfox](https://filfox.info/en/address/0x08bacb51f405a2D793E4F4BE53Ca2B3C8b8cF0CA)
+* **Storage Subscription Module:** [View on Filfox](https://filfox.info/en/address/0xb0Bda1Ad964a55ACB077587e42BDfeC587D7e520)
+* **Optimism Mirror Token:** [View on Etherscan](https://optimistic.etherscan.io/address/0xa9c14d3e8ece4d924a4a4a819088f982b55f6734)
 
+---
 
-**3️⃣ ZK Medical Billing System**
+#### 🧩 3. ZK Medical Billing System
 
 * Built on **Optimism, Polygon zkEVM, and Scroll**.
-* Uses **circom/noir-based ZK circuits** for **confidential invoice verification**.
-* Integrates **Sindri’s ZKML tooling** for analytics, proof generation, and anomaly detection.
-
-**4️⃣ Filecoin/IPFS Integration**
-
-* Medical records, invoices, and diagnostics stored on **IPFS** for distributed availability.
-* Long-term archival with **Filecoin** ensures **persistence, auditability, and low-cost redundancy**.
-
-**5️⃣ Web3 DApp**
-
-* **React-based decentralized application** for patients, doctors, and researchers.
-* Features **token-gated healthcare marketplace**, NFT-based IDs, and verifiable credentials.
-* Deployed with **Optimism + Vercel**.
-  ➡️ [Demo Deployment](https://op-medicine-pylibp2p.vercel.app/)
+* Uses **Circom/Noir-based ZK circuits** for **confidential medical billing verification**.
+* Integrates **Sindri’s ZKML tooling** for **on-chain AI validation and fraud detection**.
+* Bridges verified proofs to **Filecoin FVM smart contracts** for permanent attestation.
 
 ---
 
-### 🎯 Why Optimism + Filecoin/IPFS?
+#### 📦 4. Filecoin/IPFS Data Layer
 
-* **Optimism** → Low-cost, fast transactions for healthcare micro-payments, scalable ZK rollups, RetroPGF-aligned public goods.
-* **Filecoin/IPFS** → Resilient, censorship-resistant storage of medical data, invoices, and diagnostics.
-
-Together, they ensure **scalability + persistence** for decentralized healthcare systems.
-
----
-
-### 📌 Key Outcomes & Impact
-
-✅ Transparent, fraud-resistant **medical billing** with ZK proofs.
-✅ Empowering patients with **self-sovereign, Filecoin-stored health data**.
-✅ Lowering healthcare costs through **Optimism L2 microtransactions**.
-✅ Expanding **Web3 public goods** in a global industry worth trillions.
+* Patient data, medical invoices, and diagnostics stored as **IPLD objects** on **IPFS**.
+* **Filecoin** ensures persistence, redundancy, and cryptographic verifiability.
+* Enables **Compute-over-Data (CoD)** scenarios — such as batch analysis, fraud detection, and anonymized medical research.
+* Compatible with **FVM smart contracts** for data lifecycle management.
 
 ---
 
-### 🛠 Supporting Web3 Integrations
+#### 💻 5. Web3 Healthcare DApp
 
-* **Bandada + Semaphore** → Anonymous reporting & group signaling for patient/clinic feedback.
-* **Avail DA + Rollapps** → Data accessibility and no-code/low-code analytics tooling (Avail XLS).
-* **Sindri** → ZKML-based proofs, fraud detection, and AI-powered invoice prioritization.
-* **Aztec Noir (Stealthdrop)** → Anonymous invoice rewards, cashback, and festive vouchers.
-* **ZK Email Wallet** → Enables encrypted DAI/USDC payments, zk-signatures, and account abstraction.
-
-# Bandada Semaphore implementation for anonymous feedback reports
-
-We are extending on the Bandada Semaphore implementation to receive anonymous feedback reports by clients, citizens  inside a Semaphore-compatible off-chain groups, store feedback details from both users and government officials on the medical billing errors and incident reports so that they could strategize more productively and do early stage prevention of medical billing errors and incidents.
-
-We are using Bandada with Semaphore to  signal anonymously inside a Semaphore-compatible off-chain groups. We are also developing zksbt tokens to communicate with Bandada SDK.
-
-Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk)
-
-Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/ZK-bandada-module/zksbt-bandada-semaphore
-
-demos and screenshots at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
-
-
-# Avail
-
-We are integrating Avail’s Light Client features with zk Medical wallet that seamlessly works across key Ethereum L2 Blockchains and leverages Zero Knowledge Proofs for Crypto-transactions and Identity proofs.
-
-Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk)
-
-Lib integration at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/android/app
-
-demo, screenshots at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
-
-Avail: We are developing custom rollapps with Avail DA and and tools to enable no code, low code analytics tooling using an open source analytics and visualization tool, namely Avail XLS, which enables tabulation, organization, collaboration, visualization, graphing and charting. 
-
-Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker and https://github.com/seetadev/ZKMedical-Billing/tree/main/zk_validate_verify/avail-da
-
-We are developing tools to enable tracing, monitoring and recording of medical invoices in a scalable manner across an entire supply chain for efficiency and sustainability and benefit the entire medical eco-system on Scroll using Avail for data accessibility layer and Sindri for verification using circom, devops and user security. 
-
-Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk_validate_verify and demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
-
-AIops using Avail and Sindri on Scroll: We are building Avail XLS, an on-chain analytics, visualization tool and also trying to extend the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices. Proof generation using Sindri’s ZKML tooling in Noir.
-
-
-# Sindri
-
-AIops using Sindri on Scroll: We are extending the implementation of Page Rank Algorithm by Sindri to prioritize the ranking of actions (pending, draft and paid) to be undertaken on invoices depending upon the status (pending, draft and paid). Proof generation using Sindri’s ZKML tooling in Noir.
-Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk) and demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
-
-Page rank Lib integration at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/android/app
-
-We are also developing tools to enable tracing, monitoring and recording of medical invoices in a scalable manner across an entire supply chain for efficiency and sustainability and benefit the entire medical eco-system using Sindri for verification using circom, devops and user security and Avail for data accessibility layer. 
-
-Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk_validate_verify and demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
-
-
-# Aztech's Stealthdrop implementation in Noir to reward users anonymously
-
-We are extending Aztec’s Stealthdrop implementation in Noir to reward users with cashbacks and gift vouchers in invoices raised in case they exceed an expected range or during yearly festivals.
-Demo at https://drive.google.com/drive/u/1/folders/1MS_uLsmDUNcdgugJZqOCQFUC7GMqFdOt
-
-Android version at https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker (please download tablet.apk) 
-
-Link: https://github.com/seetadev/ZKMedical-Billing/tree/main/zk-medical-billing-tracker/aztech-stealthdrop
+* React + Vercel interface for **patients, doctors, insurers, and researchers**.
+* Token-gated access to decentralized health records and billing dashboards.
+* Integrates **Filecoin storage providers**, **NFT-based medical credentials**, and **ZK wallets**.
+  ➡️ [Live Demo](https://op-medicine-pylibp2p.vercel.app/)
 
 ---
 
-💬 We are applying to **Filecoin RetroPGF + Optimism RetroPGF** to scale this project into a **global public good**.
-Our vision: **Decentralized, private, and interoperable healthcare for everyone.**
+### 🧠 Why Filecoin/IPFS + Optimism?
+
+| Layer             | Role                                          | Advantage                                                      |
+| ----------------- | --------------------------------------------- | -------------------------------------------------------------- |
+| **Filecoin/IPFS** | Storage, verification, and data integrity     | Long-term, decentralized health record persistence             |
+| **Optimism**      | Fast, low-cost L2 execution                   | Scalable healthcare microtransactions                          |
+| **FVM**           | Smart contract execution over verifiable data | Enables data DAOs, medical claim automation, and CoD analytics |
+
+Together, these systems enable **privacy-preserving, persistent, and globally scalable healthcare infrastructure**.
+
+---
+
+### 📊 Key Outcomes & Impact
+
+✅ **Filecoin-based verifiable medical billing** with ZK proofs
+✅ **Patient-owned data economy** with Filecoin/IPFS persistence
+✅ **ZKML-powered anomaly detection** and billing transparency
+✅ **Optimism + Filecoin cross-chain interoperability**
+✅ **Public-good infrastructure** for digital health ecosystems
+
+---
+
+### 🔧 Supporting Integrations
+
+* **Bandada + Semaphore** → Anonymous patient feedback loops (stored on Filecoin)
+* **Avail DA + Rollapps** → Open-source analytics (“Avail XLS”) for Filecoin datasets
+* **Sindri ZKML** → AI-powered proof generation for fraud and anomaly detection
+* **Aztec Noir (Stealthdrop)** → Privacy-preserving patient incentives
+* **ZK Email Wallets** → Encrypted EVM-compatible payments and verifiable credentials
+
+---
+
+### 🌍 Filecoin Ecosystem Relevance
+
+MediChain contributes to the Filecoin ecosystem by:
+
+* **Expanding real-world data onboarding** for healthcare institutions.
+* Demonstrating **Compute-over-Data** with ZK-based validation and AI-powered insights.
+* Utilizing **FVM smart contracts** for claim verification and decentralized access control.
+* Creating an **open-source medical data layer** for Filecoin-powered innovation.
+
+We aim to collaborate with **Filecoin SPs, FVM developers, and health data DAOs** to scale MediChain globally.
+
+---
+
+### 💬 Ecosystem Alignment
+
+MediChain is applying to **Filecoin RetroPGF** and **Optimism RetroPGF** to scale open-source healthcare infrastructure as a **global public good**.
+
+> Our goal: **Verifiable, private, and interoperable healthcare — secured by Filecoin.**
+
+---
 
 ### 📂 Resources
 
-### 🌐 Open Source Repositories & Community
+* **GitHub:** [aspiringsecurity/EMTTR](https://github.com/aspiringsecurity/EMTTR)
+* **Filecoin Deployments & RetroPGF Docs:** [View Details](https://github.com/aspiringsecurity/EMTTR/blob/main/Filecoin-RetroPGF.md#-deployments--adoption)
+* **OSS Portal:** [emttr-deploy.vercel.app](https://emttr-deploy.vercel.app/)
+* **Community Page:** [Google Sites](https://sites.google.com/view/emttrservice/)
+* **Deck & Demo:** [Google Drive](https://drive.google.com/drive/u/5/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG)
 
-* **GitHub Repository:** [aspiringsecurity/EMTTR](https://github.com/aspiringsecurity/EMTTR)
-* **Filecoin Mainnet & Sushiswap Deployments:** [Deployment Details](https://github.com/aspiringsecurity/EMTTR/blob/main/Filecoin-RetroPGF.md#-deployments--adoption)
-* **OSS Developer Page:** [emttr-deploy.vercel.app](https://emttr-deploy.vercel.app/)
-* **OSS Community Page:** [Google Sites](https://sites.google.com/view/emttrservice/)
-
-* **Community Deck & Demo** → [Google Drive](https://drive.google.com/drive/u/5/folders/1ujDwzGw_chF3PYNK8tgcLmS6l9DRJxJG)
-* **Testimonials** → [Demo Site](https://op-medicine-pylibp2p.vercel.app/testimonials)
----
