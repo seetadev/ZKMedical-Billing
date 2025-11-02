@@ -1,8 +1,8 @@
-# 🩺 ZK Medical Billing Module on Filecoin in OP Medicine 
+# 🩺 ZK Medical Billing Module on Filecoin, Optimism and Starknet
 
 ### Verifiable, Decentralized, and Affordable Healthcare Infrastructure
 
-**Built on Filecoin/IPFS, Optimism & EVM Chains**
+**Built on Filecoin/IPFS, Optimism, Starknet & EVM Chains**
 *Empowering developers to build open, verifiable, and privacy-preserving healthcare applications.*
 
 ---
