@@ -1,4 +1,4 @@
-# 🏥 MediChain: ZK Medical Billing & Decentralized Healthcare on Filecoin
+# 🏥 MediChain : ZK Medical Billing & Decentralized Healthcare on Filecoin
 
 **Built on Filecoin/IPFS, Optimism & EVM Chains**
 
