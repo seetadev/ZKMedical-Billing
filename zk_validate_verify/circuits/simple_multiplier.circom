@@ -8,51 +8,22 @@ template SimpleMultiplier() {
 
     // Output signal (public)
     signal output out;
-
-    // Create a constraint here saying that our two input signals cannot
-    // equal each other.
-    component isz = IsZero();
-    isz.in <== in[0] - in[1];
-
-    // The IsZero component returns 1 if the input is 0, or 0 otherwise.
-    isz.out === 0;
-
-    // Define the greater than and less than components that we'll define 
-    // inside the for loop below.
-    component gte[2];
-    component lte[2];
     
-    // We loop through the two signals to compare them.
-    for (var i = 0; i < 2; i++) {
-        // Both the LessEqThan and GreaterEqThan components take number of 
-        // bits as an input. In this case, we want to ensure our inputs are 
-        // [0,5], which requires 3 bits (101).
-        lte[i] = LessEqThan(3);
+  // Interpret inputs:
+  // in[0] = treatment_cost
+  // in[1] = insurance_limit
 
-        // We put our circuit's input signal as the input signal to the 
-        // LessEqThan component and compare it against 5.
-        lte[i].in[0] <== in[i];
-        lte[i].in[1] <== 5;
+// Constraint: treatment_cost <= insurance_limit
 
-        // The LessEqThan component outputs a 1 if the evaluation is true, 
-        // 0 otherwise, so we create this equality constraint.
-        lte[i].out === 1;
+component lte_check = LessEqThan(8);
+lte_check.in[0] <== in[0];
+lte_check.in[1] <== in[1];
 
-        // We do the same with GreaterEqThan, and also require 3 bits since
-        // the range of inputs is still [0,5].
-        gte[i] = GreaterEqThan(3);
+// Enforce constraint
+lte_check.out === 1;
 
-        // Compare our input with 0 
-        gte[i].in[0] <== in[i];
-        gte[i].in[1] <== 0;
-
-        // The GreaterEqThan component outputs a 1 if the evaluation is true, 
-        // 0 otherwise, so we create this equality constraint.
-        gte[i].out === 1;
-    }
-
-    // Write a * b into c and then constrain c to be equal to a * b.
-    out <== in[0] * in[1];
+// Output can simply reflect treatment_cost
+out <== in[0];
 }
 
 component main = SimpleMultiplier();
