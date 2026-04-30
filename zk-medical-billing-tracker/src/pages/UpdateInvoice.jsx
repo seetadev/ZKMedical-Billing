@@ -303,10 +303,7 @@ export default function UpdateInvoice() {
                   type="text"
                   value={item.name}
                   onChange={(e) => {
-                    const prevElement = item;
-                    prevElement.name = e.target.value;
-                    items[i] = prevElement;
-                    setItems([...items]);
+                    setItems(items.map((it, idx) => idx === i ? { ...it, name: e.target.value } : it));
                   }}
                 />
                 <Input
@@ -317,12 +314,8 @@ export default function UpdateInvoice() {
                   type="number"
                   value={item.quantity}
                   onChange={(e) => {
-                    const prevElement = item;
-                    prevElement.quantity = parseInt(e.target.value);
-                    prevElement.total =
-                      prevElement.price * prevElement.quantity;
-                    items[i] = prevElement;
-                    setItems([...items]);
+                    const qty = parseInt(e.target.value) || 0;
+                    setItems(items.map((it, idx) => idx === i ? { ...it, quantity: qty, total: it.price * qty } : it));
                   }}
                 />
                 <Input
@@ -333,12 +326,8 @@ export default function UpdateInvoice() {
                   type="number"
                   value={item.price}
                   onChange={(e) => {
-                    const prevElement = item;
-                    prevElement.price = parseFloat(e.target.value);
-                    prevElement.total =
-                      prevElement.price * prevElement.quantity;
-                    items[i] = prevElement;
-                    setItems([...items]);
+                    const price = parseFloat(e.target.value) || 0;
+                    setItems(items.map((it, idx) => idx === i ? { ...it, price, total: price * it.quantity } : it));
                   }}
                 />
                 <Input
