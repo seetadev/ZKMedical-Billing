@@ -1,129 +1,180 @@
-import Head from 'next/head'
-import Link from 'next/link';
-import { useState } from 'react';
-import { Stack, Text, Title, Grid, Input, Button, Group, Space } from '@mantine/core'
-import axios, { AxiosRequestConfig } from 'axios';
-import { useAccount } from 'wagmi';
+import Head from "next/head";
+import { useState } from "react";
+import {
+    Stack,
+    Text,
+    Title,
+    Grid,
+    NumberInput,
+    Button,
+    Group,
+    Space,
+    TextInput,
+    Divider,
+    Badge,
+    Alert,
+} from "@mantine/core";
+import axios, { AxiosRequestConfig } from "axios";
+import { useAccount } from "wagmi";
 import { notifications } from "@mantine/notifications";
-import { ConnectWalletButton } from '@/components/ConnectWalletButton';
-import { executeTransaction } from '@/lib/executeTransaction';
+import { ConnectWalletButton } from "@/components/ConnectWalletButton";
+import { executeTransaction } from "@/lib/executeTransaction";
+import { IconInfoCircle } from "@tabler/icons-react";
+
+const NUM_ITEMS = 5;
+
+const defaultItems = Array(NUM_ITEMS).fill(0);
 
 export default function Home() {
-  const [input0, setInput0] = useState("");
-  const [input1, setInput1] = useState("");
-  const { isConnected } = useAccount();
-  
-  const handleGenerateProofSendTransaction = async (e: any) => {
-    e.preventDefault();
-    
-    // We will send an HTTP request with our inputs to our next.js backend to 
-    // request a proof to be generated.
-    const data = {
-      input0,
-      input1,
-    }
-    const config: AxiosRequestConfig = {
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }
+    const [itemCosts, setItemCosts] = useState<number[]>(defaultItems);
+    const [insuranceCoverage, setInsuranceCoverage] = useState<number>(0);
+    const [patientContribution, setPatientContribution] = useState<number>(0);
+    const { isConnected } = useAccount();
 
-    // Send the HTTP request
-    try {
-      const res = await axios.post("/api/generate_proof", data, config);
-      notifications.show({
-        message: "Proof generated successfully! Submitting transaction...",
-        color: "green",
-      });
+    const treatmentTotal = itemCosts.reduce((a, b) => a + b, 0);
+    const coverageSum = insuranceCoverage + patientContribution;
+    const isBalanced = coverageSum === treatmentTotal;
+    const hasItems = treatmentTotal > 0;
 
-      // Split out the proof and public signals from the response data
-      const { proof, publicSignals } = res.data;
+    const updateItem = (index: number, value: number) => {
+        setItemCosts((prev) => prev.map((v, i) => (i === index ? value : v)));
+    };
 
-      // Write the transaction
-      const txResult = await executeTransaction(proof, publicSignals);
-      const txHash = txResult.transactionHash;
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
 
-      notifications.show({
-        message: `Transaction succeeded! Tx Hash: ${txHash}`,
-        color: "green",
-        autoClose: false,
-      });
-    } catch (err: any) {
-      const statusCode = err?.response?.status;
-      const errorMsg = err?.response?.data?.error;
-      notifications.show({
-        message: `Error ${statusCode}: ${errorMsg}`,
-        color: "red",
-      });
-    }
-  }
+        if (!isBalanced) {
+            notifications.show({
+                message: `Insurance + Patient (${coverageSum}) must equal Treatment Total (${treatmentTotal})`,
+                color: "red",
+            });
+            return;
+        }
 
-  // Only allow submit if the user first connects their wallet
-  const renderSubmitButton = () => {
-    if (!isConnected) {
-      return <ConnectWalletButton />
-    }
+        const data = { itemCosts, treatmentTotal, insuranceCoverage, patientContribution };
+        const config: AxiosRequestConfig = { headers: { "Content-Type": "application/json" } };
+
+        try {
+            const res = await axios.post("/api/generate_proof", data, config);
+            notifications.show({
+                message: "Proof generated successfully! Submitting transaction…",
+                color: "green",
+            });
+
+            const { proof, publicSignals } = res.data;
+            const txResult = await executeTransaction(proof, publicSignals);
+
+            notifications.show({
+                message: `Transaction succeeded! Tx Hash: ${txResult.transactionHash}`,
+                color: "green",
+                autoClose: false,
+            });
+        } catch (err: any) {
+            notifications.show({
+                message: `Error ${err?.response?.status}: ${err?.response?.data?.error}`,
+                color: "red",
+            });
+        }
+    };
+
     return (
-      <Button type="submit">Generate Proof & Send Transaction</Button>
-    )
-  }
+        <>
+            <Head>
+                <title>ZK Medical Invoice Verifier</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
 
-  return (
-    <>
-      <Head>
-        <title>ZK Simple Multiplier</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Stack justify="center" align="center" w="100vw" h="100vh" spacing={0}>
-        <Stack align="center" spacing={0}>
-          <Group w="96vw" h="10vh" position="apart" align="center">
-            <Title order={3}>
-              ZK Medical Invoice Verification (Daily)
-            </Title>
-            <ConnectWalletButton />
-          </Group>
-          <Grid align="center" justify="center" mih="80vh">
-            <Grid.Col sm={8} md={6} lg={4}>
-              <Text>
-                <Text>
-                {"Input the upper and lower threshold values of total medical invoices received in zk medical billing. The two values must \
-                represent the range of expected net value of medical invoices to be received daily. We'll generate a ZK proof \
-                locally in the browser and only only the proof will be sent to the blockchain so that no one \
-                watching the blockchain will know the range of values for medical invoices."}
-              </Text>
-              </Text>
-              <Space h={20} />
-              <form onSubmit={handleGenerateProofSendTransaction}>
-                <Stack spacing="sm">
-                  <Input.Wrapper label="Input 0">
-                    <Input 
-                      placeholder="Number between 0 and 5" 
-                      value={input0} 
-                      onChange={(e) => setInput0(e.currentTarget.value)}
-                    />
-                  </Input.Wrapper>
-                  <Input.Wrapper label="Input 1">
-                  <Input 
-                      placeholder="Number between 0 and 5" 
-                      value={input1} 
-                      onChange={(e) => setInput1(e.currentTarget.value)}
-                    />
-                  </Input.Wrapper>
-                  <Space h={10} />
-                  { renderSubmitButton() }
-                </Stack>
-              </form>
-            </Grid.Col>
-          </Grid>
-          <Group w="96vw" h="10vh" position="center" align="center">
-            <Link href="https://medium.com/@yujiangtham/writing-a-zero-knowledge-dapp-fd7f936e2d43">
-              <Text>
-                References
-              </Text>
-            </Link>
-          </Group>
-        </Stack>
-      </Stack>
-    </>
-  )
+            <Stack justify="center" align="center" w="100vw" mih="100vh" spacing={0} p="md">
+                <Group w="96vw" h="10vh" position="apart" align="center">
+                    <Title order={3}>ZK Medical Invoice Verifier</Title>
+                    <ConnectWalletButton />
+                </Group>
+
+                <Grid w="96vw" justify="center">
+                    <Grid.Col sm={10} md={8} lg={6}>
+                        <Alert icon={<IconInfoCircle />} color="blue" mb="md">
+                            Enter line-item costs and the insurance/patient split. A zero-knowledge
+                            proof is generated locally — only the total claim amount is revealed
+                            on-chain. Individual costs and the coverage split remain private.
+                        </Alert>
+
+                        <form onSubmit={handleSubmit}>
+                            <Stack spacing="sm">
+                                {/* Line items */}
+                                <Text weight={600}>Line Items (in cents)</Text>
+                                {itemCosts.map((val, i) => (
+                                    <NumberInput
+                                        key={i}
+                                        label={`Item ${i + 1}`}
+                                        placeholder="0"
+                                        min={0}
+                                        value={val}
+                                        onChange={(v) => updateItem(i, v ?? 0)}
+                                    />
+                                ))}
+
+                                <Divider my="xs" />
+
+                                {/* Totals */}
+                                <Group position="apart">
+                                    <Text size="sm" color="dimmed">
+                                        Treatment Total
+                                    </Text>
+                                    <Badge size="lg" variant="filled" color="blue">
+                                        {treatmentTotal} cents
+                                    </Badge>
+                                </Group>
+
+                                <Divider my="xs" />
+
+                                {/* Coverage split */}
+                                <Text weight={600}>Coverage Split (must sum to Treatment Total)</Text>
+                                <NumberInput
+                                    label="Insurance Coverage (cents)"
+                                    placeholder="0"
+                                    min={0}
+                                    value={insuranceCoverage}
+                                    onChange={(v) => setInsuranceCoverage(v ?? 0)}
+                                />
+                                <NumberInput
+                                    label="Patient Contribution (cents)"
+                                    placeholder="0"
+                                    min={0}
+                                    value={patientContribution}
+                                    onChange={(v) => setPatientContribution(v ?? 0)}
+                                />
+
+                                <Group position="apart">
+                                    <Text size="sm" color="dimmed">
+                                        Coverage Sum
+                                    </Text>
+                                    <Badge
+                                        size="lg"
+                                        variant="filled"
+                                        color={isBalanced && hasItems ? "green" : "red"}
+                                    >
+                                        {coverageSum} / {treatmentTotal} cents
+                                    </Badge>
+                                </Group>
+
+                                <Space h={10} />
+
+                                {!isConnected ? (
+                                    <ConnectWalletButton />
+                                ) : (
+                                    <Button
+                                        type="submit"
+                                        disabled={!isBalanced || !hasItems}
+                                        fullWidth
+                                    >
+                                        Generate ZK Proof &amp; Submit On-Chain
+                                    </Button>
+                                )}
+                            </Stack>
+                        </form>
+                    </Grid.Col>
+                </Grid>
+            </Stack>
+        </>
+    );
 }
