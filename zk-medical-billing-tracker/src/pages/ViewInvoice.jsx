@@ -225,9 +225,9 @@ export default function ViewInvoice() {
         <Divider className="mt-1 mb-4" />
 
         <div className="flex flex-col gap-6">
-          {items.length &&
+          {items.length > 0 &&
             items.map((item, i) => (
-              <div className="flex gap-8 items-center w-full" key={i}>
+              <div className="flex gap-8 items-center w-full" key={item.name + i}>
                 <span className="min-w-fit bg-[#27272a] flex items-center px-4 rounded-full aspect-square">
                   {i + 1}
                 </span>
@@ -244,6 +244,7 @@ export default function ViewInvoice() {
                   className="w-full rounded-xl"
                   variant="faded"
                   isRequired
+                  readOnly
                   label="Quantity"
                   type="number"
                   value={item.quantity}
@@ -252,6 +253,7 @@ export default function ViewInvoice() {
                   className="w-full rounded-xl"
                   variant="faded"
                   isRequired
+                  readOnly
                   label={`Price (${data?.currencySymbol})`}
                   type="number"
                   value={item.price}
@@ -260,9 +262,9 @@ export default function ViewInvoice() {
                   className="w-full rounded-xl"
                   variant="faded"
                   isRequired
-                  readOnly={true}
+                  readOnly
                   label={`Total (${data?.currencySymbol})`}
-                  value={item.total || item.price * item.value}
+                  value={item.total || item.price * item.quantity}
                 />
               </div>
             ))}
