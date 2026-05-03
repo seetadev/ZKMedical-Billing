@@ -95,7 +95,11 @@ export default function Invoices() {
     return invoices.slice(start, end);
   }, [page, invoices]);
   useEffect(() => {
-    setInvoices(data?.invoices.reverse() || []);
+    // Spread into a new array before reversing so the original array held by
+    // the useData hook is not mutated. Calling .reverse() on the shared
+    // reference would flip the order on the next render, causing invoices to
+    // alternate direction each time the component updates.
+    setInvoices(data?.invoices ? [...data.invoices].reverse() : []);
   }, [data]);
   const refreshData = () =>
     setRefresh((prev) => {
@@ -198,7 +202,10 @@ export default function Invoices() {
         </TableHeader>
         <TableBody items={items}>
           {(item) => (
-            <TableRow key={`${Math.random()}`}>
+            // Use invoice.uid as the key so React can identify each row
+            // across renders. Math.random() would cause every row to unmount
+            // and remount on every update, destroying DOM state unnecessarily.
+            <TableRow key={item.uid}>
               {(columnKey) => (
                 <TableCell>
                   {renderCell(item, columnKey, data.currencySymbol || "₹")}
