@@ -208,6 +208,16 @@ contract DoctorSide is UserSide {
     }
 
     function approveAppointment(uint256 _appId) public {
+        uint256 callerId = userWalletAddresstoUserId[msg.sender];
+        require(userIdtoUser[callerId].userRole == 2, "Only doctors");
+        require(
+        userIdtoUser[callerId].isVerified,
+        "Doctor not verified"
+        );
+    require(
+        appointmentIdtoAppointment[_appId].doctorWalletAddress == msg.sender,
+        "Not your appointment"
+    );
         uint256 doctorId = userWalletAddresstoUserId[
             appointmentIdtoAppointment[_appId].doctorWalletAddress
         ];
