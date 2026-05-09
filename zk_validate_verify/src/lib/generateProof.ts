@@ -2,34 +2,46 @@ import path from "path";
 // @ts-ignore
 import * as snarkjs from 'snarkjs';
 
-export const generateProof = async (input0: number, input1: number): Promise<any> => {
-  console.log(`Generating vote proof with inputs: ${input0}, ${input1}`);
+/**
+ * Generates a ZK-proof for the Simple Multiplier circuit.
+ * Improved with input validation and structured error reporting.
+ */
+export const generateProof = async (input0: number, input1: number): Promise<{ proof: string; publicSignals: any[] }> => {
+  console.log(`[ZK-Logic] Generating proof for inputs: ${input0}, ${input1}`);
   
-  // We need to have the naming scheme and shape of the inputs match the .circom file
-  const inputs = {
-    in: [input0, input1],
+  // Step 1: Strict Input Validation
+  if (typeof input0 !== 'number' || typeof input1 !== 'number') {
+    console.error("Validation Error: Inputs must be valid numbers.");
+    return { proof: "", publicSignals: [] };
   }
 
-  // Paths to the .wasm file and proving key
+  const inputs = { in: [input0, input1] };
+
+  // Step 2: Define Absolute Paths
   const wasmPath = path.join(process.cwd(), 'circuits/build/simple_multiplier_js/simple_multiplier.wasm');
-  const provingKeyPath = path.join(process.cwd(), 'circuits/build/proving_key.zkey')
+  const provingKeyPath = path.join(process.cwd(), 'circuits/build/proving_key.zkey');
 
   try {
-    // Generate a proof of the circuit and create a structure for the output signals
+    // Step 3: Proof Generation using Plonk
     const { proof, publicSignals } = await snarkjs.plonk.fullProve(inputs, wasmPath, provingKeyPath);
 
-    // Convert the data into Solidity calldata that can be sent as a transaction
+    // Step 4: Exporting for Solidity (Blockchain) Compatibility
     const calldataBlob = await snarkjs.plonk.exportSolidityCallData(proof, publicSignals);
     const calldata = calldataBlob.split(',');
 
-    console.log(calldata);
+    if (!calldata || calldata.length < 2) {
+      throw new Error("Failed to generate valid calldata from proof.");
+    }
+
+    console.log("[ZK-Logic] Proof generated successfully.");
 
     return {
       proof: calldata[0], 
       publicSignals: JSON.parse(calldata[1]),
     }
-  } catch (err) {
-    console.log(`Error:`, err)
+  } catch (err: any) {
+    // Step 5: Structured Logging for easier debugging
+    console.error(`[ZK-Error] Proof generation failed:`, err.message || err);
     return {
       proof: "", 
       publicSignals: [],
