@@ -74,3 +74,11 @@ yarn start
 ```
 
 The project will be available at `http://localhost:3000`.
+
+---
+## 🛠 Technical Architecture
+- **Frontend:** React.js & Ionic Framework.
+- **Web3:** ConnectKit & WalletConnect.
+- **ZK Integration:** Sindri proof validation.
+- **Storage:** Filecoin/IPFS modules.
+-
