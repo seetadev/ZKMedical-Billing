@@ -1,13 +1,14 @@
 import '@/styles/globals.css'
-import { WagmiConfig, createClient, configureChains, goerli } from 'wagmi'
+import { WagmiConfig, createClient, configureChains } from 'wagmi'
+import { sepolia } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 import type { AppProps } from 'next/app'
 import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications';
 
-// We'll just be using Goerli testnet for now
+// We'll just be using Sepolia testnet for now
 const { chains, provider, webSocketProvider } = configureChains(
-  [goerli],
+  [sepolia],
   [publicProvider()],
 )
  
