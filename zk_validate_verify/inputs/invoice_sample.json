@@ -1,0 +1,9 @@
+{
+  "patient_id": "987654321",
+  "invoice_amount": "250000",
+  "service_code": "99213",
+  "provider_id": "112233",
+  "date_unix": "1746835200",
+  "salt": "12345678901234567890",
+  "coverage_limit": "500000"
+}

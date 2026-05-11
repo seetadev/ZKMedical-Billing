@@ -1,0 +1,20 @@
+{
+  "name": "@op-medicine/billing-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for OP Medicine ZK Medical Billing Module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["zk", "medical", "billing", "filecoin", "web3", "zkml"],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
