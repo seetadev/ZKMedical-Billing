@@ -1,0 +1,35 @@
+[
+  {
+    "id":             "rec_001",
+    "trial_id":       "trial_nsut_2025",
+    "patient_id":     "PAT-987654321",
+    "provider_npi":   "1234567890",
+    "service_date":   "2025-05-10",
+    "service_code":   "99213",
+    "billed_amount":  "2500.00",
+    "currency":       "INR",
+    "billing_status": "pending"
+  },
+  {
+    "id":             "rec_002",
+    "trial_id":       "trial_nsut_2025",
+    "patient_id":     "PAT-123456789",
+    "provider_npi":   "9876543210",
+    "service_date":   "2025-05-11",
+    "service_code":   "99214",
+    "billed_amount":  "3800.00",
+    "currency":       "INR",
+    "billing_status": "pending"
+  },
+  {
+    "id":             "rec_003",
+    "trial_id":       "trial_nsut_2025",
+    "patient_id":     "PAT-555444333",
+    "provider_npi":   "1122334455",
+    "service_date":   "2025-05-12",
+    "service_code":   "99215",
+    "billed_amount":  "4900.00",
+    "currency":       "INR",
+    "billing_status": "pending"
+  }
+]

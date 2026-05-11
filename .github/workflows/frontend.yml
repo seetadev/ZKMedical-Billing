@@ -1,0 +1,112 @@
+name: Frontend
+
+on:
+  push:
+    paths:
+      - "zk_validate_verify/dashboard/**"
+      - ".github/workflows/frontend.yml"
+  pull_request:
+    paths:
+      - "zk_validate_verify/dashboard/**"
+
+jobs:
+  build-and-test:
+    name: Build React app
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: zk_validate_verify/dashboard/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: zk_validate_verify/dashboard
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+        working-directory: zk_validate_verify/dashboard
+
+      - name: Build production bundle
+        run: npm run build
+        working-directory: zk_validate_verify/dashboard
+        env:
+          VITE_API_URL:                    ${{ secrets.VITE_API_URL || 'https://api.op-medicine.dev' }}
+          VITE_WALLETCONNECT_PROJECT_ID:   ${{ secrets.WALLETCONNECT_PROJECT_ID }}
+          VITE_API_KEY:                    ${{ secrets.VITE_API_KEY }}
+
+      - name: Check bundle size
+        run: |
+          BUILD_SIZE=$(du -sm zk_validate_verify/dashboard/dist | cut -f1)
+          echo "Bundle size: ${BUILD_SIZE}MB"
+          if [ "$BUILD_SIZE" -gt 20 ]; then
+            echo "WARNING: bundle exceeds 20MB"
+          fi
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-dist
+          path: zk_validate_verify/dashboard/dist/
+          retention-days: 7
+
+  deploy-preview:
+    name: Deploy preview to Vercel
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy preview
+        id: deploy
+        run: |
+          DEPLOY_URL=$(vercel \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --yes \
+            zk_validate_verify/dashboard/)
+          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+
+      - name: Comment preview URL on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner:        context.repo.owner,
+              repo:         context.repo.repo,
+              body: `## Preview deployment\n\n🚀 **${context.payload.pull_request.title}**\n\nPreview: ${{ steps.deploy.outputs.url }}`
+            });
+
+  deploy-production:
+    name: Deploy production to Vercel
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to production
+        run: |
+          vercel \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --prod \
+            --yes \
+            zk_validate_verify/dashboard/
+        env:
+          VERCEL_ORG_ID:     ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}

@@ -1,0 +1,119 @@
+name: Smart Contracts
+
+on:
+  push:
+    paths:
+      - "zk_validate_verify/fvm-contracts/**"
+      - ".github/workflows/contracts.yml"
+  pull_request:
+    paths:
+      - "zk_validate_verify/fvm-contracts/**"
+
+jobs:
+  test:
+    name: Hardhat unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: zk_validate_verify/fvm-contracts/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: zk_validate_verify/fvm-contracts
+
+      - name: Compile contracts
+        run: npx hardhat compile
+        working-directory: zk_validate_verify/fvm-contracts
+
+      - name: Run Hardhat tests
+        run: npx hardhat test --network hardhat
+        working-directory: zk_validate_verify/fvm-contracts
+        env:
+          REPORT_GAS: true
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-artifacts
+          path: zk_validate_verify/fvm-contracts/artifacts/
+          retention-days: 7
+
+  deploy-calibration:
+    name: Deploy to FVM Calibration
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: calibration
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: zk_validate_verify/fvm-contracts/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: zk_validate_verify/fvm-contracts
+
+      - name: Deploy MockPPT token
+        working-directory: zk_validate_verify/fvm-contracts
+        run: npx hardhat run scripts/deploy_mock_ppt.js --network calibration
+        env:
+          PRIVATE_KEY:     ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+          CALIBRATION_RPC: ${{ secrets.CALIBRATION_RPC }}
+
+      - name: Deploy main contracts
+        working-directory: zk_validate_verify/fvm-contracts
+        run: npx hardhat run scripts/deploy.js --network calibration
+        env:
+          PRIVATE_KEY:       ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+          CALIBRATION_RPC:   ${{ secrets.CALIBRATION_RPC }}
+          PPT_TOKEN_ADDRESS: ${{ secrets.PPT_TOKEN_ADDRESS }}
+          TREASURY_ADDRESS:  ${{ secrets.TREASURY_ADDRESS }}
+
+      - name: Deploy cross-chain contracts
+        working-directory: zk_validate_verify/fvm-contracts
+        run: npx hardhat run scripts/deploy_crosschain.js --network calibration
+        env:
+          PRIVATE_KEY:     ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+          CALIBRATION_RPC: ${{ secrets.CALIBRATION_RPC }}
+
+      - name: Save deployment addresses
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-addresses
+          path: zk_validate_verify/fvm-contracts/deployments/calibration.json
+          retention-days: 30
+
+      - name: Post addresses to commit
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const depPath = 'zk_validate_verify/fvm-contracts/deployments/calibration.json';
+            if (!fs.existsSync(depPath)) return;
+            const dep = JSON.parse(fs.readFileSync(depPath));
+            const body = `## FVM Calibration deployment
+            | Contract | Address |
+            |---|---|
+            | MedicalInvoiceVerifier | \`${dep.verifier ?? '—'}\` |
+            | PPTPaymentController   | \`${dep.paymentController ?? '—'}\` |
+            | MedicalBillingRegistry | \`${dep.registry ?? '—'}\` |
+            | Deployed at | ${dep.deployedAt ?? new Date().toISOString()} |
+            `;
+            github.rest.repos.createCommitComment({
+              owner:      context.repo.owner,
+              repo:       context.repo.repo,
+              commit_sha: context.sha,
+              body
+            });
