@@ -1,0 +1,11 @@
+{
+  "verifier":          "0x0000000000000000000000000000000000000001",
+  "paymentController": "0x0000000000000000000000000000000000000002",
+  "registry":          "0x0000000000000000000000000000000000000003",
+  "fraudVerifier":     "0x0000000000000000000000000000000000000004",
+  "fraudRegistry":     "0x0000000000000000000000000000000000000005",
+  "pptToken":          "0x0000000000000000000000000000000000000006",
+  "network":           "calibration",
+  "chainId":           314159,
+  "deployedAt":        "pending — run: npx hardhat run scripts/deploy.js --network calibration"
+}

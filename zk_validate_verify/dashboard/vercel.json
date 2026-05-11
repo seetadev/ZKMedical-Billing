@@ -1,0 +1,7 @@
+{
+  "env": {
+    "VITE_API_URL":                  "@op_medicine_api_url",
+    "VITE_WALLETCONNECT_PROJECT_ID": "@walletconnect_project_id"
+  },
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+}
