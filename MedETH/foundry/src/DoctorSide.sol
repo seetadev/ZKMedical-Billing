@@ -8,6 +8,8 @@ contract DoctorSide is UserSide {
     uint256 public totalAppointments = 1;
     uint256 public totalDocuments = 1;
     uint256 public totalSlots = 1;
+    uint256 public appointmentFee = 5;
+    uint256 public emergencyAppointmentFee = 10;
 
     struct Appointment {
         uint256 appId;
@@ -144,10 +146,7 @@ contract DoctorSide is UserSide {
         appointmentIdtoAppointment[totalAppointments] = a1;
         uint256 patId = userWalletAddresstoUserId[msg.sender];
         uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
-        require(
-            i_mediToken.balanceOf(msg.sender) >= 5,
-            "You need to hold atleast 5 MediTokens to book an appointment"
-        );
+        require(i_mediToken.balanceOf(msg.sender) >= appointmentFee, "You need to hold atleast 5 MediTokens to book an appointment");
         require(
             patId != 0 && doctorId != 0,
             "Patient wallet address and wallet address must be both registered into the system"
@@ -170,10 +169,7 @@ contract DoctorSide is UserSide {
         address _doctorWalletAddress,
         uint256 _slotId
     ) public payable {
-        require(
-            i_mediToken.balanceOf(msg.sender) >= 10,
-            "You need to hold atleast 10 MediTokens to book an emergency appointment"
-        );
+        require(i_mediToken.balanceOf(msg.sender) >= emergencyAppointmentFee, "You need to hold atleast 10 MediTokens to book an emergency appointment");
         Appointment memory a1 = Appointment(
             totalAppointments,
             _appDate,
@@ -250,5 +246,10 @@ contract DoctorSide is UserSide {
         uint256 _doctorId
     ) public view returns (uint256) {
         return doctortIdtoReport[_doctorId].length;
+    }
+
+    function setAppointmentFee(uint256 _appointmentFee, uint256 _emergencyAppointmentFee) public onlyOwner {
+        appointmentFee = _appointmentFee;
+        emergencyAppointmentFee = _emergencyAppointmentFee;
     }
 }
