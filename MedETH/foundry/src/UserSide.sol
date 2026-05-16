@@ -70,6 +70,16 @@ contract UserSide is Ownable {
             i_mediToken.balanceOf(msg.sender) >= 1,
             "You need to hold atleast 1 MediTokens to register"
         );
+        // Duplicate check applies to ALL roles before the if/else split.
+        // Previously this check only existed inside the Patient (role 3) branch,
+        // allowing Doctors and other roles to register multiple times with the
+        // same wallet address or email — corrupting userIdtoUser mappings and
+        // wasting sequential IDs that can never be reclaimed.
+        require(
+            userWalletAddresstoUserId[msg.sender] == 0 &&
+                userEmailtoUserId[_userEmail] == 0,
+            "User with this wallet address or email already exists"
+        );
         if (_userRole == 3) {
             User memory u1 = User(
                 totalUsers,
@@ -87,11 +97,6 @@ contract UserSide is Ownable {
             );
             userIdtoUser[totalUsers] = u1;
             takeUserHistory(totalUsers, false, false, false, 0);
-            require(
-                userWalletAddresstoUserId[u1.userWalletAddress] == 0 &&
-                    userEmailtoUserId[u1.userEmail] == 0,
-                "User with this wallet address or email already exists"
-            );
             userIdtoUser[totalUsers].isVerified = true;
             userWalletAddresstoUserId[u1.userWalletAddress] = u1.userId;
             userEmailtoUserId[u1.userEmail] = u1.userId;
