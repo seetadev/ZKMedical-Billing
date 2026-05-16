@@ -9,6 +9,11 @@ contract DoctorSide is UserSide {
     uint256 public totalDocuments = 1;
     uint256 public totalSlots = 1;
 
+    // MediToken thresholds extracted as constants so they can be updated
+    // in one place without hunting through function bodies.
+    uint256 public constant APPOINTMENT_TOKEN_THRESHOLD = 5;
+    uint256 public constant EMERGENCY_APPOINTMENT_TOKEN_THRESHOLD = 10;
+
     struct Appointment {
         uint256 appId;
         string appDate;
@@ -41,20 +46,16 @@ contract DoctorSide is UserSide {
 
     // Mappings
     mapping(uint256 => Appointment) public appointmentIdtoAppointment;
-    mapping(uint256 => uint256[]) public docIdtoAppointmentId; // mapping 1
-    mapping(uint256 => uint256[]) public patIdtoAppointmentId; // mapping 2
+    mapping(uint256 => uint256[]) public docIdtoAppointmentId;
+    mapping(uint256 => uint256[]) public patIdtoAppointmentId;
     mapping(uint256 => mapping(string => AppointmentTimeSlot[]))
-        public doctorIdtoDatetoTimeSlot; // mapping 3
+        public doctorIdtoDatetoTimeSlot;
     mapping(uint256 => bool) public slotIdtoBookingStatus;
     mapping(uint256 => AppointmentTimeSlot)
         public appointmentSlotIdtoAppointmentSlot;
     mapping(uint256 => PatientReport) public ReportIdtoPatintReport;
-    mapping(uint256 => PatientReport[]) public patientIdtoReport; // mapping 4
-    mapping(uint256 => PatientReport[]) public doctortIdtoReport; // mapping 5
-
-    // Events
-
-    // Modifiers
+    mapping(uint256 => PatientReport[]) public patientIdtoReport;
+    mapping(uint256 => PatientReport[]) public doctortIdtoReport;
 
     // Constructor
     constructor(address _mediToken) UserSide(_mediToken) {
@@ -72,9 +73,6 @@ contract DoctorSide is UserSide {
         approveUser(1);
     }
 
-    // Functions
-
-    // Public functions
     function uploadMedicalReprt(
         string memory _reportName,
         address _patientWalletAdress,
@@ -145,12 +143,12 @@ contract DoctorSide is UserSide {
         uint256 patId = userWalletAddresstoUserId[msg.sender];
         uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
         require(
-            i_mediToken.balanceOf(msg.sender) >= 5,
+            i_mediToken.balanceOf(msg.sender) >= APPOINTMENT_TOKEN_THRESHOLD,
             "You need to hold atleast 5 MediTokens to book an appointment"
         );
         require(
             patId != 0 && doctorId != 0,
-            "Patient wallet address and wallet address must be both registered into the system"
+            "Patient and doctor must both be registered"
         );
         require(
             !userIdtoBlacklist[patId] && !userIdtoBlacklist[doctorId],
@@ -171,7 +169,7 @@ contract DoctorSide is UserSide {
         uint256 _slotId
     ) public payable {
         require(
-            i_mediToken.balanceOf(msg.sender) >= 10,
+            i_mediToken.balanceOf(msg.sender) >= EMERGENCY_APPOINTMENT_TOKEN_THRESHOLD,
             "You need to hold atleast 10 MediTokens to book an emergency appointment"
         );
         Appointment memory a1 = Appointment(
@@ -192,7 +190,7 @@ contract DoctorSide is UserSide {
         uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
         require(
             patId != 0 && doctorId != 0,
-            "Patient wallet address and wallet address must be both registered into the system"
+            "Patient and doctor must both be registered"
         );
         require(
             !userIdtoBlacklist[patId] && !userIdtoBlacklist[doctorId],
@@ -215,21 +213,15 @@ contract DoctorSide is UserSide {
             userIdtoUser[doctorId].userRole == 2,
             "Only doctors can call this function"
         );
-
         appointmentIdtoAppointment[_appId].isApproved = true;
         slotIdtoBookingStatus[appointmentIdtoAppointment[_appId].slotId] = true;
     }
 
-    // View functions
-    function getMapping1length(
-        uint256 _doctorId
-    ) public view returns (uint256) {
+    function getMapping1length(uint256 _doctorId) public view returns (uint256) {
         return docIdtoAppointmentId[_doctorId].length;
     }
 
-    function getMapping2length(
-        uint256 _patientId
-    ) public view returns (uint256) {
+    function getMapping2length(uint256 _patientId) public view returns (uint256) {
         return patIdtoAppointmentId[_patientId].length;
     }
 
@@ -240,15 +232,11 @@ contract DoctorSide is UserSide {
         return doctorIdtoDatetoTimeSlot[_doctorId][_date].length;
     }
 
-    function getMapping4length(
-        uint256 _patientId
-    ) public view returns (uint256) {
+    function getMapping4length(uint256 _patientId) public view returns (uint256) {
         return patientIdtoReport[_patientId].length;
     }
 
-    function getMapping5length(
-        uint256 _doctorId
-    ) public view returns (uint256) {
+    function getMapping5length(uint256 _doctorId) public view returns (uint256) {
         return doctortIdtoReport[_doctorId].length;
     }
 }
