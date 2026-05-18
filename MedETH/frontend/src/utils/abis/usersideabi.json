@@ -169,13 +169,8 @@
     },
     {
         "type": "function",
-        "name": "takeUserHistory",
+        "name": "updateMyHistory",
         "inputs": [
-            {
-                "name": "_userId",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
             {
                 "name": "_isHandicap",
                 "type": "bool",
@@ -438,6 +433,25 @@
             }
         ],
         "stateMutability": "view"
+    },
+    {
+        "type": "event",
+        "name": "PatientHistoryUpdated",
+        "inputs": [
+            {
+                "name": "userId",
+                "type": "uint256",
+                "indexed": true,
+                "internalType": "uint256"
+            },
+            {
+                "name": "updatedBy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            }
+        ],
+        "anonymous": false
     },
     {
         "type": "event",
