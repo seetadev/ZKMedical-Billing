@@ -47,6 +47,9 @@ contract UserSide is Ownable {
     mapping(uint256 => string[]) public userIdtoPrevMedicalHistory;
     mapping(string => uint256) public userEmailtoUserId;
 
+    // Events
+    event PatientHistoryUpdated(uint256 indexed userId, address indexed updatedBy);
+
     // Constructor
     constructor(address _mediToken) Ownable(msg.sender) {
         i_mediToken = IERC20(_mediToken);
@@ -125,15 +128,35 @@ contract UserSide is Ownable {
         bool _isBp,
         bool _isDiabetes,
         uint256 _userExp
-    ) public {
+    ) internal {
         PatientHistory memory pt1 = PatientHistory(
-            totalUsers,
+            _userId,
             _isHandicap,
             _isBp,
             _isDiabetes,
             _userExp
         );
         userIdtoPatientHistory[_userId] = pt1;
+    }
+
+    function updateMyHistory(
+        bool _isHandicap,
+        bool _isBp,
+        bool _isDiabetes,
+        uint256 _userExp
+    ) public {
+        uint256 userId = userWalletAddresstoUserId[msg.sender];
+        require(userId != 0, "Caller is not a registered user");
+        require(userIdtoUser[userId].isVerified, "User account is not verified");
+        require(userIdtoUser[userId].userRole == 3, "Only patients can update their own history");
+        userIdtoPatientHistory[userId] = PatientHistory(
+            userId,
+            _isHandicap,
+            _isBp,
+            _isDiabetes,
+            _userExp
+        );
+        emit PatientHistoryUpdated(userId, msg.sender);
     }
 
     function approveUser(uint256 _userId) public onlyOwner {
