@@ -1,0 +1,120 @@
+{
+  "_comment": "App Update Automation — Central Configuration for Medical Invoice",
+
+  "app": {
+    "name": "Medical Invoice",
+    "kebabName": "medical-invoice",
+    "packageName": "com.aspiring.invoiceandquote",
+    "description": "Medical Invoice - Generate professional medical bills, prescriptions, and healthcare invoices offline",
+    "type": "medical-invoice",
+    "version": "5.0.0",
+    "marketingVersion": "5.0",
+    "buildNumber": "2"
+  },
+
+  "theme": {
+    "primaryColor": "#1e40af",
+    "primaryColorRgb": "30, 64, 175",
+    "primaryColorShade": "#1e3a8a",
+    "primaryColorTint": "#3b82f6",
+    "primaryContrast": "#ffffff",
+    "primaryContrastRgb": "255, 255, 255",
+    "secondaryColor": "#eff6ff",
+    "secondaryColorRgb": "239, 246, 255",
+    "secondaryContrast": "#1e3a8a",
+    "secondaryContrastRgb": "30, 58, 138",
+    "secondaryShade": "#dbeafe",
+    "secondaryTint": "#ffffff",
+    "backgroundColor": "#f4f5f8"
+  },
+
+  "onboarding": {
+    "welcomeTitle": "Welcome to Medical Invoice",
+    "welcomeSubtitle": "Generate professional medical bills and healthcare invoices entirely offline.",
+    "features": [
+      "Create itemised medical bills with treatments, procedures, and medicines",
+      "Add doctor details, patient info, and clinic branding to every invoice",
+      "Works 100% offline — all billing data stays private on your device"
+    ],
+    "ctaButtonText": "Get Started"
+  },
+
+  "pages": {
+    "dashboardHeaderTitle": "Medical Invoice",
+    "filesPageHeaderTitle": "My Saved Invoices",
+    "settingsPageAppName": "Medical Invoice",
+    "settingsPageMarketingVersion": "5.0",
+    "settingsPageBuildNumber": "2",
+    "settingsCurrencyDescription": "Change the default currency for medical billing and treatment charges.",
+    "settingsResetDescription": "Wipe all local invoices, billing records, and settings completely."
+  },
+
+  "tabs": {
+    "home": "Home",
+    "files": "Invoices",
+    "settings": "Settings"
+  },
+
+  "templates": {
+    "appType": "medical-invoice",
+    "hashtags": ["medical", "invoice", "billing", "healthcare"],
+    "mobile": {
+      "name": "Medical Invoice (Mobile)",
+      "description": "Professional medical billing and invoice generation optimized for mobile screens.",
+      "mscJsonPath": "scripts/app-update-automation/templates/mob.json"
+    },
+    "tablet": {
+      "name": "Medical Invoice (Tablet)",
+      "description": "Comprehensive medical invoices and healthcare billing optimized for tablets.",
+      "mscJsonPath": "scripts/app-update-automation/templates/tab.json"
+    },
+    "desktop": {
+      "name": "Medical Invoice (Desktop)",
+      "description": "Comprehensive medical invoices and healthcare billing optimized for desktop.",
+      "mscJsonPath": ""
+    },
+    "footerTabNames": {
+      "tab1": "Medical Invoice 1",
+      "tab2": "Medical Invoice 2",
+      "tab3": "Medical Invoice 3",
+      "tab4": "Medical Invoice 4",
+      "tab5": "Medical Invoice 5",
+      "tab6": "Medical Invoice 6"
+    }
+  },
+
+  "pdf": {
+    "footerLabel": "Medical Invoice",
+    "defaultFilename": "medical_invoice",
+    "defaultAllSheetsFilename": "all_medical_invoices",
+    "shareSubject": "Here is your Medical Invoice",
+    "shareText": "Medical Invoice PDF generated successfully",
+    "csvShareText": "Medical Invoice data exported as CSV",
+    "singleSheetName": "Medical Invoice"
+  },
+
+  "menu": {
+    "printWindowTitle": "Print Medical Invoice",
+    "emailSubject": "Here is your Medical Invoice",
+    "saveToastMessage": "Medical invoice saved successfully!",
+    "fallbackFileName": "Medical Invoice"
+  },
+
+  "ios": {
+    "displayName": "Medical Invoice",
+    "cameraUsageDescription": "Medical Invoice needs camera access to scan prescriptions, documents, or clinic letterheads.",
+    "photoLibraryUsageDescription": "Medical Invoice needs photo library access to attach medical reports or clinic logos.",
+    "microphoneUsageDescription": "Medical Invoice needs microphone access when using the camera."
+  },
+
+  "pwa": {
+    "shortName": "MedInvoice",
+    "fullName": "Medical Invoice Pro",
+    "themeColor": "#1e40af",
+    "backgroundColor": "#1e40af"
+  },
+
+  "icon": {
+    "sourceIconPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/ipfs-apps/Older/med invoice ipfs/scripts/app-update-automation/templates/medical invoice/www/img/bi.png"
+  }
+}

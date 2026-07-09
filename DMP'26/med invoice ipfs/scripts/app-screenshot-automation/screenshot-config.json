@@ -1,0 +1,14 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "saveFileNameA": "Medical Invoice A",
+  "saveFileNameB": "Medical Invoice B",
+  "onboardingButtonText": "Get Started",
+  "savedFilesPageTitle": "Saved Invoices",
+  "settingsPageTitle": "Settings",
+  "saveFileDialogTitle": "Save File",
+  "editCellMobile": "B5",
+  "editCellTablet": "B5",
+  "editValue": "$25.00",
+  "maxTabsMobile": 4,
+  "maxTabsTablet": 6
+}
