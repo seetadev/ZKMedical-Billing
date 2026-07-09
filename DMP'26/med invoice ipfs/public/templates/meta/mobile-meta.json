@@ -1,0 +1,19 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Medical Invoice (Mobile)",
+  "type": "medical-invoice",
+  "device": "mobile",
+  "description": "Professional medical billing and invoice generation optimized for mobile screens.",
+  "id": 100001,
+  "image": "",
+  "hashtags": [
+    "medical",
+    "invoice",
+    "billing",
+    "healthcare",
+    "mobile"
+  ]
+}

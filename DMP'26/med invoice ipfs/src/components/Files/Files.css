@@ -1,0 +1,269 @@
+/* Files Page Layout & Component Redesign */
+
+.files-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 24px;
+}
+
+/* Controls (Search & Sort) Row */
+.files-controls-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 8px;
+    flex-wrap: nowrap;
+}
+
+.search-bar-wrapper {
+    flex: 1;
+}
+
+.custom-searchbar {
+    --background: #ffffff;
+    --border-radius: 14px;
+    --box-shadow: 0 2px 8px rgba(148, 163, 184, 0.08);
+    --placeholder-color: #94a3b8;
+    --color: #0f172a;
+    padding: 0;
+}
+
+.sort-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 0 14px;
+    height: 44px;
+    box-shadow: 0 2px 8px rgba(148, 163, 184, 0.08);
+    flex-shrink: 0;
+}
+
+.sort-icon {
+    font-size: 16px;
+    color: #64748b;
+}
+
+.custom-sort-select {
+    --placeholder-color: #64748b;
+    --color: #0f172a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.custom-sort-select::part(container) {
+    padding: 0;
+}
+
+/* Grid & Cards Container */
+.files-scrollable-container {
+    width: 100%;
+}
+
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    width: 100%;
+}
+
+/* Individual Invoice Card */
+.invoice-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #f1f5f9;
+    padding: 18px;
+    box-shadow: 0 4px 18px -2px rgba(148, 163, 184, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.invoice-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -4px rgba(148, 163, 184, 0.14);
+    border-color: #cbd5e1;
+}
+
+/* Top Row: File Name & Amount */
+.card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.invoice-badge-id {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(37, 99, 235, 0.08);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.id-icon {
+    font-size: 14px;
+    color: #2563eb;
+}
+
+.id-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2563eb;
+    font-family: monospace, monospace;
+}
+
+.invoice-amount-badge {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    background: #f1f5f9;
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+/* Details Row: Customer Name */
+.card-details-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.patient-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-icon {
+    font-size: 16px;
+    color: #94a3b8;
+}
+
+.patient-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* Meta Row: Date & Item Count */
+.card-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: #64748b;
+    border-bottom: 1px dashed #f1f5f9;
+    padding-bottom: 14px;
+    width: 100%;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.meta-icon {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+/* Actions Row at bottom */
+.card-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    width: 100%;
+}
+
+.card-action-btn {
+    margin: 0;
+    height: 34px;
+    font-size: 13px;
+    text-transform: none;
+    font-weight: 600;
+}
+
+.edit-btn {
+    flex: 1;
+    --border-radius: 10px;
+    --background: #2563eb;
+    --background-hover: #1d4ed8;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.15);
+}
+
+.rename-btn {
+    --border-radius: 10px;
+    --color: #2563eb;
+    background: rgba(37, 99, 235, 0.06);
+}
+
+.delete-btn {
+    --border-radius: 10px;
+    --color: #ef4444;
+    background: rgba(239, 68, 68, 0.06);
+}
+
+/* Empty State Visuals */
+.files-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 56px 24px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 18px -2px rgba(148, 163, 184, 0.06);
+    margin-top: 16px;
+}
+
+.files-empty-state h3 {
+    margin: 20px 0 6px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.files-empty-state p {
+    margin: 0 0 24px 0;
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.5;
+    max-width: 320px;
+}
+
+.empty-state-create-btn {
+    margin: 0;
+    height: 40px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: none;
+    --border-radius: 12px;
+    --background: #2563eb;
+    --background-hover: #1d4ed8;
+    --padding-start: 16px;
+    --padding-end: 20px;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .files-controls-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .sort-select-wrapper {
+        justify-content: space-between;
+    }
+}

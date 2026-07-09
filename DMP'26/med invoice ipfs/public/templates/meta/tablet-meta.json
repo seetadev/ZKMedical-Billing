@@ -1,0 +1,19 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Medical Invoice (Tablet)",
+  "type": "medical-invoice",
+  "device": "tablet",
+  "description": "Comprehensive medical invoices and healthcare billing optimized for tablets.",
+  "id": 100002,
+  "image": "",
+  "hashtags": [
+    "medical",
+    "invoice",
+    "billing",
+    "healthcare",
+    "tablet"
+  ]
+}
