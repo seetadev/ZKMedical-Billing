@@ -1,0 +1,20 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Patient Register (Tablet)",
+  "type": "patient-register",
+  "device": "tablet",
+  "description": "Comprehensive patient register sheets optimized for tablets.",
+  "id": 100002,
+  "image": "",
+  "hashtags": [
+    "patient",
+    "register",
+    "hospital",
+    "clinic",
+    "signin",
+    "tablet"
+  ]
+}

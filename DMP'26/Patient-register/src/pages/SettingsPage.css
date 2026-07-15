@@ -1,0 +1,176 @@
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+    padding-top: 24px;
+}
+
+.settings-header-section {
+    margin-bottom: 32px;
+}
+
+.settings-header-section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ion-color-step-900, #0f172a);
+}
+
+.settings-header-section p {
+    font-size: 14px;
+    color: var(--ion-color-step-500, #64748b);
+    margin: 8px 0 0 0;
+}
+
+.settings-group {
+    margin-bottom: 28px;
+}
+
+.settings-group-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ion-color-step-400, #94a3b8);
+    margin-bottom: 12px;
+    padding-left: 4px;
+}
+
+.settings-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid var(--ion-color-step-150, #e2e8f0);
+    padding: 18px 20px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.03), 0 2px 4px -2px rgb(0 0 0 / 0.03);
+    margin-bottom: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.settings-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings-info {
+    flex: 1;
+    padding-right: 16px;
+}
+
+.settings-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ion-color-step-950, #0f172a);
+    margin: 0 0 4px 0;
+}
+
+.settings-card-desc {
+    font-size: 13px;
+    color: var(--ion-color-step-500, #64748b);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.settings-action {
+    display: flex;
+    align-items: center;
+}
+
+/* Custom Ionic Select styling to fit cards beautifully */
+.settings-select {
+    --background: transparent;
+    --placeholder-color: var(--ion-color-primary);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ion-color-primary);
+}
+
+/* Toggles & Options design */
+.settings-segmented {
+    display: flex;
+    background: var(--ion-color-step-100, #f1f5f9);
+    border-radius: 8px;
+    padding: 3px;
+}
+
+.settings-segment-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ion-color-step-600, #475569);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.settings-segment-btn.active {
+    background: #ffffff;
+    color: var(--ion-color-primary);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.reset-btn {
+    --background: #ef4444;
+    --background-hover: #dc2626;
+    --color: white;
+    font-weight: 600;
+    text-transform: none;
+    margin: 0;
+    height: 38px;
+}
+
+/* Information card special styling */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--ion-color-step-100, #f1f5f9);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-label {
+    font-size: 14px;
+    color: var(--ion-color-step-500, #64748b);
+}
+
+.info-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ion-color-step-800, #334155);
+}
+
+/* Theme adaptation */
+.dark-theme .settings-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+.dark-theme .settings-card-title {
+    color: #f8fafc;
+}
+.dark-theme .settings-segmented {
+    background: #0f172a;
+}
+.dark-theme .settings-segment-btn {
+    color: #94a3b8;
+}
+.dark-theme .settings-segment-btn.active {
+    background: #334155;
+    color: var(--ion-color-primary);
+}
+.dark-theme .info-row {
+    border-color: #334155;
+}
+.dark-theme .info-value {
+    color: #cbd5e1;
+}

@@ -1,0 +1,524 @@
+{
+  "mainSheet": "sheet1",
+  "msc": {
+    "numsheets": 6,
+    "currentid": "sheet1",
+    "currentname": "sheet8",
+    "sheetArr": {
+      "sheet1": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:B2:t:Introduction:l:1:f:3:c:3:bg:1:cf:1\ncell:B3:l:1:f:2\ncell:B4:t:Medication log allows you to track and record your medications over the course of your treatment. Comprehensive log sheets have been provided along with the month's calendar.:l:1:f:1\ncell:B5:t:The monthly calendar helps you organise your medicines on a daily basis. The checkmark feature allows the user to quickly highlight a specific day from the month and add key notes alongside.:l:1:f:1:bg:2\ncell:B6:t:Separate sheets have been given, that record other details like the due date of the medicine, prescribing physician, etc. as well as details regarding side effects, refill no. and the pharmacy phone number. The name of the medicine is automatically generated in these sheets, helping the user manage details in a hassle free manner. Just enter the medicine name in the first log sheet.:l:1:f:1\ncell:B7:t:Entering data is simple. Tap on the cell to edit and add the text. Locally save your Medication log as a file, and re-use it with minimal changes. Simply tap e-mail to send it to your family or doctors instantly and get feedback from them. Alternatively, you can email it to yourself.:l:1:f:1:bg:2\ncell:B8:t:If you need any further assistance in using the Medication Log application, or would like to see some new features in the future versions of the application, please write to us at marketing@tickervalue.com You can also meet us on Skype by sending a contact request to aspiring.investments:l:1:f:4\ncell:B9:l:1:f:2\ncell:B10:l:1:f:2\ncell:B11:l:1:f:2\ncell:B12:l:1:f:2\ncell:B13:l:1:f:2\ncell:B14:l:1:f:2\ncell:B15:l:1:f:2\ncell:B16:l:1:f:2\ncell:B17:l:1:f:2\ncell:B18:l:1:f:2\ncell:B19:l:1:f:2\ncell:B20:l:1:f:2\ncell:B21:l:1:f:2\ncell:B22:l:1:f:2\ncell:B23:l:1:f:2\ncell:B24:l:1:f:2\ncell:B25:l:1:f:2\ncell:B26:l:1:f:2\ncell:B27:l:1:f:2\ncell:B28:l:1:f:2\ncell:B29:l:1:f:2\ncell:B30:l:1:f:2\ncell:B31:l:1:f:2\ncell:B32:l:1:f:2\ncell:B33:l:1:f:2\ncell:B34:l:1:f:2\ncell:B35:l:1:f:2\ncell:B36:l:1:f:2\ncell:B37:l:1:f:2\ncell:B38:l:1:f:2\ncol:A:w:10\ncol:B:w:212\nsheet:c:2:r:38:font:4:layout:1\ncellformat:1:center\ncolor:1:rgb(119,136,221)\ncolor:2:rgb(230,230,250)\ncolor:3:rgb(255, 255, 255)\nfont:1:* * arial,helvetica,sans-serif\nfont:2:* 11pt arial,helvetica,sans-serif\nfont:3:* 12pt arial,helvetica,sans-serif\nfont:4:* 9pt arial,helvetica,sans-serif\nlayout:1:padding:4px 4px 4px 4px;vertical-align:*;\n"
+        },
+        "name": "sheet8",
+        "hidden": "0"
+      },
+      "sheet2": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:B2:t:July:f:3:c:3:bg:1:cf:1:colspan:4\ncell:B3:f:4:bg:4:cf:1:colspan:4\ncell:B5:t:Chk:f:1:cf:1\ncell:C5:t:Date:f:1:cf:1:colspan:2\ncell:D5:f:1:cf:1\ncell:E5:t:Special:f:1:cf:1\ncell:B6:b:::1::f:1\ncell:C6:b:::1::f:1\ncell:D6:b:::1::f:1\ncell:E6:b:::1::f:1\ncell:B7:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C7:t:Tue:b:1:1::1:f:1\ncell:D7:v:1:b:1:1::1:f:1\ncell:E7:b:1:1::1:f:1\ncell:F7:b::::1\ncell:B8:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C8:t:Wed:b::1::1:f:1:bg:2\ncell:D8:v:2:b::1::1:f:1:bg:2\ncell:E8:b::1::1:f:1:bg:2\ncell:F8:b::::1\ncell:B9:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C9:t:Thu:b::1::1:f:1\ncell:D9:v:3:b::1::1:f:1\ncell:E9:b::1::1:f:1\ncell:F9:b::::1\ncell:B10:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C10:t:Fri:b::1::1:f:1:bg:2\ncell:D10:v:4:b::1::1:f:1:bg:2\ncell:E10:b::1::1:f:1:bg:2\ncell:F10:b::::1\ncell:B11:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C11:t:Sat:b::1::1:f:1\ncell:D11:v:5:b::1::1:f:1\ncell:E11:b::1::1:f:1\ncell:F11:b::::1\ncell:B12:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C12:t:Sun:b::1::1:f:1:bg:2\ncell:D12:v:6:b::1::1:f:1:bg:2\ncell:E12:b::1::1:f:1:bg:2\ncell:F12:b::::1\ncell:B13:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C13:t:Mon:b::1::1:f:1\ncell:D13:v:7:b::1::1:f:1\ncell:E13:b::1::1:f:1\ncell:F13:b::::1\ncell:B14:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C14:t:Tue:b::1::1:f:1:bg:2\ncell:D14:v:8:b::1::1:f:1:bg:2\ncell:E14:b::1::1:f:1:bg:2\ncell:F14:b::::1\ncell:B15:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C15:t:Wed:b::1::1:f:1\ncell:D15:v:9:b::1::1:f:1\ncell:E15:b::1::1:f:1\ncell:F15:b::::1\ncell:B16:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C16:t:Thu:b::1::1:f:1:bg:2\ncell:D16:v:10:b::1::1:f:1:bg:2\ncell:E16:b::1::1:f:1:bg:2\ncell:F16:b::::1\ncell:B17:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C17:t:Fri:b::1:1:1:f:1\ncell:D17:v:11:b::1::1:f:1\ncell:E17:b::1::1:f:1\ncell:F17:b::::1\ncell:B18:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C18:t:Sat:b::1::1:f:1:bg:2\ncell:D18:v:12:b::1::1:f:1:bg:2\ncell:E18:b::1::1:f:1:bg:2\ncell:F18:b::::1\ncell:B19:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C19:t:Sun:b::1::1:f:1\ncell:D19:v:13:b::1::1:f:1\ncell:E19:b::1::1:f:1\ncell:F19:b::::1\ncell:B20:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C20:t:Mon:b::1::1:f:1:bg:2\ncell:D20:v:14:b::1::1:f:1:bg:2\ncell:E20:b::1::1:f:1:bg:2\ncell:F20:b::::1\ncell:B21:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C21:t:Tue:b::1::1:f:1\ncell:D21:v:15:b::1::1:f:1\ncell:E21:b::1::1:f:1\ncell:F21:b::::1\ncell:B22:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C22:t:Wed:b::1::1:f:1:bg:2\ncell:D22:v:16:b::1::1:f:1:bg:2\ncell:E22:b::1::1:f:1:bg:2\ncell:F22:b::::1\ncell:B23:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C23:t:Thu:b::1::1:f:1\ncell:D23:v:17:b::1::1:f:1\ncell:E23:b::1::1:f:1\ncell:F23:b::::1\ncell:B24:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C24:t:Fri:b::1::1:f:1:bg:2\ncell:D24:v:18:b::1::1:f:1:bg:2\ncell:E24:b::1::1:f:1:bg:2\ncell:F24:b::::1\ncell:B25:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C25:t:Sat:b::1:1:1:f:1\ncell:D25:v:19:b::1::1:f:1\ncell:E25:b::1::1:f:1\ncell:F25:b::::1\ncell:B26:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C26:t:Sun:b::1::1:f:1:bg:2\ncell:D26:v:20:b::1::1:f:1:bg:2\ncell:E26:b::1::1:f:1:bg:2\ncell:F26:b::::1\ncell:B27:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C27:t:Mon:b::1::1:f:1\ncell:D27:v:21:b::1::1:f:1\ncell:E27:b::1::1:f:1\ncell:F27:b::::1\ncell:B28:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C28:t:Tue:b::1::1:f:1:bg:2\ncell:D28:v:22:b::1::1:f:1:bg:2\ncell:E28:b::1::1:f:1:bg:2\ncell:F28:b::::1\ncell:B29:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C29:t:Wed:b::1:1:1:f:1\ncell:D29:v:23:b::1::1:f:1\ncell:E29:b::1::1:f:1\ncell:F29:b::::1\ncell:B30:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C30:t:Thu:b::1::1:f:1:bg:2\ncell:D30:v:24:b::1::1:f:1:bg:2\ncell:E30:b::1::1:f:1:bg:2\ncell:F30:b::::1\ncell:B31:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C31:t:Fri:b::1::1:f:1\ncell:D31:v:25:b::1::1:f:1\ncell:E31:b::1::1:f:1\ncell:F31:b::::1\ncell:B32:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C32:t:Sat:b::1::1:f:1:bg:2\ncell:D32:v:26:b::1::1:f:1:bg:2\ncell:E32:b::1::1:f:1:bg:2\ncell:F32:b::::1\ncell:B33:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C33:t:Sun:b::1::1:f:1\ncell:D33:v:27:b::1::1:f:1\ncell:E33:b::1::1:f:1\ncell:F33:b::::1\ncell:B34:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C34:t:Mon:b::1::1:f:1:bg:2\ncell:D34:v:28:b::1::1:f:1:bg:2\ncell:E34:b::1::1:f:1:bg:2\ncell:F34:b::::1\ncell:B35:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C35:t:Tue:b::1::1:f:1\ncell:D35:v:29:b::1::1:f:1\ncell:E35:b::1::1:f:1\ncell:F35:b::::1\ncell:B36:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:bg:2:cf:1:tvf:1\ncell:C36:t:Wed:b::1::1:f:1:bg:2\ncell:D36:v:30:b::1::1:f:1:bg:2\ncell:E36:b::1::1:f:1:bg:2\ncell:F36:b::::1\ncell:B37:t:<div>&nbsp;</div>:b:1:1:1:1:f:1:cf:1:tvf:1\ncell:C37:t:Thu:b::1:1:1:f:1\ncell:D37:v:31:b::1:1:1:f:1\ncell:E37:b::1:1:1:f:1\ncell:F37:b::::1\ncell:B38:f:1\ncell:C38:b:1::::f:1\ncell:D38:f:1\ncell:E38:f:1\ncol:A:w:10\ncol:B:w:32\ncol:C:w:35\ncol:D:w:26\ncol:E:w:120\nsheet:c:6:r:38:needsrecalc:yes:font:2:layout:1\nborder:1:1px solid rgb(0,0,0)\ncellformat:1:center\ncolor:1:rgb(136,100,8)\ncolor:2:rgb(233,233,233)\ncolor:3:rgb(255, 255, 255)\ncolor:4:rgb(91,17,1)\nfont:1:* 10pt *\nfont:2:* 10pt arial,helvetica,sans-serif\nfont:3:* 12pt *\nfont:4:* 7pt *\nlayout:1:padding:4px 2px 4px 2px;vertical-align:bottom;\nvalueformat:1:text-html\n"
+        },
+        "name": "jul",
+        "hidden": "0"
+      },
+      "sheet3": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:A1:tvf:1:ntvf:1\ncell:A2:tvf:1:ntvf:1\ncell:B2:t:MEDICATION LOG:b::2::2:l:2:f:5:c:3:bg:1:cf:1:colspan:3\ncell:C2:f:5\ncell:D2:f:5\ncell:A3:tvf:1:ntvf:1\ncell:B3:f:5\ncell:C3:f:5\ncell:D3:f:5\ncell:A4:tvf:1:ntvf:1\ncell:B4:t:Date:l:3:f:1\ncell:C4:b:::1::l:3:f:1:ntvf:2:colspan:2\ncell:D4:b:1:1:1:1:l:3:f:1\ncell:A5:tvf:1:ntvf:1\ncell:B5:l:3:f:1\ncell:C5:b:1::::l:3:f:1:colspan:2\ncell:D5:l:3:f:1\ncell:A6:tvf:1:ntvf:1\ncell:B6:t:Name:b::2::2:l:3:f:1:c:3:bg:1:cf:1\ncell:C6:t:Date Started:b::2::2:l:3:f:1:c:3:bg:1:cf:1\ncell:D6:t:Date Stopped:b::2::2:l:3:f:1:c:3:bg:1:cf:1\ncell:A7:b::1:::tvf:1:ntvf:1\ncell:B7:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C7:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D7:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A8:b::1:::tvf:1:ntvf:1\ncell:B8:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C8:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D8:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A9:b::1:::tvf:1:ntvf:1\ncell:B9:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C9:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D9:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A10:b::1:::tvf:1:ntvf:1\ncell:B10:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C10:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D10:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A11:b::1:::tvf:1:ntvf:1\ncell:B11:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C11:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D11:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A12:b::1:::tvf:1:ntvf:1\ncell:B12:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C12:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D12:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A13:b::1:::tvf:1:ntvf:1\ncell:B13:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C13:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D13:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A14:b::1:::tvf:1:ntvf:1\ncell:B14:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C14:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D14:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A15:b::1:::tvf:1:ntvf:1\ncell:B15:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C15:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D15:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A16:b::1:::tvf:1:ntvf:1\ncell:B16:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C16:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D16:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A17:b::1:::tvf:1:ntvf:1\ncell:B17:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C17:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D17:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A18:b::1:::tvf:1:ntvf:1\ncell:B18:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C18:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D18:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A19:b::1:::tvf:1:ntvf:1\ncell:B19:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C19:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D19:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A20:b::1:::tvf:1:ntvf:1\ncell:B20:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C20:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D20:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A21:b::1:::tvf:1:ntvf:1\ncell:B21:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C21:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D21:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A22:b::1:::tvf:1:ntvf:1\ncell:B22:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C22:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D22:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A23:b::1:::tvf:1:ntvf:1\ncell:B23:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C23:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D23:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A24:b::1:::tvf:1:ntvf:1\ncell:B24:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C24:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D24:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A25:b::1:::tvf:1:ntvf:1\ncell:B25:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C25:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D25:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A26:b::1:::tvf:1:ntvf:1\ncell:B26:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C26:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D26:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A27:b::1:::tvf:1:ntvf:1\ncell:B27:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C27:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D27:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A28:b::1:::tvf:1:ntvf:1\ncell:B28:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C28:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D28:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A29:b::1:::tvf:1:ntvf:1\ncell:B29:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C29:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D29:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A30:b::1:::tvf:1:ntvf:1\ncell:B30:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C30:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D30:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A31:b::1:::tvf:1:ntvf:1\ncell:B31:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C31:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D31:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A32:b::1:::tvf:1:ntvf:1\ncell:B32:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C32:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D32:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A33:b::1:::tvf:1:ntvf:1\ncell:B33:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C33:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D33:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A34:b::1:::tvf:1:ntvf:1\ncell:B34:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C34:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D34:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A35:b::1:::tvf:1:ntvf:1\ncell:B35:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C35:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D35:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A36:b::1:::tvf:1:ntvf:1\ncell:B36:b::1::1:l:3:f:1:bg:2:cf:2\ncell:C36:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D36:b::1::1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:A37:b::1:::tvf:1:ntvf:1\ncell:B37:b::1::1:l:3:f:1:bg:3:cf:2\ncell:C37:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:D37:b::1::1:l:3:f:1:bg:3:cf:2:ntvf:2\ncell:A38:b::1:::tvf:1:ntvf:1\ncell:B38:b::1:1:1:l:3:f:1:bg:2:cf:2\ncell:C38:b::1:1:1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:D38:b::1:1:1:l:3:f:1:bg:2:cf:2:ntvf:2\ncell:B39:f:3\ncell:B41:f:4\ncol:A:w:10\ncol:B:w:73\ncol:C:w:73\ncol:D:w:75\nsheet:c:4:r:41:needsrecalc:yes:font:2:layout:1\nborder:1:1px solid rgb(0,0,0)\nborder:2:1px solid rgb(255, 255, 255)\ncellformat:1:center\ncellformat:2:right\ncolor:1:rgb(119,136,221)\ncolor:2:rgb(230,230,250)\ncolor:3:rgb(255, 255, 255)\nfont:1:* * arial,helvetica,sans-serif\nfont:2:* 9pt arial,helvetica,sans-serif\nfont:3:normal bold * *\nfont:4:normal bold 9pt *\nfont:5:normal normal 12pt arial,helvetica,sans-serif\nlayout:1:padding:4px 4px 4px 4px;vertical-align:*;\nlayout:2:padding:4px 4px 4px 4px;vertical-align:bottom;\nlayout:3:padding:4px 4px 4px 4px;vertical-align:middle;\nvalueformat:1:hidden\nvalueformat:2:m/d/yy\n"
+        },
+        "name": "sheet4",
+        "hidden": "0"
+      },
+      "sheet4": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:A1:tvf:4:ntvf:4\ncell:A2:tvf:4:ntvf:4\ncell:B2:t:MEDICATION LOG:b::2::2:l:2:f:3:c:3:bg:1:cf:1:colspan:4\ncell:C2:f:3:colspan:2\ncell:D2:f:3\ncell:E2:f:3\ncell:A3:tvf:4:ntvf:4\ncell:B3:f:3\ncell:C3:f:3\ncell:D3:f:3\ncell:E3:f:3\ncell:A4:tvf:4:ntvf:4\ncell:B4:t:Date:l:4:f:1\ncell:C4:vtf:t::IF(SHEET4!C4=\"\",\"\",SHEET4!C4):b:::1::l:1:f:1:bg:3:cf:2:colspan:3\ncell:A5:tvf:4:ntvf:4\ncell:B5:l:4:f:3\ncell:C5:b:1::::l:4:f:3\ncell:D5:b:1::::l:4:f:3:colspan:2\ncell:E5:l:4:f:3\ncell:A6:tvf:4:ntvf:4\ncell:B6:t:Name:b::2::2:l:3:f:2:c:3:bg:1:cf:1\ncell:C6:t:Dosage Times:b::2::2:l:3:f:2:c:3:bg:1:cf:1:colspan:2\ncell:D6:t:City,State,Country:b::2::2:l:3:f:2:c:3:bg:1:cf:1\ncell:E6:t:Dosage Qty:b::2::2:l:3:f:2:c:3:bg:1:cf:1\ncell:A7:b::1:::tvf:4:ntvf:4\ncell:B7:vtf:t::if(sheet4!B7=\"\",\"\",sheet4!B7):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C7:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D7:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E7:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A8:b::1:::tvf:4:ntvf:4\ncell:B8:vtf:t::if(sheet4!B8=\"\",\"\",sheet4!B8):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C8:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D8:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E8:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A9:b::1:::tvf:4:ntvf:4\ncell:B9:vtf:t::IF(SHEET4!B9=\"\",\"\",SHEET4!B9):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C9:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D9:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E9:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A10:b::1:::tvf:4:ntvf:4\ncell:B10:vtf:t::IF(SHEET4!B10=\"\",\"\",SHEET4!B10):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C10:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D10:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E10:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A11:b::1:::tvf:4:ntvf:4\ncell:B11:vtf:t::IF(SHEET4!B11=\"\",\"\",SHEET4!B11):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C11:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D11:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E11:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A12:b::1:::tvf:4:ntvf:4\ncell:B12:vtf:t::IF(SHEET4!B12=\"\",\"\",SHEET4!B12):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C12:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D12:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E12:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A13:b::1:::tvf:4:ntvf:4\ncell:B13:vtf:t::IF(SHEET4!B13=\"\",\"\",SHEET4!B13):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C13:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D13:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E13:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A14:b::1:::tvf:4:ntvf:4\ncell:B14:vtf:t::IF(SHEET4!B14=\"\",\"\",SHEET4!B14):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C14:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D14:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E14:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A15:b::1:::tvf:4:ntvf:4\ncell:B15:vtf:t::IF(SHEET4!B15=\"\",\"\",SHEET4!B15):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C15:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D15:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E15:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A16:b::1:::tvf:4:ntvf:4\ncell:B16:vtf:t::IF(SHEET4!B16=\"\",\"\",SHEET4!B16):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C16:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D16:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E16:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A17:b::1:::tvf:4:ntvf:4\ncell:B17:vtf:t::IF(SHEET4!B17=\"\",\"\",SHEET4!B17):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C17:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D17:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E17:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A18:b::1:::tvf:4:ntvf:4\ncell:B18:vtf:t::IF(SHEET4!B18=\"\",\"\",SHEET4!B18):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C18:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D18:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E18:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A19:b::1:::tvf:4:ntvf:4\ncell:B19:vtf:t::IF(SHEET4!B19=\"\",\"\",SHEET4!B19):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C19:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D19:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E19:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A20:b::1:::tvf:4:ntvf:4\ncell:B20:vtf:t::IF(SHEET4!B20=\"\",\"\",SHEET4!B20):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C20:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D20:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E20:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A21:b::1:::tvf:4:ntvf:4\ncell:B21:vtf:t::IF(SHEET4!B21=\"\",\"\",SHEET4!B21):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C21:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D21:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E21:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A22:b::1:::tvf:4:ntvf:4\ncell:B22:vtf:t::IF(SHEET4!B22=\"\",\"\",SHEET4!B22):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C22:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D22:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E22:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A23:b::1:::tvf:4:ntvf:4\ncell:B23:vtf:t::IF(SHEET4!B23=\"\",\"\",SHEET4!B23):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C23:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D23:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E23:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A24:b::1:::tvf:4:ntvf:4\ncell:B24:vtf:t::IF(SHEET4!B24=\"\",\"\",SHEET4!B24):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C24:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D24:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E24:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A25:b::1:::tvf:4:ntvf:4\ncell:B25:vtf:t::IF(SHEET4!B25=\"\",\"\",SHEET4!B25):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C25:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D25:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E25:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A26:b::1:::tvf:4:ntvf:4\ncell:B26:vtf:t::IF(SHEET4!B26=\"\",\"\",SHEET4!B26):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C26:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D26:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E26:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A27:b::1:::tvf:4:ntvf:4\ncell:B27:vtf:t::IF(SHEET4!B27=\"\",\"\",SHEET4!B27):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C27:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D27:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E27:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A28:b::1:::tvf:4:ntvf:4\ncell:B28:vtf:t::IF(SHEET4!B28=\"\",\"\",SHEET4!B28):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C28:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D28:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E28:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A29:b::1:::tvf:4:ntvf:4\ncell:B29:vtf:t::IF(SHEET4!B29=\"\",\"\",SHEET4!B29):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C29:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D29:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E29:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A30:b::1:::tvf:4:ntvf:4\ncell:B30:vtf:t::IF(SHEET4!B30=\"\",\"\",SHEET4!B30):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C30:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D30:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E30:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A31:b::1:::tvf:4:ntvf:4\ncell:B31:vtf:t::IF(SHEET4!B31=\"\",\"\",SHEET4!B31):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C31:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D31:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E31:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A32:b::1:::tvf:4:ntvf:4\ncell:B32:vtf:t::IF(SHEET4!B32=\"\",\"\",SHEET4!B32):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C32:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D32:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E32:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A33:b::1:::tvf:4:ntvf:4\ncell:B33:vtf:t::IF(SHEET4!B33=\"\",\"\",SHEET4!B33):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C33:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D33:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E33:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A34:b::1:::tvf:4:ntvf:4\ncell:B34:vtf:t::IF(SHEET4!B34=\"\",\"\",SHEET4!B34):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C34:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D34:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E34:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A35:b::1:::tvf:4:ntvf:4\ncell:B35:vtf:t::IF(SHEET4!B35=\"\",\"\",SHEET4!B35):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C35:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D35:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E35:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A36:b::1:::tvf:4:ntvf:4\ncell:B36:vtf:t::IF(SHEET4!B36=\"\",\"\",SHEET4!B36):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C36:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D36:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E36:b::1::1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:A37:b::1:::tvf:4:ntvf:4\ncell:B37:vtf:t::IF(SHEET4!B37=\"\",\"\",SHEET4!B37):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C37:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:3:colspan:2\ncell:D37:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:2\ncell:E37:b::1::1:l:1:f:1:bg:3:cf:2:ntvf:1\ncell:A38:b::1:::tvf:4:ntvf:4\ncell:B38:vtf:t::IF(SHEET4!B38=\"\",\"\",SHEET4!B38):b::1:1:1:l:1:f:1:bg:2:cf:2\ncell:C38:b::1:1:1:l:1:f:1:bg:2:cf:2:ntvf:3:colspan:2\ncell:D38:b::1:1:1:l:1:f:1:bg:2:cf:2:ntvf:2\ncell:E38:b::1:1:1:l:1:f:1:bg:2:cf:2:ntvf:1\ncell:B39:b:1:::\ncell:C39:b:1:::\ncell:D39:b:1:::\ncell:E39:b:1:::\ncol:A:w:10\ncol:B:w:117\ncol:C:w:47\ncol:D:w:13\ncol:E:w:51\nsheet:c:5:r:39:needsrecalc:yes\nborder:1:1px solid rgb(0,0,0)\nborder:2:1px solid rgb(255, 255, 255)\ncellformat:1:center\ncellformat:2:right\ncolor:1:rgb(119,136,221)\ncolor:2:rgb(230,230,250)\ncolor:3:rgb(255, 255, 255)\nfont:1:normal normal * arial,helvetica,sans-serif\nfont:2:normal normal 10pt arial,helvetica,sans-serif\nfont:3:normal normal 12pt arial,helvetica,sans-serif\nlayout:1:padding:4px 2px 4px 2px;vertical-align:bottom;\nlayout:2:padding:4px 4px 4px 4px;vertical-align:bottom;\nlayout:3:padding:6px 1px 6px 1px;vertical-align:middle;\nlayout:4:padding:6px 4px 6px 4px;vertical-align:middle;\nvalueformat:1:#,##0.0\nvalueformat:2:#,##0.00\nvalueformat:3:h\\cmm\nvalueformat:4:hidden\n"
+        },
+        "name": "sheet9",
+        "hidden": "0"
+      },
+      "sheet5": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:C1:colspan:2\ncell:A2:tvf:1:ntvf:1\ncell:B2:t:Name:b::2::2:l:3:f:3:c:3:bg:1:cf:1\ncell:C2:t:Description:b::2::2:l:3:f:3:c:3:bg:1:cf:1:colspan:2\ncell:D2:t:Size , Shape , Color:b::2::2:l:3:f:3:c:3:bg:1:cf:1\ncell:E2:t:Due Date:b::2::2:l:3:f:3:c:3:bg:1:cf:1\ncell:A3:b::1:::tvf:1:ntvf:1\ncell:B3:vtf:t::IF(SHEET4!B7=\"\",\"\",SHEET4!B7):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C3:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D3:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E3:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A4:b::1:::tvf:1:ntvf:1\ncell:B4:vtf:t::IF(SHEET4!B8=\"\",\"\",SHEET4!B8):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C4:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D4:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E4:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A5:b::1:::tvf:1:ntvf:1\ncell:B5:vtf:t::IF(SHEET4!B9=\"\",\"\",SHEET4!B9):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C5:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D5:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E5:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A6:b::1:::tvf:1:ntvf:1\ncell:B6:vtf:t::IF(SHEET4!B10=\"\",\"\",SHEET4!B10):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C6:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D6:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E6:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A7:b::1:::tvf:1:ntvf:1\ncell:B7:vtf:t::IF(SHEET4!B11=\"\",\"\",SHEET4!B11):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C7:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D7:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E7:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A8:b::1:::tvf:1:ntvf:1\ncell:B8:vtf:t::IF(SHEET4!B12=\"\",\"\",SHEET4!B12):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C8:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D8:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E8:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A9:b::1:::tvf:1:ntvf:1\ncell:B9:vtf:t::IF(SHEET4!B13=\"\",\"\",SHEET4!B13):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C9:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D9:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E9:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A10:b::1:::tvf:1:ntvf:1\ncell:B10:vtf:t::IF(SHEET4!B14=\"\",\"\",SHEET4!B14):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C10:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D10:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E10:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A11:b::1:::tvf:1:ntvf:1\ncell:B11:vtf:t::IF(SHEET4!B15=\"\",\"\",SHEET4!B15):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C11:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D11:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E11:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A12:b::1:::tvf:1:ntvf:1\ncell:B12:vtf:t::IF(SHEET4!B16=\"\",\"\",SHEET4!B16):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C12:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D12:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E12:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A13:b::1:::tvf:1:ntvf:1\ncell:B13:vtf:t::IF(SHEET4!B17=\"\",\"\",SHEET4!B17):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C13:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D13:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E13:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A14:b::1:::tvf:1:ntvf:1\ncell:B14:vtf:t::IF(SHEET4!B18=\"\",\"\",SHEET4!B18):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C14:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D14:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E14:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A15:b::1:::tvf:1:ntvf:1\ncell:B15:vtf:t::IF(SHEET4!B19=\"\",\"\",SHEET4!B19):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C15:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D15:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E15:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A16:b::1:::tvf:1:ntvf:1\ncell:B16:vtf:t::IF(SHEET4!B20=\"\",\"\",SHEET4!B20):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C16:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D16:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E16:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A17:b::1:::tvf:1:ntvf:1\ncell:B17:vtf:t::IF(SHEET4!B21=\"\",\"\",SHEET4!B21):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C17:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D17:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E17:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A18:b::1:::tvf:1:ntvf:1\ncell:B18:vtf:t::IF(SHEET4!B22=\"\",\"\",SHEET4!B22):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C18:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D18:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E18:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A19:b::1:::tvf:1:ntvf:1\ncell:B19:vtf:t::IF(SHEET4!B23=\"\",\"\",SHEET4!B23):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C19:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D19:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E19:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A20:b::1:::tvf:1:ntvf:1\ncell:B20:vtf:t::IF(SHEET4!B24=\"\",\"\",SHEET4!B24):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C20:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D20:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E20:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A21:b::1:::tvf:1:ntvf:1\ncell:B21:vtf:t::IF(SHEET4!B25=\"\",\"\",SHEET4!B25):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C21:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D21:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E21:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A22:b::1:::tvf:1:ntvf:1\ncell:B22:vtf:t::IF(SHEET4!B26=\"\",\"\",SHEET4!B26):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C22:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D22:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E22:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A23:b::1:::tvf:1:ntvf:1\ncell:B23:vtf:t::IF(SHEET4!B27=\"\",\"\",SHEET4!B27):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C23:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D23:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E23:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A24:b::1:::tvf:1:ntvf:1\ncell:B24:vtf:t::IF(SHEET4!B28=\"\",\"\",SHEET4!B28):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C24:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D24:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E24:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A25:b::1:::tvf:1:ntvf:1\ncell:B25:vtf:t::IF(SHEET4!B29=\"\",\"\",SHEET4!B29):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C25:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D25:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E25:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A26:b::1:::tvf:1:ntvf:1\ncell:B26:vtf:t::IF(SHEET4!B30=\"\",\"\",SHEET4!B30):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C26:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D26:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E26:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A27:b::1:::tvf:1:ntvf:1\ncell:B27:vtf:t::IF(SHEET4!B31=\"\",\"\",SHEET4!B31):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C27:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D27:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E27:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A28:b::1:::tvf:1:ntvf:1\ncell:B28:vtf:t::IF(SHEET4!B32=\"\",\"\",SHEET4!B32):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C28:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D28:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E28:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A29:b::1:::tvf:1:ntvf:1\ncell:B29:vtf:t::IF(SHEET4!B33=\"\",\"\",SHEET4!B33):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C29:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D29:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E29:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A30:b::1:::tvf:1:ntvf:1\ncell:B30:vtf:t::IF(SHEET4!B34=\"\",\"\",SHEET4!B34):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C30:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D30:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E30:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A31:b::1:::tvf:1:ntvf:1\ncell:B31:vtf:t::IF(SHEET4!B35=\"\",\"\",SHEET4!B35):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C31:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D31:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E31:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A32:b::1:::tvf:1:ntvf:1\ncell:B32:vtf:t::IF(SHEET4!B36=\"\",\"\",SHEET4!B36):b::1::1:l:3:f:3:bg:2:cf:2\ncell:C32:b::1::1:l:3:f:3:bg:2:cf:2:colspan:2\ncell:D32:b::1::1:l:3:f:3:bg:2:cf:2\ncell:E32:b::1::1:l:3:f:3:bg:2:cf:2:ntvf:2\ncell:A33:b::1:::tvf:1:ntvf:1\ncell:B33:vtf:t::IF(SHEET4!B37=\"\",\"\",SHEET4!B37):b::1::1:l:3:f:3:bg:3:cf:2\ncell:C33:b::1::1:l:3:f:3:bg:3:cf:2:colspan:2\ncell:D33:b::1::1:l:3:f:3:bg:3:cf:2\ncell:E33:b::1::1:l:3:f:3:bg:3:cf:2:ntvf:2\ncell:A34:b::1:::tvf:1:ntvf:1\ncell:B34:vtf:t::IF(SHEET4!B38=\"\",\"\",SHEET4!B38):b::1:1:1:l:2:f:4:bg:2:cf:2\ncell:C34:b::1:1:1:l:1:f:4:bg:2:cf:2:colspan:2\ncell:D34:b::1:1:1:l:1:f:4:bg:2:cf:2\ncell:E34:b::1:1:1:l:1:f:4:bg:2:cf:2:ntvf:2\ncell:B35:vtf:t::IF(SHEET4!C39=\"\", \"\", SHEET4!C39):f:1\ncell:B36:vtf:t::IF(SHEET4!C40=\"\", \"\", SHEET4!C40)\ncell:B37:vtf:t::IF(SHEET4!C41=\"\", \"\", SHEET4!C41):f:2\ncell:B38:vtf:t::IF(SHEET4!C42=\"\", \"\", SHEET4!C42)\ncell:B39:vtf:t::IF(SHEET4!C43=\"\", \"\", SHEET4!C43)\ncell:B40:vtf:t::IF(SHEET4!C44=\"\", \"\", SHEET4!C44)\ncell:B41:vtf:t::IF(SHEET4!C45=\"\", \"\", SHEET4!C45)\ncell:B42:vtf:t::IF(SHEET4!C46=\"\", \"\", SHEET4!C46)\ncell:B43:vtf:t::IF(SHEET4!C47=\"\", \"\", SHEET4!C47)\ncell:B44:vtf:t::IF(SHEET4!C48=\"\", \"\", SHEET4!C48)\ncol:A:w:10\ncol:B:w:63\ncol:C:w:10\ncol:D:w:84\ncol:E:w:60\nsheet:c:5:r:44:needsrecalc:yes\nborder:1:1px solid rgb(0,0,0)\nborder:2:1px solid rgb(255, 255, 255)\ncellformat:1:center\ncellformat:2:right\ncolor:1:rgb(119,136,221)\ncolor:2:rgb(230,230,250)\ncolor:3:rgb(255, 255, 255)\nfont:1:normal bold * *\nfont:2:normal bold 9pt *\nfont:3:normal normal * arial,helvetica,sans-serif\nfont:4:normal normal 10pt arial,helvetica,sans-serif\nlayout:1:padding:4px 1px 4px 1px;vertical-align:bottom;\nlayout:2:padding:4px 2px 4px 2px;vertical-align:bottom;\nlayout:3:padding:4px 4px 4px 4px;vertical-align:bottom;\nvalueformat:1:hidden\nvalueformat:2:m/d/yy\n"
+        },
+        "name": "sheet3",
+        "hidden": "0"
+      },
+      "sheet6": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:A1:tvf:1:ntvf:1\ncell:A2:tvf:1:ntvf:1\ncell:B2:t:Name:b::2::2:l:1:f:1:c:3:bg:1:cf:1\ncell:C2:t:Side Effects:b::2::2:l:1:f:1:c:3:bg:1:cf:1\ncell:D2:t:Refill No.:b::2::2:l:1:f:1:c:3:bg:1:cf:1\ncell:A3:b::1:::tvf:1:ntvf:1\ncell:B3:vtf:t::IF(SHEET4!B7=\"\",\"\",SHEET4!B7):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C3:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D3:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A4:b::1:::tvf:1:ntvf:1\ncell:B4:vtf:t::IF(SHEET4!B8=\"\",\"\",SHEET4!B8):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C4:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D4:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A5:b::1:::tvf:1:ntvf:1\ncell:B5:vtf:t::IF(SHEET4!B9=\"\",\"\",SHEET4!B9):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C5:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D5:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A6:b::1:::tvf:1:ntvf:1\ncell:B6:vtf:t::IF(SHEET4!B10=\"\",\"\",SHEET4!B10):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C6:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D6:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A7:b::1:::tvf:1:ntvf:1\ncell:B7:vtf:t::IF(SHEET4!B11=\"\",\"\",SHEET4!B11):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C7:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D7:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A8:b::1:::tvf:1:ntvf:1\ncell:B8:vtf:t::IF(SHEET4!B12=\"\",\"\",SHEET4!B12):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C8:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D8:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A9:b::1:::tvf:1:ntvf:1\ncell:B9:vtf:t::IF(SHEET4!B13=\"\",\"\",SHEET4!B13):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C9:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D9:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A10:b::1:::tvf:1:ntvf:1\ncell:B10:vtf:t::IF(SHEET4!B14=\"\",\"\",SHEET4!B14):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C10:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D10:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A11:b::1:::tvf:1:ntvf:1\ncell:B11:vtf:t::IF(SHEET4!B15=\"\",\"\",SHEET4!B15):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C11:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D11:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A12:b::1:::tvf:1:ntvf:1\ncell:B12:vtf:t::IF(SHEET4!B16=\"\",\"\",SHEET4!B16):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C12:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D12:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A13:b::1:::tvf:1:ntvf:1\ncell:B13:vtf:t::IF(SHEET4!B17=\"\",\"\",SHEET4!B17):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C13:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D13:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A14:b::1:::tvf:1:ntvf:1\ncell:B14:vtf:t::IF(SHEET4!B18=\"\",\"\",SHEET4!B18):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C14:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D14:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A15:b::1:::tvf:1:ntvf:1\ncell:B15:vtf:t::IF(SHEET4!B19=\"\",\"\",SHEET4!B19):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C15:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D15:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A16:b::1:::tvf:1:ntvf:1\ncell:B16:vtf:t::IF(SHEET4!B20=\"\",\"\",SHEET4!B20):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C16:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D16:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A17:b::1:::tvf:1:ntvf:1\ncell:B17:vtf:t::IF(SHEET4!B21=\"\",\"\",SHEET4!B21):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C17:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D17:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A18:b::1:::tvf:1:ntvf:1\ncell:B18:vtf:t::IF(SHEET4!B22=\"\",\"\",SHEET4!B22):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C18:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D18:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A19:b::1:::tvf:1:ntvf:1\ncell:B19:vtf:t::IF(SHEET4!B23=\"\",\"\",SHEET4!B23):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C19:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D19:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A20:b::1:::tvf:1:ntvf:1\ncell:B20:vtf:t::IF(SHEET4!B24=\"\",\"\",SHEET4!B24):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C20:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D20:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A21:b::1:::tvf:1:ntvf:1\ncell:B21:vtf:t::IF(SHEET4!B25=\"\",\"\",SHEET4!B25):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C21:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D21:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A22:b::1:::tvf:1:ntvf:1\ncell:B22:vtf:t::IF(SHEET4!B26=\"\",\"\",SHEET4!B26):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C22:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D22:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A23:b::1:::tvf:1:ntvf:1\ncell:B23:vtf:t::IF(SHEET4!B27=\"\",\"\",SHEET4!B27):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C23:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D23:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A24:b::1:::tvf:1:ntvf:1\ncell:B24:vtf:t::IF(SHEET4!B28=\"\",\"\",SHEET4!B28):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C24:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D24:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A25:b::1:::tvf:1:ntvf:1\ncell:B25:vtf:t::IF(SHEET4!B29=\"\",\"\",SHEET4!B29):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C25:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D25:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A26:b::1:::tvf:1:ntvf:1\ncell:B26:vtf:t::IF(SHEET4!B30=\"\",\"\",SHEET4!B30):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C26:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D26:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A27:b::1:::tvf:1:ntvf:1\ncell:B27:vtf:t::IF(SHEET4!B31=\"\",\"\",SHEET4!B31):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C27:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D27:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A28:b::1:::tvf:1:ntvf:1\ncell:B28:vtf:t::IF(SHEET4!B32=\"\",\"\",SHEET4!B32):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C28:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D28:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A29:b::1:::tvf:1:ntvf:1\ncell:B29:vtf:t::IF(SHEET4!B33=\"\",\"\",SHEET4!B33):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C29:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D29:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A30:b::1:::tvf:1:ntvf:1\ncell:B30:vtf:t::IF(SHEET4!B34=\"\",\"\",SHEET4!B34):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C30:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D30:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A31:b::1:::tvf:1:ntvf:1\ncell:B31:vtf:t::IF(SHEET4!B35=\"\",\"\",SHEET4!B35):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C31:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D31:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A32:b::1:::tvf:1:ntvf:1\ncell:B32:vtf:t::IF(SHEET4!B36=\"\",\"\",SHEET4!B36):b::1::1:l:1:f:1:bg:2:cf:2\ncell:C32:b::1::1:l:1:f:1:bg:2:cf:2\ncell:D32:b::1::1:l:1:f:1:bg:2:cf:2\ncell:A33:b::1:::tvf:1:ntvf:1\ncell:B33:vtf:t::IF(SHEET4!B37=\"\",\"\",SHEET4!B37):b::1::1:l:1:f:1:bg:3:cf:2\ncell:C33:b::1::1:l:1:f:1:bg:3:cf:2\ncell:D33:b::1::1:l:1:f:1:bg:3:cf:2\ncell:A34:b::1:::tvf:1:ntvf:1\ncell:B34:vtf:t::IF(SHEET4!B38=\"\",\"\",SHEET4!B38):b::1:1:1:l:1:f:1:bg:2:cf:2\ncell:C34:b::1:1:1:l:1:f:1:bg:2:cf:2\ncell:D34:b::1:1:1:l:1:f:1:bg:2:cf:2\ncell:B35:b:1:::\ncell:C35:b:1:::\ncell:D35:b:1:::\ncol:A:w:10\ncol:B:w:65\ncol:C:w:88\ncol:D:w:69\ncol:E:w:80\ncol:F:w:80\nrow:2:h:27.75\nrow:33:h:13.5\nrow:34:h:13.5\nrow:34:hide:1\nsheet:c:6:r:35:h:12.75:needsrecalc:yes\nborder:1:1px solid rgb(0,0,0)\nborder:2:1px solid rgb(255, 255, 255)\ncellformat:1:center\ncellformat:2:right\ncolor:1:rgb(119,136,221)\ncolor:2:rgb(230,230,250)\ncolor:3:rgb(255, 255, 255)\nfont:1:normal normal * arial,helvetica,sans-serif\nlayout:1:padding:4px 4px 4px 4px;vertical-align:bottom;\nvalueformat:1:hidden\n"
+        },
+        "name": "sheet6",
+        "hidden": "0"
+      }
+    },
+    "EditableCells": {
+      "allow": true,
+      "cells": {
+        "jul!B2": true,
+        "jul!B5": true,
+        "jul!C5": true,
+        "jul!E5": true,
+        "jul!E7": true,
+        "jul!E8": true,
+        "jul!E9": true,
+        "jul!E10": true,
+        "jul!E11": true,
+        "jul!E12": true,
+        "jul!E13": true,
+        "jul!E14": true,
+        "jul!E15": true,
+        "jul!E16": true,
+        "jul!E17": true,
+        "jul!E18": true,
+        "jul!E19": true,
+        "jul!E20": true,
+        "jul!E21": true,
+        "jul!E22": true,
+        "jul!E23": true,
+        "jul!E24": true,
+        "jul!E25": true,
+        "jul!E26": true,
+        "jul!E27": true,
+        "jul!E28": true,
+        "jul!E29": true,
+        "jul!E30": true,
+        "jul!E31": true,
+        "jul!E32": true,
+        "jul!E33": true,
+        "jul!E34": true,
+        "jul!E35": true,
+        "jul!E36": true,
+        "jul!E37": true,
+        "sheet4!B2": true,
+        "sheet4!B4": true,
+        "sheet4!C4": true,
+        "sheet4!B6": true,
+        "sheet4!B7": true,
+        "sheet4!B8": true,
+        "sheet4!B9": true,
+        "sheet4!B10": true,
+        "sheet4!B11": true,
+        "sheet4!B12": true,
+        "sheet4!B13": true,
+        "sheet4!B14": true,
+        "sheet4!B15": true,
+        "sheet4!B16": true,
+        "sheet4!B17": true,
+        "sheet4!B18": true,
+        "sheet4!B19": true,
+        "sheet4!B20": true,
+        "sheet4!B21": true,
+        "sheet4!B22": true,
+        "sheet4!B23": true,
+        "sheet4!B24": true,
+        "sheet4!B25": true,
+        "sheet4!B26": true,
+        "sheet4!B27": true,
+        "sheet4!B28": true,
+        "sheet4!B29": true,
+        "sheet4!B30": true,
+        "sheet4!B31": true,
+        "sheet4!B32": true,
+        "sheet4!B33": true,
+        "sheet4!B34": true,
+        "sheet4!B35": true,
+        "sheet4!B36": true,
+        "sheet4!B37": true,
+        "sheet4!B38": true,
+        "sheet4!C6": true,
+        "sheet4!C7": true,
+        "sheet4!C8": true,
+        "sheet4!C9": true,
+        "sheet4!C10": true,
+        "sheet4!C11": true,
+        "sheet4!C12": true,
+        "sheet4!C13": true,
+        "sheet4!C14": true,
+        "sheet4!C15": true,
+        "sheet4!C16": true,
+        "sheet4!C17": true,
+        "sheet4!C18": true,
+        "sheet4!C19": true,
+        "sheet4!C20": true,
+        "sheet4!C21": true,
+        "sheet4!C22": true,
+        "sheet4!C23": true,
+        "sheet4!C24": true,
+        "sheet4!C25": true,
+        "sheet4!C26": true,
+        "sheet4!C27": true,
+        "sheet4!C28": true,
+        "sheet4!C29": true,
+        "sheet4!C30": true,
+        "sheet4!C31": true,
+        "sheet4!C32": true,
+        "sheet4!C33": true,
+        "sheet4!C34": true,
+        "sheet4!C35": true,
+        "sheet4!C36": true,
+        "sheet4!C37": true,
+        "sheet4!C38": true,
+        "sheet4!D6": true,
+        "sheet4!D7": true,
+        "sheet4!D8": true,
+        "sheet4!D9": true,
+        "sheet4!D10": true,
+        "sheet4!D11": true,
+        "sheet4!D12": true,
+        "sheet4!D13": true,
+        "sheet4!D14": true,
+        "sheet4!D15": true,
+        "sheet4!D16": true,
+        "sheet4!D17": true,
+        "sheet4!D18": true,
+        "sheet4!D19": true,
+        "sheet4!D20": true,
+        "sheet4!D21": true,
+        "sheet4!D22": true,
+        "sheet4!D23": true,
+        "sheet4!D24": true,
+        "sheet4!D25": true,
+        "sheet4!D26": true,
+        "sheet4!D27": true,
+        "sheet4!D28": true,
+        "sheet4!D29": true,
+        "sheet4!D30": true,
+        "sheet4!D31": true,
+        "sheet4!D32": true,
+        "sheet4!D33": true,
+        "sheet4!D34": true,
+        "sheet4!D35": true,
+        "sheet4!D36": true,
+        "sheet4!D37": true,
+        "sheet4!D38": true,
+        "sheet9!B2": true,
+        "sheet9!B4": true,
+        "sheet9!C6": true,
+        "sheet9!C7": true,
+        "sheet9!C8": true,
+        "sheet9!C9": true,
+        "sheet9!C10": true,
+        "sheet9!C11": true,
+        "sheet9!C12": true,
+        "sheet9!C13": true,
+        "sheet9!C14": true,
+        "sheet9!C15": true,
+        "sheet9!C16": true,
+        "sheet9!C17": true,
+        "sheet9!C18": true,
+        "sheet9!C19": true,
+        "sheet9!C20": true,
+        "sheet9!C21": true,
+        "sheet9!C22": true,
+        "sheet9!C23": true,
+        "sheet9!C24": true,
+        "sheet9!C25": true,
+        "sheet9!C26": true,
+        "sheet9!C27": true,
+        "sheet9!C28": true,
+        "sheet9!C29": true,
+        "sheet9!C30": true,
+        "sheet9!C31": true,
+        "sheet9!C32": true,
+        "sheet9!C33": true,
+        "sheet9!C34": true,
+        "sheet9!C35": true,
+        "sheet9!C36": true,
+        "sheet9!C37": true,
+        "sheet9!C38": true,
+        "sheet9!E6": true,
+        "sheet9!E7": true,
+        "sheet9!E8": true,
+        "sheet9!E9": true,
+        "sheet9!E10": true,
+        "sheet9!E11": true,
+        "sheet9!E12": true,
+        "sheet9!E13": true,
+        "sheet9!E14": true,
+        "sheet9!E15": true,
+        "sheet9!E16": true,
+        "sheet9!E17": true,
+        "sheet9!E18": true,
+        "sheet9!E19": true,
+        "sheet9!E20": true,
+        "sheet9!E21": true,
+        "sheet9!E22": true,
+        "sheet9!E23": true,
+        "sheet9!E24": true,
+        "sheet9!E25": true,
+        "sheet9!E26": true,
+        "sheet9!E27": true,
+        "sheet9!E28": true,
+        "sheet9!E29": true,
+        "sheet9!E30": true,
+        "sheet9!E31": true,
+        "sheet9!E32": true,
+        "sheet9!E33": true,
+        "sheet9!E34": true,
+        "sheet9!E35": true,
+        "sheet9!E36": true,
+        "sheet9!E37": true,
+        "sheet9!E38": true,
+        "sheet3!B2": true,
+        "sheet3!C2": true,
+        "sheet3!C3": true,
+        "sheet3!C4": true,
+        "sheet3!C5": true,
+        "sheet3!C6": true,
+        "sheet3!C7": true,
+        "sheet3!C8": true,
+        "sheet3!C9": true,
+        "sheet3!C10": true,
+        "sheet3!C11": true,
+        "sheet3!C12": true,
+        "sheet3!C13": true,
+        "sheet3!C14": true,
+        "sheet3!C15": true,
+        "sheet3!C16": true,
+        "sheet3!C17": true,
+        "sheet3!C18": true,
+        "sheet3!C19": true,
+        "sheet3!C20": true,
+        "sheet3!C21": true,
+        "sheet3!C22": true,
+        "sheet3!C23": true,
+        "sheet3!C24": true,
+        "sheet3!C25": true,
+        "sheet3!C26": true,
+        "sheet3!C27": true,
+        "sheet3!C28": true,
+        "sheet3!C29": true,
+        "sheet3!C30": true,
+        "sheet3!C31": true,
+        "sheet3!C32": true,
+        "sheet3!C33": true,
+        "sheet3!C34": true,
+        "sheet3!E2": true,
+        "sheet3!E3": true,
+        "sheet3!E4": true,
+        "sheet3!E5": true,
+        "sheet3!E6": true,
+        "sheet3!E7": true,
+        "sheet3!E8": true,
+        "sheet3!E9": true,
+        "sheet3!E10": true,
+        "sheet3!E11": true,
+        "sheet3!E12": true,
+        "sheet3!E13": true,
+        "sheet3!E14": true,
+        "sheet3!E15": true,
+        "sheet3!E16": true,
+        "sheet3!E17": true,
+        "sheet3!E18": true,
+        "sheet3!E19": true,
+        "sheet3!E20": true,
+        "sheet3!E21": true,
+        "sheet3!E22": true,
+        "sheet3!E23": true,
+        "sheet3!E24": true,
+        "sheet3!E25": true,
+        "sheet3!E26": true,
+        "sheet3!E27": true,
+        "sheet3!E28": true,
+        "sheet3!E29": true,
+        "sheet3!E30": true,
+        "sheet3!E31": true,
+        "sheet3!E32": true,
+        "sheet3!E33": true,
+        "sheet3!E34": true,
+        "sheet6!B2": true,
+        "sheet6!C2": true,
+        "sheet6!C3": true,
+        "sheet6!C4": true,
+        "sheet6!C5": true,
+        "sheet6!C6": true,
+        "sheet6!C7": true,
+        "sheet6!C8": true,
+        "sheet6!C9": true,
+        "sheet6!C10": true,
+        "sheet6!C11": true,
+        "sheet6!C12": true,
+        "sheet6!C13": true,
+        "sheet6!C14": true,
+        "sheet6!C15": true,
+        "sheet6!C16": true,
+        "sheet6!C17": true,
+        "sheet6!C18": true,
+        "sheet6!C19": true,
+        "sheet6!C20": true,
+        "sheet6!C21": true,
+        "sheet6!C22": true,
+        "sheet6!C23": true,
+        "sheet6!C24": true,
+        "sheet6!C25": true,
+        "sheet6!C26": true,
+        "sheet6!C27": true,
+        "sheet6!C28": true,
+        "sheet6!C29": true,
+        "sheet6!C30": true,
+        "sheet6!C31": true,
+        "sheet6!C32": true,
+        "sheet6!C33": true,
+        "sheet6!C34": true,
+        "sheet6!E2": true,
+        "sheet6!E3": true,
+        "sheet6!E4": true,
+        "sheet6!E5": true,
+        "sheet6!E6": true,
+        "sheet6!E7": true,
+        "sheet6!E8": true,
+        "sheet6!E9": true,
+        "sheet6!E10": true,
+        "sheet6!E11": true,
+        "sheet6!E12": true,
+        "sheet6!E13": true,
+        "sheet6!E14": true,
+        "sheet6!E15": true,
+        "sheet6!E16": true,
+        "sheet6!E17": true,
+        "sheet6!E18": true,
+        "sheet6!E19": true,
+        "sheet6!E20": true,
+        "sheet6!E21": true,
+        "sheet6!E22": true,
+        "sheet6!E23": true,
+        "sheet6!E24": true,
+        "sheet6!E25": true,
+        "sheet6!E26": true,
+        "sheet6!E27": true,
+        "sheet6!E28": true,
+        "sheet6!E29": true,
+        "sheet6!E30": true,
+        "sheet6!E31": true,
+        "sheet6!E32": true,
+        "sheet6!E33": true,
+        "sheet6!E34": true
+      },
+      "constraints": {
+        "jul!B7": [
+          "tc"
+        ],
+        "jul!B8": [
+          "tc"
+        ],
+        "jul!B9": [
+          "tc"
+        ],
+        "jul!B10": [
+          "tc"
+        ],
+        "jul!B11": [
+          "tc"
+        ],
+        "jul!B12": [
+          "tc"
+        ],
+        "jul!B13": [
+          "tc"
+        ],
+        "jul!B14": [
+          "tc"
+        ],
+        "jul!B15": [
+          "tc"
+        ],
+        "jul!B16": [
+          "tc"
+        ],
+        "jul!B17": [
+          "tc"
+        ],
+        "jul!B18": [
+          "tc"
+        ],
+        "jul!B19": [
+          "tc"
+        ],
+        "jul!B20": [
+          "tc"
+        ],
+        "jul!B21": [
+          "tc"
+        ],
+        "jul!B22": [
+          "tc"
+        ],
+        "jul!B23": [
+          "tc"
+        ],
+        "jul!B24": [
+          "tc"
+        ],
+        "jul!B25": [
+          "tc"
+        ],
+        "jul!B26": [
+          "tc"
+        ],
+        "jul!B27": [
+          "tc"
+        ],
+        "jul!B28": [
+          "tc"
+        ],
+        "jul!B29": [
+          "tc"
+        ],
+        "jul!B30": [
+          "tc"
+        ],
+        "jul!B31": [
+          "tc"
+        ],
+        "jul!B32": [
+          "tc"
+        ],
+        "jul!B33": [
+          "tc"
+        ],
+        "jul!B34": [
+          "tc"
+        ],
+        "jul!B35": [
+          "tc"
+        ],
+        "jul!B36": [
+          "tc"
+        ],
+        "jul!B37": [
+          "tc"
+        ]
+      }
+    }
+  },
+  "footers": [
+    {
+      "name": "Introduction",
+      "index": 1,
+      "isActive": true
+    },
+    {
+      "name": "July Tracker",
+      "index": 2,
+      "isActive": true
+    },
+    {
+      "name": "Medication Log",
+      "index": 3,
+      "isActive": true
+    },
+    {
+      "name": "Dosage Details",
+      "index": 4,
+      "isActive": true
+    },
+    {
+      "name": "Medication Info",
+      "index": 5,
+      "isActive": true
+    },
+    {
+      "name": "Side Effects & Refills",
+      "index": 6,
+      "isActive": true
+    }
+  ],
+  "appMapping": {}
+}

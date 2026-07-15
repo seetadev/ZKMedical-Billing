@@ -1,5 +1,7 @@
 {
-  "opRetro": {
-    "projectId": "0x5cfdb8c453a7eede1946071e9d7417d01cc2116f57563b87dc0094a6bdb9a081"
+  "drips": {
+    "filecoin": {
+      "ownedBy": "0x5aE4a3335b1264B5910a9C64ADf8F209c45CE602"
+    }
   }
 }

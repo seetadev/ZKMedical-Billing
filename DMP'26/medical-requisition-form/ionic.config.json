@@ -1,0 +1,7 @@
+{
+  "name": "Medical Requisition Form",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

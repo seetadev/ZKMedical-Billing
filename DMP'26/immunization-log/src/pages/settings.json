@@ -1,0 +1,118 @@
+{
+  "themes": [
+    {
+      "id": "indigo",
+      "name": "Classic Indigo",
+      "colors": {
+        "primaryColor": "#4f46e5",
+        "primaryColorRgb": "79, 70, 229",
+        "primaryColorShade": "#4338ca",
+        "primaryColorTint": "#6366f1",
+        "primaryContrast": "#ffffff",
+        "primaryContrastRgb": "255, 255, 255",
+        "secondaryColor": "#f5f3ff",
+        "secondaryColorRgb": "245, 243, 255",
+        "secondaryContrast": "#4338ca",
+        "secondaryContrastRgb": "67, 56, 202",
+        "secondaryShade": "#e0e7ff",
+        "secondaryTint": "#ffffff",
+        "backgroundColor": "#f4f5f8"
+      }
+    },
+    {
+      "id": "emerald",
+      "name": "Emerald Garden",
+      "colors": {
+        "primaryColor": "#059669",
+        "primaryColorRgb": "5, 150, 105",
+        "primaryColorShade": "#047857",
+        "primaryColorTint": "#10b981",
+        "primaryContrast": "#ffffff",
+        "primaryContrastRgb": "255, 255, 255",
+        "secondaryColor": "#ecfdf5",
+        "secondaryColorRgb": "236, 253, 245",
+        "secondaryContrast": "#047857",
+        "secondaryContrastRgb": "4, 120, 87",
+        "secondaryShade": "#d1fae5",
+        "secondaryTint": "#ffffff",
+        "backgroundColor": "#f4f5f8"
+      }
+    },
+    {
+      "id": "crimson",
+      "name": "Crimson Sunset",
+      "colors": {
+        "primaryColor": "#dc2626",
+        "primaryColorRgb": "220, 38, 38",
+        "primaryColorShade": "#b91c1c",
+        "primaryColorTint": "#ef4444",
+        "primaryContrast": "#ffffff",
+        "primaryContrastRgb": "255, 255, 255",
+        "secondaryColor": "#fef2f2",
+        "secondaryColorRgb": "254, 242, 242",
+        "secondaryContrast": "#b91c1c",
+        "secondaryContrastRgb": "185, 28, 28",
+        "secondaryShade": "#fee2e2",
+        "secondaryTint": "#ffffff",
+        "backgroundColor": "#f4f5f8"
+      }
+    },
+    {
+      "id": "ocean",
+      "name": "Royal Ocean",
+      "colors": {
+        "primaryColor": "#1d4ed8",
+        "primaryColorRgb": "29, 78, 216",
+        "primaryColorShade": "#1e40af",
+        "primaryColorTint": "#3b82f6",
+        "primaryContrast": "#ffffff",
+        "primaryContrastRgb": "255, 255, 255",
+        "secondaryColor": "#eff6ff",
+        "secondaryColorRgb": "239, 246, 255",
+        "secondaryContrast": "#1e40af",
+        "secondaryContrastRgb": "30, 64, 175",
+        "secondaryShade": "#dbeafe",
+        "secondaryTint": "#ffffff",
+        "backgroundColor": "#f4f5f8"
+      }
+    },
+    {
+      "id": "amber",
+      "name": "Amber Sunrise",
+      "colors": {
+        "primaryColor": "#d97706",
+        "primaryColorRgb": "217, 119, 6",
+        "primaryColorShade": "#b45309",
+        "primaryColorTint": "#f59e0b",
+        "primaryContrast": "#ffffff",
+        "primaryContrastRgb": "255, 255, 255",
+        "secondaryColor": "#fffbeb",
+        "secondaryColorRgb": "255, 251, 235",
+        "secondaryContrast": "#b45309",
+        "secondaryContrastRgb": "180, 83, 9",
+        "secondaryShade": "#fef3c7",
+        "secondaryTint": "#ffffff",
+        "backgroundColor": "#f4f5f8"
+      }
+    },
+    {
+      "id": "slate",
+      "name": "Charcoal Slate",
+      "colors": {
+        "primaryColor": "#334155",
+        "primaryColorRgb": "51, 65, 85",
+        "primaryColorShade": "#1e293b",
+        "primaryColorTint": "#475569",
+        "primaryContrast": "#ffffff",
+        "primaryContrastRgb": "255, 255, 255",
+        "secondaryColor": "#f8fafc",
+        "secondaryColorRgb": "248, 250, 252",
+        "secondaryContrast": "#1e293b",
+        "secondaryContrastRgb": "30, 41, 59",
+        "secondaryShade": "#e2e8f0",
+        "secondaryTint": "#ffffff",
+        "backgroundColor": "#f1f5f9"
+      }
+    }
+  ]
+}

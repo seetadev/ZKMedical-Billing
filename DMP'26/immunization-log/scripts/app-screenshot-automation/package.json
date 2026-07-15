@@ -1,0 +1,14 @@
+{
+  "name": "app-listing-automation",
+  "version": "1.0.0",
+  "description": "App Store screenshot automation using Playwright",
+  "main": "capture-screenshots.js",
+  "type": "module",
+  "scripts": {
+    "install-playwright": "npx playwright install chromium",
+    "capture": "node capture-screenshots.js"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}

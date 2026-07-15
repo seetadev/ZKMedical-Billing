@@ -1,0 +1,20 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Medical Notes (Mobile)",
+  "type": "medical-notes",
+  "device": "mobile",
+  "description": "Medication log sheets optimized for mobile layouts.",
+  "id": 100001,
+  "image": "",
+  "hashtags": [
+    "medical",
+    "health",
+    "notes",
+    "medication",
+    "clinical",
+    "mobile"
+  ]
+}
