@@ -1,176 +1,225 @@
-# 📱 Business Calculator
+<div align="center">
+ 
+# 📋 Patient Register
+ 
+### 📱 Premium Offline Patient Register & Sign-in Tracker
+ 
+[![iOS Badge](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com)
+[![Android Badge](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
+[![Capacitor Badge](https://img.shields.io/badge/Capacitor-119EFF?style=for-the-badge&logo=capacitor&logoColor=white)](https://capacitorjs.com)
+[![React Badge](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org)
+[![TypeScript Badge](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Ionic Badge](https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white)](https://ionicframework.com)
 
-A premium, offline-first financial and marketing calculation application built with the **Ionic Framework (React)** and **Capacitor**. The core computation engine uses a mobile-optimized adaptation of **SocialCalc** to deliver spreadsheet-grade calculation logic on touch screens.
-
-Compute present value, monthly loan payments, gross margins, inventory turnover, markups, and markdowns instantly and securely.
-
----
-
-## 🎨 Application Screenshots
-
-### 🚀 Onboarding & Dashboard
-| Welcome & Onboarding | Active Calculations Dashboard | Saved Files List |
-| :---: | :---: | :---: |
-| <img src="scripts/app-screenshot-automation/screenshots/iphone65/1_welcome.png" width="220" alt="Welcome Screen" /> | <img src="scripts/app-screenshot-automation/screenshots/iphone65/2_template_tab_1_FINANCIAL_1.png" width="220" alt="Dashboard Calculations" /> | <img src="scripts/app-screenshot-automation/screenshots/iphone65/4_files_page.png" width="220" alt="Files List" /> |
-
-### 📈 Calculators & Tools
-| Financial Calculations (Tab 2) | Marketing Calculations (Tab 1) | Marketing Calculations (Tab 2) |
-| :---: | :---: | :---: |
-| <img src="scripts/app-screenshot-automation/screenshots/iphone65/2_template_tab_2_FINANCIAL_2.png" width="220" alt="Financial Tab 2" /> | <img src="scripts/app-screenshot-automation/screenshots/iphone65/2_template_tab_3_MARKETING_1.png" width="220" alt="Marketing Tab 1" /> | <img src="scripts/app-screenshot-automation/screenshots/iphone65/2_template_tab_4_MARKETING_2.png" width="220" alt="Marketing Tab 2" /> |
-
-### ⚡ Features & Settings
-| Touch-optimized Input Overlay | Decentrialized IPFS Cloud Save | Default Preferences |
-| :---: | :---: | :---: |
-| <img src="scripts/app-screenshot-automation/screenshots/iphone65/3_edit_modal.png" width="220" alt="Mobile Cell Editing" /> | <img src="scripts/app-screenshot-automation/screenshots/iphone65/2_ipfs_save_dialog.png" width="220" alt="IPFS Decentrialized Backup" /> | <img src="scripts/app-screenshot-automation/screenshots/iphone65/5_settings_page.png" width="220" alt="Settings Page" /> |
+**Fully Offline Mobile & Tablet Patient Register App** 🚀
+ 
+*A modern, offline-first patient sign-in and check-in tracker built with Ionic React and Capacitor. Manage patient registry details, check-in records, department logs, and doctor appointments — all without an internet connection. Supports IPFS-based decentralized backups for tamper-proof records.*
+ 
+[💻 Dev Setup](#-installation--development) • [🧱 Project Structure](#-project-structure) • [📖 Architecture](#-architecture)
+ 
+</div>
 
 ---
 
-## ✨ Key Features
+## 📸 Screenshots
 
-- **100% Offline-First Storage**: Powered by `@capacitor-community/sqlite` for local, fast structured storage. All files, custom spreadsheets, and metadata reside entirely on the local device.
-- **Legacy SocialCalc Engine**: Legacy spreadsheet calculation engine wrapped and enhanced with modern custom cell-input overlays designed for mobile and tablet keyboards.
-- **Decentralized Cloud Backups**: Built-in IPFS integration allowing users to export, share, and backup their sheets securely using cryptographic Content Identifiers (CIDs).
-- **Financial Module**:
-  - Present Value & Future Value of an Amount/Annuity
-  - Rate of Return (Lump Sum)
-  - Monthly Loan Payments (PMT)
-  - After-Tax Real Rate of Return
-  - Taxable/Tax-Free Equivalent Yields
-- **Marketing Module**:
-  - Sales Revenue (Gross/Net sales, returns, discounts)
-  - Gross Margin & Gross Margin Percentage
-  - Cost of Goods Sold (COGS)
-  - Inventory Turnover Analytics
-  - Markups (based on selling price or cost) and Markdown percentages
-- **Local Settings**: Choose preferred global default currency (INR, USD, EUR, GBP, JPY, AUD, CAD) and manage data cleanup directly.
+The user interface is optimized for rapid clinic/hospital check-ins, touch interactions, and offline-first storage:
 
----
+<div align="center">
 
-## 🛠️ Tech Stack & Architecture
+### 📱 Core Application Flow & Sheets
 
-- **Core Framework**: [Ionic React](https://ionicframework.com/docs/react) v8.7
-- **UI & Logic**: React 19, TypeScript, Framer Motion
-- **Native Bridge**: Capacitor v8
-- **Database Layer**: SQLite (`@capacitor-community/sqlite`) as primary, `localStorage` for settings/state sync.
-- **Bundler**: Vite
-- **Decentralized Storage**: IPFS Gateway APIs
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%"><img src="public/screenshot/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-06-02%20at%2021.01.47.png" width="220"/><br/><b>Welcome Onboarding</b></td>
+    <td align="center" valign="top" width="33%"><img src="public/screenshot/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-06-02%20at%2021.09.49.png" width="220"/><br/><b>Main Dashboard</b></td>
+    <td align="center" valign="top" width="33%"><img src="public/screenshot/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-06-03%20at%2000.24.39.png" width="220"/><br/><b>Spreadsheet Editor</b></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%"><img src="public/screenshot/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-06-03%20at%2000.24.43.png" width="220"/><br/><b>Saved Files Registry</b></td>
+    <td align="center" valign="top" width="50%"><img src="public/screenshot/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-06-03%20at%2000.24.48.png" width="220"/><br/><b>Application Settings</b></td>
+  </tr>
+</table>
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                        UI LAYER                         │
-│   (DashboardHome, SocialCalcPage, Settings, Files)      │
-└───────────────────────────┬─────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│                  CONTEXT & STATE LAYER                  │
-│       InvoiceContext (React) ──▶ LocalStorage           │
-└───────────────────────────┬─────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│                      SERVICE LAYER                      │
-│   localTemplateService ──▶ repositories/ (SQLite DAOs)  │
-└───────────────────────────┬─────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│                    DATA ACCESS LAYER                    │
-│   DatabaseService ──▶ SQLite / Migration / Templates     │
-└─────────────────────────────────────────────────────────┘
-```
+</div>
 
 ---
 
-## 🚀 Development & Setup
+## ✨ Core Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 📴 100% Offline Capability
+All patient registers, sign-in records, visitor logs, and configuration details are stored securely on the device's local storage. The app requires zero internet connectivity to function.
+
+### 🔒 Patient Data Privacy
+No cloud connections, telemetry, or remote databases. Sensitive medical records and check-in logs remain strictly on the user's device.
+
+### 📋 Record Management
+Create and manage multiple patient registers. Search, duplicate, edit, and delete registers from a centralized file registry.
+
+</td>
+<td width="50%">
+
+### 💼 SocialCalc Spreadsheet Engine
+Built on a touch-optimized wrapper over the robust **SocialCalc spreadsheet engine**. Supports grid editing, column resizing, custom cell styling, alignment, and formula calculations for automatic statistics and visitor logs.
+
+### 🧾 Multi-Sheet Templates
+Pre-designed patient register layouts optimized for various viewports:
+- **Mobile**: Patient register sheets optimized for mobile layouts.
+- **Tablet**: Comprehensive patient register sheets.
+- **Footer Tabs**: Categorized registers (e.g., Register 1, Register 2 sheets).
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### ✏️ Rapid Form Entry
+Fill out patient details and sign-in entries through a clean, intuitive form interface that maps directly onto the spreadsheet grid.
+
+</td>
+<td width="50%">
+
+### 📄 Export as PDF & CSV
+Generate professional, print-ready summaries as high-resolution PDFs or export raw data as CSV for database ingestion.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### ☁️ Decentralized IPFS Backups
+Pin and backup patient registers to the IPFS network (via Pinata Gateway) to create immutable, tamper-proof logs that are verifiable and retrievable.
+
+</td>
+<td width="50%">
+
+### 🤖 Automation Suite
+Built-in scripts for automated native asset generation (icons, splash screens), simulator screenshots, and branding configuration patchers.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+| Layer | Technology | Purpose |
+|:---|:---|:---|
+| **Core UI Framework** | **React 19** & **Ionic 8** | Mobile-first components, smooth transitions, and native tab navigation |
+| **Language** | **TypeScript** | Strict type safety across register data models, templates, and service layers |
+| **Native Integration** | **Capacitor 8** | Runtime bridge for native iOS and Android compilation |
+| **Spreadsheet Engine** | **SocialCalc (Legacy)** | Formula evaluation, grid rendering, multi-sheet register state management |
+| **Storage** | **localStorage** | Offline JSON serialization for registers, templates, and preferences |
+| **Build & Bundle** | **Vite 7** | Fast HMR development server and optimized production bundling |
+| **PDF Generation** | **jsPDF + html2canvas** | Client-side high-fidelity PDF export of patient registers |
+| **Decentralized Storage** | **IPFS (Pinata)** | Tamper-proof backup and verification via content-addressed hashing |
+
+</div>
+
+---
+
+## 📲 Installation & Development
 
 ### Prerequisites
-- Node.js (v18+)
-- Ionic CLI (`npm install -g @ionic/cli`)
 
-### Quick Start
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the development server locally:
-   ```bash
-   npm run dev
-   ```
-3. Run Unit Tests:
-   ```bash
-   npm run test.unit
-   ```
-4. Build Web Distribution:
-   ```bash
-   npm run build
-   ```
+- ✅ Node.js v18 or higher
+- ✅ npm or yarn
+- ✅ Xcode 15+ (for iOS simulator/device builds)
+- ✅ macOS (required for native iOS compilation)
 
-### Capacitor Integration (Native Platforms)
-To run on Android or iOS devices:
+### Development Steps
+
 ```bash
-# Sync files to native folders
-npx cap sync
+# 1. Install project dependencies
+npm install
 
-# Run on iOS simulator/device
-npx cap run ios
+# 2. Run local web development server
+npm run dev
 
-# Run on Android emulator/device
-npx cap run android
+# 3. Compile static production bundles
+npm run build
+
+# 4. Sync web assets with Capacitor native bridge
+npx cap sync ios
+
+# 5. Open iOS Xcode Project workspace
+npx cap open ios
+```
+
+Inside Xcode, select target simulator/device and run. For Android development, configure the Android SDK and use `npx cap sync android`.
+
+---
+
+## 🧱 Project Structure
+
+```
+📦 patient-register/
+├── 📂 ios/                  # Xcode Native iOS project files
+├── 📂 src/
+│   ├── 📂 components/       # Reusable UI components
+│   │   ├── 📂 Files/        # File listing and actions
+│   │   ├── 📂 Storage/      # Client localStorage adapter
+│   │   └── 📂 socialcalc/   # SocialCalc grid renderer and config
+│   ├── 📂 contexts/         # React state managers (Invoice Context)
+│   ├── 📂 data/             # Data layer definitions
+│   │   ├── 📂 repositories/ # localStorage CRUD
+│   │   └── schema.ts        # Model schemas & identifiers
+│   ├── 📂 pages/            # Screen components (Dashboard, Files, Settings, Onboarding)
+│   ├── 📂 services/         # PDF export, CSV export, template service, IPFS service
+│   ├── 📂 utils/            # Analytics, settings helpers, math utilities
+│   └── 📂 types/            # TypeScript interfaces
+├── 📂 public/
+│   ├── 📂 templates/        # JSON layouts (mobile & tablet)
+│   └── 📂 assets/           # App logos, icons & splash screen assets
+├── 📂 scripts/
+│   └── 📂 app-update-automation/  # Branding config & automated patchers
+├── 📄 capacitor.config.ts   # Capacitor configuration
+├── 📄 ionic.config.json     # Ionic build parameters
+└── 📄 package.json          # Package manifest & build scripts
 ```
 
 ---
 
-## 🤖 App Automation & Rebranding Suite
+## 📖 Architecture
 
-This repository acts as a **base template** for generating customized, offline-first SocialCalc spreadsheet applications. Inside the [scripts](file:///Users/anirudhsharma/Desktop/C4GT/0.%20Base%20App%20Codebase/APPs/ipfs-apps/patient%20sheet%20copy/scripts) directory, you will find three distinct automation pipelines to rebrand, asset-generate, and screenshot-automate your target app variants.
+The application runs on a fully offline, client-side architecture:
 
-### 1. App Configuration & Rebranding (`scripts/app-update-automation`)
-Easily update the core identity, descriptions, icons, template configurations, theme colors, and PDF layouts across **19 files** in a single run.
+```
+┌────────────────────────────────────────────────────────┐
+│                   📋 IONIC UI LAYER                    │
+│   Dashboard Home │ Register Editor │ Files Registry    │
+└───────────────────────────┬────────────────────────────┘
+                            │
+┌───────────────────────────▼────────────────────────────┐
+│                  🔄 REACT STATE BRIDGE                 │
+│         Invoice Context + Device Preferences           │
+└───────────────────────────┬────────────────────────────┘
+                            │
+┌───────────────────────────▼────────────────────────────┐
+│                    💾 STORAGE LAYER                    │
+│      localStorage (Invoices, Templates, Settings)      │
+└───────────────────────────┬────────────────────────────┘
+                            │
+┌───────────────────────────▼────────────────────────────┐
+│                  ☁️ IPFS BACKUP LAYER                  │
+│       Pinata Gateway (Immutable Invoice Pinning)       │
+└────────────────────────────────────────────────────────┘
+```
 
-*   **Configuration File**: [data.json](file:///Users/anirudhsharma/Desktop/C4GT/0.%20Base%20App%20Codebase/APPs/ipfs-apps/patient%20sheet%20copy/scripts/app-update-automation/data.json)
-    Define app properties, onboarding screen features, brand primary/secondary colors, PWA parameters, and default template settings in this file.
-*   **Automation Script**: [update-app.sh](file:///Users/anirudhsharma/Desktop/C4GT/0.%20Base%20App%20Codebase/APPs/ipfs-apps/patient%20sheet%20copy/scripts/app-update-automation/update-app.sh)
-*   **How to execute**:
-    Run the following command from the repository root:
-    ```bash
-    bash scripts/app-update-automation/update-app.sh
-    ```
+- **State Sync**: Context loads persisted registers from `localStorage` on initial mount.
+- **Save Flow**: Form changes validate, map back to SocialCalc's MSC format, and write to `localStorage` key `invoicecalc_saved_invoices`.
+- **IPFS Backup**: Registers can be pinned to the IPFS network via Pinata for decentralized, tamper-proof archival.
+- **Performance**: Formula calculations execute directly on the legacy SocialCalc engine within the client webview.
 
-### 2. Branding Asset Generation (`scripts/app-assets-generation`)
-This pipeline automatically scans the workspace to find high-resolution PNG templates for your app's icon and splash screen, sampling background colors to properly pad and export multi-platform assets.
+---
 
-*   **Generated Assets**:
-    *   **iOS Assets**: iOS App Store high-res icon (`AppIcon-512@2x.png`) and universal Launch Screen splash images.
-    *   **PWA/Web Assets**: Touch icons, favicons, and standard sizes (64x64, 192x192, 512x512) written directly to `public/`.
-*   **Automation Script**: [generate_assets.sh](file:///Users/anirudhsharma/Desktop/C4GT/0.%20Base%20App%20Codebase/APPs/ipfs-apps/patient%20sheet%20copy/scripts/app-assets-generation/generate_assets.sh) (wrapping [generate_assets.py](file:///Users/anirudhsharma/Desktop/C4GT/0.%20Base%20App%20Codebase/APPs/ipfs-apps/patient%20sheet%20copy/scripts/app-assets-generation/generate_assets.py))
-*   **How to execute**:
-    Run the following command from the repository root:
-    ```bash
-    bash scripts/app-assets-generation/generate_assets.sh
-    ```
+## 📄 License
 
-### 3. App Store Screenshot Automation (`scripts/app-screenshot-automation`)
-Automates high-resolution screenshot generation simulating all major iPhone and iPad viewports using Playwright. The script navigates the full application flow—onboarding, document editing, and options screens—and captures them for App Store Connect.
-
-*   **Viewports Covered**:
-    *   **6.9" Display**: iPhone 16 Pro Max (1320x2868 px)
-    *   **6.5" Display**: iPhone 14 Plus / 13 Pro Max (1284x2778 px)
-    *   **6.1" Display**: iPhone 16 / 15 / 14 / 13 / 12 (1170x2532 px)
-    *   **13" iPad**: iPad Pro 13" (2064x2752 px)
-    *   **11" iPad**: iPad Pro 11" (1668x2388 px)
-*   **Configuration**: Customize viewports, targets, and edit cells/values inside [screenshot-config.json](file:///Users/anirudhsharma/Desktop/C4GT/0.%20Base%20App%20Codebase/APPs/ipfs-apps/patient%20sheet%20copy/scripts/app-screenshot-automation/screenshot-config.json).
-*   **How to execute**:
-    1. Make sure your local application server is running (e.g., `npm run dev` at `http://localhost:3000`).
-    2. Navigate to the automation directory and install dependencies:
-       ```bash
-       cd scripts/app-screenshot-automation
-       npm install
-       npx playwright install
-       ```
-    3. Run the screen capturer:
-       ```bash
-       npm run capture
-       ```
-    *Screenshots will be output directly to the local `/screenshots` subdirectory grouped by device size.*
-
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
