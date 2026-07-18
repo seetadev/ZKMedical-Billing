@@ -1,0 +1,116 @@
+{
+  "_comment": "App Update Automation — Central Configuration for Medical Notes",
+
+  "app": {
+    "name": "Medical Notes",
+    "kebabName": "medical-notes",
+    "packageName": "com.aspiring.MedicalNotes",
+    "description": "Offline Medical Notes and Medication Log. Manage medication logs, trackers, and medical records securely in one place.",
+    "type": "medical-notes",
+    "version": "3.0.0",
+    "marketingVersion": "3.0",
+    "buildNumber": "1"
+  },
+
+  "theme": {
+    "primaryColor": "#1e40af",
+    "primaryColorRgb": "30, 64, 175",
+    "primaryColorShade": "#1e3a8a",
+    "primaryColorTint": "#3b82f6",
+    "primaryContrast": "#ffffff",
+    "primaryContrastRgb": "255, 255, 255",
+    "secondaryColor": "#eff6ff",
+    "secondaryColorRgb": "239, 246, 255",
+    "secondaryContrast": "#1e40af",
+    "secondaryContrastRgb": "30, 64, 175",
+    "secondaryShade": "#dbeafe",
+    "secondaryTint": "#ffffff",
+    "backgroundColor": "#f8fafc"
+  },
+
+  "onboarding": {
+    "welcomeTitle": "Welcome to Medical Notes",
+    "welcomeSubtitle": "Manage medication logs, health trackers, and medical records offline.",
+    "features": [
+      "Track medication logs and dosage schedules offline",
+      "Record daily health indicators, symptoms, and clinical notes",
+      "Generate professional medical reports and share them instantly"
+    ],
+    "ctaButtonText": "Get Started"
+  },
+
+  "pages": {
+    "dashboardHeaderTitle": "Medical Notes",
+    "filesPageHeaderTitle": "My Medical Files",
+    "settingsPageAppName": "Medical Notes",
+    "settingsPageMarketingVersion": "3.0",
+    "settingsPageBuildNumber": "1",
+    "settingsCurrencyDescription": "Change the display currency for your records and reports.",
+    "settingsResetDescription": "Wipe all local medical files, custom templates, and configuration settings completely."
+  },
+
+  "tabs": {
+    "home": "Home",
+    "files": "Files",
+    "settings": "Settings"
+  },
+
+  "templates": {
+    "appType": "medical-notes",
+    "hashtags": ["medical", "health", "notes", "medication", "clinical"],
+    "mobile": {
+      "name": "Medical Notes (Mobile)",
+      "description": "Medication log sheets optimized for mobile layouts.",
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical-notes-app/scripts/app-update-automation/templates/mob.json"
+    },
+    "tablet": {
+      "name": "Medical Notes (Tablet)",
+      "description": "Comprehensive medication log and health tracker sheets optimized for tablets.",
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical-notes-app/scripts/app-update-automation/templates/tab.json"
+    },
+    "desktop": {
+      "name": "Medical Notes (Desktop)",
+      "description": "Comprehensive medication log and health tracker sheets optimized for desktop.",
+      "mscJsonPath": ""
+    },
+    "footerTabNames": {
+      "tab1": "Yearly",
+      "tab2": "Monthly"
+    }
+  },
+
+  "pdf": {
+    "footerLabel": "Medical Notes",
+    "defaultFilename": "medical_notes",
+    "defaultAllSheetsFilename": "all_medical_notes",
+    "shareSubject": "Here is your Medical Notes file",
+    "shareText": "Medical Notes PDF generated successfully",
+    "csvShareText": "Medical Notes data exported as CSV",
+    "singleSheetName": "Medical Sheet"
+  },
+
+  "menu": {
+    "printWindowTitle": "Print Medical Notes",
+    "emailSubject": "Here is your Medical Notes file",
+    "saveToastMessage": "Medical notes saved successfully!",
+    "fallbackFileName": "Medical Notes"
+  },
+
+  "ios": {
+    "displayName": "Medical Notes",
+    "cameraUsageDescription": "Medical Notes needs access to your camera to capture medical records or prescription images.",
+    "photoLibraryUsageDescription": "Medical Notes needs access to your photo library to attach medical records.",
+    "microphoneUsageDescription": "Medical Notes needs microphone access when using the camera."
+  },
+
+  "pwa": {
+    "shortName": "Medical Notes",
+    "fullName": "Medical Notes",
+    "themeColor": "#1e40af",
+    "backgroundColor": "#1e40af"
+  },
+
+  "icon": {
+    "sourceIconPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical-notes-app/scripts/app-update-automation/templates/medical notes/MedicalNotes/www/img/bi.png"
+  }
+}

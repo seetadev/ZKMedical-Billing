@@ -1,0 +1,19 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Immunization Log (Tablet)",
+  "type": "immunization-log",
+  "device": "tablet",
+  "description": "A vaccination record sheet optimized for tablet and desktop layouts.",
+  "id": 100002,
+  "image": "",
+  "hashtags": [
+    "immunization",
+    "vaccination",
+    "record",
+    "health",
+    "tablet"
+  ]
+}

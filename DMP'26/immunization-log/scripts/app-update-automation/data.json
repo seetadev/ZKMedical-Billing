@@ -1,0 +1,116 @@
+{
+  "_comment": "App Update Automation Central Configuration. Edit this file, then run: bash scripts/app-update-automation/update-app.sh",
+
+  "app": {
+    "name": "Immunization Log",
+    "kebabName": "immunization-log",
+    "packageName": "com.aspiring.ImmunizationLog",
+    "description": "Immunization Log - Keep track of your family's vaccination records offline.",
+    "type": "immunization-log",
+    "version": "4.0.0",
+    "marketingVersion": "4.0",
+    "buildNumber": "1"
+  },
+
+  "theme": {
+    "primaryColor": "#3b82f6",
+    "primaryColorRgb": "59, 130, 246",
+    "primaryColorShade": "#2563eb",
+    "primaryColorTint": "#60a5fa",
+    "primaryContrast": "#ffffff",
+    "primaryContrastRgb": "255, 255, 255",
+    "secondaryColor": "#eff6ff",
+    "secondaryColorRgb": "239, 246, 255",
+    "secondaryContrast": "#1e3a8a",
+    "secondaryContrastRgb": "30, 58, 138",
+    "secondaryShade": "#dbeafe",
+    "secondaryTint": "#ffffff",
+    "backgroundColor": "#f8fafc"
+  },
+
+  "onboarding": {
+    "welcomeTitle": "Welcome to Immunization Log",
+    "welcomeSubtitle": "Keep track of your family's vaccination records and upcoming doses offline.",
+    "features": [
+      "Track vaccination schedules for your whole family",
+      "Manage next dose dates and medical notes securely",
+      "Works 100% offline, keeping health records private"
+    ],
+    "ctaButtonText": "Start Tracking"
+  },
+
+  "pages": {
+    "dashboardHeaderTitle": "Immunization Log",
+    "filesPageHeaderTitle": "My Saved Records",
+    "settingsPageAppName": "Immunization Log",
+    "settingsPageMarketingVersion": "4.0",
+    "settingsPageBuildNumber": "1",
+    "settingsCurrencyDescription": "Change display currency.",
+    "settingsResetDescription": "Wipe all local data."
+  },
+
+  "tabs": {
+    "home": "Home",
+    "files": "Records",
+    "settings": "Settings"
+  },
+
+  "templates": {
+    "appType": "immunization-log",
+    "hashtags": ["immunization", "vaccination", "record", "health"],
+    "mobile": {
+      "name": "Immunization Log (Mobile)",
+      "description": "A vaccination record sheet optimized for mobile screens.",
+      "mscJsonPath": "scripts/app-update-automation/templates/mob.json"
+    },
+    "tablet": {
+      "name": "Immunization Log (Tablet)",
+      "description": "A vaccination record sheet optimized for tablet and desktop layouts.",
+      "mscJsonPath": "scripts/app-update-automation/templates/tab.json"
+    },
+    "desktop": {
+      "name": "Immunization Log (Desktop)",
+      "description": "A vaccination record sheet optimized for desktop layouts.",
+      "mscJsonPath": ""
+    },
+    "footerTabNames": {
+      "mobile": ["Record 1", "Record 2", "Record 3", "Record 4"],
+      "tablet": ["Record 1", "Record 2", "Record 3", "Record 4"]
+    }
+  },
+
+  "pdf": {
+    "footerLabel": "Immunization Log",
+    "defaultFilename": "immunization_log",
+    "defaultAllSheetsFilename": "all_immunization_records",
+    "shareSubject": "Here is your Immunization Log",
+    "shareText": "Immunization Log PDF generated successfully",
+    "csvShareText": "Immunization Log data exported as CSV",
+    "singleSheetName": "Immunization Record"
+  },
+
+  "menu": {
+    "printWindowTitle": "Print Immunization Log",
+    "emailSubject": "Here is your Immunization Log",
+    "saveToastMessage": "Record saved successfully!",
+    "fallbackFileName": "Immunization Record"
+  },
+
+  "ios": {
+    "displayName": "Immunization",
+    "cameraUsageDescription": "Immunization Log needs access to your camera to capture receipt images or transaction documents.",
+    "photoLibraryUsageDescription": "Immunization Log needs access to your photo library to upload receipt images or transaction documents.",
+    "microphoneUsageDescription": "Immunization Log needs microphone access when using the camera."
+  },
+
+  "pwa": {
+    "shortName": "Immunization",
+    "fullName": "Immunization Log",
+    "themeColor": "#3b82f6",
+    "backgroundColor": "#3b82f6"
+  },
+
+  "icon": {
+    "sourceIconPath": "image.png"
+  }
+}

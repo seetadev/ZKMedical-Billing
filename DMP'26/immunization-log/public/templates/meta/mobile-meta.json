@@ -1,0 +1,19 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Immunization Log (Mobile)",
+  "type": "immunization-log",
+  "device": "mobile",
+  "description": "A vaccination record sheet optimized for mobile screens.",
+  "id": 100001,
+  "image": "",
+  "hashtags": [
+    "immunization",
+    "vaccination",
+    "record",
+    "health",
+    "mobile"
+  ]
+}

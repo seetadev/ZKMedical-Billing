@@ -1,0 +1,20 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Medical Notes (Tablet)",
+  "type": "medical-notes",
+  "device": "tablet",
+  "description": "Comprehensive medication log and health tracker sheets optimized for tablets.",
+  "id": 100002,
+  "image": "",
+  "hashtags": [
+    "medical",
+    "health",
+    "notes",
+    "medication",
+    "clinical",
+    "tablet"
+  ]
+}

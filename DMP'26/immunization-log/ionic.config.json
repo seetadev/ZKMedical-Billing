@@ -1,0 +1,7 @@
+{
+  "name": "Immunization Log",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

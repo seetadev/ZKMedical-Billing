@@ -1,0 +1,116 @@
+{
+  "_comment": "App Update Automation — Central Configuration for Medical Requisition Form",
+
+  "app": {
+    "name": "Medical Requisition Form",
+    "kebabName": "medical-requisition-form",
+    "packageName": "com.aspiring.MedicalRequisitionForm",
+    "description": "Offline Medical Requisition Form and Laboratory Request Tracker. Manage lab requisitions, patient details, specimen records, and clinical notes in one place.",
+    "type": "medical-requisition-form",
+    "version": "3.0.0",
+    "marketingVersion": "3.0",
+    "buildNumber": "1"
+  },
+
+  "theme": {
+    "primaryColor": "#1e40af",
+    "primaryColorRgb": "30, 64, 175",
+    "primaryColorShade": "#1e3a8a",
+    "primaryColorTint": "#3b82f6",
+    "primaryContrast": "#ffffff",
+    "primaryContrastRgb": "255, 255, 255",
+    "secondaryColor": "#eff6ff",
+    "secondaryColorRgb": "239, 246, 255",
+    "secondaryContrast": "#1e40af",
+    "secondaryContrastRgb": "30, 64, 175",
+    "secondaryShade": "#dbeafe",
+    "secondaryTint": "#ffffff",
+    "backgroundColor": "#f8fafc"
+  },
+
+  "onboarding": {
+    "welcomeTitle": "Welcome to Medical Requisition Form",
+    "welcomeSubtitle": "Manage lab requisitions, patient records, and clinical notes offline.",
+    "features": [
+      "Create and track Laboratory Requisition Forms for patients offline",
+      "Record specimen details, investigation requests, and clinical notes securely",
+      "Generate professional medical PDF reports and share requisition forms instantly"
+    ],
+    "ctaButtonText": "Get Started"
+  },
+
+  "pages": {
+    "dashboardHeaderTitle": "Medical Requisition Form",
+    "filesPageHeaderTitle": "My Saved Forms",
+    "settingsPageAppName": "Medical Requisition Form",
+    "settingsPageMarketingVersion": "3.0",
+    "settingsPageBuildNumber": "1",
+    "settingsCurrencyDescription": "Change the display currency for your records and reports.",
+    "settingsResetDescription": "Wipe all local form files, custom templates, and configuration settings completely."
+  },
+
+  "tabs": {
+    "home": "Home",
+    "files": "Files",
+    "settings": "Settings"
+  },
+
+  "templates": {
+    "appType": "medical-requisition-form",
+    "hashtags": ["medical", "health", "requisition", "laboratory", "clinical"],
+    "mobile": {
+      "name": "Medical Requisition Form (Mobile)",
+      "description": "Laboratory requisition form sheets optimized for mobile layouts.",
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical Requisition/scripts/app-update-automation/templates/medical_mob.json"
+    },
+    "tablet": {
+      "name": "Medical Requisition Form (Tablet)",
+      "description": "Comprehensive laboratory requisition form sheets optimized for tablets.",
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical Requisition/scripts/app-update-automation/templates/medical_tab.json"
+    },
+    "desktop": {
+      "name": "Medical Requisition Form (Desktop)",
+      "description": "Comprehensive laboratory requisition form sheets optimized for desktop.",
+      "mscJsonPath": ""
+    },
+    "footerTabNames": {
+      "tab1": "Form 1",
+      "tab2": "Form 2"
+    }
+  },
+
+  "pdf": {
+    "footerLabel": "Medical Requisition Form",
+    "defaultFilename": "medical_requisition_form",
+    "defaultAllSheetsFilename": "all_medical_requisition_forms",
+    "shareSubject": "Here is your Medical Requisition Form",
+    "shareText": "Medical Requisition Form PDF generated successfully",
+    "csvShareText": "Medical Requisition Form data exported as CSV",
+    "singleSheetName": "Requisition Sheet"
+  },
+
+  "menu": {
+    "printWindowTitle": "Print Medical Requisition Form",
+    "emailSubject": "Here is your Medical Requisition Form",
+    "saveToastMessage": "Form saved successfully!",
+    "fallbackFileName": "Medical Requisition Form"
+  },
+
+  "ios": {
+    "displayName": "Med Requisition",
+    "cameraUsageDescription": "Medical Requisition Form needs access to your camera to capture patient records or specimen images.",
+    "photoLibraryUsageDescription": "Medical Requisition Form needs access to your photo library to attach patient records.",
+    "microphoneUsageDescription": "Medical Requisition Form needs microphone access when using the camera."
+  },
+
+  "pwa": {
+    "shortName": "Med Requisition",
+    "fullName": "Medical Requisition Form",
+    "themeColor": "#1e40af",
+    "backgroundColor": "#1e40af"
+  },
+
+  "icon": {
+    "sourceIconPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical Requisition/image.png"
+  }
+}

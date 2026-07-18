@@ -1,0 +1,20 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Patient Register (Mobile)",
+  "type": "patient-register",
+  "device": "mobile",
+  "description": "Patient register sheets optimized for mobile layouts.",
+  "id": 100001,
+  "image": "",
+  "hashtags": [
+    "patient",
+    "register",
+    "hospital",
+    "clinic",
+    "signin",
+    "mobile"
+  ]
+}

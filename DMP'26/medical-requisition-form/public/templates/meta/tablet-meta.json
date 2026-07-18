@@ -1,0 +1,20 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Medical Requisition Form (Tablet)",
+  "type": "medical-requisition-form",
+  "device": "tablet",
+  "description": "Comprehensive laboratory requisition form sheets optimized for tablets.",
+  "id": 100002,
+  "image": "",
+  "hashtags": [
+    "medical",
+    "health",
+    "requisition",
+    "laboratory",
+    "clinical",
+    "tablet"
+  ]
+}

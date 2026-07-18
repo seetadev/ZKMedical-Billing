@@ -1,0 +1,14 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "saveFileNameA": "Immunization Record A",
+  "saveFileNameB": "Immunization Record B",
+  "onboardingButtonText": "Start Tracking",
+  "savedFilesPageTitle": "My Saved Records",
+  "settingsPageTitle": "App Settings",
+  "saveFileDialogTitle": "Save File",
+  "editCellMobile": "C12",
+  "editCellTablet": "C12",
+  "editValue": "07/15/26",
+  "maxTabsMobile": 4,
+  "maxTabsTablet": 4
+}

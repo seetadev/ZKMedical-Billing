@@ -1,0 +1,20 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Medical Requisition Form (Mobile)",
+  "type": "medical-requisition-form",
+  "device": "mobile",
+  "description": "Laboratory requisition form sheets optimized for mobile layouts.",
+  "id": 100001,
+  "image": "",
+  "hashtags": [
+    "medical",
+    "health",
+    "requisition",
+    "laboratory",
+    "clinical",
+    "mobile"
+  ]
+}

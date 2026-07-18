@@ -1,0 +1,116 @@
+{
+  "_comment": "App Update Automation — Central Configuration for Patient Register",
+
+  "app": {
+    "name": "Patient Register",
+    "kebabName": "patient-register",
+    "packageName": "com.aspiring.PatientRegister",
+    "description": "Offline Patient Register and Sign-in tracker. Manage patient details, check-ins, department visits, and medical records in one place.",
+    "type": "patient-register",
+    "version": "3.0.0",
+    "marketingVersion": "3.0",
+    "buildNumber": "1"
+  },
+
+  "theme": {
+    "primaryColor": "#0d9488",
+    "primaryColorRgb": "13, 148, 136",
+    "primaryColorShade": "#0f766e",
+    "primaryColorTint": "#14b8a6",
+    "primaryContrast": "#ffffff",
+    "primaryContrastRgb": "255, 255, 255",
+    "secondaryColor": "#f0fdfa",
+    "secondaryColorRgb": "240, 253, 250",
+    "secondaryContrast": "#0d9488",
+    "secondaryContrastRgb": "13, 148, 136",
+    "secondaryShade": "#ccfbf1",
+    "secondaryTint": "#ffffff",
+    "backgroundColor": "#f8fafc"
+  },
+
+  "onboarding": {
+    "welcomeTitle": "Welcome to Patient Register",
+    "welcomeSubtitle": "Manage patient sign-ins, check-ins, and visitor logs offline.",
+    "features": [
+      "Track patient sign-in records and visit details offline",
+      "Record departments, doctors, and patient details securely",
+      "Generate professional PDF report summaries and share instantly"
+    ],
+    "ctaButtonText": "Get Started"
+  },
+
+  "pages": {
+    "dashboardHeaderTitle": "Patient Register",
+    "filesPageHeaderTitle": "My Saved Registers",
+    "settingsPageAppName": "Patient Register",
+    "settingsPageMarketingVersion": "3.0",
+    "settingsPageBuildNumber": "1",
+    "settingsCurrencyDescription": "Change the display currency for your records and reports.",
+    "settingsResetDescription": "Wipe all local register files, custom templates, and configuration settings completely."
+  },
+
+  "tabs": {
+    "home": "Home",
+    "files": "Files",
+    "settings": "Settings"
+  },
+
+  "templates": {
+    "appType": "patient-register",
+    "hashtags": ["patient", "register", "hospital", "clinic", "signin"],
+    "mobile": {
+      "name": "Patient Register (Mobile)",
+      "description": "Patient register sheets optimized for mobile layouts.",
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Patient-register/scripts/app-update-automation/templates/mob.json"
+    },
+    "tablet": {
+      "name": "Patient Register (Tablet)",
+      "description": "Comprehensive patient register sheets optimized for tablets.",
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Patient-register/scripts/app-update-automation/templates/tab.json"
+    },
+    "desktop": {
+      "name": "Patient Register (Desktop)",
+      "description": "Comprehensive patient register sheets optimized for desktop.",
+      "mscJsonPath": ""
+    },
+    "footerTabNames": {
+      "tab1": "Register 1",
+      "tab2": "Register 2"
+    }
+  },
+
+  "pdf": {
+    "footerLabel": "Patient Register",
+    "defaultFilename": "patient_register",
+    "defaultAllSheetsFilename": "all_patient_registers",
+    "shareSubject": "Here is your Patient Register",
+    "shareText": "Patient Register PDF generated successfully",
+    "csvShareText": "Patient Register data exported as CSV",
+    "singleSheetName": "Register Sheet"
+  },
+
+  "menu": {
+    "printWindowTitle": "Print Patient Register",
+    "emailSubject": "Here is your Patient Register",
+    "saveToastMessage": "Register saved successfully!",
+    "fallbackFileName": "Patient Register"
+  },
+
+  "ios": {
+    "displayName": "Patient Register",
+    "cameraUsageDescription": "Patient Register needs access to your camera to capture records.",
+    "photoLibraryUsageDescription": "Patient Register needs access to your photo library to attach records.",
+    "microphoneUsageDescription": "Patient Register needs microphone access when using the camera."
+  },
+
+  "pwa": {
+    "shortName": "Patient Reg",
+    "fullName": "Patient Register",
+    "themeColor": "#0d9488",
+    "backgroundColor": "#0d9488"
+  },
+
+  "icon": {
+    "sourceIconPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Patient-register/image.png"
+  }
+}
