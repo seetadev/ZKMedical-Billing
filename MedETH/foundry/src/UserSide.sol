@@ -127,7 +127,7 @@ contract UserSide is Ownable {
         uint256 _userExp
     ) public {
         PatientHistory memory pt1 = PatientHistory(
-            totalUsers,
+            _userId,
             _isHandicap,
             _isBp,
             _isDiabetes,
