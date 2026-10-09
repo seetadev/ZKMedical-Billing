@@ -399,3 +399,14 @@
     padding: 20px;
   }
 }
+/* Better interaction for Invoice/Event cards */
+.events .event {
+  transition: all 0.3s ease;
+  border-left: 0px solid var(--primary-clr);
+}
+
+.events .event:hover {
+  border-left: 5px solid var(--primary-clr);
+  padding-left: 55px; /* Smooth shifting effect */
+  transform: scale(1.02); /* Slight zoom for focus */
+}
