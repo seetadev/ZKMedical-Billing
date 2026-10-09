@@ -99,6 +99,11 @@ contract UserSide is Ownable {
             userIdtoReportUser[totalUsers] = 0;
             totalUsers++;
         } else {
+            require(
+             userWalletAddresstoUserId[msg.sender] == 0 &&
+             userEmailtoUserId[_userEmail] == 0,
+             "User with this wallet address or email already exists"
+            );
             User memory u1 = User(
                 totalUsers,
                 _userName,
@@ -125,9 +130,9 @@ contract UserSide is Ownable {
         bool _isBp,
         bool _isDiabetes,
         uint256 _userExp
-    ) public {
+    ) internal {
         PatientHistory memory pt1 = PatientHistory(
-            totalUsers,
+            _userId,
             _isHandicap,
             _isBp,
             _isDiabetes,
@@ -155,7 +160,14 @@ contract UserSide is Ownable {
         userIdtoBlacklist[_userId] = true;
     }
 
+    mapping(uint256 => mapping(uint256 => bool)) public hasReported;
+ 
     function reportUser(uint256 _userId) public {
+        uint256 callerId = userWalletAddresstoUserId[msg.sender];
+        require(callerId != 0, "Must be a registered user to report");
+        require(!userIdtoBlacklist[callerId], "Blacklisted users cannot report");
+        require(!hasReported[callerId][_userId], "Already reported this user");
+        hasReported[callerId][_userId] = true;
         userIdtoReportUser[_userId]++;
         if (userIdtoReportUser[_userId] > 100) {
             userIdtoBlacklist[_userId] = true;

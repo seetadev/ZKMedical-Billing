@@ -99,11 +99,11 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
         const contract = new ethers.Contract(
           process.env.NEXT_PUBLIC_DOCTORSIDE_ADDRESS,
           doctorsideabi,
-          signer
+          signer,
         );
 
         const tx = await contract.approveUser(userId);
-        const data = { email: email };
+        const data = { email: sysUser[5] };
 
         fetch("http://localhost:5000/doctor-approval", {
           method: "POST",
@@ -143,7 +143,7 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
       const contract = new ethers.Contract(
         process.env.NEXT_PUBLIC_DOCTORSIDE_ADDRESS,
         doctorsideabi,
-        signer
+        signer,
       );
       const accounts = await provider.listAccounts();
       setUserWalletAddress(accounts[0]);
@@ -170,13 +170,12 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
       const contract = new ethers.Contract(
         process.env.NEXT_PUBLIC_DOCTORSIDE_ADDRESS,
         doctorsideabi,
-        signer
+        signer,
       );
       const accounts = await provider.listAccounts();
       setUserWalletAddress(accounts[0]);
-      const userId = await contract.userWalletAddresstoUserId(
-        doctorWalletAddress
-      );
+      const userId =
+        await contract.userWalletAddresstoUserId(doctorWalletAddress);
 
       const userInfo = await contract.userIdtoUser(userId);
       setDoctorInfo(userInfo);
@@ -187,7 +186,7 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
         tempTimeSlot = await contract.doctorIdtoDatetoTimeSlot(
           userId,
           givenDate,
-          i
+          i,
         );
         console.log(tempTimeSlot);
         setTimeSlots((prevState) => [...prevState, tempTimeSlot]);
@@ -218,6 +217,24 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
   };
 
   const BookEmergencyAppointment = async () => {
+    if (!selectedSlotID) {
+      toast({
+        title: "Please select a time slot",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    if (!subject.trim()) {
+      toast({
+        title: "Please enter appointment subject",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
     if (window.ethereum._state.accounts?.length !== 0) {
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -225,7 +242,7 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
         const contract = new ethers.Contract(
           process.env.NEXT_PUBLIC_DOCTORSIDE_ADDRESS,
           doctorsideabi,
-          signer
+          signer,
         );
         console.log(contract);
         const accounts = await provider.listAccounts();
@@ -246,10 +263,10 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
             "",
             sysUser[10],
             selectedSlotID,
-            { value: ethers.utils.parseEther("0.0005") }
+            { value: ethers.utils.parseEther("0.0005") },
           );
           toast({
-            title: "Appoinment Request Sent!",
+            title: "Appointment Request Sent!",
             description: "Please wait for the transaction to complete.",
             status: "success",
             duration: 9000,
@@ -258,7 +275,8 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
           await tx.wait();
           router.refresh();
         }
-      } catch (e) {
+      }
+       catch (e) {
         toast({
           title: "10 MediTokens required",
           description:
@@ -273,6 +291,24 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
   };
 
   const BookAppointment = async () => {
+    if (!selectedSlotID) {
+      toast({
+        title: "Please select a time slot",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    if (!subject.trim()) {
+      toast({
+        title: "Please enter appointment subject",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
     if (window.ethereum._state.accounts?.length !== 0) {
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -280,7 +316,7 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
         const contract = new ethers.Contract(
           process.env.NEXT_PUBLIC_DOCTORSIDE_ADDRESS,
           doctorsideabi,
-          signer
+          signer,
         );
         const accounts = await provider.listAccounts();
         setUserWalletAddress(accounts[0]);
@@ -295,10 +331,10 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
           subject,
           "",
           sysUser[10],
-          selectedSlotID
+          selectedSlotID,
         );
         toast({
-          title: "Appoinment Request Sent!",
+          title: "Appointment Request Sent!",
           description: "Please wait for the transaction to complete.",
           status: "success",
           duration: 9000,
@@ -418,8 +454,14 @@ const BookAppointmentCard = ({ sysUser, signal }) => {
                       type="date"
                       variant={"outline"}
                       onChange={(e) => {
-                        setDate(e.target.value);
-                        loadTimeSlots(e.target.value, sysUser[10]);
+                        const val = e.target.value;
+                        setDate(val);
+                        setTimeSlots([]); // clear stale slots immediately
+                        setSelectedSlotID(undefined);
+                        if (/^\d{4}-\d{2}-\d{2}$/.test(val)) {
+                          // only full dates
+                          loadTimeSlots(val, sysUser[10]);
+                        }
                       }}
                     />
                   </FormControl>

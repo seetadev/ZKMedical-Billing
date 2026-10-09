@@ -128,6 +128,24 @@ contract DoctorSide is UserSide {
         address _doctorWalletAddress,
         uint256 _slotId
     ) public {
+        uint256 patId = userWalletAddresstoUserId[msg.sender];
+        uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
+        require(
+        patId != 0 && doctorId != 0,
+        "Patient wallet address and wallet address must be both registered"
+        );
+        require(
+        !userIdtoBlacklist[patId] && !userIdtoBlacklist[doctorId],
+        "Either patient or doctor are blacklisted"
+        );
+        require(
+        i_mediToken.balanceOf(msg.sender) >= 5,
+        "You need to hold atleast 5 MediTokens to book an appointment"
+        );
+        require(
+        !slotIdtoBookingStatus[_slotId],
+        "Slot is already booked"
+        );
         Appointment memory a1 = Appointment(
             totalAppointments,
             _appDate,
@@ -142,68 +160,64 @@ contract DoctorSide is UserSide {
             0
         );
         appointmentIdtoAppointment[totalAppointments] = a1;
-        uint256 patId = userWalletAddresstoUserId[msg.sender];
-        uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
-        require(
-            i_mediToken.balanceOf(msg.sender) >= 5,
-            "You need to hold atleast 5 MediTokens to book an appointment"
-        );
-        require(
-            patId != 0 && doctorId != 0,
-            "Patient wallet address and wallet address must be both registered into the system"
-        );
-        require(
-            !userIdtoBlacklist[patId] && !userIdtoBlacklist[doctorId],
-            "Either patient or doctor are blacklisted"
-        );
         docIdtoAppointmentId[doctorId].push(totalAppointments);
         patIdtoAppointmentId[patId].push(totalAppointments);
         totalAppointments++;
     }
 
     function bookAppointmentEmergency(
-        string memory _appDate,
-        string memory _startTime,
-        string memory _endTime,
-        string memory _appSubject,
-        string memory _appFeedback,
-        address _doctorWalletAddress,
-        uint256 _slotId
-    ) public payable {
-        require(
-            i_mediToken.balanceOf(msg.sender) >= 10,
-            "You need to hold atleast 10 MediTokens to book an emergency appointment"
-        );
-        Appointment memory a1 = Appointment(
-            totalAppointments,
-            _appDate,
-            _startTime,
-            _endTime,
-            _appSubject,
-            _appFeedback,
-            msg.sender,
-            _doctorWalletAddress,
-            false,
-            _slotId,
-            1
-        );
-        appointmentIdtoAppointment[totalAppointments] = a1;
-        uint256 patId = userWalletAddresstoUserId[msg.sender];
-        uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
-        require(
-            patId != 0 && doctorId != 0,
-            "Patient wallet address and wallet address must be both registered into the system"
-        );
-        require(
-            !userIdtoBlacklist[patId] && !userIdtoBlacklist[doctorId],
-            "Either patient or doctor are blacklisted"
-        );
-        docIdtoAppointmentId[doctorId].push(totalAppointments);
-        patIdtoAppointmentId[patId].push(totalAppointments);
-        totalAppointments++;
+    string memory _appDate,
+    string memory _startTime,
+    string memory _endTime,
+    string memory _appSubject,
+    string memory _appFeedback,
+    address _doctorWalletAddress,
+    uint256 _slotId
+) public payable {
+
+    require(
+        i_mediToken.balanceOf(msg.sender) >= 10,
+        "You need to hold atleast 10 MediTokens to book an emergency appointment"
+    );
+    uint256 patId = userWalletAddresstoUserId[msg.sender];
+    uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
+    require(
+        patId != 0 && doctorId != 0,
+        "Patient wallet address and wallet address must be both registered"
+    );
+    require(
+        !userIdtoBlacklist[patId] && !userIdtoBlacklist[doctorId],
+        "Either patient or doctor are blacklisted"
+    );
+    require(
+        !slotIdtoBookingStatus[_slotId],
+        "Slot is already booked"
+    );
+
+    Appointment memory a1 = Appointment(
+        totalAppointments,
+        _appDate, _startTime, _endTime,
+        _appSubject, _appFeedback,
+        msg.sender, _doctorWalletAddress,
+        false, _slotId, 1
+    );
+    appointmentIdtoAppointment[totalAppointments] = a1;
+    docIdtoAppointmentId[doctorId].push(totalAppointments);
+    patIdtoAppointmentId[patId].push(totalAppointments);
+    totalAppointments++;
     }
 
     function approveAppointment(uint256 _appId) public {
+        uint256 callerId = userWalletAddresstoUserId[msg.sender];
+        require(userIdtoUser[callerId].userRole == 2, "Only doctors");
+        require(
+        userIdtoUser[callerId].isVerified,
+        "Doctor not verified"
+        );
+    require(
+        appointmentIdtoAppointment[_appId].doctorWalletAddress == msg.sender,
+        "Not your appointment"
+    );
         uint256 doctorId = userWalletAddresstoUserId[
             appointmentIdtoAppointment[_appId].doctorWalletAddress
         ];
