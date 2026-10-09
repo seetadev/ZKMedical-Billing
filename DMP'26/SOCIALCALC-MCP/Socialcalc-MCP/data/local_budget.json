@@ -1,0 +1,21 @@
+{
+  "numsheets": 2,
+  "currentid": "sheet1",
+  "currentname": "sheet1",
+  "sheetArr": {
+    "sheet1": {
+      "sheetstr": {
+        "savestr": "version:1.5\nsheet:c:0:r:0\n"
+      },
+      "name": "sheet1",
+      "hidden": "0"
+    },
+    "sheet2": {
+      "sheetstr": {
+        "savestr": "version:1.5\nfont:1:normal bold 13pt Arial\nfont:2:normal bold 10pt Arial\nfont:3:normal bold 11pt Arial\ncolor:1:rgb(255,255,255)\ncolor:2:rgb(0,105,92)\ncolor:3:rgb(0,121,107)\ncolor:4:rgb(198,40,40)\ncellformat:1:center\ncellformat:2:right\ncol:A:w:10\ncol:B:w:180\ncol:C:w:100\nsheet:c:3:r:20\ncell:B2:t:MONTHLY OPERATING BUDGET:f:1:c:1:bg:2:cf:1\ncell:B4:t:INCOME SOURCES:f:2:c:3\ncell:B5:t:Primary Sales\ncell:C5:v:8500\ncell:B6:t:Interest / Dividends\ncell:C6:v:250\ncell:B7:t:Total Income:f:2:cf:2\ncell:C7:vtf:n::SUM(C5\\cC6)\ncell:B9:t:OPERATING EXPENSES:f:2:c:4\ncell:B10:t:Office Rent\ncell:C10:v:1500\ncell:B11:t:Utilities & Phone\ncell:C11:v:300\ncell:B12:t:Software Subscriptions\ncell:C12:v:450\ncell:B13:t:Marketing & Ads\ncell:C13:v:1000\ncell:B14:t:Total Expenses:f:2:cf:2\ncell:C14:vtf:n::SUM(C10\\cC13)\ncell:B16:t:NET MONTHLY SAVINGS:f:3:c:1:bg:2:cf:2\ncell:C16:vtf:n::C7-C14:f:3:c:1:bg:2\n"
+      },
+      "name": "Budget",
+      "hidden": "0"
+    }
+  }
+}

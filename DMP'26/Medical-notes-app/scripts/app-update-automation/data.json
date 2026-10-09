@@ -61,12 +61,12 @@
     "mobile": {
       "name": "Medical Notes (Mobile)",
       "description": "Medication log sheets optimized for mobile layouts.",
-      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical-notes-app/scripts/app-update-automation/templates/mob.json"
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/Daily Progress/12 July/IPFS-APPS-IOS/Medical-notes-app/scripts/app-update-automation/templates/mob.json"
     },
     "tablet": {
       "name": "Medical Notes (Tablet)",
       "description": "Comprehensive medication log and health tracker sheets optimized for tablets.",
-      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical-notes-app/scripts/app-update-automation/templates/tab.json"
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/Daily Progress/12 July/IPFS-APPS-IOS/Medical-notes-app/scripts/app-update-automation/templates/tab.json"
     },
     "desktop": {
       "name": "Medical Notes (Desktop)",
@@ -111,6 +111,6 @@
   },
 
   "icon": {
-    "sourceIconPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/12 July/Ipfs Apps/Medical-notes-app/scripts/app-update-automation/templates/medical notes/MedicalNotes/www/img/bi.png"
+    "sourceIconPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/Daily Progress/12 July/IPFS-APPS-IOS/Medical-notes-app/scripts/app-update-automation/templates/medical notes/MedicalNotes/www/img/bi.png"
   }
 }
