@@ -1,17 +1,27 @@
 import Head from 'next/head'
 import Link from 'next/link';
-import { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
 import { Stack, Text, Title, Grid, Input, Button, Group, Space } from '@mantine/core'
 import axios, { AxiosRequestConfig } from 'axios';
 import { useAccount } from 'wagmi';
 import { notifications } from "@mantine/notifications";
-import { ConnectWalletButton } from '@/components/ConnectWalletButton';
 import { executeTransaction } from '@/lib/executeTransaction';
+
+const ConnectWalletButton = dynamic(
+  () => import('@/components/ConnectWalletButton').then((mod) => mod.ConnectWalletButton),
+  { ssr: false, loading: () => null }
+);
 
 export default function Home() {
   const [input0, setInput0] = useState("");
   const [input1, setInput1] = useState("");
+  const [mounted, setMounted] = useState(false);
   const { isConnected } = useAccount();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const handleGenerateProofSendTransaction = async (e: any) => {
     e.preventDefault();
@@ -60,6 +70,7 @@ export default function Home() {
 
   // Only allow submit if the user first connects their wallet
   const renderSubmitButton = () => {
+    if (!mounted) return null;
     if (!isConnected) {
       return <ConnectWalletButton />
     }

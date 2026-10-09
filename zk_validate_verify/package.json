@@ -8,7 +8,14 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "scripts": {
+    "submit": "node scripts/generate_and_submit.js"
+  },
   "dependencies": {
+    "@lighthouse-web3/sdk": "^0.3.4",
+    "@web3-storage/w3up-client": "^16.0.0",
+    "circomlibjs": "^0.1.7",
+    "dotenv": "^16.4.0",
     "@emotion/react": "^11.10.6",
     "@mantine/core": "^6.0.2",
     "@mantine/hooks": "^6.0.2",

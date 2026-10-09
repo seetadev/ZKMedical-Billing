@@ -1,11 +1,17 @@
 import { Button } from "@mantine/core"
 import { disconnect } from "@wagmi/core";
-import { useAccount, useConnect, useEnsName } from 'wagmi'
+import { useAccount, useConnect } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
+import { useEffect, useState } from 'react'
 
 export const ConnectWalletButton = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const { address, isConnected } = useAccount();
-  const { data: ensName } = useEnsName({ address });
   const { connect } = useConnect({
     connector: new InjectedConnector(),
   });
@@ -19,13 +25,16 @@ export const ConnectWalletButton = () => {
   }
 
   const renderConnectText = () => {
-    if (isConnected) {
-      const start = address?.slice(0,6);
-      const end = address?.slice(address.length-4, address.length);
+    if (isConnected && address) {
+      const start = address.slice(0, 6);
+      const end = address.slice(-4);
       return `${start}...${end}`;
-    } else {
-      return "Connect Wallet";
     }
+    return "Connect Wallet";
+  }
+
+  if (!mounted) {
+    return null;
   }
   
   return (
