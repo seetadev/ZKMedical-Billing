@@ -1,0 +1,126 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ─────────────────────────────────────────────
+  # Job 1: Lint & Build — zk-medical-billing-tracker
+  # ─────────────────────────────────────────────
+  tracker-lint-build:
+    name: Tracker — Lint & Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: zk-medical-billing-tracker
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: zk-medical-billing-tracker/package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  # ─────────────────────────────────────────────
+  # Job 2: Lint & Build — zk_validate_verify (Next.js)
+  # ─────────────────────────────────────────────
+  zk-validate-lint-build:
+    name: ZK Validate — Lint & Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: zk_validate_verify
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: zk_validate_verify/package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+  # ─────────────────────────────────────────────
+  # Job 3: Forge Build — MedETH contracts
+  # ─────────────────────────────────────────────
+  medeth-forge-build:
+    name: MedETH — Forge Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: MedETH/foundry
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Install Forge dependencies
+        run: forge install
+
+      - name: Build contracts
+        run: forge build
+
+  # ─────────────────────────────────────────────
+  # Job 4: Forge Build & Test — Medi_Token
+  # ─────────────────────────────────────────────
+  meditoken-forge-test:
+    name: Medi Token — Forge Build & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Medi_Token
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Install Forge dependencies
+        run: forge install
+
+      - name: Build contracts
+        run: forge build
+
+      - name: Run tests
+        run: forge test -vvv
