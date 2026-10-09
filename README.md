@@ -25,6 +25,26 @@ Our core platform, **EMTTR (Electronic Medicine Trial and Test Records)**, provi
 
 ---
 
+## Getting started (For Developers)
+
+This repository contains multiple sub-projects.
+
+If you're looking to quickly run a working part of the project, you can try one of the available modules such as:
+
+## Run the frontend (medical-billing)
+
+cd ZKMedical-Billing/medical-billing
+npm install
+npm start
+
+This will start a local deployement server at:
+http://localhost:3000
+
+### Impportant notes
+
+-Do not run `npm install` at the root of the repository.
+-Each sub-projects has its own dependencies and setup instructions.
+-Other modules(example- ZK velidation,contracts)may require additional configuration and can be explored seperately.
 ## 💾 Built on Filecoin & Optimism
 
 | Layer                     | Role                                          | Impact                                                 |
