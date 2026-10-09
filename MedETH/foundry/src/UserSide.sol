@@ -46,6 +46,7 @@ contract UserSide is Ownable {
     mapping(uint256 => PatientHistory) public userIdtoPatientHistory;
     mapping(uint256 => string[]) public userIdtoPrevMedicalHistory;
     mapping(string => uint256) public userEmailtoUserId;
+    mapping(uint256 => mapping(uint256 => bool)) public hasReported;
 
     // Constructor
     constructor(address _mediToken) Ownable(msg.sender) {
@@ -156,6 +157,12 @@ contract UserSide is Ownable {
     }
 
     function reportUser(uint256 _userId) public {
+        uint256 reporterId = userWalletAddresstoUserId[msg.sender];
+        require(reporterId != 0, "Only registered users can report");
+        require(reporterId != _userId, "Cannot report yourself");
+        require(!hasReported[reporterId][_userId], "You have already reported this user");
+
+        hasReported[reporterId][_userId] = true;
         userIdtoReportUser[_userId]++;
         if (userIdtoReportUser[_userId] > 100) {
             userIdtoBlacklist[_userId] = true;
