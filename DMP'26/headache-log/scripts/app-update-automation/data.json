@@ -1,0 +1,119 @@
+{
+  "_comment": "App Update Automation — Central Configuration for Headache Log",
+
+  "app": {
+    "name": "Headache Log",
+    "kebabName": "headache-log",
+    "packageName": "com.aspiring.HeadacheLog",
+    "description": "Offline Headache & Medication Tracker. Log headache episodes, triggers, pain scale, medication history, and clinical notes — all without an internet connection.",
+    "type": "headache-log",
+    "version": "3.0.0",
+    "marketingVersion": "3.0",
+    "buildNumber": "1"
+  },
+
+  "theme": {
+    "primaryColor": "#b91c1c",
+    "primaryColorRgb": "185, 28, 28",
+    "primaryColorShade": "#991b1b",
+    "primaryColorTint": "#dc2626",
+    "primaryContrast": "#ffffff",
+    "primaryContrastRgb": "255, 255, 255",
+    "secondaryColor": "#fff1f2",
+    "secondaryColorRgb": "255, 241, 242",
+    "secondaryContrast": "#b91c1c",
+    "secondaryContrastRgb": "185, 28, 28",
+    "secondaryShade": "#fecdd3",
+    "secondaryTint": "#ffffff",
+    "backgroundColor": "#fafafa"
+  },
+
+  "onboarding": {
+    "welcomeTitle": "Welcome to Headache Log",
+    "welcomeSubtitle": "Track headache episodes, triggers, and medications — all offline.",
+    "features": [
+      "Log daily headache episodes with date, time, duration, pain scale, and symptoms",
+      "Record activity and food/water triggers linked to each headache episode",
+      "Manage your full medication history, dosage schedule, and pharmacy contacts"
+    ],
+    "ctaButtonText": "Get Started"
+  },
+
+  "pages": {
+    "dashboardHeaderTitle": "Headache Log",
+    "filesPageHeaderTitle": "My Saved Logs",
+    "settingsPageAppName": "Headache Log",
+    "settingsPageMarketingVersion": "3.0",
+    "settingsPageBuildNumber": "1",
+    "settingsCurrencyDescription": "Change the display currency for your records and reports.",
+    "settingsResetDescription": "Wipe all local log files, custom templates, and configuration settings completely."
+  },
+
+  "tabs": {
+    "home": "Home",
+    "files": "Files",
+    "settings": "Settings"
+  },
+
+  "templates": {
+    "appType": "headache-log",
+    "hashtags": ["headache", "migraine", "health", "medication", "tracker"],
+    "mobile": {
+      "name": "Headache Log (Mobile)",
+      "description": "Headache tracking sheets optimised for mobile layouts.",
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/ZKMedical-Billing/DMP'26/headache-log/scripts/app-update-automation/templates/mob.json"
+    },
+    "tablet": {
+      "name": "Headache Log (Tablet)",
+      "description": "Comprehensive headache and medication log sheets optimised for tablets.",
+      "mscJsonPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/ZKMedical-Billing/DMP'26/headache-log/scripts/app-update-automation/templates/tab.json"
+    },
+    "desktop": {
+      "name": "Headache Log (Desktop)",
+      "description": "Comprehensive headache and medication log sheets optimised for desktop.",
+      "mscJsonPath": ""
+    },
+    "footerTabNames": {
+      "tab1": "Headache Log",
+      "tab2": "Activity Log",
+      "tab3": "Medication Log",
+      "tab4": "Medication Info",
+      "tab5": "Pharmacy"
+    }
+  },
+
+  "pdf": {
+    "footerLabel": "Headache Log",
+    "defaultFilename": "headache_log",
+    "defaultAllSheetsFilename": "all_headache_logs",
+    "shareSubject": "Here is your Headache Log",
+    "shareText": "Headache Log PDF generated successfully",
+    "csvShareText": "Headache Log data exported as CSV",
+    "singleSheetName": "Headache Log Sheet"
+  },
+
+  "menu": {
+    "printWindowTitle": "Print Headache Log",
+    "emailSubject": "Here is your Headache Log",
+    "saveToastMessage": "Log saved successfully!",
+    "fallbackFileName": "Headache Log"
+  },
+
+  "ios": {
+    "displayName": "Headache Log",
+    "cameraUsageDescription": "Headache Log needs access to your camera to capture images for your health records.",
+    "photoLibraryUsageDescription": "Headache Log needs access to your photo library to attach images to your health records.",
+    "microphoneUsageDescription": "Headache Log needs microphone access when using the camera."
+  },
+
+  "pwa": {
+    "shortName": "Headache Log",
+    "fullName": "Headache Log",
+    "themeColor": "#b91c1c",
+    "backgroundColor": "#b91c1c"
+  },
+
+  "icon": {
+    "sourceIconPath": "/Users/anirudhsharma/Desktop/C4GT/0. Base App Codebase/ZKMedical-Billing/DMP'26/headache-log/image.png"
+  }
+}
