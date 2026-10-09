@@ -1,0 +1,45 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MedicalInvoiceVerifier",
+  "sourceName": "contracts/MedicalInvoiceVerifier.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256[2]",
+          "name": "_pA",
+          "type": "uint256[2]"
+        },
+        {
+          "internalType": "uint256[2][2]",
+          "name": "_pB",
+          "type": "uint256[2][2]"
+        },
+        {
+          "internalType": "uint256[2]",
+          "name": "_pC",
+          "type": "uint256[2]"
+        },
+        {
+          "internalType": "uint256[2]",
+          "name": "_pubSignals",
+          "type": "uint256[2]"
+        }
+      ],
+      "name": "verifyProof",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608080604052346100155760ec908161001b8239f35b600080fdfe6080806040526004361015601257600080fd5b600090813560e01c63f5c9d69e14602857600080fd5b3460b25761014036600319011260b2573660441160b2573660c41160b257366101041160b257366101441160b25762461bcd60e51b815260206004820152603160248201527f5665726966696572206e6f74207965742067656e6572617465642e2052756e2060448201527031b7b6b834b6329739b4103334b939ba1760791b6064820152608490fd5b5080fdfea2646970667358221220efbf3b1aa8a910f8609f8cf67d944a8487292fdd1a90df5fd5c276c24ff202a864736f6c63430008140033",
+  "deployedBytecode": "0x6080806040526004361015601257600080fd5b600090813560e01c63f5c9d69e14602857600080fd5b3460b25761014036600319011260b2573660441160b2573660c41160b257366101041160b257366101441160b25762461bcd60e51b815260206004820152603160248201527f5665726966696572206e6f74207965742067656e6572617465642e2052756e2060448201527031b7b6b834b6329739b4103334b939ba1760791b6064820152608490fd5b5080fdfea2646970667358221220efbf3b1aa8a910f8609f8cf67d944a8487292fdd1a90df5fd5c276c24ff202a864736f6c63430008140033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

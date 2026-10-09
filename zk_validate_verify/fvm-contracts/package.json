@@ -1,0 +1,21 @@
+{
+  "name": "fvm-medical-contracts",
+  "version": "1.0.0",
+  "description": "FVM smart contracts for ZK Medical Billing Module",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy:mock": "hardhat run scripts/deploy_mock_ppt.js --network calibration",
+    "deploy": "hardhat run scripts/deploy.js --network calibration",
+    "verify": "hardhat run scripts/verify_deployment.js --network calibration",
+    "test:submit": "hardhat run scripts/test_submit.js --network calibration",
+    "test": "hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.22.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0",
+    "dotenv": "^16.4.0"
+  }
+}
