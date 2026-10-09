@@ -81,6 +81,15 @@ contract DoctorSide is UserSide {
         address _doctorWalletAddress,
         string memory _ipfsHash
     ) public {
+        require(
+            msg.sender == _doctorWalletAddress,
+            "Only the assigned doctor can upload a report"
+        );
+        uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
+        require(
+            userIdtoUser[doctorId].userRole == 2 && userIdtoUser[doctorId].isVerified,
+            "Only verified doctors can upload reports"
+        );
         PatientReport memory r1 = PatientReport(
             totalDocuments,
             _reportName,
@@ -90,7 +99,6 @@ contract DoctorSide is UserSide {
         );
         ReportIdtoPatintReport[totalDocuments] = r1;
         uint256 patId = userWalletAddresstoUserId[_patientWalletAdress];
-        uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
         patientIdtoReport[patId].push(r1);
         doctortIdtoReport[doctorId].push(r1);
         totalDocuments++;
