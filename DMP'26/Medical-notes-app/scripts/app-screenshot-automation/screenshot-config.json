@@ -1,14 +1,14 @@
 {
   "baseUrl": "http://localhost:3000",
-  "saveFileNameA": "Requisition Form A",
-  "saveFileNameB": "Requisition Form B",
+  "saveFileNameA": "Medical Record A",
+  "saveFileNameB": "Medical Record B",
   "onboardingButtonText": "Get Started",
-  "savedFilesPageTitle": "My Saved Forms",
+  "savedFilesPageTitle": "My Medical Files",
   "settingsPageTitle": "App Settings",
   "saveFileDialogTitle": "Save File",
-  "editCellMobile": "B2",
-  "editCellTablet": "B2",
+  "editCellMobile": "D5",
+  "editCellTablet": "D5",
   "editValue": "Clinic ABC",
-  "maxTabsMobile": 5,
-  "maxTabsTablet": 5
+  "maxTabsMobile": 12,
+  "maxTabsTablet": 13
 }

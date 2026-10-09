@@ -1,0 +1,14 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "saveFileNameA": "Requisition Form A",
+  "saveFileNameB": "Requisition Form B",
+  "onboardingButtonText": "Get Started",
+  "savedFilesPageTitle": "My Saved Forms",
+  "settingsPageTitle": "App Settings",
+  "saveFileDialogTitle": "Save File",
+  "editCellMobile": "B2",
+  "editCellTablet": "B2",
+  "editValue": "Clinic ABC",
+  "maxTabsMobile": 5,
+  "maxTabsTablet": 5
+}

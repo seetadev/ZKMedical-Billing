@@ -1,0 +1,21 @@
+{
+  "numsheets": 2,
+  "currentid": "sheet1",
+  "currentname": "sheet1",
+  "sheetArr": {
+    "sheet1": {
+      "sheetstr": {
+        "savestr": "version:1.5\nsheet:c:1:r:1\n"
+      },
+      "name": "sheet1",
+      "hidden": "0"
+    },
+    "sheet2": {
+      "sheetstr": {
+        "savestr": "version:1.5\nfont:1:normal bold 11pt Arial\nfont:2:normal normal 10pt Arial\ncolor:1:rgb(255,255,255)\ncolor:2:rgb(0,150,136)\ncolor:3:rgb(38,50,56)\ncolor:4:rgb(224,242,241)\ncolor:5:rgb(0,0,0)\ncolor:6:rgb(200,230,220)\nborder:1:1px solid rgb(0,77,64)\nborder:2:1px solid rgb(178,223,219)\ncellformat:1:center\ncol:D:w:120\nrow:1:h:30\nsheet:c:4:r:6\ncell:A1:t:Item:f:1:c:1:bg:2:cf:1:b:1:1:1:1\ncell:B1:t:Quantity:f:1:c:1:bg:2:cf:1:b:1:1:1:1\ncell:C1:t:Price:f:1:c:1:bg:2:cf:1:b:1:1:1:1\ncell:D1:t:Total:f:1:c:1:bg:2:cf:1:b:1:1:1:1\ncell:A2:t:Gadgets:f:2:c:3:bg:1:b:2:2:2:2\ncell:B2:v:20:f:2:c:3:bg:1:b:2:2:2:2\ncell:C2:v:10:f:2:c:3:bg:1:b:2:2:2:2\ncell:D2:vtf:n::B3*C3\\cf\\c2\\cc\\c3\\cbg\\c1\\cb\\c2\\c2\\c2\\c2\ncell:A3:t:Widgets:f:2:c:3:bg:4:b:2:2:2:2\ncell:B3:v:10:f:2:c:3:bg:4:b:2:2:2:2\ncell:C3:v:5:f:2:c:3:bg:4:b:2:2:2:2\ncell:D3:vtf:n::B2*C2\\cf\\c2\\cc\\c3\\cbg\\c4\\cb\\c2\\c2\\c2\\c2\ncell:A4:t:Gizmos:f:2:c:3:bg:4:b:2:2:2:2\ncell:B4:v:5:f:2:c:3:bg:4:b:2:2:2:2\ncell:C4:v:15:f:2:c:3:bg:4:b:2:2:2:2\ncell:D4:vtf:n::B4*C4\\cf\\c2\\cc\\c3\\cbg\\c4\\cb\\c2\\c2\\c2\\c2\ncell:D5:vtf:n::SUM(D2\\bcD4)\\cf\\c2\\cc\\c3\\cbg\\c1\\cb\\c2\\c2\\c2\\c2\\cf\\c1\\cc\\c5\\cbg\\c6\\ccomment\\cFinal calculated total\ncell:A5:t:Total Sales:f:1:c:5:bg:6:b:2:2:2:2\ncell:A6:t:This is a merged info banner:colspan:4\n"
+      },
+      "name": "Sales",
+      "hidden": "0"
+    }
+  }
+}

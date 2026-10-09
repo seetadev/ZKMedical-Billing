@@ -1,0 +1,20 @@
+{
+  "isPremium": false,
+  "price": {
+    "USD": 0
+  },
+  "name": "Headache Log (Tablet)",
+  "type": "headache-log",
+  "device": "tablet",
+  "description": "Comprehensive headache and medication log sheets optimised for tablets.",
+  "id": 100002,
+  "image": "",
+  "hashtags": [
+    "headache",
+    "migraine",
+    "health",
+    "medication",
+    "tracker",
+    "tablet"
+  ]
+}
