@@ -81,6 +81,29 @@ contract DoctorSide is UserSide {
         address _doctorWalletAddress,
         string memory _ipfsHash
     ) public {
+        require(
+            msg.sender == _doctorWalletAddress,
+            "Caller must be the doctor uploading the report"
+        );
+        uint256 doctorId = userWalletAddresstoUserId[msg.sender];
+        User memory doctor = userIdtoUser[doctorId];
+        require(
+            doctor.isVerified && doctor.userRole == 2,
+            "Only a verified doctor can upload medical reports"
+        );
+        require(
+            !userIdtoBlacklist[doctorId],
+            "Doctor is blacklisted"
+        );
+        uint256 patId = userWalletAddresstoUserId[_patientWalletAdress];
+        require(
+            patId != 0,
+            "Patient is not registered in the system"
+        );
+        require(
+            !userIdtoBlacklist[patId],
+            "Patient is blacklisted"
+        );
         PatientReport memory r1 = PatientReport(
             totalDocuments,
             _reportName,
@@ -89,8 +112,6 @@ contract DoctorSide is UserSide {
             _ipfsHash
         );
         ReportIdtoPatintReport[totalDocuments] = r1;
-        uint256 patId = userWalletAddresstoUserId[_patientWalletAdress];
-        uint256 doctorId = userWalletAddresstoUserId[_doctorWalletAddress];
         patientIdtoReport[patId].push(r1);
         doctortIdtoReport[doctorId].push(r1);
         totalDocuments++;
