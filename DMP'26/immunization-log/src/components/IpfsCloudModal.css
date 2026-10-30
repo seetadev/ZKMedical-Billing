@@ -1,0 +1,890 @@
+/* ============================================================
+   IpfsCloudModal.css – Styles for the IPFS Cloud Manager modal
+   ============================================================ */
+
+/* --- Modal Shell --- */
+.ipfs-cloud-modal {
+  --background: #ffffff;
+  --color: #0f172a;
+}
+
+.ipfs-cloud-modal::part(handle) {
+  background: #cbd5e1;
+  width: 36px;
+  height: 4px;
+  margin-top: 8px;
+}
+
+/* --- Modal Header --- */
+.ipfs-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffff;
+  padding: 12px 16px 0;
+}
+
+.ipfs-modal-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.ipfs-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ipfs-modal-header-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+}
+
+.ipfs-modal-header-icon-wrap ion-icon {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.ipfs-modal-header-text {
+  font-weight: 700;
+  font-size: 18px;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.ipfs-modal-close-btn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ipfs-modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.ipfs-modal-close-btn:active {
+  transform: scale(0.92);
+}
+
+.ipfs-modal-close-btn ion-icon {
+  font-size: 18px;
+}
+
+/* --- Tab Switcher --- */
+.ipfs-tab-switcher {
+  display: flex;
+  gap: 4px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.ipfs-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #64748b;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ipfs-tab-btn ion-icon {
+  font-size: 16px;
+}
+
+.ipfs-tab-btn.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* --- Modal Content & Body --- */
+.ipfs-modal-content {
+  --background: #ffffff;
+}
+
+.ipfs-modal-body {
+  padding: 20px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* --- Card (Load CID Section) --- */
+.ipfs-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+}
+
+.ipfs-card-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.ipfs-card-desc {
+  font-size: 12.5px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 14px 0;
+}
+
+/* --- CID Input Row --- */
+.ipfs-cid-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ipfs-input {
+  flex: 1;
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 14px;
+  height: 44px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  font-family: inherit;
+}
+
+.ipfs-input::placeholder {
+  color: #94a3b8;
+}
+
+.ipfs-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.ipfs-load-cid-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 16px;
+  height: 44px;
+  min-width: 80px;
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ipfs-load-cid-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4338ca 0%, #2563eb 100%);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+.ipfs-load-cid-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.ipfs-load-cid-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ipfs-load-cid-btn ion-icon {
+  font-size: 16px;
+}
+
+/* --- History Header --- */
+.ipfs-history-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ipfs-history-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.ipfs-history-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 11.5px;
+  font-weight: 700;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 20px;
+}
+
+/* --- History List --- */
+.ipfs-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.ipfs-history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ipfs-history-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ipfs-history-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.ipfs-history-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* --- History Item Card --- */
+.ipfs-history-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+  transition: all 0.2s ease;
+}
+
+.ipfs-history-item:hover {
+  transform: translateY(-1px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+}
+
+.ipfs-history-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ipfs-history-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ipfs-history-item-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1e293b;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ipfs-history-item-date {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 3px;
+}
+
+.ipfs-history-item-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ipfs-history-item-cid {
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #64748b;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  word-break: break-all;
+  border: 1px solid #f1f5f9;
+}
+
+/* --- Icon Buttons (copy, open, delete) --- */
+.ipfs-icon-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  width: 32px;
+  height: 32px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ipfs-icon-btn ion-icon {
+  font-size: 15px;
+}
+
+.ipfs-icon-btn:active {
+  transform: scale(0.92);
+}
+
+.ipfs-icon-btn:hover {
+  background: #eff6ff;
+  color: #3b82f6;
+  border-color: #bfdbfe;
+}
+
+.ipfs-icon-btn.primary {
+  background: #eff6ff;
+  color: #3b82f6;
+  border-color: #bfdbfe;
+}
+
+.ipfs-icon-btn.primary:hover {
+  background: #3b82f6;
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+}
+
+.ipfs-icon-btn.danger:hover {
+  background: #fef2f2;
+  color: #ef4444;
+  border-color: #fca5a5;
+}
+
+/* --- Empty State --- */
+.ipfs-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  text-align: center;
+  background: #f8fafc;
+  border: 1.5px dashed #e2e8f0;
+  border-radius: 16px;
+}
+
+.ipfs-empty-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.08);
+}
+
+.ipfs-empty-circle ion-icon {
+  font-size: 26px;
+  color: #3b82f6;
+}
+
+.ipfs-empty-title {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: -0.01em;
+}
+
+.ipfs-empty-sub {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.5;
+  max-width: 260px;
+}
+
+/* --- Credentials Tab --- */
+.ipfs-cred-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #eff6ff;
+  border-radius: 12px;
+  border: 1px solid #bfdbfe;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.02);
+}
+
+.ipfs-cred-info ion-icon {
+  font-size: 20px;
+  color: #3b82f6;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ipfs-cred-info span {
+  font-size: 12.5px;
+  color: #1e3a8a;
+  line-height: 1.5;
+}
+
+/* --- Form Fields --- */
+.ipfs-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ipfs-field-lbl {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.ipfs-field-rec {
+  font-weight: 400;
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-left: 4px;
+}
+
+.ipfs-field-hint {
+  font-size: 11.5px;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* --- Password Input with Eye Toggle --- */
+.ipfs-input-eye-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.ipfs-input-eye-wrap .ipfs-input {
+  padding-right: 46px;
+}
+
+.ipfs-eye-btn {
+  position: absolute;
+  right: 10px;
+  background: rgba(241, 245, 249, 0.8);
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  z-index: 5;
+  transition: all 0.2s ease;
+}
+
+.ipfs-eye-btn:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.ipfs-eye-btn ion-icon {
+  font-size: 16px;
+}
+
+/* --- OR Divider --- */
+.ipfs-or-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.ipfs-or-divider span {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.12em;
+}
+
+/* --- Connection Test Banner --- */
+.ipfs-test-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  animation: ipfsFadeIn 0.25s ease-out;
+}
+
+@keyframes ipfsFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ipfs-test-banner ion-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ipfs-test-banner span {
+  font-weight: 500;
+}
+
+.ipfs-test-banner.success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.ipfs-test-banner.failed {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+/* --- Credential Action Buttons --- */
+.ipfs-cred-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 12px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.ipfs-cred-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  height: 44px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ipfs-cred-btn:active {
+  transform: scale(0.97);
+}
+
+.ipfs-cred-btn.outline {
+  background: transparent;
+  color: #475569;
+  border: 1.5px solid #cbd5e1;
+}
+
+.ipfs-cred-btn.outline:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.ipfs-cred-btn.outline:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ipfs-cred-btn.solid {
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.ipfs-cred-btn.solid:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #2563eb 100%);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+
+/* ============================================================
+   DARK THEME OVERRIDES
+   ============================================================ */
+
+.dark-theme .ipfs-cloud-modal {
+  --background: #111827;
+  --color: #f3f4f6;
+}
+
+.dark-theme .ipfs-cloud-modal::part(handle) {
+  background: #4b5563;
+}
+
+.dark-theme .ipfs-modal-header {
+  background: #111827;
+}
+
+.dark-theme .ipfs-modal-header-text {
+  color: #f9fafb;
+}
+
+.dark-theme .ipfs-modal-close-btn {
+  background: #1f2937;
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+.dark-theme .ipfs-modal-close-btn:hover {
+  background: #374151;
+  color: #ffffff;
+}
+
+.dark-theme .ipfs-tab-switcher {
+  background: #1f2937;
+}
+
+.dark-theme .ipfs-tab-btn {
+  color: #9ca3af;
+}
+
+.dark-theme .ipfs-tab-btn.active {
+  background: #111827;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .ipfs-modal-content {
+  --background: #111827;
+}
+
+.dark-theme .ipfs-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark-theme .ipfs-card-label {
+  color: #f9fafb;
+}
+
+.dark-theme .ipfs-card-desc {
+  color: #9ca3af;
+}
+
+.dark-theme .ipfs-input {
+  background-color: #111827;
+  color: #f9fafb;
+  border-color: #374151;
+}
+
+.dark-theme .ipfs-input::placeholder {
+  color: #6b7280;
+}
+
+.dark-theme .ipfs-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.dark-theme .ipfs-history-label {
+  color: #f9fafb;
+}
+
+.dark-theme .ipfs-history-count {
+  background: #374151;
+  color: #d1d5db;
+}
+
+.dark-theme .ipfs-history-item {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark-theme .ipfs-history-item:hover {
+  border-color: #4b5563;
+}
+
+.dark-theme .ipfs-history-item-name {
+  color: #f3f4f6;
+}
+
+.dark-theme .ipfs-history-item-date {
+  color: #6b7280;
+}
+
+.dark-theme .ipfs-history-item-cid {
+  background: #111827;
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+.dark-theme .ipfs-icon-btn {
+  background: #111827;
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+.dark-theme .ipfs-icon-btn:hover {
+  background: #1e3a8a;
+  color: #60a5fa;
+  border-color: #2563eb;
+}
+
+.dark-theme .ipfs-icon-btn.primary {
+  background: #1e3a8a;
+  color: #60a5fa;
+  border-color: #2563eb;
+}
+
+.dark-theme .ipfs-icon-btn.primary:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.dark-theme .ipfs-icon-btn.danger:hover {
+  background: #7f1d1d;
+  color: #fca5a5;
+  border-color: #ef4444;
+}
+
+.dark-theme .ipfs-empty {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark-theme .ipfs-empty-circle {
+  background: #1e3a8a;
+}
+
+.dark-theme .ipfs-empty-circle ion-icon {
+  color: #60a5fa;
+}
+
+.dark-theme .ipfs-empty-title {
+  color: #e5e7eb;
+}
+
+.dark-theme .ipfs-empty-sub {
+  color: #6b7280;
+}
+
+.dark-theme .ipfs-cred-info {
+  background: #1e3a8a;
+  border-color: #2563eb;
+}
+
+.dark-theme .ipfs-cred-info ion-icon {
+  color: #60a5fa;
+}
+
+.dark-theme .ipfs-cred-info span {
+  color: #dbeafe;
+}
+
+.dark-theme .ipfs-field-lbl {
+  color: #f3f4f6;
+}
+
+.dark-theme .ipfs-field-rec {
+  color: #6b7280;
+}
+
+.dark-theme .ipfs-field-hint {
+  color: #6b7280;
+}
+
+.dark-theme .ipfs-eye-btn {
+  background: rgba(31, 41, 55, 0.8);
+  border-color: #4b5563;
+  color: #9ca3af;
+}
+
+.dark-theme .ipfs-eye-btn:hover {
+  background: #374151;
+  color: #ffffff;
+}
+
+.dark-theme .ipfs-or-divider span {
+  color: #4b5563;
+}
+
+.dark-theme .ipfs-test-banner.success {
+  background: #064e3b;
+  border-color: #047857;
+  color: #a7f3d0;
+}
+
+.dark-theme .ipfs-test-banner.failed {
+  background: #7f1d1d;
+  border-color: #b91c1c;
+  color: #fca5a5;
+}
+
+.dark-theme .ipfs-cred-btns {
+  border-top-color: #374151;
+}
+
+.dark-theme .ipfs-cred-btn.outline {
+  color: #d1d5db;
+  border-color: #4b5563;
+}
+
+.dark-theme .ipfs-cred-btn.outline:hover {
+  background: #1f2937;
+  border-color: #6b7280;
+}
+
+.dark-theme .ipfs-cred-btn.solid {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .ipfs-cred-btn.solid:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+}
+
+.dark-theme .ipfs-history-list::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+.dark-theme .ipfs-history-list::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}

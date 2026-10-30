@@ -17,7 +17,7 @@ import {
   saveOutline,
   cloudUploadOutline,
 } from "ionicons/icons";
-import * as AppGeneral from "../socialcalc/index.js";
+import * as AppGeneral from "socialcalc-ai";
 
 // import { DATA } from "../../templates.js";
 import { useInvoice } from "../../../contexts/InvoiceContext.js";

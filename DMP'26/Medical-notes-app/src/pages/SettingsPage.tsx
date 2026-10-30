@@ -13,6 +13,7 @@ import {
 } from '@ionic/react';
 import { useInvoice } from '../contexts/InvoiceContext';
 import { useStatusBar, StatusBarPresets } from '../hooks/useStatusBar';
+import { StorageSettings } from '../components/StorageSettings';
 import './SettingsPage.css';
 
 const CURRENCIES = [
@@ -84,6 +85,8 @@ const SettingsPage: React.FC = () => {
                             </div>
                         </div>
                     </div>
+
+                    <StorageSettings />
 
                     {/* Data management */}
                     <div className="settings-group">

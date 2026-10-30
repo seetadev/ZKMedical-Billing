@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as AppGeneral from "../socialcalc/index.js";
+import * as AppGeneral from "socialcalc-ai";
 import { File, Local } from "../../Storage/LocalStorage";
 import { isPlatform, IonToast, IonLoading } from "@ionic/react";
 import { EmailComposer } from "capacitor-email-composer";

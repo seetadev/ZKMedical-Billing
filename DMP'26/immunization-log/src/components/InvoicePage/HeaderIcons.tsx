@@ -77,3 +77,24 @@ export const MoreIcon: React.FC<IconProps> = ({
         </svg>
     </div>
 );
+
+export const CloudIcon: React.FC<IconProps> = ({
+    size = 24,
+    color = 'currentColor',
+    className,
+    style,
+    onClick,
+    title
+}) => (
+    <div
+        onClick={onClick}
+        className={className}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: size, height: size, ...style }}
+        title={title}
+    >
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    </div>
+);
+

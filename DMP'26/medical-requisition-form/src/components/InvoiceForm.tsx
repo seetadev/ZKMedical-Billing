@@ -29,7 +29,7 @@ import { close, save, add, trash } from "ionicons/icons";
 import {
   addInvoiceData,
   clearInvoiceData,
-} from "./InvoicePage/socialcalc/modules/invoice.js";
+} from "socialcalc-ai";
 import "./InvoiceForm.css";
 
 interface InvoiceFormProps {

@@ -20,6 +20,7 @@ import {
 } from "ionicons/icons";
 import { getIpfsSettings, saveIpfsSettings } from "../utils/settings";
 import { ipfsService } from "../services/ipfs-service";
+import { getStorage } from "../services/storage";
 import "./IpfsCloudModal.css";
 
 interface IpfsCloudModalProps {
@@ -154,7 +155,11 @@ export const IpfsCloudModal: React.FC<IpfsCloudModalProps> = ({
     showToastNotification("Fetching file from IPFS...", "primary");
 
     try {
-      const invoiceData = await ipfsService.fetchFromIpfs(cid);
+      const { data } = await getStorage((msg) => showToastNotification(msg, "warning")).load(cid);
+      const invoiceData = JSON.parse(new TextDecoder().decode(data));
+      if (!invoiceData || typeof invoiceData !== "object" || !invoiceData.content) {
+        throw new Error("Retrieved data is not a valid file.");
+      }
       
       // Save data directly to temporary localStorage key
       localStorage.setItem("ipfs_temp_invoice_content", JSON.stringify(invoiceData));
@@ -256,7 +261,7 @@ export const IpfsCloudModal: React.FC<IpfsCloudModalProps> = ({
               <div className="ipfs-card">
                 <div className="ipfs-card-label">Load File via CID</div>
                 <p className="ipfs-card-desc">
-                  Paste a CID to retrieve and open a file in the editor.
+                  Paste a CID to retrieve and open a file in the editor. The provider and passphrase are set in Settings → Cloud Storage.
                 </p>
                 <div className="ipfs-cid-input-row">
                   <input
@@ -336,7 +341,7 @@ export const IpfsCloudModal: React.FC<IpfsCloudModalProps> = ({
               {/* Credentials Tab */}
               <div className="ipfs-cred-info">
                 <IonIcon icon={keyOutline} />
-                <span>Configure your Pinata credentials to backup and retrieve files on IPFS.</span>
+                <span>Legacy Pinata credentials (only used when Pinata is selected under Settings → Cloud Storage).</span>
               </div>
 
               {/* JWT */}

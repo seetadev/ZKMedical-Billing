@@ -12,6 +12,10 @@ interface AppSettings {
   ipfsPinataApiKey?: string;
   ipfsPinataApiSecret?: string;
   ipfsGatewayUrl?: string;
+  storageProvider?: 'helia' | 's3' | 'pinata';
+  tornadoUrl?: string;
+  /** Salted PBKDF2 hash used to check a re-entered passphrase. The passphrase itself is never stored. */
+  passphraseVerifier?: { salt: string; hash: string; iterations: number };
 }
 
 const SETTINGS_KEY = "home_maintenance_settings";
@@ -22,7 +26,9 @@ const defaultSettings: AppSettings = {
   invoiceFormat: 'sequential',
   sequentialNumber: 1,
   invoicePrefix: 'INV-',
-  ipfsGatewayUrl: 'https://gateway.pinata.cloud/ipfs/'
+  ipfsGatewayUrl: 'https://gateway.pinata.cloud/ipfs/',
+  storageProvider: 'helia',
+  tornadoUrl: (import.meta as any).env?.VITE_TORNADO_URL || 'http://localhost:8080'
 };
 
 export const getSettings = (): AppSettings => {

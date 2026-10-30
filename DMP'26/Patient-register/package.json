@@ -45,11 +45,14 @@
     "react-error-boundary": "^6.1.0",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
-    "react-signature-canvas": "^1.1.0-alpha.2"
+    "react-signature-canvas": "^1.1.0-alpha.2",
+    "socialcalc-ai": "^1.1.2"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^8.0.2",
+    "@noble/ciphers": "^2.4.0",
+    "@noble/hashes": "^2.4.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^16.3.2",
     "@types/react": "^19.0.0",

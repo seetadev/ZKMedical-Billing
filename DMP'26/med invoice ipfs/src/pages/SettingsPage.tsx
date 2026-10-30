@@ -21,6 +21,7 @@ import {
     helpCircleOutline
 } from 'ionicons/icons';
 import { useInvoice } from '../contexts/InvoiceContext';
+import { StorageSettings } from '../components/StorageSettings';
 import { useStatusBar, StatusBarPresets } from '../hooks/useStatusBar';
 import './SettingsPage.css';
 
@@ -112,6 +113,9 @@ const SettingsPage: React.FC = () => {
                             </div>
                         </div>
                     </div>
+
+                    <StorageSettings />
+
 
                     {/* Data management */}
                     <div className="settings-group">

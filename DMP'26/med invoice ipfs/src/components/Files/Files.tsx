@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Files.css";
-import * as AppGeneral from "../InvoicePage/socialcalc/index.js";
+import * as AppGeneral from "socialcalc-ai";
 import {
   IonIcon,
   IonAlert,

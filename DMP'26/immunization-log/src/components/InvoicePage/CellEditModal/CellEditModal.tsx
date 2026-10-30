@@ -15,7 +15,7 @@ import {
     chevronDownOutline,
 } from 'ionicons/icons';
 
-import * as AppGeneral from '../socialcalc/index.js';
+import * as AppGeneral from 'socialcalc-ai';
 import './CellEditModal.css';
 
 interface CellEditModalProps {

@@ -9,6 +9,10 @@ interface AppSettings {
   sequentialNumber: number;
   invoicePrefix: string;
   theme: string;
+  storageProvider?: 'helia' | 's3';
+  tornadoUrl?: string;
+  /** Salted PBKDF2 hash used to check a re-entered passphrase. The passphrase itself is never stored. */
+  passphraseVerifier?: { salt: string; hash: string; iterations: number };
 }
 
 const SETTINGS_KEY = "home_maintenance_settings";
@@ -19,7 +23,9 @@ const defaultSettings: AppSettings = {
   invoiceFormat: 'sequential',
   sequentialNumber: 1,
   invoicePrefix: 'INV-',
-  theme: 'ocean'
+  theme: 'ocean',
+  storageProvider: 'helia',
+  tornadoUrl: (import.meta as any).env?.VITE_TORNADO_URL || 'http://localhost:8080'
 };
 
 export const getSettings = (): AppSettings => {

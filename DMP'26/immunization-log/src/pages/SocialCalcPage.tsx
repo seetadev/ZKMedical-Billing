@@ -15,7 +15,7 @@ import {
   isPlatform,
 } from "@ionic/react";
 import React, { useEffect, useState, useRef } from "react";
-import * as AppGeneral from "../components/InvoicePage/socialcalc/index.js";
+import * as AppGeneral from "socialcalc-ai";
 import { File } from "../components/Storage/LocalStorage";
 import {
   closeOutline,
@@ -33,8 +33,8 @@ import { useInvoice } from "../contexts/InvoiceContext";
 import { localTemplateService } from "../services/local-template-service";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import CellEditModal from "../components/InvoicePage/CellEditModal/CellEditModal";
-import { setupMouseListener, setupCellChangeListener } from "../components/InvoicePage/socialcalc/modules/listeners";
-import { enableTouchScroll, disableTouchScroll } from "../components/InvoicePage/socialcalc/modules/touch-scroll.js";
+import { setupMouseListener, setupCellChangeListener } from "socialcalc-ai";
+import { enableTouchScroll, disableTouchScroll } from "socialcalc-ai";
 import {
   generateEditableCells,
   extractTotalFromCell,
@@ -43,7 +43,9 @@ import {
 import { isQuotaExceededError, getQuotaExceededMessage } from "../utils/helper";
 import { InvoiceGenerator } from "../utils/InvoiceGenerator";
 import { SheetChangeMonitor } from "../utils/sheetChangeMonitor";
-import { SaveIcon, ShareIcon, MoreIcon } from "../components/InvoicePage/HeaderIcons";
+import { SaveIcon, ShareIcon, MoreIcon, CloudIcon } from "../components/InvoicePage/HeaderIcons";
+import { getStorage } from "../services/storage";
+import { IpfsCloudModal } from "../components/IpfsCloudModal";
 // import { useStatusBar, StatusBarPresets } from "../hooks/useStatusBar";
 import { useStatusBar, StatusBarPresets } from "../hooks/useStatusBar";
 
@@ -90,6 +92,16 @@ const SocialCalcPage: React.FC = () => {
 
   // State for tracking if invoice has been saved
   const [isInvoiceSaved, setIsInvoiceSaved] = useState(false);
+
+  // IPFS state variables
+  const [showIpfsAlert, setShowIpfsAlert] = useState(false);
+  const [ipfsCid, setIpfsCid] = useState("");
+  const [ipfsStatus, setIpfsStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
+  const [ipfsErrorMsg, setIpfsErrorMsg] = useState("");
+  const [showCloudModal, setShowCloudModal] = useState(false);
+  const [showIpfsSaveDialog, setShowIpfsSaveDialog] = useState(false);
+  const [ipfsSaveName, setIpfsSaveName] = useState("");
+  const [ipfsRedirectFilename, setIpfsRedirectFilename] = useState("");
   const [currentInvoiceId, setCurrentInvoiceId] = useState<string | null>(null);
 
   const [showMenu, setShowMenu] = useState(false);
@@ -133,20 +145,17 @@ const SocialCalcPage: React.FC = () => {
 
   // Setup SocialCalc mouse listener for custom cell editing
   useEffect(() => {
-    let cleanupFn: (() => void) | undefined;
-
     const intervalId = setInterval(() => {
       const sc = (window as any).SocialCalc;
       if (sc && sc.ProcessEditorMouseDown) {
         clearInterval(intervalId);
-        // console.log("🖱️ Setup mouse listener for custom editing");
-        cleanupFn = setupMouseListener();
+        // socialcalc-ai installs this patch once, globally; it has no cleanup handle.
+        setupMouseListener();
       }
     }, 500);
 
     return () => {
       clearInterval(intervalId);
-      if (cleanupFn) cleanupFn();
     };
   }, []);
 
@@ -1140,6 +1149,315 @@ const SocialCalcPage: React.FC = () => {
     }
   };
 
+  const executeSaveToIpfsWithName = async (chosenName: string) => {
+    try {
+      const filename = chosenName.replace(/[^a-zA-Z0-9-_ ]/g, '').replace(/\s+/g, '-');
+
+      try {
+        const exists = await localTemplateService.invoiceExists(filename);
+        if (exists) {
+          setToastMessage(`File "${chosenName}" already exists. Please choose a different name.`);
+          setToastColor("danger");
+          setShowToast(true);
+          setIpfsSaveName(chosenName);
+          setShowIpfsSaveDialog(true);
+          return;
+        }
+      } catch (e) {
+        console.error("Error checking invoice existence", e);
+      }
+
+      const socialCalc = (window as any).SocialCalc;
+      if (!socialCalc || !socialCalc.GetCurrentWorkBookControl) {
+        setToastMessage("Spreadsheet not ready. Please wait and try again.");
+        setToastColor("warning");
+        setShowToast(true);
+        return;
+      }
+
+      const control = socialCalc.GetCurrentWorkBookControl();
+      if (!control || !control.workbook) {
+        setToastMessage("Spreadsheet not ready.");
+        setToastColor("warning");
+        setShowToast(true);
+        return;
+      }
+
+      // Update invoice ID in cells
+      if (activeTemplateData && activeTemplateData.appMapping) {
+        try {
+          Object.keys(activeTemplateData.appMapping).forEach(sheetId => {
+            const mapping = activeTemplateData.appMapping[sheetId];
+            if (mapping.InvoiceNumber && mapping.InvoiceNumber.cell) {
+              const coord = mapping.InvoiceNumber.cell;
+              if (control.workbook && control.workbook.sheetArr && control.workbook.sheetArr[sheetId]) {
+                const sheetObj = control.workbook.sheetArr[sheetId];
+                if (sheetObj && sheetObj.sheet) {
+                  const sheet = sheetObj.sheet;
+                  const cell = sheet.GetAssuredCell(coord);
+                  cell.datavalue = chosenName;
+                  cell.displaystring = chosenName;
+                  cell.valuetype = "t";
+
+                  if (sheetId === control.currentSheetButton.id) {
+                    if (control.workbook.spreadsheet && control.workbook.spreadsheet.editor) {
+                      control.workbook.spreadsheet.editor.EditorRenderSheet();
+                    }
+                  }
+                }
+              }
+            }
+          });
+        } catch (e) {
+          console.error("Failed to update invoice ID in cells", e);
+        }
+      }
+
+      // Force recalculation before pinning
+      try {
+        if (control.ExecuteWorkBookControlCommand) {
+          control.ExecuteWorkBookControlCommand({ cmd: "recalc", saveundo: false }, false);
+        }
+      } catch (e) {
+        // Non-critical
+      }
+
+      const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
+      const currentSheetId = control.currentSheetButton?.id || "sheet1";
+      const currentSheet = control.workbook.sheetArr?.[currentSheetId]?.sheet;
+
+      const parseCurrency = (val: string | number): number | null => {
+        if (typeof val === 'number') return val;
+        if (!val) return null;
+        const clean = String(val).replace(/[^0-9.-]+/g, "");
+        const num = parseFloat(clean);
+        return isNaN(num) ? null : num;
+      };
+
+      let totalValue: number | null = null;
+      if (currentSheet && activeTemplateData?.appMapping) {
+        const sheetMapping = activeTemplateData.appMapping[currentSheetId];
+        const totalItem = sheetMapping?.['Total'] || sheetMapping?.['Grand Total'] || sheetMapping?.['total'];
+        if (totalItem?.cell && currentSheet.cells?.[totalItem.cell]) {
+          const cell = currentSheet.cells[totalItem.cell];
+          totalValue = parseCurrency(cell.datavalue) ?? parseCurrency(cell.displaystring);
+        }
+      }
+
+      let billToDetails: any = null;
+      if (currentSheet && activeTemplateData?.appMapping) {
+        const sheetMapping = activeTemplateData.appMapping[currentSheetId];
+        if (sheetMapping?.BillTo?.formContent) {
+          billToDetails = {};
+          for (const [key, field] of Object.entries(sheetMapping.BillTo.formContent)) {
+            const cellRef = (field as any).cell;
+            if (cellRef && currentSheet.cells?.[cellRef]) {
+              let val = currentSheet.cells[cellRef].datavalue;
+              if (val === undefined || val === null) {
+                val = currentSheet.cells[cellRef].displaystring;
+              }
+              billToDetails[key] = val || "";
+            }
+          }
+        }
+      }
+
+      // Save to local storage with full metadata
+      const saveSuccess = await localTemplateService.saveInvoice({
+        id: filename,
+        name: chosenName,
+        templateId: activeTemplateId || billType,
+        content: content,
+        billType: billType,
+        total: totalValue || 0,
+        billToDetails: billToDetails
+      });
+
+      if (!saveSuccess) {
+        setToastMessage(`File limit reached (max ${localTemplateService.maxInvoices} files). Please delete some files first.`);
+        setToastColor("danger");
+        setShowToast(true);
+        return;
+      }
+
+      setIsInvoiceSaved(true);
+      setCurrentInvoiceId(filename);
+
+      // Now prepare IPFS pin
+      const invoiceForIpfs = {
+        id: filename,
+        name: chosenName,
+        templateId: activeTemplateId || billType || "",
+        content: content,
+        billType: billType || 0,
+        createdAt: new Date().toISOString(),
+        modifiedAt: new Date().toISOString(),
+        total: totalValue || 0,
+      };
+
+      setIpfsStatus("saving");
+      setToastMessage("Uploading to IPFS...");
+      setToastColor("success");
+      setShowToast(true);
+
+      const saved = await getStorage((msg) => {
+        setToastMessage(msg);
+        setToastColor("warning");
+        setShowToast(true);
+      }).save(invoiceForIpfs.name, new TextEncoder().encode(JSON.stringify(invoiceForIpfs)));
+      const cid = saved.id;
+
+      // Save to pinned history
+      try {
+        const historyStr = localStorage.getItem("ipfs_pinned_history") || "[]";
+        let history = JSON.parse(historyStr);
+        history = [
+          {
+            cid,
+            name: invoiceForIpfs.name,
+            date: new Date().toLocaleString(),
+          },
+          ...history,
+        ];
+        localStorage.setItem("ipfs_pinned_history", JSON.stringify(history));
+      } catch (e) {
+        // Non-critical
+      }
+
+      // Copy CID to clipboard
+      try {
+        await navigator.clipboard.writeText(cid);
+      } catch (e) {
+        // Non-critical
+      }
+
+      setIpfsCid(cid);
+      setIpfsStatus("success");
+      setIpfsRedirectFilename(filename);
+      setShowIpfsAlert(true);
+    } catch (error: any) {
+      console.error("IPFS Save failed:", error);
+      setIpfsErrorMsg(error.message || "Unknown error");
+      setIpfsStatus("error");
+      setShowIpfsAlert(true);
+    }
+  };
+
+  const handleSaveToIpfs = async () => {
+    // If it's a new file, prompt for name before saving/pinning to IPFS
+    if (fileName === "invoice" || isNewTemplateFileName) {
+      const suggestedName = extractInvoiceIdFromSheet() || "";
+      setIpfsSaveName(suggestedName);
+      setShowIpfsSaveDialog(true);
+      return;
+    }
+
+    // First, ensure the file is saved locally
+    try {
+      await handleSave();
+
+      const socialCalc = (window as any).SocialCalc;
+      if (!socialCalc || !socialCalc.GetCurrentWorkBookControl) {
+        setToastMessage("Spreadsheet not ready. Please wait and try again.");
+        setToastColor("warning");
+        setShowToast(true);
+        return;
+      }
+
+      const control = socialCalc.GetCurrentWorkBookControl();
+      if (!control || !control.workbook) {
+        setToastMessage("Spreadsheet not ready.");
+        setToastColor("warning");
+        setShowToast(true);
+        return;
+      }
+
+      // Force recalculation before pinning
+      try {
+        if (control.ExecuteWorkBookControlCommand) {
+          control.ExecuteWorkBookControlCommand({ cmd: "recalc", saveundo: false }, false);
+        }
+      } catch (e) {
+        // Non-critical
+      }
+
+      const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
+      const currentSheetId = control.currentSheetButton?.id || "sheet1";
+      const currentSheet = control.workbook.sheetArr?.[currentSheetId]?.sheet;
+
+      // Extract total value
+      let totalValue: number | null = null;
+      try {
+        const totalCellRef = extractTotalFromCell(activeTemplateData?.appMapping, currentSheetId);
+        if (totalCellRef && currentSheet?.cells?.[totalCellRef]) {
+          const cell = currentSheet.cells[totalCellRef];
+          if (cell.datavalue !== undefined) {
+            const num = typeof cell.datavalue === 'number' ? cell.datavalue : parseFloat(String(cell.datavalue).replace(/[^0-9.-]+/g, ""));
+            if (!isNaN(num)) totalValue = num;
+          }
+        }
+      } catch (e) {
+        // Non-critical
+      }
+
+      const invoiceForIpfs = {
+        id: fileName || "untitled",
+        name: fileName || "Untitled File",
+        templateId: activeTemplateId || billType || "",
+        content: content,
+        billType: billType || 0,
+        createdAt: new Date().toISOString(),
+        modifiedAt: new Date().toISOString(),
+        total: totalValue || 0,
+      };
+
+      setIpfsStatus("saving");
+      setToastMessage("Uploading to IPFS...");
+      setToastColor("success");
+      setShowToast(true);
+
+      const saved = await getStorage((msg) => {
+        setToastMessage(msg);
+        setToastColor("warning");
+        setShowToast(true);
+      }).save(invoiceForIpfs.name, new TextEncoder().encode(JSON.stringify(invoiceForIpfs)));
+      const cid = saved.id;
+
+      // Save to pinned history
+      try {
+        const historyStr = localStorage.getItem("ipfs_pinned_history") || "[]";
+        let history = JSON.parse(historyStr);
+        history = [
+          {
+            cid,
+            name: invoiceForIpfs.name,
+            date: new Date().toLocaleString(),
+          },
+          ...history,
+        ];
+        localStorage.setItem("ipfs_pinned_history", JSON.stringify(history));
+      } catch (e) {
+        // Non-critical
+      }
+
+      // Copy CID to clipboard
+      try {
+        await navigator.clipboard.writeText(cid);
+      } catch (e) {
+        // Non-critical
+      }
+
+      setIpfsCid(cid);
+      setIpfsStatus("success");
+      setShowIpfsAlert(true);
+    } catch (error: any) {
+      console.error("IPFS Save failed:", error);
+      setIpfsErrorMsg(error.message || "Unknown error");
+      setIpfsStatus("error");
+      setShowIpfsAlert(true);
+    }
+  };
+
   const activateFooter = (footer) => {
     if (import.meta.env.DEV) console.log("🦶 activateFooter: Starting footer activation", { footer });
     // Only activate footer if SocialCalc is properly initialized
@@ -1204,8 +1522,8 @@ const SocialCalcPage: React.FC = () => {
         return;
       }
 
-      // If fileName is 'invoice' (placeholder) but no template specified, redirect
-      if ((fileToLoad === "invoice" || (fileToLoad && fileToLoad.startsWith("new-template-"))) && !isNewInvoiceMode) {
+      // If fileName is 'invoice' (placeholder) but no template specified, redirect (unless we have IPFS temp data)
+      if ((fileToLoad === "invoice" || (fileToLoad && fileToLoad.startsWith("new-template-"))) && !isNewInvoiceMode && !localStorage.getItem("ipfs_temp_invoice_content")) {
         // console.log("⚠️ initializeApp: 'invoice' placeholder without template, redirecting to home");
         history.push("/app/tabs/home");
         return;
@@ -1215,9 +1533,88 @@ const SocialCalcPage: React.FC = () => {
       let templateData: any = null;
       let templateId: string | number = "";
       let footerIndex = 1;
+      let isIpfsLoad = false;
+
+      // Check if we are loading an IPFS invoice loaded temporarily (unsaved)
+      const ipfsTempContentStr = localStorage.getItem("ipfs_temp_invoice_content");
+      if (ipfsTempContentStr) {
+        isIpfsLoad = true;
+        localStorage.removeItem("ipfs_temp_invoice_content");
+        try {
+          const tempInvoice = JSON.parse(ipfsTempContentStr);
+          setIsInvoiceSaved(false);
+          setCurrentInvoiceId(null);
+
+          let content = tempInvoice.content;
+          let storedAppMapping: any = null;
+          let storedFooter: any = null;
+
+          if (typeof content === 'string') {
+            try {
+              content = decodeURIComponent(content);
+            } catch (e) {
+              // Ignore
+            }
+          }
+
+          if (typeof content === 'object' && content.msc !== undefined) {
+            storedAppMapping = content.appMapping;
+            storedFooter = content.footer;
+            content = content.msc;
+            if (typeof content === 'object') {
+              content = JSON.stringify(content);
+            }
+          } else if (typeof content === 'object') {
+            content = JSON.stringify(content);
+          }
+
+          contentToLoad = content;
+          templateId = tempInvoice.templateId;
+          footerIndex = tempInvoice.billType || tempInvoice.footerIndex || 1;
+
+          if (storedAppMapping) {
+            templateData = {
+              appMapping: storedAppMapping,
+              footers: storedFooter ? [storedFooter] : [],
+              msc: { currentid: 'sheet1' }
+            };
+          }
+
+          if (!templateData && templateId) {
+            try {
+              const tryFetchTemplate = async (baseId: string): Promise<any> => {
+                const userTemplate = await localTemplateService.getUserTemplate(baseId);
+                if (userTemplate) return userTemplate.data;
+                const numId = parseInt(baseId, 10);
+                if (!isNaN(numId)) {
+                  const storeTemplate = await localTemplateService.fetchStoreTemplate(numId);
+                  if (storeTemplate) return storeTemplate.data;
+                }
+                return null;
+              };
+              const template = await tryFetchTemplate(String(templateId));
+              if (template) {
+                templateData = template;
+              }
+            } catch (e) {
+              console.error("Failed to load template data for IPFS invoice fallback:", e);
+            }
+          }
+
+          if (!templateData) {
+            templateData = {
+              appMapping: {},
+              footers: [],
+              msc: { currentid: 'sheet1' }
+            };
+          }
+        } catch (e) {
+          console.error("Failed to parse/load temp IPFS content:", e);
+        }
+      }
 
       // ========== MODE 1: NEW INVOICE FROM TEMPLATE ==========
-      if (isNewInvoiceMode && templateIdFromUrl) {
+      if (!contentToLoad && isNewInvoiceMode && templateIdFromUrl) {
         // console.log("📝 initializeApp: NEW INVOICE MODE - Loading template", { templateIdFromUrl });
         setIsInvoiceSaved(false);
 
@@ -1280,7 +1677,7 @@ const SocialCalcPage: React.FC = () => {
         footerIndex = activeFooter?.index || 1;
       }
       // ========== MODE 2: EXISTING INVOICE ==========
-      else {
+      else if (!isIpfsLoad) {
         // console.log("📂 initializeApp: EXISTING INVOICE MODE - Loading saved invoice");
         setIsInvoiceSaved(true);
 
@@ -1850,6 +2247,12 @@ const SocialCalcPage: React.FC = () => {
             slot="end"
             className={isPlatform("desktop") && "ion-padding-end"}
           >
+            <CloudIcon
+              size={24}
+              onClick={() => setShowCloudModal(true)}
+              style={{ cursor: "pointer", marginRight: "12px" }}
+              title="IPFS Cloud Manager"
+            />
             <SaveIcon
               size={24}
               onClick={() => {
@@ -2131,6 +2534,7 @@ const SocialCalcPage: React.FC = () => {
           showColorModal={showColorModal}
           setShowColorPicker={setShowColorModal}
           fileName={fileName}
+          onSaveToIpfs={handleSaveToIpfs}
         />
 
         {/* Color Picker Modal */}
@@ -2424,6 +2828,121 @@ const SocialCalcPage: React.FC = () => {
             setCellEditData(null);
           }}
           cellData={cellEditData}
+        />
+
+        {/* IPFS Cloud Modal */}
+        <IpfsCloudModal
+          isOpen={showCloudModal}
+          onClose={() => setShowCloudModal(false)}
+          onImportSuccess={(importedFileName) => {
+            setShowCloudModal(false);
+            history.push(`/app/tabs/home/${importedFileName}`);
+            window.location.reload();
+          }}
+        />
+
+        {/* IPFS Pinning Result Alert */}
+        <IonAlert
+          isOpen={showIpfsAlert}
+          onDidDismiss={() => {
+            setShowIpfsAlert(false);
+            setIpfsCid("");
+            setIpfsStatus("idle");
+            setIpfsErrorMsg("");
+            if (ipfsRedirectFilename) {
+              const filename = ipfsRedirectFilename;
+              setIpfsRedirectFilename("");
+              window.location.href = `/app/tabs/home/${filename}`;
+            }
+          }}
+          header={ipfsStatus === "success" ? "Saved to IPFS Successfully!" : "IPFS Upload Failed"}
+          message={
+            ipfsStatus === "success"
+              ? `Your file has been securely pinned to the decentralized IPFS network.\n\nCID:\n${ipfsCid}\n\nThe CID has been copied to your clipboard. You can share this CID with anyone to retrieve this file.`
+              : `There was an error saving your file to IPFS:\n\n${ipfsErrorMsg}`
+          }
+          buttons={[
+            {
+              text: ipfsStatus === "success" ? "Copy CID Again" : "Cancel",
+              handler: () => {
+                if (ipfsStatus === "success") {
+                  navigator.clipboard.writeText(ipfsCid);
+                  setToastMessage("CID copied to clipboard!");
+                  setToastColor("success");
+                  setShowToast(true);
+                }
+              }
+            },
+            {
+              text: "OK",
+              role: "cancel"
+            },
+          ]}
+        />
+
+        {/* IPFS Name Entry Alert */}
+        <IonAlert
+          isOpen={showIpfsSaveDialog}
+          onDidDismiss={() => {
+            setShowIpfsSaveDialog(false);
+            setIpfsSaveName("");
+          }}
+          onDidPresent={() => {
+            const socialCalc = (window as any).SocialCalc;
+            if (socialCalc) {
+              socialCalc.keyboardEnabled = false;
+            }
+          }}
+          onWillDismiss={() => {
+            const socialCalc = (window as any).SocialCalc;
+            if (socialCalc) {
+              socialCalc.keyboardEnabled = true;
+            }
+          }}
+          backdropDismiss={false}
+          keyboardClose={false}
+          header="Save to IPFS"
+          message="Enter a name for your file before uploading to IPFS:"
+          inputs={[
+            {
+              name: "invoiceName",
+              type: "text",
+              placeholder: "File name...",
+              value: ipfsSaveName,
+              attributes: {
+                maxlength: 50,
+                onKeyDown: (e: any) => e.stopPropagation(),
+                onKeyUp: (e: any) => e.stopPropagation(),
+                onKeyPress: (e: any) => e.stopPropagation(),
+              },
+            },
+          ]}
+          buttons={[
+            {
+              text: "Cancel",
+              role: "cancel",
+              handler: () => {
+                setIpfsSaveName("");
+              },
+            },
+            {
+              text: "Upload",
+              handler: (data) => {
+                if (data.invoiceName && data.invoiceName.trim()) {
+                  const invoiceName = data.invoiceName.trim();
+                  setShowIpfsSaveDialog(false);
+                  setTimeout(() => {
+                    executeSaveToIpfsWithName(invoiceName);
+                  }, 100);
+                } else {
+                  setToastMessage("Please enter a valid filename");
+                  setToastColor("warning");
+                  setShowToast(true);
+                  return false; // Prevent dialog from closing
+                }
+              },
+            },
+          ]}
         />
 
       </IonContent>
